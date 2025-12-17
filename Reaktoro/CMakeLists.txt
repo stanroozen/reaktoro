@@ -4,6 +4,10 @@ file(GLOB_RECURSE HPP_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp)
 # Recursively collect all cpp files from the current directory
 file(GLOB_RECURSE CPP_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 
+# Exclude files from build directories and tests subdirectories
+list(FILTER CPP_FILES EXCLUDE REGEX ".*/build/.*")
+list(FILTER CPP_FILES EXCLUDE REGEX ".*/tests/.*")
+
 # Recursively collect all .test.cxx files from the current directory
 file(GLOB_RECURSE CXX_FILES_TEST RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.test.cxx)
 
@@ -44,6 +48,9 @@ target_link_libraries(Reaktoro
 # Enable implicit conversion of autodiff::real to double
 target_compile_definitions(Reaktoro PUBLIC AUTODIFF_ENABLE_IMPLICIT_CONVERSION_REAL=1)
 
+# Define path to DEW aqueous database for DEW test adapters
+target_compile_definitions(Reaktoro PRIVATE DEW_AQUEOUS_DB_PATH="${PROJECT_SOURCE_DIR}/embedded/databases/DEW/dew2024-aqueous.yaml")
+
 if(REAKTORO_ENABLE_OPENLIBM)
     configure_target_to_use_openlibm(Reaktoro)
     target_compile_definitions(Reaktoro PUBLIC REAKTORO_ENABLE_OPENLIBM=1)
@@ -79,6 +86,8 @@ if(REAKTORO_BUILD_TESTS)
     set(REAKTORO_EMBEDDED_DIR  ${PROJECT_SOURCE_DIR}/embedded)
     set(REAKTORO_DATABASES_DIR ${PROJECT_SOURCE_DIR}/embedded/databases)
     set(REAKTORO_PARAMS_DIR    ${PROJECT_SOURCE_DIR}/embedded/params)
+    set(REAKTORO_DEW_TESTS_DIR ${PROJECT_SOURCE_DIR}/Reaktoro/Extensions/DEW/tests)
+    set(DEW_AQUEOUS_DB_PATH    ${PROJECT_SOURCE_DIR}/embedded/databases/DEW/dew2024-aqueous.yaml)
 
     # Create a test executable target for Reaktoro
     add_executable(reaktoro-cpptests ${CXX_FILES_TEST})
@@ -89,6 +98,8 @@ if(REAKTORO_BUILD_TESTS)
         PRIVATE REAKTORO_EMBEDDED_DIR="${REAKTORO_EMBEDDED_DIR}"      # This permits the C++ tests to easily load embedded resources via global addresses so that the tests can be executed from anywhere without errors.
         PRIVATE REAKTORO_DATABASES_DIR="${REAKTORO_DATABASES_DIR}"    # This permits the C++ tests to easily load embedded databases via global addresses so that the tests can be executed from anywhere without errors.
         PRIVATE REAKTORO_PARAMS_DIR="${REAKTORO_PARAMS_DIR}"          # This permits the C++ tests to easily load embedded model parameters via global addresses so that the tests can be executed from anywhere without errors.
+        PRIVATE REAKTORO_DEW_TESTS_DIR="${REAKTORO_DEW_TESTS_DIR}"    # This permits DEW tests to load CSV truth tables from the source tree
+        PRIVATE DEW_AQUEOUS_DB_PATH="${DEW_AQUEOUS_DB_PATH}"          # This permits DEW tests to load the aqueous species database
     )
 
 endif()

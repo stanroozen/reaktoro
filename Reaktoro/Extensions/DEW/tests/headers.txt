@@ -1,0 +1,30 @@
+ExcelTruth Headers
+truth_density_psat.csv T_C	rho_g_cm3
+truth_density_ZD2005.csv T_C	P_bar	Psat	rho_g_cm3
+truth_density_ZD2009.csv T_C	P_bar	Psat	rho_g_cm3
+truth_depsdrho_Fernandez1997.csv T_C	eq	rho_g_cm3	depsdrho
+truth_depsdrho_Franck1990.csv T_C	eq	rho_g_cm3	depsdrho
+truth_depsdrho_JN1991.csv T_C	eq	rho_g_cm3	depsdrho
+truth_depsdrho_Power.csv T_C	eq	rho_g_cm3	depsdrho
+truth_dgdP_eq2.csv T_C	P_bar	eq	rho_g_cm3	dgdP	Psat
+truth_dgdP_psat.csv T_C	dgdP T_C	dgdP
+truth_drhodP_ZD2005.csv T_C	P_bar	eq	rho_g_cm3	drhodP
+truth_drhodP_ZD2009.csv T_C	P_bar	eq	rho_g_cm3	drhodP
+truth_epsilon_Fernandez1997.csv T_C	P_bar	eq	rho_g_cm3	eps_r	Psat
+truth_epsilon_Franck1990.csv T_C	P_bar	eq	rho_g_cm3	eps_r	Psat
+truth_epsilon_JN1991.csv T_C	P_bar	eq	rho_g_cm3	eps_r	Psat
+truth_epsilon_Power.csv T_C	P_bar	eq	rho_g_cm3	eps_r	Psat
+truth_epsilon_psat.csv T_C	eps_r
+truth_g.csv T_C	P_bar	rho_g_cm3	g
+truth_G_DH1978.csv T_C	P_bar	G_cal_mol
+truth_G_integral.csv T_C	P_bar	G_cal_mol
+truth_G_psat.csv T_C	G_cal_mol
+truth_Omega_AllSpecies.csv SpeciesName	Z	wref_cal_per_mol	P_bar	T_C	rho_g_per_cm3	Omega_cal_per_mol	dOmega_dP_cal_per_mol_bar
+truth_Q_densEq2_epsEq1.csv T_C	P_bar	rho_g_cm3	Q_bar_inv
+
+
+
+
+
+
+

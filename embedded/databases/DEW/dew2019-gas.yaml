@@ -1,0 +1,443 @@
+Species:
+  Ar(g):
+    Name: Ar(g)
+    Formula: Ar
+    Elements: 1:Ar
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 8000.0
+          label: Ar(g)
+          state: Gas
+          a1: 2.499994642421868
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -745.3734026380799
+          b2: 4.379187232119106
+  CH4(g):
+    Name: CH4(g)
+    Formula: CH4
+    Elements: 1:C 4:H
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -74809.92
+        dH0: 0.0
+        H0: -74809.92
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 1500.0
+          label: CH4(g)
+          state: Gas
+          a1: 2.8431903642680267
+          a2: 0.005756831463225881
+          a3: 2.314809854094323e-06
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -10121.584936517016
+          b2: 4.383690125162413
+  CO(g):
+    Name: CO(g)
+    Formula: CO
+    Elements: 1:C 1:O
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -110524.54400000001
+        dH0: 0.0
+        H0: -110524.54400000001
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 2500.0
+          label: CO(g)
+          state: Gas
+          a1: 3.50240795315141
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -14337.290128135492
+          b2: 3.8218149073580676
+  CO2(g):
+    Name: CO2(g)
+    Formula: CO2
+    Elements: 1:C 2:O
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -393509.384
+        dH0: 0.0
+        H0: -393509.384
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 2500.0
+          label: CO2(g)
+          state: Gas
+          a1: 5.319030469081955
+          a2: 0.0010567610203474082
+          a3: 1.0366322390074577e-05
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -49052.720361956526
+          b2: -5.374542898081579
+  H2(g):
+    Name: H2(g)
+    Formula: H2
+    Elements: 2:H
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 3000.0
+          label: H2(g)
+          state: Gas
+          a1: 3.2809913584119528
+          a2: 0.0003925112361290374
+          a3: -6.038634401985191e-07
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -990.3385606438296
+          b2: -3.066394159289075
+  H2O(g):
+    Name: H2O(g)
+    Formula: H2O
+    Elements: 2:H 1:O
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -242400.04
+        dH0: 0.0
+        H0: -242400.04
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 2523.15
+          label: H2O(g)
+          state: Gas
+          a1: 6.373124425901819
+          a2: -0.005235546348474509
+          a3: 6.58110505909686e-08
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -30822.049313394982
+          b2: -12.227823759891255
+  H2S(g):
+    Name: H2S(g)
+    Formula: H2S
+    Elements: 2:H 1:S
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -20631.304
+        dH0: 0.0
+        H0: -20631.304
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 2300.0
+          label: H2S(g)
+          state: Gas
+          a1: 3.9301445566253608
+          a2: 0.0014895298191563468
+          a3: 2.314809854094323e-06
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -3739.803065702229
+          b2: 1.8114850368312538
+  He(g):
+    Name: He(g)
+    Formula: He
+    Elements: 1:He
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 8000.0
+          label: He(g)
+          state: Gas
+          a1: 2.499994642421868
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -745.3734026380799
+          b2: 0.928610890918069
+  Kr(g):
+    Name: Kr(g)
+    Formula: Kr
+    Elements: 1:Kr
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 8000.0
+          label: Kr(g)
+          state: Gas
+          a1: 2.499994642421868
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -745.3734026380799
+          b2: 5.490799181617879
+  N2(g):
+    Name: N2(g)
+    Formula: N2
+    Elements: 2:N
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 3000.0
+          label: N2(g)
+          state: Gas
+          a1: 3.4369894137965704
+          a2: 0.0004528975801488893
+          a3: 6.038634401985191e-07
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -1050.2030481354507
+          b2: 3.300991003133994
+  Ne(g):
+    Name: Ne(g)
+    Formula: Ne
+    Elements: 1:Ne
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 8000.0
+          label: Ne(g)
+          state: Gas
+          a1: 2.499994642421868
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -745.3734026380799
+          b2: 3.355135481449116
+  NH3(g):
+    Name: NH3(g)
+    Formula: NH3
+    Elements: 1:N 3:H
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -46111.864
+        dH0: 0.0
+        H0: -46111.864
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 1800.0
+          label: NH3(g)
+          state: Gas
+          a1: 3.577890883176225
+          a2: 0.003019317200992595
+          a3: 1.8619122739454337e-06
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -6763.378475174246
+          b2: 1.7797538956048626
+  O2(g):
+    Name: O2(g)
+    Formula: O2
+    Elements: 2:O
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 3000.0
+          label: O2(g)
+          state: Gas
+          a1: 3.6030518598511634
+          a2: 0.0005032195334987658
+          a3: 2.0128781339950634e-06
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -1114.39918678641
+          b2: 3.9041133480820385
+  Rn(g):
+    Name: Rn(g)
+    Formula: Rn
+    Elements: 1:Rn
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 3000.0
+          label: Rn(g)
+          state: Gas
+          a1: 2.499994642421868
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -745.3734026380799
+          b2: 6.951645487364795
+  S2(g):
+    Name: S2(g)
+    Formula: S2
+    Elements: 2:S
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 128369.304
+        dH0: 0.0
+        H0: 128369.304
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 3000.0
+          label: S2(g)
+          state: Gas
+          a1: 4.388074332109238
+          a2: 8.051512535980253e-05
+          a3: 4.528975801488892e-06
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: 14087.384164319375
+          b2: 2.218811790390909
+  SO2(g):
+    Name: SO2(g)
+    Formula: SO2
+    Elements: 1:S 2:O
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: -296829.696
+        dH0: 0.0
+        H0: -296829.696
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 2000.0
+          label: SO2(g)
+          state: Gas
+          a1: 5.555543649826374
+          a2: 0.0009460527229776797
+          a3: 9.259239416377291e-06
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -37480.64183470426
+          b2: -2.490840690059965
+  Xe(g):
+    Name: Xe(g)
+    Formula: Xe
+    Elements: 1:Xe
+    Charge: 0.0
+    AggregateState: Gas
+    StandardThermoModel:
+      Nasa:
+        dHf: 0.0
+        dH0: 0.0
+        H0: 0.0
+        T0: 298.15
+        polynomials:
+        - Tmin: 298.15
+          Tmax: 8000.0
+          label: Xe(g)
+          state: Gas
+          a1: 2.499994642421868
+          a2: 0.0
+          a3: 0.0
+          a4: 0.0
+          a5: 0.0
+          a6: 0.0
+          a7: 0.0
+          b1: -745.3734026380799
+          b2: 6.164106917439225
