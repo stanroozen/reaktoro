@@ -104,7 +104,7 @@ double gibbsDelaneyHelgeson1978_J_per_mol(double T_K, double P_Pa)
 struct GaussLegendre16
 {
     static constexpr int N = 16;
-    
+
     // Nodes (abscissae) for [-1, 1]
     static constexpr double nodes[16] = {
         -0.9894009349916500,  -0.9445750230732326,  -0.8656312023878921,  -0.7554044083550030,
@@ -112,7 +112,7 @@ struct GaussLegendre16
          0.0914297953593871,   0.2736629541353671,   0.4545454545454545,   0.6178762444026437,
          0.7554044083550030,   0.8656312023878921,   0.9445750230732326,   0.9894009349916500
     };
-    
+
     // Weights for [-1, 1]
     static constexpr double weights[16] = {
         0.0271524594117540,  0.0622535239386479,  0.0951585116824927,  0.1246289712555339,
@@ -138,7 +138,7 @@ double simpsonRule(double T_K,
     if (nsteps % 2 != 0) nsteps++;
 
     const double h = (P_end_Pa - P_start_Pa) / nsteps;
-    
+
     auto wt = waterThermoPropsModel(T_K, P_start_Pa, thermoWithTol);
     double Vm_left = (wt.D > 0.0) ? (M / wt.D) : 0.0;
     double sum = Vm_left;
@@ -233,7 +233,7 @@ double adaptiveSimpsonsHelper(double T_K,
 
     // Check convergence criterion: |Vm_mid - (Vm_L + Vm_R)/2| vs tolerance
     double error_estimator = std::abs(Vm_mid - 0.5 * (Vm_L + Vm_R));
-    
+
     if (error_estimator <= tol)
         return S;  // Converged, use this Simpson's estimate
 
@@ -272,7 +272,10 @@ double adaptiveSimpson(double T_K,
                                  thermoWithTol, M, Vm_start, Vm_end);
 }
 
-//
+//----------------------------------------------------------------------------//
+// Gibbs at 1000 bar (polynomial from Excel)
+//----------------------------------------------------------------------------//
+double GAtOneKb_cal_per_mol(double T_C)
 {
     // From Excel GAtOneKb polynomial in equation=2 branch.
     // Valid roughly 100–1000 °C.
@@ -400,7 +403,7 @@ double gibbsDewIntegral_J_per_mol(double T_K,
             {
                 // Adaptive Simpson's with automatic subdivision
                 // integrationSteps used as initial subdivision count
-                G_int_J = adaptiveSimpson(T_K, P_start_Pa, P_Pa, 
+                G_int_J = adaptiveSimpson(T_K, P_start_Pa, P_Pa,
                                          opt.adaptiveIntegrationTolerance,
                                          opt.maxAdaptiveSubdivisions,
                                          thermoWithTol, M);
