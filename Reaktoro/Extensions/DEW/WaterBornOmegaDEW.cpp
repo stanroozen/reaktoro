@@ -43,8 +43,12 @@ auto waterBornOmegaDEW(real T,
                        const WaterBornOmegaOptions& opt)
     -> real
 {
-    // Trivial / Excel-like bypass cases
-    if (Z == 0.0 || opt.isHydrogenLike || P > opt.maxPressureForVariation)
+    // For neutral species (Z=0), omega = wref = constant (no P,T dependence)
+    if (Z == 0.0)
+        return wref_Jmol;
+
+    // Trivial / Excel-like bypass cases for charged species
+    if (opt.isHydrogenLike || P > opt.maxPressureForVariation)
         return wref_Jmol;
 
     // Convert wref from J/mol to cal/mol for DEW formula.
@@ -89,7 +93,8 @@ auto waterBornDOmegaDP_DEW(real T,
                            const WaterBornOmegaOptions& opt)
     -> real
 {
-    // Same trivial / cutoff logic as omega
+    // For neutral species (Z=0), omega = wref = constant, so dω/dP = 0
+    // For hydrogen-like or high pressure, also return 0
     if (Z == 0.0 || opt.isHydrogenLike || P > opt.maxPressureForVariation)
         return 0.0;
 

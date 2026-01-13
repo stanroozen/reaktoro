@@ -145,7 +145,7 @@ auto waterThermoPropsModel(real T,
         case WaterEosModel::ZhangDuan2005:
         {
             // Exact DEW-style Zhang & Duan (2005) translation
-            wt = waterThermoPropsZhangDuan2005(T_K, P_Pa);
+            wt = waterThermoPropsZhangDuan2005(T_K, P_Pa, opt.densityTolerance);
             break;
         }
 

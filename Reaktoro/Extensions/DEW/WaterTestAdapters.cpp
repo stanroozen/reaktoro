@@ -196,13 +196,8 @@ const std::unordered_map<std::string, SpeciesBornParams>& speciesBornTable()
             if (!hkf || !hkf["wref"])
                 continue;
 
-            // HKF.wref is stored in DEW scaled form (~1e-5). The true wref [J/mol]
-            // is (as evidenced by your truth tables):
-            //
-            //    wref_J/mol = HKF.wref * 1e10
-            //
-            double wref_param = hkf["wref"].as<double>();
-            double wref_J_mol = wref_param * 1.0e10;
+            // HKF.wref in the YAML is provided in SI units (J/mol). Use directly.
+            double wref_J_mol = hkf["wref"].as<double>();
 
             // Very simple heuristic for the hydrogen-like flag:
             bool isHydrogenLike = false;
@@ -490,8 +485,33 @@ double dew_G_integral(double T_C, double P_bar)
     opt.thermo.usePsatPolynomials    = false;
     opt.thermo.psatRelativeTolerance = 1e-3;
 
+    // Use Excel-compatible integration for test compatibility
+    opt.useExcelIntegration = true;
+
     // NOTE: ZD2005 implementation has hardcoded tolerance of 0.01 bar,
     // while Excel uses 100 bar for speed. This may cause small differences.
+
+    double G_J_per_mol = Reaktoro::waterGibbsModel(T_K, P_Pa, opt);
+    return G_J_per_mol * cal_per_J;
+}
+
+double dew_G_integral_highprec(double T_C, double P_bar)
+{
+    const double T_K  = toKelvin(T_C);
+    const double P_Pa = toPa(P_bar);
+
+    WaterGibbsModelOptions opt;
+    opt.model              = WaterGibbsModel::DewIntegral;
+    opt.usePsatPolynomials = false;
+
+    // Same settings as Excel but with high-precision integration
+    opt.thermo.eosModel              = WaterEosModel::ZhangDuan2005;
+    opt.thermo.usePsatPolynomials    = false;
+    opt.thermo.psatRelativeTolerance = 1e-3;
+
+    // Use high-precision integration (5000 steps, trapezoidal rule)
+    opt.useExcelIntegration = false;
+    opt.integrationSteps = 5000;
 
     double G_J_per_mol = Reaktoro::waterGibbsModel(T_K, P_Pa, opt);
     return G_J_per_mol * cal_per_J;

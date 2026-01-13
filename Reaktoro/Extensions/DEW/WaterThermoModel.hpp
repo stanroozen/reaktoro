@@ -59,6 +59,10 @@ struct WaterThermoModelOptions
 
     /// Options forwarded to the Zhang & Duan (2009) DEW-style module.
     WaterZhangDuan2009Options zhangDuan2009Options;
+
+    /// Density calculation tolerance [bar] for Zhang & Duan (2005/2009).
+    /// Default 0.001 bar gives high accuracy.
+    double densityTolerance = 0.001;
 };
 
 /// High-level water EOS wrapper:

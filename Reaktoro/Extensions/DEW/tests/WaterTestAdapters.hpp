@@ -64,6 +64,9 @@ double dew_G_DH1978(double T_C, double P_bar);
 /// DEW integral formulation for G (equation=2), in cal/mol.
 double dew_G_integral(double T_C, double P_bar);
 
+/// DEW integral formulation for G with high precision (5000 steps), in cal/mol.
+double dew_G_integral_highprec(double T_C, double P_bar);
+
 /// Psat(T) Gibbs polynomial, in cal/mol.
 double dew_G_psat(double T_C);
 

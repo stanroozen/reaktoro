@@ -19,6 +19,7 @@
 #include <Reaktoro/pybind11.hxx>
 
 void exportStandardThermoModelConstant(py::module& m);
+void exportStandardThermoModelDEW(py::module& m);
 void exportStandardThermoModelExtendedUNIQUAC(py::module& m);
 void exportStandardThermoModelHKF(py::module& m);
 void exportStandardThermoModelHollandPowell(py::module& m);
@@ -41,6 +42,7 @@ void exportStandardVolumeModelConstant(py::module& m);
 void exportStandardThermoModels(py::module& m)
 {
     exportStandardThermoModelConstant(m);
+    exportStandardThermoModelDEW(m);
     exportStandardThermoModelExtendedUNIQUAC(m);
     exportStandardThermoModelHKF(m);
     exportStandardThermoModelHollandPowell(m);

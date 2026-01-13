@@ -15,11 +15,12 @@ namespace Reaktoro {
 /// Inputs:
 ///  - T: Temperature in K
 ///  - P: Pressure in Pa
+///  - densityTolerance: Bisection tolerance in bar (default 0.001)
 ///
 /// Outputs (WaterThermoProps):
 ///  - D   : density in kg/m3
 ///  - DP  : (∂ρ/∂P)_T in kg/m3/Pa (from DEW drhodP, unit-converted)
 ///  - other fields are set to 0.0 here (no extra theory invented).
-auto waterThermoPropsZhangDuan2005(real T, real P) -> WaterThermoProps;
+auto waterThermoPropsZhangDuan2005(real T, real P, double densityTolerance = 0.001) -> WaterThermoProps;
 
 } // namespace Reaktoro

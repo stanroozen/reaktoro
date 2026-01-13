@@ -37,3 +37,4 @@ namespace Reaktoro {
 auto ReactionStandardThermoModelPressureCorrection(real const& Pr) -> ReactionStandardThermoModel;
 
 } // namespace Reaktoro
+

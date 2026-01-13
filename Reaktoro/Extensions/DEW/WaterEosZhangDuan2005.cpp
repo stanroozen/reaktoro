@@ -203,7 +203,7 @@ double zd05_drhodP_g_cm3_per_bar(double rho_g_cm3, double T_C)
 // -----------------------------------------------------------------------------
 // Public interface: waterThermoPropsZhangDuan2005
 // -----------------------------------------------------------------------------
-auto waterThermoPropsZhangDuan2005(real T, real P) -> WaterThermoProps
+auto waterThermoPropsZhangDuan2005(real T, real P, double densityTolerance) -> WaterThermoProps
 {
     WaterThermoProps wt;
 
@@ -212,7 +212,7 @@ auto waterThermoPropsZhangDuan2005(real T, real P) -> WaterThermoProps
     const double P_bar = bar_from_P_Pa(static_cast<double>(P));
 
     // Density from exact DEW bisection logic
-    const double rho_g_cm3 = zd05_density_g_cm3(P_bar, T_C);
+    const double rho_g_cm3 = zd05_density_g_cm3(P_bar, T_C, densityTolerance);
     const double rho_kg_m3 = rho_kg_m3_from_g_cm3(rho_g_cm3);
 
     // (∂ρ/∂P)_T from exact DEW analytic expression

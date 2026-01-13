@@ -6,12 +6,12 @@ auto makeWaterModelOptionsDEW() -> WaterModelOptions
 {
     WaterModelOptions opt;
 
-    // DEW canonical choices (based on the Excel/VBA implementation):
+    // DEW canonical choices:
     opt.eosModel        = WaterEosModel::ZhangDuan2005;
-    opt.dielectricModel = WaterDielectricModel::JohnsonNorton1991;
+    opt.dielectricModel = WaterDielectricModel::PowerFunction;
 
-    // Use Delaney & Helgeson (1978) G(H2O), as in DEW option 1.
-    opt.gibbsModel      = WaterGibbsModel::DelaneyHelgeson1978;
+    // Use DEW-style ∫V dP integral for G(H2O)
+    opt.gibbsModel      = WaterGibbsModel::DewIntegral;
 
     // Use Shock et al. (1992) / DEW omega(g) model for ions.
     opt.bornModel       = WaterBornModel::Shock92Dew;

@@ -20,9 +20,8 @@ enum class WaterDielectricModel {
     PowerFunction,      ///< Sverjensky-Harrison power law
 };
 
-/// Gibbs free energy model for water (optional DEW compatibility).
+/// Gibbs free energy model for water (required for thermodynamic calculations).
 enum class WaterGibbsModel {
-    None,                 ///< Do not compute G via DEW helper.
     DelaneyHelgeson1978,  ///< Polynomial fit (Delaney & Helgeson, 1978).
     DewIntegral,          ///< DEW-style integral of V(P,T) from 1 kb.
 };
@@ -37,13 +36,13 @@ enum class WaterBornModel {
 struct WaterModelOptions
 {
     /// EOS controlling water density & its derivatives.
-    WaterEosModel eosModel = WaterEosModel::WagnerPruss;
+    WaterEosModel eosModel = WaterEosModel::ZhangDuan2005;
 
     /// Dielectric model controlling epsilon(T, P, rho).
-    WaterDielectricModel dielectricModel = WaterDielectricModel::JohnsonNorton1991;
+    WaterDielectricModel dielectricModel = WaterDielectricModel::PowerFunction;
 
-    /// Optional Gibbs free energy model (if needed).
-    WaterGibbsModel gibbsModel = WaterGibbsModel::None;
+    /// Gibbs free energy model (required for species thermodynamics).
+    WaterGibbsModel gibbsModel = WaterGibbsModel::DewIntegral;
 
     /// Optional Born omega model for solvation (if needed).
     WaterBornModel bornModel = WaterBornModel::None;
@@ -54,6 +53,10 @@ struct WaterModelOptions
     /// Relative tolerance |P - Psat| / Psat below which Psat polynomials are applied.
     /// Only used when usePsatPolynomials == true.
     real psatRelTol = 1e-3;
+
+    /// Density calculation tolerance [bar] for Zhang & Duan EOS.
+    /// Default 0.001 bar gives high accuracy.
+    double densityTolerance = 0.001;
 };
 
 /// Convenience: Construct a WaterModelOptions corresponding to

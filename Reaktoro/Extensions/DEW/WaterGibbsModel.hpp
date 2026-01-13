@@ -29,6 +29,15 @@
 
 namespace Reaktoro {
 
+/// Enumeration of available numerical integration methods for Gibbs volume integral.
+enum class WaterIntegrationMethod
+{
+    Trapezoidal     = 0,  ///< Trapezoidal rule: O(h²) error
+    Simpson         = 1,  ///< Simpson's 1/3 rule: O(h⁴) error
+    GaussLegendre16 = 2,  ///< 16-point Gauss-Legendre quadrature: O(1/n³²) error
+    AdaptiveSimpson = 3,  ///< Adaptive Simpson's rule with auto-subdivision
+};
+
 /// Options to control Gibbs calculation.
 struct WaterGibbsModelOptions
 {
@@ -46,7 +55,45 @@ struct WaterGibbsModelOptions
     bool usePsatPolynomials = false;
 
     /// Relative tolerance for Psat proximity.
-    real psatRelativeTolerance = 1e-3; // 0.1
+    real psatRelativeTolerance = 1e-3;
+
+    /// Numerical integration method for volume integral.
+    /// Default: Trapezoidal (O(h²), good balance of speed/accuracy)
+    /// Options:
+    ///   - Trapezoidal:     Fast, O(h²) error, good for 5000+ steps
+    ///   - Simpson:         O(h⁴), ~1.5x slower than trapezoidal, better accuracy
+    ///   - GaussLegendre16: Very high accuracy O(1/n³²), fewer function evals
+    ///   - AdaptiveSimpson: Auto-subdivides to reach target tolerance
+    WaterIntegrationMethod integrationMethod = WaterIntegrationMethod::Trapezoidal;
+
+    /// Integration steps for DewIntegral model (when integrating V dP).
+    /// Meaning depends on integrationMethod:
+    ///   - Trapezoidal/Simpson: Total number of intervals
+    ///   - GaussLegendre16: Number of 16-node segments (16*N evals total)
+    ///   - AdaptiveSimpson: Initial number of intervals before subdivision
+    /// Default 5000 gives high precision (~0.01% error) for trapezoidal.
+    int integrationSteps = 5000;
+
+    /// If true, use Excel VBA's exact integration logic (adaptive step size).
+    /// If false, use fixed step size based on integrationSteps.
+    /// Note: Only applies when integrationMethod = Trapezoidal.
+    bool useExcelIntegration = false;
+
+    /// Adaptive integration tolerance [J/mol] for AdaptiveSimpson method.
+    /// Controls how much error is acceptable when subdividing intervals.
+    /// Smaller = more accurate but slower (more function evaluations).
+    /// Default 0.1 J/mol gives ~0.001% relative accuracy.
+    double adaptiveIntegrationTolerance = 0.1;
+
+    /// Maximum subdivisions for adaptive integration (safety limit).
+    /// Prevents infinite recursion if tolerance is too tight.
+    /// Default 20 allows up to 2^20 = 1,048,576 subdivisions.
+    int maxAdaptiveSubdivisions = 20;
+
+    /// Density calculation tolerance [bar] for integration.
+    /// Default 0.001 bar gives high accuracy.
+    /// Only affects Zhang & Duan EOS during Gibbs integration.
+    double densityTolerance = 0.001;
 };
 
 /// Compute the Gibbs free energy of pure water at (T, P).

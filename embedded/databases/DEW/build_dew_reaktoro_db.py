@@ -231,26 +231,37 @@ def build_aqueous_species(aq: pd.DataFrame):
         Sr = float(row["So"]) * CAL2J  # cal/(mol·K) → J/(mol·K)
 
         # HKF parameters with scaling from units row
+
         # a1 x 10 [cal mol-1 bar-1] → a1 [J mol-1 Pa-1]
-        a1 = float(row["a1 x 10"]) * 10.0 * CAL2J / BAR2PA
+        # Excel header "a1 x 10" means: the cell value equals (a1 * 10),
+        # so recover a1 by dividing by 10, then convert cal->J and bar->Pa.
+        a1 = float(row["a1 x 10"]) / 10.0 * CAL2J / BAR2PA
 
         # a2 x 10-2 [cal mol-1] → a2 [J mol-1]
-        a2 = float(row["a2 x 10-2"]) * 1.0e-2 * CAL2J
+        # Excel header "a2 x 10-2" means: the cell value equals (a2 * 1e-2),
+        # so recover a2 by multiplying by 1e2, then convert cal->J.
+        a2 = float(row["a2 x 10-2"]) * 1.0e2 * CAL2J
 
-        # a3 [cal K mol-1 bar-1] → a3 [(J·K) mol-1 Pa-1]
+        # a3 [cal K mol-1 bar-1] → a3 [J K mol-1 Pa-1]
         a3 = float(row["a3"]) * CAL2J / BAR2PA
 
         # a4 x 10-4 [cal K mol-1] → a4 [(J·K) mol-1]
-        a4 = float(row["a4 x 10-4"]) * 1.0e-4 * CAL2J
+        # Excel header "a4 x 10-4" means: the cell value equals (a4 * 1e-4),
+        # so recover a4 by multiplying by 1e4, then convert cal->J.
+        a4 = float(row["a4 x 10-4"]) * 1.0e4 * CAL2J
 
         # c1 [cal mol-1 K-1] → J mol-1 K-1
         c1 = float(row["c1"]) * CAL2J
 
         # c2 x 10-4 [cal K mol-1] → (J·K) mol-1
-        c2 = float(row["c2 x 10-4"]) * 1.0e-4 * CAL2J
+        # Excel header "c2 x 10-4" means: the cell value equals (c2 * 1e-4),
+        # so recover c2 by multiplying by 1e4, then convert cal->J.
+        c2 = float(row["c2 x 10-4"]) * 1.0e4 * CAL2J
 
         # ω x 10-5 [cal mol-1] → wref [J mol-1]
-        wref = float(row["ω x 10-5"]) * 1.0e-5 * CAL2J
+        # Excel header "ω × 10⁻⁵" means: the cell value equals (ω * 1e-5),
+        # so recover ω by multiplying by 1e5, then convert cal->J.
+        wref = float(row["ω x 10-5"]) * 1.0e5 * CAL2J
 
         # Base comment from the DEW sheet (if present)
         base_comment = ""
@@ -344,14 +355,16 @@ def build_gas_species(gas: pd.DataFrame):
 
         # Cp polynomial from table, with their scaling
         a_cal = float(row["a"])  # cal mol-1
-        b_cal = float(row["b x 103"])  # cal mol-1 K-1 (scaled by 1e3)
-        c_cal = float(row["c x 10-5"])  # cal mol-1 K2 (scaled by 1e-5)
+        # Excel header "b x 103" means: multiply cell value by 10³ to get actual b
+        b_cal = float(row["b x 103"])  # cal mol-1 K-1 (will multiply by 1e3)
+        # Excel header "c x 10-5" means: multiply cell value by 10⁻⁵ to get actual c
+        c_cal = float(row["c x 10-5"])  # cal mol-1 K2 (will multiply by 1e-5)
         Tmax = float(row["T"])  # max T [K] for fit
 
         # Define:
-        #   Cp(T) [cal/(mol·K)] = a_cal + (b_cal * 1e-3)*T + (c_cal * 1e-5)*T²
+        #   Cp(T) [cal/(mol·K)] = a_cal + (b_cal * 1e3)*T + (c_cal * 1e-5)*T²
         a_J = a_cal * CAL2J
-        b_JK = b_cal * 1.0e-3 * CAL2J
+        b_JK = b_cal * 1.0e3 * CAL2J
         c_JK2 = c_cal * 1.0e-5 * CAL2J
 
         nasa_params = nasa_from_cp_poly(

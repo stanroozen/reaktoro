@@ -21,6 +21,7 @@
 #include <Reaktoro/Common/StringUtils.hpp>
 #include <Reaktoro/Models/ReactionRateModels.hpp>
 #include <Reaktoro/Models/StandardThermoModels.hpp>
+#include <Reaktoro/Models/StandardThermoModels/StandardThermoModelDEW.hpp>
 #include <Reaktoro/Serialization/Common.hpp>
 #include <Reaktoro/Serialization/Core.hpp>
 
@@ -114,6 +115,42 @@ REAKTORO_DATA_DECODE_DEFINE(StandardThermoModelParamsHKF)
     data.required("wref").to(obj.wref);
     data.required("charge").to(obj.charge);
     data.optional("Tmax").to(obj.Tmax);
+}
+
+//----------------------------------------------------------------------
+
+REAKTORO_DATA_ENCODE_DEFINE(StandardThermoModelParamsDEW)
+{
+    data["Gf"] = obj.Gf;
+    data["Hf"] = obj.Hf;
+    data["Sr"] = obj.Sr;
+    data["a1"] = obj.a1;
+    data["a2"] = obj.a2;
+    data["a3"] = obj.a3;
+    data["a4"] = obj.a4;
+    data["c1"] = obj.c1;
+    data["c2"] = obj.c2;
+    data["wref"] = obj.wref;
+    data["charge"] = obj.charge;
+    data["Tmax"] = obj.Tmax;
+    // Note: waterOptions uses default DEW preset, not serialized
+}
+
+REAKTORO_DATA_DECODE_DEFINE(StandardThermoModelParamsDEW)
+{
+    data.required("Gf").to(obj.Gf);
+    data.required("Hf").to(obj.Hf);
+    data.required("Sr").to(obj.Sr);
+    data.required("a1").to(obj.a1);
+    data.required("a2").to(obj.a2);
+    data.required("a3").to(obj.a3);
+    data.required("a4").to(obj.a4);
+    data.required("c1").to(obj.c1);
+    data.required("c2").to(obj.c2);
+    data.required("wref").to(obj.wref);
+    data.required("charge").to(obj.charge);
+    data.optional("Tmax").to(obj.Tmax);
+    // Note: waterOptions uses default DEW preset, not deserialized
 }
 
 //----------------------------------------------------------------------

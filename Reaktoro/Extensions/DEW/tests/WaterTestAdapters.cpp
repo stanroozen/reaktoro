@@ -196,13 +196,10 @@ const std::unordered_map<std::string, SpeciesBornParams>& speciesBornTable()
             if (!hkf || !hkf["wref"])
                 continue;
 
-            // HKF.wref is stored in DEW scaled form (~1e-5). The true wref [J/mol]
-            // is (as evidenced by your truth tables):
-            //
-            //    wref_J/mol = HKF.wref * 1e10
-            //
+            // HKF.wref in the YAML is provided in SI units (J/mol) by the
+            // database generator; use it directly without additional scaling.
             double wref_param = hkf["wref"].as<double>();
-            double wref_J_mol = wref_param * 1.0e10;
+            double wref_J_mol = wref_param;
 
             // Very simple heuristic for the hydrogen-like flag:
             bool isHydrogenLike = false;
