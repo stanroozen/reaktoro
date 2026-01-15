@@ -22,7 +22,7 @@
 
 - **Status:** ✅ Fully tested and validated (baseline)
 - **Description:** Standard trapezoidal rule with fixed step size
-- **Configuration:** 
+- **Configuration:**
   - `integrationSteps = 5000` (default)
   - `densityTolerance = 0.001 bar`
 - **Accuracy:** O(h²) error term
@@ -77,7 +77,7 @@
 - **Performance:** Varies based on convergence requirements
 - **Expected Performance:** 2-5× for 0.1 J/mol target tolerance
 - **Expected Improvement:** Near 0.1 J/mol average error
-- **Algorithm:** 
+- **Algorithm:**
   1. Compute Simpson's rule on [L, R]
   2. Check error: |V_mid - (V_L + V_R)/2|
   3. If error ≤ tolerance: accept
@@ -97,16 +97,13 @@
 enum WaterIntegrationMethod {
     Trapezoidal = 0,      // Default, O(h²)
     Simpson = 1,          // O(h⁴)
-    GaussLegendre16 = 2,  // O(1/n³²)
-    AdaptiveSimpson = 3   // Variable
+    GaussLegendre16 = 2   // O(1/n³²)
 };
 
 struct WaterGibbsModelOptions {
     // ... other fields ...
-    
+
     WaterIntegrationMethod integrationMethod = Trapezoidal;
-    double adaptiveIntegrationTolerance = 0.1;      // J/mol
-    int maxAdaptiveSubdivisions = 20;               // Safety limit
     int integrationSteps = 5000;                    // Steps/segments
     double densityTolerance = 0.001;                // bar
     bool useExcelIntegration = false;               // Excel mode override
@@ -123,20 +120,14 @@ switch (opt.integrationMethod) {
         // Trapezoidal rule implementation
         // 5000 fixed steps
         break;
-    
+
     case WaterIntegrationMethod::Simpson:
         G_int_J = simpsonRule(T_K, P_start_Pa, P_Pa, opt.integrationSteps, ...);
         break;
-    
+
     case WaterIntegrationMethod::GaussLegendre16:
         int nsegments = std::max(1, opt.integrationSteps / 16);
         G_int_J = gaussLegendre16(T_K, P_start_Pa, P_Pa, nsegments, ...);
-        break;
-    
-    case WaterIntegrationMethod::AdaptiveSimpson:
-        G_int_J = adaptiveSimpson(T_K, P_start_Pa, P_Pa,
-                                  opt.adaptiveIntegrationTolerance,
-                                  opt.maxAdaptiveSubdivisions, ...);
         break;
 }
 ```
@@ -258,14 +249,12 @@ double G_J = waterGibbsModel(T_K, P_Pa, opts);
 | Performance critical | Trapezoidal | Fastest, good accuracy |
 | Accuracy important | Simpson's | 25% better, manageable cost |
 | High precision needed | Gauss-Legendre-16 | 95% improvement, fast |
-| Tolerance-driven | Adaptive Simpson | Auto-optimized to target |
-| Research/development | Adaptive Simpson | Guaranteed convergence |
 
 ---
 
 ## Conclusion
 
-✨ **All 4 numerical integration methods are production-ready.**
+✨ **All 3 numerical integration methods are production-ready.**
 
 - Complete implementation across C++ backend
 - Thorough testing with 180 test cases

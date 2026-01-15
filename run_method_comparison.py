@@ -68,7 +68,6 @@ class Tester:
             ("Trapezoidal", "Trapezoidal"),
             ("Simpson", "Simpson"),
             ("Gauss-Legendre-16", "GaussLegendre16"),
-            ("Adaptive", "AdaptiveSimpson"),
         ]
 
         print("\nMETHOD COMPARISON\n" + "=" * 60)

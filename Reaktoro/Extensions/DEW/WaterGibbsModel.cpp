@@ -206,73 +206,6 @@ double gaussLegendre16(double T_K,
 }
 
 //----------------------------------------------------------------------------//
-// Adaptive Simpson's Rule with Automatic Subdivision
-//----------------------------------------------------------------------------//
-// Recursively subdivides intervals where |V(P_mid) - (V_L + V_R)/2| > tolerance
-double adaptiveSimpsonsHelper(double T_K,
-                             double P_L,
-                             double P_R,
-                             double tol,
-                             int max_depth,
-                             int current_depth,
-                             const WaterThermoModelOptions& thermoWithTol,
-                             const double M,
-                             double Vm_L,
-                             double Vm_R)
-{
-    if (current_depth > max_depth)
-        return 0.0;  // Safety: stop recursing
-
-    double P_mid = (P_L + P_R) / 2.0;
-    auto wt_mid = waterThermoPropsModel(T_K, P_mid, thermoWithTol);
-    double Vm_mid = (wt_mid.D > 0.0) ? (M / wt_mid.D) : 0.0;
-
-    // Simpson's rule on [P_L, P_R]
-    double h = (P_R - P_L) / 6.0;
-    double S = h * (Vm_L + 4.0 * Vm_mid + Vm_R);
-
-    // Check convergence criterion: |Vm_mid - (Vm_L + Vm_R)/2| vs tolerance
-    double error_estimator = std::abs(Vm_mid - 0.5 * (Vm_L + Vm_R));
-
-    if (error_estimator <= tol)
-        return S;  // Converged, use this Simpson's estimate
-
-    // Subdivide into [P_L, P_mid] and [P_mid, P_R]
-    double P_left_mid = (P_L + P_mid) / 2.0;
-    auto wt_left_mid = waterThermoPropsModel(T_K, P_left_mid, thermoWithTol);
-    double Vm_left_mid = (wt_left_mid.D > 0.0) ? (M / wt_left_mid.D) : 0.0;
-
-    double P_right_mid = (P_mid + P_R) / 2.0;
-    auto wt_right_mid = waterThermoPropsModel(T_K, P_right_mid, thermoWithTol);
-    double Vm_right_mid = (wt_right_mid.D > 0.0) ? (M / wt_right_mid.D) : 0.0;
-
-    double left_integral = adaptiveSimpsonsHelper(T_K, P_L, P_mid, tol / 2.0, max_depth, current_depth + 1,
-                                                  thermoWithTol, M, Vm_L, Vm_mid);
-    double right_integral = adaptiveSimpsonsHelper(T_K, P_mid, P_R, tol / 2.0, max_depth, current_depth + 1,
-                                                   thermoWithTol, M, Vm_mid, Vm_R);
-
-    return left_integral + right_integral;
-}
-
-double adaptiveSimpson(double T_K,
-                      double P_start_Pa,
-                      double P_end_Pa,
-                      double tol,
-                      int max_depth,
-                      const WaterThermoModelOptions& thermoWithTol,
-                      const double M)
-{
-    auto wt_start = waterThermoPropsModel(T_K, P_start_Pa, thermoWithTol);
-    double Vm_start = (wt_start.D > 0.0) ? (M / wt_start.D) : 0.0;
-
-    auto wt_end = waterThermoPropsModel(T_K, P_end_Pa, thermoWithTol);
-    double Vm_end = (wt_end.D > 0.0) ? (M / wt_end.D) : 0.0;
-
-    return adaptiveSimpsonsHelper(T_K, P_start_Pa, P_end_Pa, tol, max_depth, 0,
-                                 thermoWithTol, M, Vm_start, Vm_end);
-}
-
-//----------------------------------------------------------------------------//
 // Gibbs at 1000 bar (polynomial from Excel)
 //----------------------------------------------------------------------------//
 double GAtOneKb_cal_per_mol(double T_C)
@@ -396,17 +329,6 @@ double gibbsDewIntegral_J_per_mol(double T_K,
                 // integrationSteps = number of 16-node segments
                 int nsegments = std::max(1, opt.integrationSteps / 16);
                 G_int_J = gaussLegendre16(T_K, P_start_Pa, P_Pa, nsegments, thermoWithTol, M);
-                break;
-            }
-
-            case WaterIntegrationMethod::AdaptiveSimpson:
-            {
-                // Adaptive Simpson's with automatic subdivision
-                // integrationSteps used as initial subdivision count
-                G_int_J = adaptiveSimpson(T_K, P_start_Pa, P_Pa,
-                                         opt.adaptiveIntegrationTolerance,
-                                         opt.maxAdaptiveSubdivisions,
-                                         thermoWithTol, M);
                 break;
             }
         }

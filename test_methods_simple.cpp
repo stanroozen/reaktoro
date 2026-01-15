@@ -107,10 +107,6 @@ int main() {
                   WaterIntegrationMethod::GaussLegendre16,
                   test_cases);
 
-    compareMethod("METHOD 4: Adaptive Simpson's",
-                  WaterIntegrationMethod::AdaptiveSimpson,
-                  test_cases);
-
     std::cout << "\n" << std::string(80, '=') << "\n";
     std::cout << "✓ All integration methods tested successfully!\n";
     std::cout << std::string(80, '=') << "\n\n";

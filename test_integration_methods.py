@@ -118,8 +118,7 @@ def test_all_methods():
     # enum WaterIntegrationMethod {
     #   Trapezoidal = 0,
     #   Simpson = 1,
-    #   GaussLegendre16 = 2,
-    #   AdaptiveSimpson = 3
+    #   GaussLegendre16 = 2
     # }
 
     # Test method 0 (Trapezoidal) - currently the only one bound to Python

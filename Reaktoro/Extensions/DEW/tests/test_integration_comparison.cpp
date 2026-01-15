@@ -87,9 +87,6 @@ MethodResult testMethod(const std::string& method_name,
         case WaterIntegrationMethod::GaussLegendre16:
             result.evals_per_point = 5000;  // Effective (16 nodes × ~312 segments)
             break;
-        case WaterIntegrationMethod::AdaptiveSimpson:
-            result.evals_per_point = 0;  // Variable
-            break;
     }
 
     std::cout << "\nTesting: " << method_name << "\n";
@@ -107,8 +104,6 @@ MethodResult testMethod(const std::string& method_name,
         gibbs_opt.integrationMethod = method;
         gibbs_opt.integrationSteps = 5000;
         gibbs_opt.densityTolerance = 0.001;  // bar
-        gibbs_opt.adaptiveIntegrationTolerance = 0.1;  // J/mol
-        gibbs_opt.maxAdaptiveSubdivisions = 20;
         gibbs_opt.useExcelIntegration = false;
 
         // Create water thermo options
@@ -195,10 +190,6 @@ int main()
 
     results.push_back(testMethod("Gauss-Legendre-16 (O(1/n³²))",
                                 WaterIntegrationMethod::GaussLegendre16,
-                                test_points));
-
-    results.push_back(testMethod("Adaptive Simpson's",
-                                WaterIntegrationMethod::AdaptiveSimpson,
                                 test_points));
 
     // Final comparison table
