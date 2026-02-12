@@ -23,6 +23,7 @@
 #include <Reaktoro/Models/ActivityModels/ActivityModelCubicEOS.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDavies.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDebyeHuckel.hpp>
+#include <Reaktoro/Models/ActivityModels/ActivityModelDEW.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDrummond.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDuanSun.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelExtendedUNIQUAC.hpp>

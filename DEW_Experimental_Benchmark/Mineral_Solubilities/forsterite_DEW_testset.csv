@@ -1,0 +1,3 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type
+800,10.0,0.0013,Forsterite,H2O,Macris_Manning_2020,weight_loss
+900,10.0,0.0047,Forsterite,H2O,Macris_Manning_2020,weight_loss

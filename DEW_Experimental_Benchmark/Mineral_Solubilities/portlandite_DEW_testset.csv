@@ -1,0 +1,8 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type
+300,2.0,0.004570881896148752,Portlandite,H2O,Walther_1986,reversed_equilibrium
+400,2.0,0.0019498445997580456,Portlandite,H2O,Walther_1986,reversed_equilibrium
+500,2.0,0.0006606934480075957,Portlandite,H2O,Walther_1986,reversed_equilibrium
+600,2.0,6.606934480075965e-05,Portlandite,H2O,Walther_1986,reversed_equilibrium
+500,1.0,3.9810717055349695e-05,Portlandite,H2O,Walther_1986,reversed_equilibrium
+500,2.0,0.0006606934480075957,Portlandite,H2O,Walther_1986,reversed_equilibrium
+500,3.0,0.00223872113856834,Portlandite,H2O,Walther_1986,reversed_equilibrium

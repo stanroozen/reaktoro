@@ -1,0 +1,9 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type
+700,10.0,0.00011104501288915329,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+800,7.0,0.00017449930596866945,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+800,10.0,0.00012294269284156257,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+800,15.0,0.0003906404917707714,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+800,20.0,0.0012214951417806861,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+900,10.0,0.00018639698592107871,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+900,10.0,0.00016061867935752527,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss
+900,15.0,0.0005710886377156455,Fluorapatite,H2O,Antignano_Manning_2008,weight_loss

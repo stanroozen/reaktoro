@@ -1,4 +1,27 @@
 Species:
+  H2O_aq:
+    Name: WATER,AQ
+    Formula: H2O
+    Elements: 2:H 1:O
+    Charge: 0.0
+    AggregateState: Aqueous
+    StandardThermoModel:
+      HKF:
+        Gf: -237183.0
+        Hf: -285881.0
+        Sr: 69.923
+        a1: 0.0
+        a2: 0.0
+        a3: 0.0
+        a4: 0.0
+        c1: 75.361
+        c2: 0.0
+        wref: 0.0
+        charge: 0.0
+    Comment: Dummy H2O(aq) entry for DEW database as a placeholder for solvent
+      water. Properties shown are from SUPCRT92 and are NOT used at runtime.
+      When ActivityModelDEW is applied, water thermodynamic properties are computed
+      using the Duan & Zang 2005 water EOS.
   CH3COO-:
     Name: ACETATE,AQ
     Formula: CH3COO-

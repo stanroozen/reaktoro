@@ -1,0 +1,8 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type
+700,10.0,0.333,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,fluid_extraction_equilibrium_expt_363
+700,10.0,0.377,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,fluid_extraction_equilibrium_expt_365
+700,10.0,0.286,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,fluid_extraction_equilibrium_expt_366
+700,10.0,0.336,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,fluid_extraction_equilibrium_expt_370
+700,10.0,0.292,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,fluid_extraction_equilibrium_expt_402
+700,10.0,0.281,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,fluid_extraction_equilibrium_expt_409
+700,10.0,0.308,Corundum+Kyanite (total Si),H2O,Manning_2007_Geofluids_corundum_kyanite_700C_10kbar,weighted_mean_equilibrium

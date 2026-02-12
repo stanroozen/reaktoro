@@ -1,0 +1,6 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,Buffer,Name,Notes
+800,10,0.153,Anhydrite,H2O,Newton_Manning2005,NNO,28,strong H2S odor
+800,10,0.015,Anhydrite,H2O,Newton_Manning2005,HM,29,hematite-magnetite
+800,10,0.018-0.011,Anhydrite,H2O,Newton_Manning2005,HM,27,hematite-magnetite
+800,10,0.016-0.018,Anhydrite,H2O,Newton_Manning2005,HM,33,hematite-magnetite
+800,10,0.014,Anhydrite,H2O,Newton_Manning2005,Mn2O3-MnO,31,Mn2O3-MnO buffer

@@ -1,0 +1,11 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type
+700,10.0,1.2534731652286544e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+800,7.0,3.7604194956859633e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+800,10.0,2.298034136252533e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+800,10.0,4.596068272505066e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+800,10.0,5.431717049324169e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+800,15.0,5.013892660914618e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+800,20.0,5.849541437733721e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+900,10.0,9.81887312762446e-07,Rutile,H2O,Antignano_Manning_2008,weight_loss
+950,10.0,1.3370380429105647e-06,Rutile,H2O,Antignano_Manning_2008,weight_loss
+1000,10.0,2.465163891616354e-06,Rutile,H2O,Antignano_Manning_2008,weight_loss

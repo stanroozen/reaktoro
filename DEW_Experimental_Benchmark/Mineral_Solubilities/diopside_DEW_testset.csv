@@ -1,0 +1,10 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type
+650,10.0,0.006,Diopside,H2O,Macris_Manning_2020,weight_loss
+700,10.0,0.006,Diopside,H2O,Macris_Manning_2020,weight_loss
+700,10.0,0.0067,Diopside,H2O,Macris_Manning_2020,weight_loss
+700,10.0,0.0063,Diopside,H2O,Macris_Manning_2020,weight_loss
+750,10.0,0.0085,Diopside,H2O,Macris_Manning_2020,weight_loss
+800,7.0,0.0028,Diopside,H2O,Macris_Manning_2020,weight_loss
+800,10.0,0.0107,Diopside,H2O,Macris_Manning_2020,weight_loss
+800,15.0,0.0208,Diopside,H2O,Macris_Manning_2020,weight_loss
+900,10.0,0.0141,Diopside,H2O,Macris_Manning_2020,weight_loss

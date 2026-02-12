@@ -1,0 +1,7 @@
+T_C,P_kbar,molality_m,mineral,fluid,reference,experiment_type,name,,,
+600,10,0.015,Anhydrite,H2O,Newton_Manning_2005,weight_loss,10,,,
+700,10,0.019,Anhydrite,H2O,Newton_Manning_2005,weight_loss,8,,,
+800,10,0.025-0.033,Anhydrite,H2O,Newton_Manning_2005,weight_loss,6,,,
+800,10,0.016-0.033,Anhydrite,H2O,Newton_Manning_2005,weight_loss,32,,,
+800,10,0.020-0.032,Anhydrite,H2O,Newton_Manning_2005,weight_loss,30,,,
+

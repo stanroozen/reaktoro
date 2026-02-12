@@ -19,8 +19,9 @@
 #include <Reaktoro/pybind11.hxx>
 
 void exportActivityModelCubicEOS(py::module& m);
-void exportActivityModelDebyeHuckel(py::module& m);
 void exportActivityModelDavies(py::module& m);
+void exportActivityModelDebyeHuckel(py::module& m);
+void exportActivityModelDEW(py::module& m);
 void exportActivityModelDrummond(py::module& m);
 void exportActivityModelDuanSun(py::module& m);
 void exportActivityModelExtendedUNIQUAC(py::module& m);
@@ -51,6 +52,7 @@ void exportActivityModels(py::module& m)
     exportActivityModelCubicEOS(m);
     exportActivityModelDavies(m);
     exportActivityModelDebyeHuckel(m);
+    exportActivityModelDEW(m);
     exportActivityModelDrummond(m);
     exportActivityModelDuanSun(m);
     exportActivityModelExtendedUNIQUAC(m);
