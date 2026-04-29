@@ -1,0 +1,53 @@
+Perple_X Regression Test Report
+================================
+
+Total Tests: 13
+Passed: 13
+Failed: 0
+
+Assertions Executed: 178
+Assertions Passed: 178
+Assertions Failed: 0
+Row-level Assertions Executed: 51
+Row-level Assertions Passed: 51
+Row-level Assertions Failed: 0
+
+Test: GFSM EOS Coverage Gate
+Status: PASSED
+
+Test: Pure H2O MRK (ifug=2 defaults)
+Status: PASSED
+
+Test: Pure H2O HSMRK (ifug=1)
+Status: PASSED
+
+Test: Pure CO2 MRK (ifug=2 defaults)
+Status: PASSED
+
+Test: Pure CO2 CORK (ifug=5)
+Status: PASSED
+
+Test: H2O-CO2 Binary (50-50, ifug=2)
+Status: PASSED
+
+Test: H2O-CO2 Composition Series
+Status: PASSED
+
+Test: Dielectric H2O-CO2
+Status: PASSED
+
+Test: DEW Speciation Energy Parity (HKF G)
+Status: PASSED
+
+Test: GFSM Full Matrix Volume Parity
+Status: PASSED
+
+Test: Integration Flow Scenarios
+Status: PASSED
+
+Test: Chemical-Potential Parity (H2O-CO2 P-T Grid)
+Status: PASSED
+
+Test: Delta-G Mixing Parity (H2O-CO2 Composition Series)
+Status: PASSED
+

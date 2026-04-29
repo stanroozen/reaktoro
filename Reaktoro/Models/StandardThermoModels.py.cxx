@@ -27,6 +27,8 @@ void exportStandardThermoModelInterpolation(py::module& m);
 void exportStandardThermoModelMaierKelley(py::module& m);
 void exportStandardThermoModelMineralHKF(py::module& m);
 void exportStandardThermoModelNasa(py::module& m);
+void exportStandardThermoModelPerplexDEW(py::module& m);
+void exportStandardThermoModelPerplexGFSM(py::module& m);
 void exportStandardThermoModelWaterHKF(py::module& m);
 void exportStandardThermoModelFromData(py::module& m);
 
@@ -50,6 +52,8 @@ void exportStandardThermoModels(py::module& m)
     exportStandardThermoModelMaierKelley(m);
     exportStandardThermoModelMineralHKF(m);
     exportStandardThermoModelNasa(m);
+    exportStandardThermoModelPerplexDEW(m);
+    exportStandardThermoModelPerplexGFSM(m);
     exportStandardThermoModelWaterHKF(m);
     exportStandardThermoModelFromData(m);
 

@@ -1,0 +1,22 @@
+{
+  "name": "sb11_ak_80_10_10",
+  "model": "sb11_ak",
+  "species": ["MgSiO3", "FeSiO3", "CaSiO3"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "composition": [0.8, 0.1, 0.1],
+  "expected": {
+    "modelId": "sb11_ak",
+    "endmembers": ["mgak", "feak", "co"],
+    "internalComposition": [0.7790247082710267, 0.14583393037319184, 0.07514136135578156],
+    "Gx": -10809.450973643967,
+    "Hx": 3863.4404892121843,
+    "ln_g": [0.08947167799606467, -0.3154228117725103, 3.882302729544701],
+    "ln_a": [-0.4099533533635876, -3.7504139654919175, -0.21578577771086715],
+    "splitRequested": false
+  },
+  "tolerances": {
+    "scalarAbs": 1e-6,
+    "logAbs": 1e-7
+  }
+}

@@ -1,0 +1,7 @@
+case,h2o_eos,co2_eos,ch4_eos,n_o2,n_h2,n_c,p_bar,t_k
+redox_o2_excess_mrk,0,0,0,2.0,0.4,0.2,1000.0,523.15
+redox_o2_excess_hot,0,0,0,2.0,0.5,0.2,1000.0,973.15
+redox_h2_excess_hot,0,0,0,0.2,3.0,0.2,1000.0,973.15
+redox_co_bias_hot,0,0,0,0.6,0.4,1.0,1000.0,973.15
+redox_o2_excess_hybrid,1,4,0,1.8,0.6,0.4,1500.0,873.15
+redox_mixed_hybrid,7,4,1,0.9,1.2,0.8,1500.0,873.15

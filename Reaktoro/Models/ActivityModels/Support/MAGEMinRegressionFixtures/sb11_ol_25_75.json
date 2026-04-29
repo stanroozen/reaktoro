@@ -1,0 +1,22 @@
+{
+  "name": "sb11_ol_25_75",
+  "model": "sb11_ol",
+  "species": ["Mg2SiO4", "Fe2SiO4"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "composition": [0.25, 0.75],
+  "expected": {
+    "modelId": "sb11_ol",
+    "endmember0": "fo",
+    "endmember1": "fa",
+    "Gx": 1464.97875,
+    "Hx": 1464.97875,
+    "ln_g": [0.35881568954291621, 0.03986840994921291],
+    "ln_a": [-2.4137730326968647, -0.53549573495434888],
+    "splitRequested": false
+  },
+  "tolerances": {
+    "scalarAbs": 1e-10,
+    "logAbs": 1e-10
+  }
+}

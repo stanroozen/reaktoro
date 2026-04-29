@@ -1,18 +1,27 @@
-# Recursively collect all hpp files from the current directory
-file(GLOB_RECURSE HPP_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp)
-
-# Recursively collect all cpp files from the current directory
-file(GLOB_RECURSE CPP_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
+# Recursively collect all source files from the current directory.
+# CONFIGURE_DEPENDS ensures existing build trees are regenerated when new
+# bindings or source files are added, which avoids stale Visual Studio projects.
+file(GLOB_RECURSE HPP_FILES CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp)
+file(GLOB_RECURSE CPP_FILES CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 
 # Exclude files from build directories and tests subdirectories
-list(FILTER CPP_FILES EXCLUDE REGEX ".*/build/.*")
-list(FILTER CPP_FILES EXCLUDE REGEX ".*/tests/.*")
+list(FILTER CPP_FILES EXCLUDE REGEX "(^|.*/)build/.*")
+list(FILTER CPP_FILES EXCLUDE REGEX "(^|.*/)build-[^/]+/.*")
+list(FILTER CPP_FILES EXCLUDE REGEX "(^|.*/)tests/.*")
+list(FILTER CPP_FILES EXCLUDE REGEX ".*/sanity\\.cpp$")
+list(FILTER CPP_FILES EXCLUDE REGEX ".*/test_[^/]*\\.cpp$")
+list(FILTER CPP_FILES EXCLUDE REGEX ".*/GFSM_USAGE_GUIDE\\.cpp$")
 
-# Recursively collect all .test.cxx files from the current directory
-file(GLOB_RECURSE CXX_FILES_TEST RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.test.cxx)
+# Recursively collect all .test.cxx and .py.cxx files from the current directory
+file(GLOB_RECURSE CXX_FILES_TEST CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.test.cxx)
+file(GLOB_RECURSE CXX_FILES_PY CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.py.cxx)
 
-# Recursively collect all .py.cxx files from the current directory
-file(GLOB_RECURSE CXX_FILES_PY RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.py.cxx)
+# Keep recently added PerplexDEW bindings pinned explicitly so they are always
+# linked into the Python module, even when generator/project state gets stale.
+list(APPEND CXX_FILES_PY
+    Models/ActivityModels/ActivityModelPerplexDEW.py.cxx
+    Models/StandardThermoModels/StandardThermoModelPerplexDEW.py.cxx)
+list(REMOVE_DUPLICATES CXX_FILES_PY)
 
 # Enable automatic creation of a module definition (.def) file for a SHARED library on Windows.
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)

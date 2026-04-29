@@ -1,11 +1,11 @@
-"""Trace build_system step by step"""
+﻿"""Trace build_system step by step"""
 
 import sys
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
     sys.path.insert(0, PYD_DIR)
 
@@ -48,3 +48,4 @@ system = ChemicalSystem(combined_db, aqueous, mineral)
 print(f"    ChemicalSystem created with {len(system.species())} species")
 
 print("[OK] All steps completed successfully!")
+

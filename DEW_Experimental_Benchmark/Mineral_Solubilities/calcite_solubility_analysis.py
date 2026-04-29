@@ -1,10 +1,37 @@
-"""
+﻿"""
 Mineral Solubility Analysis using Reaktoro with DEW2024
 Generic framework for comparing calculated solubilities with experimental data
 Includes per-kbar-category temperature ranges, Psat curve, and uncertainty analysis
 
 Easily adaptable for different minerals by changing MINERAL_CONFIG section
 """
+
+import os
+import sys
+import argparse
+import importlib
+import re
+
+# Keep DLL resolution focused on the active conda env on Windows.
+if os.name == "nt":
+    env_prefix = sys.prefix
+    env_paths = [
+        env_prefix,
+        os.path.join(env_prefix, "Library", "mingw-w64", "bin"),
+        os.path.join(env_prefix, "Library", "usr", "bin"),
+        os.path.join(env_prefix, "Library", "bin"),
+        os.path.join(env_prefix, "Scripts"),
+        os.path.join(env_prefix, "bin"),
+    ]
+    system_root = os.environ.get("SystemRoot", r"C:\Windows")
+    system_paths = [
+        os.path.join(system_root, "System32"),
+        system_root,
+        os.path.join(system_root, "System32", "Wbem"),
+    ]
+    os.environ["PATH"] = ";".join(
+        [p for p in env_paths + system_paths if os.path.isdir(p)]
+    )
 
 try:
     import autodiff  # noqa: F401
@@ -13,34 +40,47 @@ except ModuleNotFoundError:
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import os
-import sys
-import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BENCHMARK_DIR = os.path.dirname(SCRIPT_DIR)
 ROOT_DIR = os.path.dirname(BENCHMARK_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
-if os.path.isdir(PYD_DIR):
-    if PYD_DIR not in sys.path:
-        sys.path.insert(0, PYD_DIR)
-    try:
-        os.add_dll_directory(PYD_DIR)
-    except Exception:
-        pass
 
-# Try to import Reaktoro; fall back to local extension module if not installed
+# Try to import Reaktoro; fall back to local extension modules if not installed
 try:
     from reaktoro import *  # noqa: F401,F403
 except ModuleNotFoundError:
-    try:
-        from reaktoro4py import *  # noqa: F401,F403
-
-        print("Using local reaktoro4py extension from build-msvc.")
-    except ModuleNotFoundError as e:
+    _pyd_candidates = [
+        os.path.join(ROOT_DIR, "build", "Reaktoro", "Release"),
+        os.path.join(ROOT_DIR, "build", "Reaktoro", "Release"),
+        os.path.join(ROOT_DIR, "build", "Reaktoro", "Release"),
+    ]
+    _loaded_from = None
+    for _pyd_dir in _pyd_candidates:
+        if not os.path.isdir(_pyd_dir):
+            continue
+        if _pyd_dir in sys.path:
+            sys.path.remove(_pyd_dir)
+        sys.path.insert(0, _pyd_dir)
+        sys.modules.pop("reaktoro4py", None)
+        try:
+            _local_mod = importlib.import_module("reaktoro4py")
+        except ModuleNotFoundError:
+            continue
+        globals().update(
+            {
+                k: getattr(_local_mod, k)
+                for k in dir(_local_mod)
+                if not k.startswith("_")
+            }
+        )
+        _loaded_from = _pyd_dir
+        break
+    if _loaded_from is None:
         raise ModuleNotFoundError(
-            "Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH."
-        ) from e
+            "Could not import Reaktoro. Install the 'reaktoro' package or "
+            "ensure reaktoro4py is available in a build/build/build folder."
+        )
+    print(f"Using local reaktoro4py extension from {_loaded_from}.")
 
 # Silence repeated non-convergence warnings
 try:
@@ -63,15 +103,19 @@ MINERAL_CONFIG = {
     "solute_species": "Ca+2",  # Primary aqueous species
     "include_elements": ["H", "O", "Ca", "C"],
     "exclude_organics": True,
-    "excluded_species": ["CaO_aq"],
-    # Aqueous species to include (besides water, H+, OH-)
-    "aqueous_species": "CO2_aq HCO3- CO3-2 CaCO3_aq Ca(HCO3)+",
+    # CaO_aq is not a real aqueous species; CO_aq/H2_aq/O2_aq are dissolved redox
+    # gases irrelevant to carbonate chemistry and excluded to keep the system clean.
+    "excluded_species": ["CaO_aq", "CO_aq", "H2_aq", "O2_aq"],
+    # Full Ca-C-H-O species list (used when include_elements is None; otherwise the
+    # element filter is used and returns: WATER,AQ H+ OH- CO2_aq HCO3- CO3-2
+    # H2CO3_aq CaCO3_aq Ca(HCO3)+ Ca(OH)+ Ca+2)
+    "aqueous_species": "CO2_aq HCO3- CO3-2 H2CO3_aq CaCO3_aq Ca(HCO3)+ Ca(OH)+",
     # File paths
     "csv_file": "calcite_DEW_testset.csv",
     "output_prefix": "calcite",  # Prefix for output files
     # Plot settings
     "plot_title": "Calcite Solubility",
-    "y_label": "Calcite Solubility (mol/kg-H₂O)",
+    "y_label": "Calcite Solubility (mol/kg-Hâ‚‚O)",
 }
 # ============================================================
 
@@ -104,6 +148,140 @@ DEW_CONFIG = {
     "gibbs_model": "DewIntegral",
     "born_model": "Shock92Dew",
 }
+
+# Switch between the original DEW backend and Perple_X-linked DEW-style backend.
+# Accepted values: "DEW", "PerplexDEW"
+MODEL_BACKEND = "DEW"
+PERPLEXDEW_REQUIRED_SYMBOLS = (
+    "ActivityModelPerplexDEW",
+    "ActivityDHModel",
+    "StandardThermoModelParamsPerplexDEW",
+    "StandardThermoModelPerplexDEW",
+    "ActivityModelPerplexGFSM",
+    "ActivityModelParamsPerplexGFSM",
+    "PerpleXHybridEosOptions",
+    "PerpleXCO2Eos",
+)
+
+
+def backend_tag(name):
+    """Normalize backend name for file names and labels."""
+    return str(name or "DEW").strip()
+
+
+def output_paths(mineral_config, backend_name, dh_model=None, fluid=None):
+    """Return output file paths scoped by backend and fluid composition."""
+    tag = backend_tag(backend_name)
+    if tag.lower() == "perplexdew" and dh_model:
+        tag = f"{tag}_{dh_model}"
+    fluid_tag = str(fluid or "H2O").upper().replace("-", "")
+    if fluid_tag != "H2O":
+        tag = f"{tag}_{fluid_tag}"
+    prefix = mineral_config["output_prefix"]
+    return {
+        "high_plot": os.path.join(
+            SCRIPT_DIR,
+            f"{prefix}_solubility_comparison_high_P_dew24_{tag}.png",
+        ),
+        "residuals_plot": os.path.join(
+            SCRIPT_DIR,
+            f"{prefix}_solubility_residuals_dew24_{tag}.png",
+        ),
+        "species_plot": os.path.join(
+            SCRIPT_DIR,
+            f"{prefix}_speciation_dew24_{tag}.png",
+        ),
+    }
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Calcite solubility benchmark with selectable backend."
+    )
+    parser.add_argument(
+        "--backend",
+        default=MODEL_BACKEND,
+        choices=["DEW", "PerplexDEW"],
+        help="Aqueous backend to use.",
+    )
+    parser.add_argument(
+        "--dh-model",
+        default="Davies",
+        choices=["Davies", "ExtendedDH"],
+        help="Debye-HÃ¼ckel variant for PerplexDEW backend (Davies or ExtendedDH).",
+    )
+    parser.add_argument(
+        "--fluid",
+        default="H2O",
+        choices=["H2O", "H2OCO2", "H2OCO2aq"],
+        help="Bulk fluid composition: pure water (H2O), water-CO2 gas-phase mixture (H2OCO2), or water with dissolved CO2_aq solute (H2OCO2aq).",
+    )
+    parser.add_argument(
+        "--xco2",
+        type=float,
+        default=0.1,
+        help="CO2 mole fraction in the bulk H2O-CO2 fluid (only used when --fluid H2OCO2).",
+    )
+    parser.add_argument(
+        "--co2aq-molality",
+        type=float,
+        default=6.168,
+        dest="co2aq_molality",
+        help="Initial CO2_aq molality (mol/kg-H2O) added to the pure-H2O system (only used when --fluid H2OCO2aq).",
+    )
+    return parser.parse_args()
+
+
+def _local_pyd_candidates():
+    return [
+        os.path.join(ROOT_DIR, "build", "Reaktoro", "Release"),
+        os.path.join(ROOT_DIR, "build", "Reaktoro", "Release"),
+        os.path.join(ROOT_DIR, "build", "Reaktoro", "Release"),
+    ]
+
+
+def ensure_perplexdew_symbols():
+    """Ensure PerplexDEW symbols are loaded, trying local reaktoro4py builds if needed."""
+    missing = [name for name in PERPLEXDEW_REQUIRED_SYMBOLS if name not in globals()]
+    if not missing:
+        return
+
+    searched_paths = []
+    for pyd_dir in _local_pyd_candidates():
+        searched_paths.append(pyd_dir)
+        if not os.path.isdir(pyd_dir):
+            continue
+
+        if pyd_dir in sys.path:
+            sys.path.remove(pyd_dir)
+        sys.path.insert(0, pyd_dir)
+
+        sys.modules.pop("reaktoro4py", None)
+        importlib.invalidate_caches()
+
+        try:
+            local_mod = importlib.import_module("reaktoro4py")
+        except ModuleNotFoundError:
+            continue
+
+        for name in PERPLEXDEW_REQUIRED_SYMBOLS:
+            if hasattr(local_mod, name):
+                globals()[name] = getattr(local_mod, name)
+
+        missing = [
+            name for name in PERPLEXDEW_REQUIRED_SYMBOLS if name not in globals()
+        ]
+        if not missing:
+            print(f"Using local reaktoro4py extension from {pyd_dir}.")
+            return
+
+    missing_str = ", ".join(missing)
+    searched_str = "\n  - ".join(searched_paths)
+    raise RuntimeError(
+        "PerplexDEW backend requested but required symbols are unavailable: "
+        f"{missing_str}.\nSearched local reaktoro4py build folders:\n  - {searched_str}"
+    )
+
 
 # =============================================================================
 # Saturation Pressure Functions
@@ -288,7 +466,15 @@ def validate_aqueous_species(dew_db, aqueous_species_str):
         print("    All requested aqueous species found in DEW database.")
 
 
-def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
+def build_system(
+    dew_db,
+    supcrt_db,
+    mineral_config,
+    water_config=None,
+    model_backend="DEW",
+    dh_model="Davies",
+    fluid="H2O",
+):
     """Build ChemicalSystem combining DEW aqueous species with mineral from SUPCRTBL.
 
     Args:
@@ -302,6 +488,8 @@ def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
     """
     if water_config is None:
         water_config = DEW_CONFIG
+
+    _fluid_tag = str(fluid or "H2O").upper().replace("-", "")
 
     # Get mineral species from database
     mineral_name = mineral_config["mineral_name"]
@@ -317,6 +505,9 @@ def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
     include_elements = mineral_config.get("include_elements")
     if include_elements:
         aqueous_species_list = aqueous_species_by_elements(dew_db, include_elements)
+        if _fluid_tag == "H2OCO2" and "CO2_aq" in aqueous_species_list:
+            aqueous_species_list = [s for s in aqueous_species_list if s != "CO2_aq"]
+            print("    (CO2_aq excluded: CO2 treated as gas-phase solvent only)")
         print(
             f"    Included {len(aqueous_species_list)} aqueous species after filtering."
         )
@@ -380,12 +571,29 @@ def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
             water_config.get("born_model", "Shock92Dew"), WaterBornModel.Shock92Dew
         )
 
-        dew_model = StandardThermoModelDEW(params)
-        aqueous.setActivityModel(ActivityModelDEW())
         eos_name = water_config.get("eos_model", "ZhangDuan2005")
-        print(f"✓ DEW configured: EOS={eos_name}; phase activity=ActivityModelDEW")
+        backend = str(model_backend or "DEW").strip().lower()
+        if backend == "perplexdew":
+            ensure_perplexdew_symbols()
+            _dh = (
+                ActivityDHModel.ExtendedDH
+                if dh_model == "ExtendedDH"
+                else ActivityDHModel.Davies
+            )
+            aqueous.setActivityModel(ActivityModelPerplexDEW(_dh))
+            print(
+                f"âœ“ PerplexDEW configured: EOS={eos_name}; DH model={dh_model}; phase activity=ActivityModelPerplexDEW"
+            )
+        else:
+            _ = StandardThermoModelDEW(params)
+            aqueous.setActivityModel(ActivityModelDEW())
+            print(f"âœ“ DEW configured: EOS={eos_name}; phase activity=ActivityModelDEW")
 
     except Exception as e:
+        if str(model_backend or "").strip().lower() == "perplexdew":
+            raise RuntimeError(
+                f"Could not configure requested aqueous backend ({model_backend}): {e}"
+            ) from e
         print(f"Warning: Could not configure DEW: {e}")
         print("  Falling back to default ActivityModelDEW()")
         try:
@@ -394,9 +602,26 @@ def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
             aqueous.setActivityModel(ActivityModelHKF())
 
     mineral = MineralPhase(mineral_name)
-    system = ChemicalSystem(combined_db, aqueous, mineral)
 
-    print(f"✓ System built for {mineral_name} solubility")
+    # Optionally add supercritical CO2 gas phase for H2O-CO2 mixed fluid
+    if _fluid_tag == "H2OCO2":
+        try:
+            co2_gas_species = supcrt_db.species("CO2(g)")
+            combined_db.addSpecies(co2_gas_species)
+            co2_phase = GaseousPhase("CO2(g)")
+            gfsm_params = ActivityModelParamsPerplexGFSM()
+            hybrid_opts = PerpleXHybridEosOptions()
+            hybrid_opts.co2 = PerpleXCO2Eos.ZhangDuan09
+            gfsm_params.hybridEosOptions = hybrid_opts
+            co2_phase.setActivityModel(ActivityModelPerplexGFSM(gfsm_params))
+            system = ChemicalSystem(combined_db, aqueous, co2_phase, mineral)
+            print("âœ“ CO2(g) gas phase added (Zhang-Duan 2009 EOS) for H2O-CO2 fluid")
+        except Exception as e:
+            raise RuntimeError(f"Failed to add CO2(g) gaseous phase: {e}") from e
+    else:
+        system = ChemicalSystem(combined_db, aqueous, mineral)
+
+    print(f"âœ“ System built for {mineral_name} solubility")
     return system
 
 
@@ -407,9 +632,9 @@ def load_experimental_data(csv_file):
         df = df[["T_C", "P_kbar", "molality_m", "reference", "experiment_type"]].copy()
         df["reversal"] = df.get("reversal", "?")
     else:
-        t_col = "T (°C)" if "T (°C)" in df.columns else "T (�C)"
+        t_col = "T (Â°C)" if "T (Â°C)" in df.columns else "T (ï¿½C)"
         p_col = "P (bar)"
-        m_col = "Molality (mol/kg H₂O)"
+        m_col = "Molality (mol/kg Hâ‚‚O)"
         if m_col not in df.columns:
             m_col = "Molality (mol/kg H?O)"
 
@@ -459,11 +684,35 @@ def load_experimental_data(csv_file):
 
 
 def main():
+    args = parse_args()
+    dh_model = args.dh_model
+    model_backend = backend_tag(args.backend)
+    fluid = args.fluid
+    xco2 = args.xco2
+    outputs = output_paths(MINERAL_CONFIG, args.backend, dh_model, fluid)
+
+    # Moles of CO2 to add per 1 kg H2O (n_co2 = 0 for pure H2O)
+    n_co2 = xco2 / (1.0 - xco2) * 55.508 if fluid == "H2OCO2" else 0.0
+    # Moles of dissolved CO2_aq to add as solute in pure H2O (H2OCO2aq mode)
+    n_co2_aq = args.co2aq_molality if fluid == "H2OCO2aq" else 0.0
+
     print("=" * 80)
     mineral_name = MINERAL_CONFIG["mineral_name"]
     print(f"{mineral_name} Solubility Analysis - Reaktoro DEW2024")
     print(f"Mineral: {MINERAL_CONFIG['mineral_formula']}")
     print(f"Solute species: {MINERAL_CONFIG['solute_species']}")
+    backend_display = model_backend + (
+        f" ({dh_model})" if "perplexdew" in model_backend.lower() else ""
+    )
+    print(f"Aqueous backend: {backend_display}")
+    if fluid == "H2OCO2":
+        print(
+            f"Fluid: H2O-CO2 mixture (XCO2 = {xco2:.2f}, n_CO2 = {n_co2:.3f} mol/kg-H2O)"
+        )
+    elif fluid == "H2OCO2aq":
+        print(
+            f"Fluid: Pure H2O solvent + CO2_aq solute (initial CO2_aq = {n_co2_aq:.3f} mol/kg-H2O)"
+        )
     print("=" * 80)
 
     # Load experimental data
@@ -477,7 +726,7 @@ def main():
         print(f"    Loaded {len(exp_data)} experimental data points")
         if len(exp_data) > 0:
             print(
-                f"    Temperature range: {exp_data['T_C'].min():.0f} - {exp_data['T_C'].max():.0f} °C"
+                f"    Temperature range: {exp_data['T_C'].min():.0f} - {exp_data['T_C'].max():.0f} Â°C"
             )
             print(
                 f"    Pressure range: {exp_data['P_kbar'].min():.3f} - {exp_data['P_kbar'].max():.3f} kbar"
@@ -506,7 +755,14 @@ def main():
         print(f"    ERROR: Failed to load SUPCRTBL database: {e}")
         raise
 
-    system = build_system(dew_db, supcrt_db, MINERAL_CONFIG)
+    system = build_system(
+        dew_db,
+        supcrt_db,
+        MINERAL_CONFIG,
+        model_backend=model_backend,
+        dh_model=dh_model,
+        fluid=fluid,
+    )
 
     # Calculate solubility curves for each experimental pressure (drops NaN)
     mineral_name = MINERAL_CONFIG["mineral_name"]
@@ -521,7 +777,7 @@ def main():
         P_bar = P_kbar * 1000.0
         print(f"    P = {P_kbar:.3f} kbar ({P_bar:.0f} bar)...")
 
-        # Determine T range from experiments at this pressure (±5%)
+        # Determine T range from experiments at this pressure (Â±5%)
         P_tol = 0.05 * P_kbar
         exp_at_P = exp_data[
             (exp_data["P_kbar"] >= P_kbar - P_tol)
@@ -555,6 +811,10 @@ def main():
         state.set("OH-", 1e-8, "mol")
         state.set(solute_species, 1e-6, "mol")
         state.set(mineral_name, 10.0, "mol")
+        if n_co2 > 0.0:
+            state.set("CO2(g)", n_co2, "mol")
+        if n_co2_aq > 0.0:
+            state.set("CO2_aq", n_co2_aq, "mol")
 
         molalities = []
         for T_C in T_range:
@@ -585,7 +845,7 @@ def main():
             first_m = molalities[valid_idx[0]]
             last_m = molalities[valid_idx[-1]]
             print(
-                f"       Calculated {valid_points}/{N_POINTS} points (T: {first_T:.0f}-{last_T:.0f}°C)"
+                f"       Calculated {valid_points}/{N_POINTS} points (T: {first_T:.0f}-{last_T:.0f}Â°C)"
             )
 
     # Plotting
@@ -685,7 +945,7 @@ def main():
         y_max = max(y_positive)
         if y_min > 0 and y_max > 0:
             ax2.set_ylim(y_min * 0.7, y_max * 1.3)
-    ax2.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
+    ax2.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
     ax2.set_ylabel(MINERAL_CONFIG["y_label"], fontsize=14, fontweight="bold")
     ax2.set_title(
         f"{MINERAL_CONFIG['plot_title']}: High Pressure (>=1 kbar)",
@@ -697,7 +957,7 @@ def main():
 
     # Add database/model info annotation
     info_text = (
-        f"DEW24 (species) + SUPCRTBL ({mineral_name}) + Zhang-Duan 2005 EOS (H₂O)"
+        f"DEW24 (species) + SUPCRTBL ({mineral_name}) + Zhang-Duan 2005 EOS (Hâ‚‚O)"
     )
     ax2.text(
         0.02,
@@ -717,8 +977,8 @@ def main():
         ncol=1,
     )
     plt.tight_layout()
-    plt.savefig(OUTPUT_PLOT_HIGH, dpi=300, bbox_inches="tight")
-    print(f"    High-P plot saved to: {OUTPUT_PLOT_HIGH}")
+    plt.savefig(outputs["high_plot"], dpi=300, bbox_inches="tight")
+    print(f"    High-P plot saved to: {outputs['high_plot']}")
     plt.close(fig2)
 
     # =========================================================================
@@ -745,6 +1005,8 @@ def main():
             state_spec.set("OH-", 1e-8, "mol")
             state_spec.set(solute_species, 1e-6, "mol")
             state_spec.set(mineral_name, 10.0, "mol")
+            if n_co2 > 0.0:
+                state_spec.set("CO2(g)", n_co2, "mol")
 
             for T_C in T_spec:
                 conditions_spec.temperature(float(T_C), "celsius")
@@ -769,9 +1031,9 @@ def main():
                     ax3.plot(T_spec[valid], values[valid], label=name, linewidth=2.0)
 
             ax3.set_yscale("log")
-            ax3.set_xlabel("Temperature (°C)", fontsize=12, fontweight="bold")
+            ax3.set_xlabel("Temperature (Â°C)", fontsize=12, fontweight="bold")
             ax3.set_ylabel(
-                "Species molality (mol/kg-H₂O)", fontsize=12, fontweight="bold"
+                "Species molality (mol/kg-Hâ‚‚O)", fontsize=12, fontweight="bold"
             )
             ax3.set_title(
                 f"{MINERAL_CONFIG['plot_title']} Speciation at {spec_P_kbar:.3f} kbar",
@@ -782,8 +1044,8 @@ def main():
             ax3.grid(True, which="both", alpha=0.3, linestyle="--")
             ax3.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=9)
             plt.tight_layout()
-            plt.savefig(SPECIES_PLOT, dpi=300, bbox_inches="tight")
-            print(f"    Speciation plot saved to: {SPECIES_PLOT}")
+            plt.savefig(outputs["species_plot"], dpi=300, bbox_inches="tight")
+            print(f"    Speciation plot saved to: {outputs['species_plot']}")
             plt.close(fig3)
 
     # =========================================================================
@@ -814,6 +1076,10 @@ def main():
         state.set("OH-", 1e-8, "mol")
         state.set(solute_species, 1e-6, "mol")
         state.set(mineral_name, 10.0, "mol")
+        if n_co2 > 0.0:
+            state.set("CO2(g)", n_co2, "mol")
+        if n_co2_aq > 0.0:
+            state.set("CO2_aq", n_co2_aq, "mol")
         state.pressure(P_bar, "bar")
         state.temperature(float(T_C), "celsius")
 
@@ -889,12 +1155,12 @@ def main():
 
     ax_rel.axhline(0, color="gray", linestyle="--", linewidth=1.0)
     ax_rel.set_ylabel("Relative Diff (%)", fontsize=12, fontweight="bold")
-    ax_rel.set_xlabel("Temperature (°C)", fontsize=12, fontweight="bold")
+    ax_rel.set_xlabel("Temperature (Â°C)", fontsize=12, fontweight="bold")
     ax_rel.grid(True, alpha=0.3, linestyle="--")
 
     plt.tight_layout()
-    plt.savefig(RESIDUALS_PLOT, dpi=300, bbox_inches="tight")
-    print(f"    Residual plots saved to: {RESIDUALS_PLOT}")
+    plt.savefig(outputs["residuals_plot"], dpi=300, bbox_inches="tight")
+    print(f"    Residual plots saved to: {outputs['residuals_plot']}")
 
     print("\n" + "=" * 80)
     print("Analysis complete!")
@@ -903,3 +1169,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Check if H2O(aq) from supcrtbl is actually being used or if it's just a linker
 """
 
@@ -8,16 +8,16 @@ import os
 # Setup paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
     sys.path.insert(0, PYD_DIR)
 
 try:
     from reaktoro4py import *
 
-    print("✓ Loaded reaktoro4py extension")
+    print("âœ“ Loaded reaktoro4py extension")
 except Exception as e:
-    print(f"✗ Failed to load reaktoro4py: {e}")
+    print(f"âœ— Failed to load reaktoro4py: {e}")
     sys.exit(1)
 
 # Load databases
@@ -36,11 +36,11 @@ print(f"\nH2O in DEW: {'H2O(aq)' in dew_species_names}")
 print("\n--- H2O(aq) Sources ---")
 try:
     h2o_supcrt = supcrt_db.species("H2O(aq)")
-    print(f"✓ SUPCRT H2O(aq) found: {h2o_supcrt.name()}")
+    print(f"âœ“ SUPCRT H2O(aq) found: {h2o_supcrt.name()}")
     print(f"  Formula: {h2o_supcrt.formula()}")
     print(f"  Aggregate state: {h2o_supcrt.aggregateState()}")
 except Exception as e:
-    print(f"✗ SUPCRT H2O(aq) error: {e}")
+    print(f"âœ— SUPCRT H2O(aq) error: {e}")
 
 # Now test if changing to only DEW works
 print("\n--- Test 1: Build system with SUPCRT H2O(aq) ---")
@@ -60,7 +60,7 @@ try:
 
     mineral = MineralPhase("Quartz")
     system1 = ChemicalSystem(combined_db, aqueous, mineral)
-    print(f"✓ System 1 created with SUPCRT H2O(aq)")
+    print(f"âœ“ System 1 created with SUPCRT H2O(aq)")
     print(f"  Species in system: {len(system1.species())}")
 
     # Try to equilibrate and check if H2O thermodynamics matter
@@ -74,17 +74,18 @@ try:
 
     result = solver.solve(state)
     if result.solved():
-        print(f"  ✓ Equilibrium solved")
+        print(f"  âœ“ Equilibrium solved")
         print(
             f"    H2O(aq) g0 = {state.speciesStandardGibbsEnergy('H2O(aq)')[0]:.2f} J/mol"
         )
     else:
-        print(f"  ✗ Equilibrium failed")
+        print(f"  âœ— Equilibrium failed")
 
 except Exception as e:
-    print(f"✗ System 1 error: {e}")
+    print(f"âœ— System 1 error: {e}")
     import traceback
 
     traceback.print_exc()
 
 print("\n--- Done ---")
+

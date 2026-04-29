@@ -1,0 +1,11 @@
+T_C,P_kbar,xco2,molality_m,mineral,fluid,reference,experiment_type,Name
+800,10,0.185,0.594,Quartz,H2OCO2,Newton_Manning_2000,weight_loss,C-5
+800,10,0.337,0.340,Quartz,H2OCO2,Newton_Manning_2000,weight_loss,C-4
+800,10,0.499,0.209,Quartz,H2OCO2,Newton_Manning_2000,weight_loss,C-1
+800,10,0.503,0.163,Quartz,H2OCO2,Newton_Manning_2000,weight_loss,C-6
+800,10,0.676,0.112,Quartz,H2OCO2,Newton_Manning_2000,weight_loss,C-3
+800,9,0.500,0.1708,Quartz,H2OCO2,Shmulovich_Graham_Yardley_2001,weight_loss,Q33
+800,9,0.350,0.2881,Quartz,H2OCO2,Shmulovich_Graham_Yardley_2001,weight_loss,Q34
+800,9,0.294,0.3545,Quartz,H2OCO2,Shmulovich_Graham_Yardley_2001,weight_loss,Q35
+800,9,0.500,0.2074,Quartz,H2OCO2,Shmulovich_Graham_Yardley_2001,weight_loss,Q36
+800,9,0.157,0.5947,Quartz,H2OCO2,Shmulovich_Graham_Yardley_2001,weight_loss,Q37

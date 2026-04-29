@@ -1,0 +1,20 @@
+{
+  "name": "sb11_ol_conditions_split",
+  "scenario": "conditions-split",
+  "model": "sb11_ol",
+  "phaseSpecies": ["CaCO3(s)", "MgCO3(s)"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "speciesAmounts": [55.5, 1.0e-7, 1.0e-7, 1.0, 1.0, 1.0, 1.0, 2.0],
+  "expected": {
+    "succeeded": true,
+    "numRebuilds": 1,
+    "preservedSpeciesAmount": {
+      "name": "Na+(aq)",
+      "value": 1.0
+    }
+  },
+  "tolerances": {
+    "scalarAbs": 1e-10
+  }
+}

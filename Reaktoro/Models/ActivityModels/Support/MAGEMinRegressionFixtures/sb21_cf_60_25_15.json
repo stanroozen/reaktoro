@@ -1,0 +1,22 @@
+{
+  "name": "sb21_cf_60_25_15",
+  "model": "sb21_cf",
+  "species": ["MgAl2O4", "FeAl2O4", "NaAlSiO4"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "composition": [0.6, 0.25, 0.15],
+  "expected": {
+    "modelId": "sb21_cf",
+    "endmembers": ["mgcf", "fecf", "nacf"],
+    "internalComposition": [0.588071808219956, 0.25479927658834733, 0.1571289151916967],
+    "Gx": -8450.629584853414,
+    "Hx": 8528.99939265896,
+    "ln_g": [0.37474122291420325, 0.37474122291420336, 2.421415709633928],
+    "ln_a": [-0.32710624978509567, -1.1634792284916289, -1.2799616797547895],
+    "splitRequested": false
+  },
+  "tolerances": {
+    "scalarAbs": 1e-3,
+    "logAbs": 1e-6
+  }
+}

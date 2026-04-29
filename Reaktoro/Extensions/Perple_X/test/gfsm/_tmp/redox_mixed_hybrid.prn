@@ -1,0 +1,58 @@
+
+----------------------------------------
+
+Stable phases at:
+                             T(K)     =  1500.00    
+                             P(bar)   =  873.150    
+
+Phase Compositions (molar  proportions):
+                   wt %      vol %     mol %     mol        O2       H2       C    
+ COH-Fluid        100.00    100.00    100.00     1.92      0.46888  0.62518  0.41679
+
+Phase speciation (molar proportions):
+
+ COH-Fluid         CO2: 0.16096, CH4: 0.02098, H2: 0.20221, CO: 0.23484, H2O: 0.38100
+
+Structural formulae for 688 format solution models: none stable.
+
+
+Molar Properties and Density:
+                    N(g)          G(J)     S(J/K)     V(J/bar)      Cp(J/K)       Alpha(1/K)  Beta(1/bar)    Cp/Cv    Density(kg/m3)
+ COH-Fluid          21.27        -379088   197.33       15.699       44.716      0.65648E-03  0.10242E-02   1.2847       135.48    
+ System             40.83        -727642   378.76       30.134       85.830      0.65648E-03  0.10242E-02   1.2847       135.48    
+ System - Fluid      0.00              0   0.0000       0.0000       0.0000       0.0000       0.0000       0.0000       0.0000    
+
+Seismic Properties:
+                 Gruneisen_T      Ks(bar)      Mu(bar)    V0(km/s)     Vp(km/s)     Vs(km/s)   Poisson ratio
+ COH-Fluid         0.28911       1254.4       0.0000      0.96220      0.96220       0.0000      0.50000    
+ System            0.28911       1254.4       0.0000      0.96220      0.96220       0.0000      0.50000    
+ System - Fluid            NaN          NaN          NaN          NaN          NaN          NaN          NaN
+
+Bulk Composition:
+              mol         g        wt %     mol/kg
+    O2        0.900     28.799    70.540    22.045
+    H2        1.200      2.419     5.924    29.393
+    C         0.800      9.609    23.536    19.595
+
+Other Bulk Properties:
+
+ Enthalpy (J/kg) = -.390699E+07
+ Specific Enthalpy (J/m3) = -.529338E+09
+ Entropy (J/K/kg) =  9277.21    
+ Specific Entropy (J/K/m3) = 0.125692E+07
+ Heat Capacity (J/K/kg) =  2102.31    
+ Specific Heat Capacity (J/K/m3) =  284831.    
+
+N.B.: melt, when stable, is identified as a fluid phase for purposes of computing aggregate
+properties. To include melt properties in the solid aggregate set melt_is_fluid to F.
+
+Chemical Potentials (J/mol):
+
+      O2            H2            C    
+    -600739.      -127265.      -42825.0    
+
+Variance (c-p+2) =  4
+
+
+----------------------------------------
+

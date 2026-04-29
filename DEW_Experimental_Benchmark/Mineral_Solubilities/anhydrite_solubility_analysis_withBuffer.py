@@ -1,4 +1,4 @@
-"""
+﻿"""
 Mineral Solubility Analysis using Reaktoro with DEW2024
 Generic framework for comparing calculated solubilities with experimental data
 Includes per-kbar-category temperature ranges, Psat curve, and uncertainty analysis
@@ -22,13 +22,13 @@ except ModuleNotFoundError:
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     BENCHMARK_DIR = os.path.dirname(SCRIPT_DIR)
     ROOT_DIR = os.path.dirname(BENCHMARK_DIR)
-    PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+    PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
     if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
         sys.path.insert(0, PYD_DIR)
     try:
         from reaktoro4py import *  # noqa: F401,F403
 
-        print("Using local reaktoro4py extension from build-msvc.")
+        print("Using local reaktoro4py extension from build.")
     except ModuleNotFoundError as e:
         raise ModuleNotFoundError(
             "Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH."
@@ -63,7 +63,7 @@ MINERAL_CONFIG = {
     "output_prefix": "anhydrite_withBuffer",  # Prefix for output files
     # Plot settings
     "plot_title": "Anhydrite Solubility (Buffer)",
-    "y_label": "Total Ca molality (mol/kg-H₂O)",
+    "y_label": "Total Ca molality (mol/kg-Hâ‚‚O)",
 }
 # ============================================================
 
@@ -416,7 +416,7 @@ def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
         dew_model = StandardThermoModelDEW(params)
         aqueous.setActivityModel(ActivityModelDEW())
         eos_name = water_config.get("eos_model", "ZhangDuan2005")
-        print(f"✓ DEW configured: EOS={eos_name}; phase activity=ActivityModelDEW")
+        print(f"âœ“ DEW configured: EOS={eos_name}; phase activity=ActivityModelDEW")
 
     except Exception as e:
         print(f"Warning: Could not configure DEW: {e}")
@@ -432,7 +432,7 @@ def build_system(dew_db, supcrt_db, mineral_config, water_config=None):
     else:
         system = ChemicalSystem(combined_db, aqueous, mineral)
 
-    print(f"✓ System built for {mineral_name} solubility")
+    print(f"âœ“ System built for {mineral_name} solubility")
     return system
 
 
@@ -556,7 +556,7 @@ def main():
         print(f"    Loaded {len(exp_data)} experimental data points")
         if len(exp_data) > 0:
             print(
-                f"    Temperature range: {exp_data['T_C'].min():.0f} - {exp_data['T_C'].max():.0f} °C"
+                f"    Temperature range: {exp_data['T_C'].min():.0f} - {exp_data['T_C'].max():.0f} Â°C"
             )
             print(
                 f"    Pressure range: {exp_data['P_kbar'].min():.3f} - {exp_data['P_kbar'].max():.3f} kbar"
@@ -639,7 +639,7 @@ def main():
         P_bar = P_kbar * 1000.0
         print(f"    P = {P_kbar:.3f} kbar ({P_bar:.0f} bar)...")
 
-        # Determine T range from experiments at this pressure (±5%)
+        # Determine T range from experiments at this pressure (Â±5%)
         P_tol = 0.05 * P_kbar
         exp_at_P = exp_data[
             (exp_data["P_kbar"] >= P_kbar - P_tol)
@@ -723,7 +723,7 @@ def main():
                 last_T = T_range[valid_idx[-1]]
                 label = buffer_name if buffer_name else "Unbuffered"
                 print(
-                    f"       {label}: {valid_points}/{N_POINTS} points (T: {first_T:.0f}-{last_T:.0f}°C)"
+                    f"       {label}: {valid_points}/{N_POINTS} points (T: {first_T:.0f}-{last_T:.0f}Â°C)"
                 )
 
     # Calculate Psat solubility curve (following saturation pressure)
@@ -810,7 +810,7 @@ def main():
     # Plotting
     print("\n[4] Creating plots...")
 
-    # Separate data into low (<1 kbar) and high (≥1 kbar) pressure ranges
+    # Separate data into low (<1 kbar) and high (â‰¥1 kbar) pressure ranges
     low_P_threshold = 1.0
 
     low_P_data = non_psat_data[non_psat_data["P_kbar"] < low_P_threshold]
@@ -955,7 +955,7 @@ def main():
                 )
 
     ax2.set_yscale("log")
-    ax2.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
+    ax2.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
     ax2.set_ylabel(MINERAL_CONFIG["y_label"], fontsize=14, fontweight="bold")
     ax2.set_title(
         f"{MINERAL_CONFIG['plot_title']}: High Pressure (>=1 kbar)",
@@ -967,7 +967,7 @@ def main():
 
     # Add database/model info annotation
     info_text = (
-        f"DEW24 (species) + SUPCRTBL ({mineral_name}) + Zhang-Duan 2005 EOS (H₂O)"
+        f"DEW24 (species) + SUPCRTBL ({mineral_name}) + Zhang-Duan 2005 EOS (Hâ‚‚O)"
     )
     ax2.text(
         0.02,
@@ -1103,7 +1103,7 @@ def main():
 
     ax_rel.axhline(0, color="gray", linestyle="--", linewidth=1.0)
     ax_rel.set_ylabel("Relative Diff (%)", fontsize=12, fontweight="bold")
-    ax_rel.set_xlabel("Temperature (°C)", fontsize=12, fontweight="bold")
+    ax_rel.set_xlabel("Temperature (Â°C)", fontsize=12, fontweight="bold")
     ax_rel.grid(True, alpha=0.3, linestyle="--")
 
     plt.tight_layout()
@@ -1117,3 +1117,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

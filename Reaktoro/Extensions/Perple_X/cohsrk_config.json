@@ -1,0 +1,18 @@
+{
+  "exe": "C:\\Program Files (x86)\\Perplex\\fluids.exe",
+  "work_dir": "C:\\Users\\stanroozen\\Documents\\Projects\\Perplex\\Perple_X\\test\\reaktoro_extensions\\outputs",
+  "output_dir": "C:\\Users\\stanroozen\\Documents\\Projects\\Perplex\\Perple_X\\test\\reaktoro_extensions\\outputs",
+  "log_output": false,
+  "keep_tabs": false,
+  "cases": [
+    {
+      "name": "h2o_co2_hybrid_mrk",
+      "ifug": 2,
+      "p_kbar": {"min": 1.0, "max": 20.0, "step": 1.0},
+      "t_k": {"min": 373.15, "max": 1600.0, "step": 50.0},
+      "sectioning": [
+        {"name": "X(CO2)", "values": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}
+      ]
+    }
+  ]
+}

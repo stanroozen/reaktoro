@@ -1,0 +1,4 @@
+redox_mixed_hybrid
+n
+1500.0 873.15
+0 0

@@ -1,0 +1,4 @@
+redox_co_bias_hot
+n
+1000.0 973.15
+0 0

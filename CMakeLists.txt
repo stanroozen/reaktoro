@@ -13,6 +13,9 @@ include(CMakeRC)
 # Set the name of the project, its version and other information
 project(Reaktoro VERSION 2.13.0 LANGUAGES CXX)
 
+# Enable CTest integration so add_test registrations are emitted into the build tree.
+include(CTest)
+
 # Generate compile_commands.json file in the binary directory
 if(NOT MSVC)
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

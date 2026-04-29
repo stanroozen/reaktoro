@@ -1,0 +1,58 @@
+case,mineral,T_C,P_kbar,xco2,stable_in_perplex,fluid_in_perplex,error,metric,perplexdew_m,perplex_m,delta_log10
+quartz_q37,Quartz,800.0,9.0,0.157,True,True,,total,0.625234815146146,0.9506662138630022,-0.1819849066289362
+quartz_q37,Quartz,800.0,9.0,0.157,True,True,,SiO2_aq,0.3660552199790655,0.46812266043074335,-0.10681306023471204
+quartz_q37,Quartz,800.0,9.0,0.157,True,True,,HSiO3-,7.1312606729292e-06,3.361142009865779e-05,-0.6733205502625426
+quartz_q37,Quartz,800.0,9.0,0.157,True,True,,Si2O4_aq,0.11722329862723076,0.21032324283124929,-0.25387333111217103
+quartz_q37,Quartz,800.0,9.0,0.157,True,True,,Si3O6_aq,0.00824195555064868,0.020621152116553864,-0.3982826579081342
+quartz_q34,Quartz,800.0,9.0,0.35,True,True,,total,0.8142680168956669,0.8720677459098247,-0.029782847317658824
+quartz_q34,Quartz,800.0,9.0,0.35,True,True,,SiO2_aq,0.43737702907545317,0.42897777233801865,0.008421180652358529
+quartz_q34,Quartz,800.0,9.0,0.35,True,True,,HSiO3-,8.246847494635688e-06,2.4232469551355044e-05,-0.46810971229046583
+quartz_q34,Quartz,800.0,9.0,0.35,True,True,,Si2O4_aq,0.16735267941102364,0.19318768787064453,-0.06234677469944028
+quartz_q34,Quartz,800.0,9.0,0.35,True,True,,Si3O6_aq,0.014059127383557263,0.01889678845365521,-0.1284296353440615
+quartz_q33,Quartz,800.0,9.0,0.5,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_q33_vevo0l6j\quartz_q33.prn,total,1.064202827578245,nan,nan
+quartz_q33,Quartz,800.0,9.0,0.5,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_q33_vevo0l6j\quartz_q33.prn,SiO2_aq,0.5200646777692003,nan,nan
+quartz_q33,Quartz,800.0,9.0,0.5,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_q33_vevo0l6j\quartz_q33.prn,HSiO3-,9.459106736906379e-06,nan,nan
+quartz_q33,Quartz,800.0,9.0,0.5,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_q33_vevo0l6j\quartz_q33.prn,Si2O4_aq,0.23661128025919462,nan,nan
+quartz_q33,Quartz,800.0,9.0,0.5,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_q33_vevo0l6j\quartz_q33.prn,Si3O6_aq,0.023635376727972796,nan,nan
+quartz_c4,Quartz,800.0,10.0,0.337,True,True,,total,0.7921594572735324,0.9628879590534611,-0.08476314443006214
+quartz_c4,Quartz,800.0,10.0,0.337,True,True,,SiO2_aq,0.4436271240877837,0.4758545149966895,-0.03045610257064807
+quartz_c4,Quartz,800.0,10.0,0.337,True,True,,HSiO3-,8.828757273731108e-06,3.224813337893297e-05,-0.5626050043387627
+quartz_c4,Quartz,800.0,10.0,0.337,True,True,,Si2O4_aq,0.15334607947948092,0.20796006725034202,-0.13230727212787008
+quartz_c4,Quartz,800.0,10.0,0.337,True,True,,Si3O6_aq,0.013943781823171075,0.02369368714090287,-0.23025207079660204
+quartz_c3,Quartz,800.0,10.0,0.676,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_c3_an4_8rz8\quartz_c3.prn,total,1.3536451076564553,nan,nan
+quartz_c3,Quartz,800.0,10.0,0.676,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_c3_an4_8rz8\quartz_c3.prn,SiO2_aq,0.625833685165831,nan,nan
+quartz_c3,Quartz,800.0,10.0,0.676,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_c3_an4_8rz8\quartz_c3.prn,HSiO3-,1.1568443631945404e-05,nan,nan
+quartz_c3,Quartz,800.0,10.0,0.676,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_c3_an4_8rz8\quartz_c3.prn,Si2O4_aq,0.3051788019512083,nan,nan
+quartz_c3,Quartz,800.0,10.0,0.676,False,False,Perple_X output is empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Mineral_Solubilities\perplex_quartz_c3_an4_8rz8\quartz_c3.prn,Si3O6_aq,0.03914741671485862,nan,nan
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,total,0.00850444449352282,0.0004153699345179195,1.3112108929053878
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,Ca+2,3.0196938748281184e-05,1.300298751454503e-07,2.365919772513476
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,HCO3-,0.00848373356194309,0.0003546632234145971,1.3787708638058858
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,CO3-2,3.4565815312652444e-07,1.707169304165697e-10,3.306370211854185
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,H2CO3_aq,3.718499837211169,17574.062049157434,-3.6745043886308517
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,CaCO3_aq,2.16863317580922e-05,1.1449261926925763e-07,2.277408606416153
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,Ca(HCO3)+,0.008449115851031244,0.0004060827022341169,1.3181967746409273
+calcite_500C_5kbar_x010,Calcite,500.0,5.0,0.1,True,True,,Ca(OH)+,3.4453719852024248e-06,9.042709789387946e-06,-0.41906247502475846
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,total,0.00803980495472008,0.0006423200496682199,1.0974940344232476
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,Ca+2,1.616731775669491e-05,1.040867316420342e-07,2.1912426023777485
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,HCO3-,0.007875290560536027,0.00036752108623298266,1.3309843247063533
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,CO3-2,1.6566674731827705e-06,3.810417605027348e-10,3.638262770390453
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,H2CO3_aq,6.480514737910006,13269.557034844644,-3.3112469228387424
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,CaCO3_aq,5.7983896329859344e-05,4.160042143605261e-07,2.1442096648803837
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,Ca(HCO3)+,0.007961231054983274,0.000619136710229258,1.1091936731939764
+calcite_600C_8kbar_x010,Calcite,600.0,8.0,0.1,True,True,,Ca(OH)+,4.422685650253109e-06,2.2663248492959387e-05,-0.7096360884033528
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,total,0.004409523336992925,0.006965323797786603,-0.19854966491703419
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,Ca+2,5.419968448777446e-06,3.300512946737376e-05,-0.7845846822831328
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,HCO3-,0.00389271856299108,0.0009969054991931224,0.5915990144044492
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,CO3-2,2.668784525711337e-06,4.4074084966566755e-07,0.7821302062502102
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,H2CO3_aq,6.48452464517519,23395.9434465068,-3.5572624177225745
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,CaCO3_aq,8.37212715857509e-05,6.935360952271156e-05,0.08176674697965591
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,Ca(HCO3)+,0.004313534479486873,0.006326978775651486,-0.16636310374145102
+calcite_700C_10kbar_x010,Calcite,700.0,10.0,0.1,True,True,,Ca(OH)+,6.847617471523614e-06,0.0005359862831450311,-1.8936141841037788
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,total,0.008236365340002707,0.006647406870415843,0.09308334073078539
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,Ca+2,5.955644267624962e-06,1.345957384033902e-05,-0.35410256007044083
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,HCO3-,0.007955781892545177,0.0022478548253351167,0.548914608968317
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,CO3-2,3.4365089024572597e-06,8.942182842744245e-07,0.5846739275733723
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,H2CO3_aq,22.941293217524755,339021.5711370336,-4.169609436454436
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,CaCO3_aq,8.372127158575191e-05,6.186596797617685e-05,0.1313840034860636
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,Ca(HCO3)+,0.008143800955263476,0.0063959391043409385,0.1049228302377605
+calcite_700C_10kbar_x250,Calcite,700.0,10.0,0.25,True,True,,Ca(OH)+,2.8874688858547617e-06,0.00017614222425838964,-1.7853461629992586

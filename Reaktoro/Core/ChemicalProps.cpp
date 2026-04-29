@@ -18,6 +18,7 @@
 #include "ChemicalProps.hpp"
 
 // C++ includes
+#include <cstdint>
 #include <fstream>
 
 // cpp-tabulate includes
@@ -92,6 +93,9 @@ auto ChemicalProps::update(real const& T0, real const& P0, ArrayXrConstRef n0) -
     T = T0;
     P = P0;
 
+    // Shared state marker used by cross-phase coupled activity models.
+    m_extra["Reaktoro::ChemicalProps::StateId"] = static_cast<std::uint64_t>(mstateid);
+
     auto offset = 0;
     for(auto const& [i, phase] : enumerate(msystem.phases()))
     {
@@ -99,6 +103,28 @@ auto ChemicalProps::update(real const& T0, real const& P0, ArrayXrConstRef n0) -
         const auto np = n0.segment(offset, size);
         phasePropsRef(i).update(T, P, np, m_extra);
         offset += size;
+    }
+
+    // If a gas/fluid phase published a fresh coupled-fluid payload, re-evaluate
+    // aqueous phases so they consume the same-iteration handoff deterministically.
+    bool haveFreshCoupledFluidPayload = false;
+    if(const auto it = m_extra.find("PerplexGFSM::WaterActivity::StateId"); it != m_extra.end())
+    {
+        if(const auto sid64 = std::any_cast<std::uint64_t>(&it->second))
+            haveFreshCoupledFluidPayload = (*sid64 == static_cast<std::uint64_t>(mstateid));
+    }
+
+    if(haveFreshCoupledFluidPayload)
+    {
+        auto offset2 = 0;
+        for(auto const& [i, phase] : enumerate(msystem.phases()))
+        {
+            const auto size = phase.species().size();
+            const auto np = n0.segment(offset2, size);
+            if(phase.aggregateState() == AggregateState::Aqueous)
+                phasePropsRef(i).update(T, P, np, m_extra);
+            offset2 += size;
+        }
     }
 }
 
@@ -132,6 +158,7 @@ auto ChemicalProps::updateIdeal(real const& T0, real const& P0, ArrayXrConstRef 
 
     T = T0;
     P = P0;
+    m_extra["Reaktoro::ChemicalProps::StateId"] = static_cast<std::uint64_t>(mstateid);
 
     auto offset = 0;
     for(auto const& [i, phase] : enumerate(msystem.phases()))

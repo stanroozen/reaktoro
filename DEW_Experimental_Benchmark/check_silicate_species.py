@@ -1,9 +1,9 @@
-import sys
+﻿import sys
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR):
     sys.path.insert(0, PYD_DIR)
 
@@ -39,9 +39,10 @@ current = [
 print("\nIncluded:")
 for sp in current:
     if "Si" in sp:
-        print(f"  ✓ {sp}")
+        print(f"  âœ“ {sp}")
 
 print("\nNot included:")
 for sp in silicate_species:
     if sp not in current:
-        print(f"  ✗ {sp}")
+        print(f"  âœ— {sp}")
+

@@ -1,0 +1,22 @@
+{
+  "name": "sb11_pv_70_20_10",
+  "model": "sb11_pv",
+  "species": ["MgSiO3", "FeSiO3", "Al2O3"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "composition": [0.7, 0.2, 0.1],
+  "expected": {
+    "modelId": "sb11_pv",
+    "endmembers": ["mgpv", "fepv", "alpv"],
+    "internalComposition": [0.6887476712465286, 0.2346996784210205, 0.07655265033245087],
+    "Gx": -13716.993211697903,
+    "Hx": 3600.2052391788166,
+    "ln_g": [0.11843263815063507, -0.30832960384166486, 3.719350724699007],
+    "ln_a": [-0.6273279611513567, -2.924929499430451, -0.017577159831394518],
+    "splitRequested": false
+  },
+  "tolerances": {
+    "scalarAbs": 1e-6,
+    "logAbs": 1e-7
+  }
+}

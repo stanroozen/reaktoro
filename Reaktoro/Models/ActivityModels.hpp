@@ -24,9 +24,13 @@
 #include <Reaktoro/Models/ActivityModels/ActivityModelDavies.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDebyeHuckel.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDEW.hpp>
+#include <Reaktoro/Models/ActivityModels/ActivityModelPerplexGFSM.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDrummond.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelDuanSun.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelExtendedUNIQUAC.hpp>
+#include <Reaktoro/Models/ActivityModels/ActivityModelGlobalizedBinaryRedlichKister.hpp>
+#include <Reaktoro/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.hpp>
+#include <Reaktoro/Models/ActivityModels/ActivityModelGlobalizedSolidSolution.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelHKF.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelIdealAqueous.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelIdealGas.hpp>

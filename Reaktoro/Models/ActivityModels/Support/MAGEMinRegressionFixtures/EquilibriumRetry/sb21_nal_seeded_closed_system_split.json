@@ -1,0 +1,18 @@
+{
+  "name": "sb21_nal_seeded_closed_system_split",
+  "scenario": "closed-system-split",
+  "model": "sb21_nal",
+  "stabilityPolicy": "magemin-pilot-branch-ambiguity",
+  "phaseSpecies": ["CaCO3(s)", "MgCO3(s)", "SiO2(s)"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "speciesAmounts": [2.0, 1.0, 1.0],
+  "expected": {
+    "succeeded": true,
+    "numRebuilds": 1,
+    "phaseNames": ["PilotCarbonate#left", "PilotCarbonate#right"]
+  },
+  "tolerances": {
+    "scalarAbs": 1e-10
+  }
+}

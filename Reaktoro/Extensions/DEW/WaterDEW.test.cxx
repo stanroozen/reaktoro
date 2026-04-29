@@ -610,9 +610,9 @@ TEST_CASE("DEW reaction thermodynamics: H2O + CO2,aq = H+ + HCO3-", "[dew][react
     }
     Species CO2_aq, H_plus, HCO3_minus;
     for (const auto& sp : modified_species) {
-        if (sp.name() == "CO2_aq") CO2_aq = sp;
-        else if (sp.name() == "H+") H_plus = sp;
-        else if (sp.name() == "HCO3-") HCO3_minus = sp;
+        if (sp.name() == "CO2(aq)" || sp.name() == "CO2_aq") CO2_aq = sp;
+        else if (sp.name() == "H+(aq)" || sp.name() == "H+") H_plus = sp;
+        else if (sp.name() == "HCO3-(aq)" || sp.name() == "HCO3-") HCO3_minus = sp;
     }
     REQUIRE(CO2_aq.name() != "");
     REQUIRE(H_plus.name() != "");

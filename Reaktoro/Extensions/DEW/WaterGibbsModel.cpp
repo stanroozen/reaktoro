@@ -140,14 +140,14 @@ double simpsonRule(double T_K,
     const double h = (P_end_Pa - P_start_Pa) / nsteps;
 
     auto wt = waterThermoPropsModel(T_K, P_start_Pa, thermoWithTol);
-    double Vm_left = (wt.D > 0.0) ? (M / wt.D) : 0.0;
+    double Vm_left = (wt.D > 0.0) ? double(M / wt.D) : 0.0;
     double sum = Vm_left;
 
     // Odd indices (multiplied by 4)
     for (int i = 1; i < nsteps; i += 2)
     {
         wt = waterThermoPropsModel(T_K, P_start_Pa + i * h, thermoWithTol);
-        double Vm = (wt.D > 0.0) ? (M / wt.D) : 0.0;
+        double Vm = (wt.D > 0.0) ? double(M / wt.D) : 0.0;
         sum += 4.0 * Vm;
     }
 
@@ -155,13 +155,13 @@ double simpsonRule(double T_K,
     for (int i = 2; i < nsteps; i += 2)
     {
         wt = waterThermoPropsModel(T_K, P_start_Pa + i * h, thermoWithTol);
-        double Vm = (wt.D > 0.0) ? (M / wt.D) : 0.0;
+        double Vm = (wt.D > 0.0) ? double(M / wt.D) : 0.0;
         sum += 2.0 * Vm;
     }
 
     // Right endpoint
     wt = waterThermoPropsModel(T_K, P_end_Pa, thermoWithTol);
-    double Vm_right = (wt.D > 0.0) ? (M / wt.D) : 0.0;
+    double Vm_right = (wt.D > 0.0) ? double(M / wt.D) : 0.0;
     sum += Vm_right;
 
     return (h / 3.0) * sum;
@@ -195,7 +195,7 @@ double gaussLegendre16(double T_K,
         {
             double P_node = center + half_width * GaussLegendre16::nodes[i];
             auto wt = waterThermoPropsModel(T_K, P_node, thermoWithTol);
-            double Vm = (wt.D > 0.0) ? (M / wt.D) : 0.0;
+            double Vm = (wt.D > 0.0) ? double(M / wt.D) : 0.0;
             seg_integral += GaussLegendre16::weights[i] * Vm;
         }
 

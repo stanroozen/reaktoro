@@ -1,4 +1,4 @@
-"""
+﻿"""
 Quartz Solubility Analysis using Reaktoro with DEW2024
 Compares calculated solubilities with experimental data
 """
@@ -17,13 +17,13 @@ except ModuleNotFoundError:
     # Add local build path for reaktoro4py if available
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-    PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+    PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
     if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
         sys.path.insert(0, PYD_DIR)
     try:
         from reaktoro4py import *  # noqa: F401,F403
 
-        print("Using local reaktoro4py extension from build-msvc.")
+        print("Using local reaktoro4py extension from build.")
     except ModuleNotFoundError as e:
         raise ModuleNotFoundError(
             "Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH."
@@ -44,7 +44,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_FILE = os.path.join(SCRIPT_DIR, "quartz_DEW_testset.csv")
 OUTPUT_PLOT = os.path.join(SCRIPT_DIR, "quartz_solubility_comparison.png")
 
-# Temperature range for solubility curves (°C)
+# Temperature range for solubility curves (Â°C)
 T_MIN, T_MAX = 150, 550
 N_POINTS = 100
 
@@ -150,7 +150,7 @@ def build_system(dew_db, supcrt_db, water_config=None):
         diel_name = water_config.get("dielectric_model", "PowerFunction")
         gibbs_name = water_config.get("gibbs_model", "DewIntegral")
         print(
-            f"✓ DEW configured: EOS={eos_name}, Dielectric={diel_name}, Gibbs={gibbs_name}"
+            f"âœ“ DEW configured: EOS={eos_name}, Dielectric={diel_name}, Gibbs={gibbs_name}"
         )
 
     except Exception as e:
@@ -178,7 +178,7 @@ def calculate_quartz_solubility(T_C, P_bar, dew_db, supcrt_db, water_config=None
     Parameters:
     -----------
     T_C : float
-        Temperature in °C
+        Temperature in Â°C
     P_bar : float
         Pressure in bar
     dew_db : DEWDatabase
@@ -240,12 +240,12 @@ def calculate_quartz_solubility(T_C, P_bar, dew_db, supcrt_db, water_config=None
             return molality
         except Exception as e:
             print(
-                f"Warning: Could not extract SiO2(aq) molality at T={T_C}°C, P={P_bar} bar: {e}"
+                f"Warning: Could not extract SiO2(aq) molality at T={T_C}Â°C, P={P_bar} bar: {e}"
             )
             return np.nan
 
     except Exception as e:
-        print(f"Warning: Failed at T={T_C}°C, P={P_bar} bar: {e}")
+        print(f"Warning: Failed at T={T_C}Â°C, P={P_bar} bar: {e}")
         return np.nan
 
 
@@ -266,7 +266,7 @@ def load_experimental_data(csv_file):
     # Create experiment identifier (reference + experiment type)
     df["experiment_id"] = df["reference"] + " (" + df["experiment_type"] + ")"
 
-    # Add kbar category: nearest integer kbar (±0.5 tolerance by definition)
+    # Add kbar category: nearest integer kbar (Â±0.5 tolerance by definition)
     df["kbar_cat"] = df["P_kbar"].round().astype(int)
     df = df.sort_values(["kbar_cat", "T_C"]).reset_index(drop=True)
 
@@ -294,7 +294,7 @@ def main():
         print(f"    Loaded {len(exp_data)} experimental data points")
         if len(exp_data) > 0:
             print(
-                f"    Temperature range: {exp_data['T_C'].min():.0f} - {exp_data['T_C'].max():.0f} °C"
+                f"    Temperature range: {exp_data['T_C'].min():.0f} - {exp_data['T_C'].max():.0f} Â°C"
             )
             print(
                 f"    Pressure range: {exp_data['P_kbar'].min():.3f} - {exp_data['P_kbar'].max():.3f} kbar"
@@ -364,7 +364,7 @@ def main():
                     molality = float(aqprops.speciesMolality("SiO2_aq"))
                 except Exception as e:
                     print(
-                        f"Warning: Could not extract SiO2_aq molality at T={T_C:.1f}°C, P={P_bar:.1f} bar: {e}"
+                        f"Warning: Could not extract SiO2_aq molality at T={T_C:.1f}Â°C, P={P_bar:.1f} bar: {e}"
                     )
                     molality = np.nan
             else:
@@ -385,8 +385,8 @@ def main():
             last_m = molalities[last_idx]
             print(
                 f"       Calculated {valid_points}/{N_POINTS} points successfully "
-                f"(first valid: T={first_T:.1f} °C, m={first_m:.3e}; "
-                f"last valid: T={last_T:.1f} °C, m={last_m:.3e})"
+                f"(first valid: T={first_T:.1f} Â°C, m={first_m:.3e}; "
+                f"last valid: T={last_T:.1f} Â°C, m={last_m:.3e})"
             )
         else:
             print(f"       Calculated {valid_points}/{N_POINTS} points successfully")
@@ -421,7 +421,7 @@ def main():
                 alpha=0.7,
                 edgecolors="black",
                 linewidths=0.4,
-                label=f"Exp P≈{cat} kbar",
+                label=f"Exp Pâ‰ˆ{cat} kbar",
                 zorder=10,
             )
 
@@ -447,8 +447,8 @@ def main():
     ax.set_yscale("log")
 
     # Labels and formatting
-    ax.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
-    ax.set_ylabel("Quartz Solubility (mol/kg-H₂O)", fontsize=14, fontweight="bold")
+    ax.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
+    ax.set_ylabel("Quartz Solubility (mol/kg-Hâ‚‚O)", fontsize=14, fontweight="bold")
     ax.set_title(
         "Quartz Solubility: DEW2024 Calculations vs Experimental Data",
         fontsize=16,
@@ -508,12 +508,12 @@ def main():
                 alpha=0.8,
                 edgecolors="black",
                 linewidths=0.4,
-                label=f"P≈{cat} kbar",
+                label=f"Pâ‰ˆ{cat} kbar",
             )
         ax2.axhline(0.0, color="gray", linestyle="--", linewidth=1.0)
-        ax2.set_xlabel("Temperature (°C)", fontsize=12, fontweight="bold")
+        ax2.set_xlabel("Temperature (Â°C)", fontsize=12, fontweight="bold")
         ax2.set_ylabel(
-            "Residual (measured − predicted) mol/kg-H₂O", fontsize=12, fontweight="bold"
+            "Residual (measured âˆ’ predicted) mol/kg-Hâ‚‚O", fontsize=12, fontweight="bold"
         )
         ax2.set_title(
             "Quartz Solubility Residuals by Pressure Category",
@@ -539,3 +539,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

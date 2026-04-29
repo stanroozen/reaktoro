@@ -1,0 +1,22 @@
+{
+  "name": "sb21_nal_55_20_25",
+  "model": "sb21_nal",
+  "species": ["NaMg2Al5SiO12", "NaFe2Al5SiO12", "Na3Al3Si3O12"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "composition": [0.55, 0.2, 0.25],
+  "expected": {
+    "modelId": "sb21_nal",
+    "endmembers": ["mnal", "fnal", "nnal"],
+    "internalComposition": [0.5039954662322998, 0.19249529838562013, 0.3035092353820801],
+    "Gx": -80648.14338531476,
+    "Hx": -12848.678786467153,
+    "ln_g": [-0.45712383376227383, -0.45712383376227395, -2.407247632949848],
+    "ln_a": [-4.703635279570116, -6.628626365572736, -9.679324703942314],
+    "splitRequested": false
+  },
+  "tolerances": {
+    "scalarAbs": 1e-6,
+    "logAbs": 1e-7
+  }
+}

@@ -1,0 +1,3373 @@
+{
+  "Database": "b89ver.dat",
+  "Title": "Berman 1988",
+  "Species": {
+    "KALO2": {
+      "Name": "KALO2",
+      "Formula": "AlKO2",
+      "Elements": "1:Al 2:O 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": 100000000.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 100000000.0,
+        "S0": null,
+        "V0": null
+      }
+    },
+    "ak": {
+      "Name": "ak",
+      "Formula": "MgSi2Ca2O7",
+      "Elements": "1:Mg 7:O 2:Si 2:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 2.0,
+          "CAO": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -3663786.0,
+          "S0": 212.0,
+          "V0": 9.252,
+          "c1": 387.064,
+          "c5": -2938.77,
+          "c7": -40790480.0,
+          "b2": 0.000231404,
+          "b4": -7.26412e-06,
+          "b7": 6.21956e-08,
+          "transition": 1.0,
+          "type": 1.0,
+          "t3": 358.0,
+          "t7": 298.15,
+          "t8": 452.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3663786.0,
+        "S0": 212.0,
+        "V0": 9.252
+      }
+    },
+    "ab": {
+      "Name": "ab",
+      "Formula": "Na2Al2Si3O10",
+      "Elements": "2:Na 10:O 2:Al 3:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 1.0,
+          "AL2O3": 1.0,
+          "SIO2": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -3703293.0,
+          "S0": 224.412,
+          "V0": 10.083,
+          "c1": 393.636,
+          "c3": -7892826.0,
+          "c5": -2415.5,
+          "c7": 1070636000.0,
+          "b2": 0.000265254,
+          "b4": -1.96114e-05,
+          "b6": 4.90135e-11,
+          "b7": 3.2676e-08,
+          "d1": 2810.4,
+          "d2": -53854.0,
+          "d3": 73352000.0,
+          "d6": -1.5902,
+          "d7": 0.00042242,
+          "d8": 473.15,
+          "d9": 1367.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3703293.0,
+        "S0": 224.412,
+        "V0": 10.083
+      }
+    },
+    "abh": {
+      "Name": "abh",
+      "Formula": "NaAlSi3O8",
+      "Elements": "1:Na 8:O 1:Al 3:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 0.5,
+          "AL2O3": 0.5,
+          "SIO2": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -3703293.0,
+          "S0": 224.412,
+          "V0": 10.083,
+          "c1": 393.636,
+          "c3": -7892826.0,
+          "c5": -2415.5,
+          "c7": 1070636000.0,
+          "b2": 0.000265256,
+          "b4": -1.96083e-05,
+          "b6": 4.90145e-11,
+          "b7": 3.2676e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3703293.0,
+        "S0": 224.412,
+        "V0": 10.083
+      }
+    },
+    "abl": {
+      "Name": "abl",
+      "Formula": "NaAlSi3O8",
+      "Elements": "1:Na 8:O 1:Al 3:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 0.5,
+          "AL2O3": 0.5,
+          "SIO2": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -3711715.0,
+          "S0": 207.443,
+          "V0": 10.043,
+          "c1": 393.636,
+          "c3": -7892826.0,
+          "c5": -2415.5,
+          "c7": 1070636000.0,
+          "b2": 0.000264203,
+          "b4": -1.95305e-05,
+          "b6": 4.882e-11,
+          "b7": 3.25463e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3711715.0,
+        "S0": 207.443,
+        "V0": 10.043
+      }
+    },
+    "and": {
+      "Name": "and",
+      "Formula": "Al2SiO5",
+      "Elements": "2:Al 5:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2441806.0,
+          "S0": 91.4337,
+          "V0": 5.147,
+          "c1": 236.478,
+          "c3": -7526810.0,
+          "c5": -1102.94,
+          "c7": 936442400.0,
+          "b2": 0.000120659,
+          "b4": -3.9634e-06,
+          "b6": 9.90025e-12,
+          "b7": 3.70018e-09
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2441806.0,
+        "S0": 91.4337,
+        "V0": 5.147
+      }
+    },
+    "cc": {
+      "Name": "cc",
+      "Formula": "CCaO3",
+      "Elements": "1:Ca 3:O 1:C",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "CAO": 1.0,
+          "CO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1128295.0,
+          "S0": 91.7248,
+          "V0": 3.69,
+          "c1": 178.188,
+          "c3": -482722.0,
+          "c5": -1657.7,
+          "c7": 166604900.0,
+          "b2": 3.28661e-05,
+          "b4": -5.1667e-06,
+          "b7": 8.39113e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1128295.0,
+        "S0": 91.7248,
+        "V0": 3.69
+      }
+    },
+    "andr": {
+      "Name": "andr",
+      "Formula": "Si3Ca3Fe2O12",
+      "Elements": "3:Si 12:O 3:Ca 2:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 3.0,
+          "CAO": 3.0,
+          "FEO": 2.0,
+          "O2": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -5414788.0,
+          "S0": 318.14,
+          "V0": 13.209,
+          "c1": 596.159,
+          "c3": -13292860.0,
+          "c5": -2530.37,
+          "c7": 1395897000.0,
+          "b2": 0.000281794,
+          "b4": -8.41334e-06,
+          "b6": 2.90598e-11,
+          "b7": 6.21087e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5414788.0,
+        "S0": 318.14,
+        "V0": 13.209
+      }
+    },
+    "ann": {
+      "Name": "ann",
+      "Formula": "H2AlSi3KFe3O12",
+      "Elements": "1:Al 12:O 3:Si 1:K 3:Fe 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5,
+          "FEO": 3.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -4793106.0,
+          "S0": 420.0,
+          "V0": 15.408,
+          "c1": 727.208,
+          "c3": -13831900.0,
+          "c5": -4775.04,
+          "c7": 2119060000.0,
+          "b2": 0.000530764,
+          "b4": -2.6147e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4793106.0,
+        "S0": 420.0,
+        "V0": 15.408
+      }
+    },
+    "ann(i)": {
+      "Name": "ann(i)",
+      "Formula": "H2AlSi3KFe3O12",
+      "Elements": "1:Al 12:O 3:Si 1:K 3:Fe 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5,
+          "FEO": 3.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -4787810.0,
+          "S0": 420.0,
+          "V0": 15.408,
+          "c1": 727.208,
+          "c3": -13831900.0,
+          "c5": -4775.04,
+          "c7": 2119060000.0,
+          "b2": 0.000530764,
+          "b4": -2.6147e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4787810.0,
+        "S0": 420.0,
+        "V0": 15.408
+      }
+    },
+    "ann(g)": {
+      "Name": "ann(g)",
+      "Formula": "H2AlSi3KFe3O12",
+      "Elements": "1:Al 12:O 3:Si 1:K 3:Fe 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5,
+          "FEO": 3.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -4810870.0,
+          "S0": 420.0,
+          "V0": 15.408,
+          "c1": 727.208,
+          "c3": -13831900.0,
+          "c5": -4775.04,
+          "c7": 2119060000.0,
+          "b2": 0.000530764,
+          "b4": -2.6147e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4810870.0,
+        "S0": 420.0,
+        "V0": 15.408
+      }
+    },
+    "an": {
+      "Name": "an",
+      "Formula": "Al2Si2CaO8",
+      "Elements": "2:Al 8:O 2:Si 1:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 2.0,
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -4003221.0,
+          "S0": 200.186,
+          "V0": 10.075,
+          "c1": 439.369,
+          "c5": -3734.15,
+          "c7": -317023200.0,
+          "b2": 0.00011,
+          "b4": -1.28197e-05,
+          "b6": 3.20002e-11,
+          "b7": 4.22999e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4003221.0,
+        "S0": 200.186,
+        "V0": 10.075
+      }
+    },
+    "ap": {
+      "Name": "ap",
+      "Formula": "H2Mg7Si8O24",
+      "Elements": "7:Mg 24:O 8:Si 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 7.0,
+          "SIO2": 8.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -11342580.0,
+          "S0": 535.196,
+          "V0": 26.56,
+          "c1": 1219.31,
+          "c3": -34766140.0,
+          "c5": -5766.53,
+          "c7": 4400900000.0,
+          "b2": 0.000718706,
+          "b4": -3.34392e-05,
+          "b7": 8.31992e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -11342580.0,
+        "S0": 535.196,
+        "V0": 26.56
+      }
+    },
+    "ant": {
+      "Name": "ant",
+      "Formula": "H62Mg48Si34O147",
+      "Elements": "48:Mg 147:O 34:Si 62:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 48.0,
+          "SIO2": 34.0,
+          "H2O": 31.0
+        },
+        "PerpleX_Params": {
+          "G0": -66076530.0,
+          "S0": 3603.0,
+          "V0": 174.246,
+          "c1": 7394.51,
+          "c3": -548363000.0,
+          "c7": 87284100000.0,
+          "b2": 0.00435,
+          "b4": -0.00034462,
+          "b6": 8.61507e-10,
+          "b7": 6.87296e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -66076530.0,
+        "S0": 3603.0,
+        "V0": 174.246
+      }
+    },
+    "br": {
+      "Name": "br",
+      "Formula": "H2MgO2",
+      "Elements": "1:Mg 2:O 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -834868.0,
+          "S0": 63.0642,
+          "V0": 2.468,
+          "c1": 136.839,
+          "c3": -4361949.0,
+          "c5": -537.13,
+          "c7": 552694500.0,
+          "b2": 8.10833e-05,
+          "b4": -4.9924e-06,
+          "b6": 1.66e-11,
+          "b7": 2.69999e-09
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -834868.0,
+        "S0": 63.0642,
+        "V0": 2.468
+      }
+    },
+    "cats": {
+      "Name": "cats",
+      "Formula": "Al2SiCaO6",
+      "Elements": "2:Al 6:O 1:Si 1:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 1.0,
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -3122310.0,
+          "S0": 140.751,
+          "V0": 6.356,
+          "c1": 310.698,
+          "c3": -7455263.0,
+          "c5": -1671.63,
+          "c7": 948781600.0,
+          "b2": 0.000141424,
+          "b4": -5.53e-06,
+          "b6": 1.38001e-11,
+          "b7": 3.35997e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3122310.0,
+        "S0": 140.751,
+        "V0": 6.356
+      }
+    },
+    "fctd": {
+      "Name": "fctd",
+      "Formula": "H2Al2SiFeO7",
+      "Elements": "2:Al 7:O 1:Si 1:Fe 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 1.0,
+          "FEO": 1.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2969728.0,
+          "S0": 173.712,
+          "V0": 6.967,
+          "c1": 444.37,
+          "c3": -4869293.0,
+          "c5": -3880.21,
+          "c7": 916326200.0,
+          "b2": 0.00017,
+          "b4": -5.5e-06,
+          "b6": 1.36999e-11,
+          "b7": 1.3e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2969728.0,
+        "S0": 173.712,
+        "V0": 6.967
+      }
+    },
+    "mctd": {
+      "Name": "mctd",
+      "Formula": "H2MgAl2SiO7",
+      "Elements": "1:Mg 7:O 2:Al 1:Si 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "AL2O3": 1.0,
+          "SIO2": 1.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -3306740.0,
+          "S0": 141.908,
+          "V0": 6.874,
+          "c1": 407.7,
+          "c3": -8624435.0,
+          "c5": -2759.24,
+          "c7": 1207092000.0,
+          "b2": 0.00018,
+          "b4": -8.9732e-06,
+          "b6": 8.64997e-11,
+          "b7": 8.40003e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3306740.0,
+        "S0": 141.908,
+        "V0": 6.874
+      }
+    },
+    "chr": {
+      "Name": "chr",
+      "Formula": "H4Mg3Si2O9",
+      "Elements": "3:Mg 9:O 2:Si 4:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 3.0,
+          "SIO2": 2.0,
+          "H2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -4035373.0,
+          "S0": 220.135,
+          "V0": 10.72,
+          "c1": 610.022,
+          "c3": -1857300.0,
+          "c5": -5581.15,
+          "c7": 195472000.0,
+          "b2": 0.000291062,
+          "b4": -1.94062e-05,
+          "b6": 4.85005e-11,
+          "b7": 7.22003e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4035373.0,
+        "S0": 220.135,
+        "V0": 10.72
+      }
+    },
+    "clin": {
+      "Name": "clin",
+      "Formula": "H8Mg5Al2Si3O18",
+      "Elements": "5:Mg 18:O 2:Al 3:Si 8:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 5.0,
+          "AL2O3": 1.0,
+          "SIO2": 3.0,
+          "H2O": 4.0
+        },
+        "PerpleX_Params": {
+          "G0": -8250546.0,
+          "S0": 435.154,
+          "V0": 21.147,
+          "c1": 1214.28,
+          "c5": -11217.1,
+          "c7": -1256253000.0,
+          "b2": 0.000559371,
+          "b4": -3.84763e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -8250546.0,
+        "S0": 435.154,
+        "V0": 21.147
+      }
+    },
+    "daph": {
+      "Name": "daph",
+      "Formula": "H8Al2Si3Fe5O18",
+      "Elements": "2:Al 18:O 3:Si 5:Fe 8:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 3.0,
+          "FEO": 5.0,
+          "H2O": 4.0
+        },
+        "PerpleX_Params": {
+          "G0": -6529320.0,
+          "S0": 559.0,
+          "V0": 21.34,
+          "c1": 1308.48,
+          "c3": 7022885.0,
+          "c5": -13335.0,
+          "c7": -1791832000.0,
+          "b2": 0.000564476,
+          "b4": -3.88275e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -6529320.0,
+        "S0": 559.0,
+        "V0": 21.34
+      }
+    },
+    "cs": {
+      "Name": "cs",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -852585.0,
+          "S0": 39.4244,
+          "V0": 2.064,
+          "c1": 94.9071,
+          "c3": -527867.0,
+          "c5": -767.338,
+          "c7": 26270730.0,
+          "b2": 1.5266e-05,
+          "b4": -2.14e-06,
+          "b6": 6.192e-12,
+          "b7": 9.00007e-09
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -852585.0,
+        "S0": 39.4244,
+        "V0": 2.064
+      }
+    },
+    "crd": {
+      "Name": "crd",
+      "Formula": "Mg2Al4Si5O18",
+      "Elements": "2:Mg 18:O 4:Al 5:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 2.0,
+          "AL2O3": 2.0,
+          "SIO2": 5.0
+        },
+        "PerpleX_Params": {
+          "G0": -8651517.0,
+          "S0": 417.97,
+          "V0": 23.311,
+          "c1": 954.386,
+          "c3": -2317258.0,
+          "c5": -7962.27,
+          "c7": -370214100.0,
+          "b2": 7e-05,
+          "b4": -2.7e-05,
+          "b7": 4.19994e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -8651517.0,
+        "S0": 417.97,
+        "V0": 23.311
+      }
+    },
+    "hcrd": {
+      "Name": "hcrd",
+      "Formula": "H4Mg2Al4Si5O20",
+      "Elements": "2:Mg 20:O 4:Al 5:Si 4:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 2.0,
+          "AL2O3": 2.0,
+          "SIO2": 5.0,
+          "H2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -9147770.0,
+          "S0": 505.26,
+          "V0": 24.488,
+          "c1": 1129.62,
+          "c3": -2317258.0,
+          "c5": -9478.55,
+          "c7": -359632100.0,
+          "b2": 7.35344e-05,
+          "b4": -2.83633e-05,
+          "b7": 4.412e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -9147770.0,
+        "S0": 505.26,
+        "V0": 24.488
+      }
+    },
+    "fcrd": {
+      "Name": "fcrd",
+      "Formula": "Al4Si5Fe2O18",
+      "Elements": "4:Al 18:O 5:Si 2:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 2.0,
+          "SIO2": 5.0,
+          "FEO": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -7975343.0,
+          "S0": 452.842,
+          "V0": 23.707,
+          "c1": 975.3,
+          "c3": -9618520.0,
+          "c5": -8013.44,
+          "c7": 1189278000.0,
+          "b2": 0.000298708,
+          "b4": -2.74587e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -7975343.0,
+        "S0": 452.842,
+        "V0": 23.707
+      }
+    },
+    "co": {
+      "Name": "co",
+      "Formula": "Al2O3",
+      "Elements": "2:Al 3:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1582199.0,
+          "S0": 50.82,
+          "V0": 2.558,
+          "c1": 155.019,
+          "c3": -3861363.0,
+          "c5": -828.387,
+          "c7": 409083600.0,
+          "b2": 5.45916e-05,
+          "b4": -9.8539e-07,
+          "b6": 9.5925e-13,
+          "b7": 1.20686e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1582199.0,
+        "S0": 50.82,
+        "V0": 2.558
+      }
+    },
+    "acr": {
+      "Name": "acr",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -853918.0,
+          "S0": 43.3943,
+          "V0": 2.587,
+          "c1": 83.5136,
+          "c3": -2455360.0,
+          "c5": -374.693,
+          "c7": 280072200.0,
+          "b2": 5.38718e-05,
+          "b4": -6.50503e-06,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -0.142162,
+          "t2": 0.00044142,
+          "t3": 535.15,
+          "t4": 0.048,
+          "t7": 298.15
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -853918.0,
+        "S0": 43.3943,
+        "V0": 2.587
+      }
+    },
+    "bcr": {
+      "Name": "bcr",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -853327.0,
+          "S0": 46.0288,
+          "V0": 2.73,
+          "c1": 83.5136,
+          "c3": -2455360.0,
+          "c5": -374.693,
+          "c7": 280072200.0,
+          "b2": 8.70654e-06,
+          "b4": -3.00225e-06,
+          "b6": 1.51114e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -853327.0,
+        "S0": 46.0288,
+        "V0": 2.73
+      }
+    },
+    "dsp": {
+      "Name": "dsp",
+      "Formula": "HAlO2",
+      "Elements": "1:Al 2:O 1:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "H2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -920806.0,
+          "S0": 35.3082,
+          "V0": 1.776,
+          "c1": 143.239,
+          "c3": -323098.0,
+          "c5": -1540.41,
+          "c7": 64632260.0,
+          "b2": 5.27792e-05,
+          "b4": -1.06434e-06
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -920806.0,
+        "S0": 35.3082,
+        "V0": 1.776
+      }
+    },
+    "di": {
+      "Name": "di",
+      "Formula": "MgSi2CaO6",
+      "Elements": "1:Mg 6:O 2:Si 1:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 2.0,
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -3026202.0,
+          "S0": 142.5,
+          "V0": 6.62,
+          "c1": 305.413,
+          "c3": -7165973.0,
+          "c5": -1604.93,
+          "c7": 921837600.0,
+          "b2": 0.000184004,
+          "b4": -5.7758e-06,
+          "b6": 1.12997e-11,
+          "b7": 5.50003e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3026202.0,
+        "S0": 142.5,
+        "V0": 6.62
+      }
+    },
+    "do": {
+      "Name": "do",
+      "Formula": "C2MgCaO6",
+      "Elements": "1:Mg 6:O 1:Ca 2:C",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "CAO": 1.0,
+          "CO2": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -2162354.0,
+          "S0": 154.89,
+          "V0": 6.432,
+          "c1": 328.483,
+          "c3": -4688477.0,
+          "c5": -2554.43,
+          "c7": 790382300.0,
+          "b2": 9.15289e-05,
+          "b4": -6.88347e-06,
+          "b7": 2.33982e-07,
+          "d1": -9.423,
+          "d2": -2.2726,
+          "d3": 385300.0,
+          "d6": 0.01732,
+          "d7": 5.02e-06,
+          "d8": 298.15,
+          "d9": 1423.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2162354.0,
+        "S0": 154.89,
+        "V0": 6.432
+      }
+    },
+    "cen": {
+      "Name": "cen",
+      "Formula": "MgSiO3",
+      "Elements": "1:Mg 3:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1458601.0,
+          "S0": 66.3251,
+          "V0": 3.131,
+          "c1": 139.958,
+          "c3": -4400237.0,
+          "c5": -497.034,
+          "c7": 535708900.0,
+          "b2": 6.86159e-05,
+          "b4": -2.347e-06,
+          "b6": 1.40269e-12,
+          "b7": 2.34575e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1458601.0,
+        "S0": 66.3251,
+        "V0": 3.131
+      }
+    },
+    "en": {
+      "Name": "en",
+      "Formula": "MgSiO3",
+      "Elements": "1:Mg 3:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1458181.0,
+          "S0": 66.17,
+          "V0": 3.133,
+          "c1": 166.579,
+          "c3": -2270560.0,
+          "c5": -1200.59,
+          "c7": 279150300.0,
+          "b2": 7.72467e-05,
+          "b4": -2.3477e-06,
+          "b6": 1.39951e-12,
+          "b7": 2.33941e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1458181.0,
+        "S0": 66.17,
+        "V0": 3.133
+      }
+    },
+    "pen": {
+      "Name": "pen",
+      "Formula": "MgSiO3",
+      "Elements": "1:Mg 3:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1456965.0,
+          "S0": 67.4376,
+          "V0": 3.242,
+          "c1": 166.579,
+          "c3": -2270560.0,
+          "c5": -1200.59,
+          "c7": 279150300.0,
+          "b2": 5.45684e-05,
+          "b4": -2.4302e-06,
+          "b6": 1.45242e-12,
+          "b7": 3.78179e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1456965.0,
+        "S0": 67.4376,
+        "V0": 3.242
+      }
+    },
+    "fa": {
+      "Name": "fa",
+      "Formula": "SiFe2O4",
+      "Elements": "1:Si 4:O 2:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0,
+          "FEO": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -1380154.0,
+          "S0": 150.93,
+          "V0": 4.63,
+          "c1": 248.928,
+          "c5": -1923.86,
+          "c7": -139104100.0,
+          "b2": 0.000122907,
+          "b4": -3.3799e-06,
+          "b7": 3.68002e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1380154.0,
+        "S0": 150.93,
+        "V0": 4.63
+      }
+    },
+    "fs": {
+      "Name": "fs",
+      "Formula": "SiFeO3",
+      "Elements": "1:Si 3:O 1:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0,
+          "FEO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1117472.0,
+          "S0": 95.8822,
+          "V0": 3.296,
+          "c1": 169.061,
+          "c3": -2097138.0,
+          "c5": -1192.97,
+          "c7": 292533000.0,
+          "b2": 0.000104838,
+          "b4": -3.263e-06,
+          "b7": 2.50002e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1117472.0,
+        "S0": 95.8822,
+        "V0": 3.296
+      }
+    },
+    "fo": {
+      "Name": "fo",
+      "Formula": "Mg2SiO4",
+      "Elements": "2:Mg 4:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 2.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2055023.0,
+          "S0": 94.01,
+          "V0": 4.366,
+          "c1": 238.641,
+          "c5": -2001.26,
+          "c7": -116243300.0,
+          "b2": 0.000128638,
+          "b4": -3.45496e-06,
+          "b6": 5.89978e-12,
+          "b7": 3.86972e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2055023.0,
+        "S0": 94.01,
+        "V0": 4.366
+      }
+    },
+    "ge": {
+      "Name": "ge",
+      "Formula": "Al2SiCa2O7",
+      "Elements": "2:Al 7:O 1:Si 2:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 1.0,
+          "CAO": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -3785954.0,
+          "S0": 198.6,
+          "V0": 9.033,
+          "c1": 373.087,
+          "c3": -4778466.0,
+          "c5": -2276.76,
+          "c7": 477911800.0,
+          "b2": 0.000225157,
+          "b4": -9.0013e-06,
+          "b6": 2.24723e-11,
+          "b7": 5.11629e-09,
+          "d1": -221.74,
+          "d3": 17291280.0,
+          "d6": 0.3695,
+          "d7": -0.0001469,
+          "d8": 698.15,
+          "d9": 1600.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3785954.0,
+        "S0": 198.6,
+        "V0": 9.033
+      }
+    },
+    "gk": {
+      "Name": "gk",
+      "Formula": "MgTiO3",
+      "Elements": "1:Mg 3:O 1:Ti",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "TIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1482306.0,
+          "S0": 74.56,
+          "V0": 3.086,
+          "c1": 131.159,
+          "c3": -4728271.0,
+          "c5": -18.045,
+          "c7": 455266700.0,
+          "b2": 8.40862e-05,
+          "b4": -1.80215e-06,
+          "b6": 3.79671e-12,
+          "b7": 9.24812e-09
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1482306.0,
+        "S0": 74.56,
+        "V0": 3.086
+      }
+    },
+    "hd": {
+      "Name": "hd",
+      "Formula": "Si2CaFeO6",
+      "Elements": "2:Si 6:O 1:Ca 1:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 2.0,
+          "CAO": 1.0,
+          "FEO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2673863.0,
+          "S0": 174.331,
+          "V0": 6.795,
+          "c1": 296.703,
+          "c3": -7416518.0,
+          "c5": -1239.15,
+          "c7": 893501200.0,
+          "b2": 0.000161059,
+          "b4": -5.36805e-06,
+          "b6": 2.66568e-12,
+          "b7": 3.41857e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2673863.0,
+        "S0": 174.331,
+        "V0": 6.795
+      }
+    },
+    "hm": {
+      "Name": "hm",
+      "Formula": "Fe2O3",
+      "Elements": "2:Fe 3:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "FEO": 2.0,
+          "O2": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -743682.0,
+          "S0": 87.4371,
+          "V0": 3.027,
+          "c1": 146.858,
+          "c3": -5576782.0,
+          "c7": 525627900.0,
+          "b2": 0.000115963,
+          "b4": -1.44975e-06,
+          "b6": 9.20208e-13,
+          "b7": 4.99455e-10,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -0.0740324,
+          "t2": 0.00027921,
+          "t3": 955.65,
+          "t7": 298.15,
+          "t8": 1287.92
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -743682.0,
+        "S0": 87.4371,
+        "V0": 3.027
+      }
+    },
+    "herc": {
+      "Name": "herc",
+      "Formula": "Al2FeO4",
+      "Elements": "2:Al 4:O 1:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "FEO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1844922.0,
+          "S0": 106.94,
+          "V0": 4.075,
+          "c1": 204.269,
+          "c3": -9807509.0,
+          "c5": -258.256,
+          "c7": 1208309000.0,
+          "b2": 6.44619e-05,
+          "b4": -2.41355e-06,
+          "b6": 5.98984e-12,
+          "b7": 3.92325e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1844922.0,
+        "S0": 106.94,
+        "V0": 4.075
+      }
+    },
+    "ilm": {
+      "Name": "ilm",
+      "Formula": "TiFeO3",
+      "Elements": "1:Ti 3:O 1:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "TIO2": 1.0,
+          "FEO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1155821.0,
+          "S0": 108.627,
+          "V0": 3.17,
+          "c1": 150.0,
+          "c3": -3323694.0,
+          "c5": -441.622,
+          "c7": 348151000.0,
+          "b2": 8.6375e-05,
+          "b4": -1.8512e-06,
+          "b6": 3.90005e-12,
+          "b7": 9.49986e-09
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1155821.0,
+        "S0": 108.627,
+        "V0": 3.17
+      }
+    },
+    "jd": {
+      "Name": "jd",
+      "Formula": "NaAlSi2O6",
+      "Elements": "1:Na 6:O 1:Al 2:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 0.5,
+          "AL2O3": 0.5,
+          "SIO2": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -2846483.0,
+          "S0": 133.574,
+          "V0": 6.034,
+          "c1": 311.293,
+          "c3": -5350264.0,
+          "c5": -2005.1,
+          "c7": 662566900.0,
+          "b2": 0.000139497,
+          "b4": -5.18804e-06,
+          "b6": 1.29659e-11,
+          "b7": 1.55587e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2846483.0,
+        "S0": 133.574,
+        "V0": 6.034
+      }
+    },
+    "kls": {
+      "Name": "kls",
+      "Formula": "AlSiKO4",
+      "Elements": "1:Al 4:O 1:Si 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 1.0,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -1996079.0,
+          "S0": 133.965,
+          "V0": 5.989,
+          "c1": 186.003,
+          "c3": -13106740.0,
+          "c7": 2138928000.0,
+          "b2": 0.000140662,
+          "b4": -9.385e-06,
+          "b7": 8.39999e-08,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -0.0709645,
+          "t2": 0.00021682,
+          "t3": 800.15,
+          "t7": 298.15,
+          "t8": 1154.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1996079.0,
+        "S0": 133.965,
+        "V0": 5.989
+      }
+    },
+    "kln": {
+      "Name": "kln",
+      "Formula": "H4Al2Si2O9",
+      "Elements": "2:Al 9:O 2:Si 4:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 2.0,
+          "H2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -3799770.0,
+          "S0": 203.7,
+          "V0": 9.952,
+          "c1": 523.233,
+          "c3": -2244259.0,
+          "c5": -4426.67,
+          "c7": 92308770.0,
+          "b2": 0.000318464,
+          "b4": -1.19424e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3799770.0,
+        "S0": 203.7,
+        "V0": 9.952
+      }
+    },
+    "ky": {
+      "Name": "ky",
+      "Formula": "Al2SiO5",
+      "Elements": "2:Al 5:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2443370.0,
+          "S0": 82.43,
+          "V0": 4.412,
+          "c1": 262.685,
+          "c3": -1999740.0,
+          "c5": -2001.41,
+          "c7": -63181880.0,
+          "b2": 0.000105767,
+          "b4": -2.85e-06
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2443370.0,
+        "S0": 82.43,
+        "V0": 4.412
+      }
+    },
+    "lw": {
+      "Name": "lw",
+      "Formula": "H4Al2Si2CaO10",
+      "Elements": "2:Al 10:O 2:Si 1:Ca 4:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 2.0,
+          "CAO": 1.0,
+          "H2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -4509709.0,
+          "S0": 229.176,
+          "V0": 10.144,
+          "c1": 728.673,
+          "c5": -8248.06,
+          "c7": 850556400.0,
+          "b2": 0.000266618,
+          "b4": -7.7988e-06,
+          "b6": 1.94998e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4509709.0,
+        "S0": 229.176,
+        "V0": 10.144
+      }
+    },
+    "alc": {
+      "Name": "alc",
+      "Formula": "AlSi2KO6",
+      "Elements": "1:Al 6:O 2:Si 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 2.0,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -2858083.0,
+          "S0": 199.2,
+          "V0": 8.839,
+          "c1": 271.14,
+          "c3": -7857238.0,
+          "c5": -944.133,
+          "c7": 959202600.0,
+          "b2": 0.000166,
+          "b4": -1.591e-05,
+          "b6": 3.98003e-11,
+          "b7": 9.26e-07,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -0.0973085,
+          "t2": 0.0003373,
+          "t3": 955.15,
+          "t7": 298.15
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2858083.0,
+        "S0": 199.2,
+        "V0": 8.839
+      }
+    },
+    "blc": {
+      "Name": "blc",
+      "Formula": "AlSi2KO6",
+      "Elements": "1:Al 6:O 2:Si 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 2.0,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -2852398.0,
+          "S0": 210.704,
+          "V0": 9.263,
+          "c1": 271.14,
+          "c3": -7857238.0,
+          "c5": -944.133,
+          "c7": 959202600.0,
+          "b2": 0.000115943,
+          "b4": -1.44209e-05,
+          "b6": 1.18001e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2852398.0,
+        "S0": 210.704,
+        "V0": 9.263
+      }
+    },
+    "lm": {
+      "Name": "lm",
+      "Formula": "CaO",
+      "Elements": "1:Ca 1:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -603350.0,
+          "S0": 37.75,
+          "V0": 1.676,
+          "c1": 58.7912,
+          "c3": -1147146.0,
+          "c5": -133.904,
+          "c7": 102978800.0,
+          "b2": 5.8007e-05,
+          "b4": -1.71239e-06,
+          "b6": 4.29894e-12,
+          "b7": 1.12973e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -603350.0,
+        "S0": 37.75,
+        "V0": 1.676
+      }
+    },
+    "mt": {
+      "Name": "mt",
+      "Formula": "Fe3O4",
+      "Elements": "3:Fe 4:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "FEO": 3.0,
+          "O2": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -1014235.0,
+          "S0": 146.114,
+          "V0": 4.452,
+          "c1": 207.931,
+          "c3": -7243337.0,
+          "c7": 664356400.0,
+          "b2": 0.000134856,
+          "b4": -2.58974e-06,
+          "b6": 7.79545e-12,
+          "b7": 6.16468e-08,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -0.195024,
+          "t2": 0.00061037,
+          "t3": 848.15,
+          "t7": 298.15,
+          "t8": 1565.57
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1014235.0,
+        "S0": 146.114,
+        "V0": 4.452
+      }
+    },
+    "ma": {
+      "Name": "ma",
+      "Formula": "H2Al4Si2CaO12",
+      "Elements": "4:Al 12:O 2:Si 1:Ca 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 2.0,
+          "SIO2": 2.0,
+          "CAO": 1.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5851188.0,
+          "S0": 266.94,
+          "V0": 12.958,
+          "c1": 699.796,
+          "c3": -6807750.0,
+          "c5": -5587.1,
+          "c7": 734321700.0,
+          "b2": 0.000272358,
+          "b4": -1.49652e-05,
+          "b6": 3.73994e-11,
+          "b7": 1.614e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5851188.0,
+        "S0": 266.94,
+        "V0": 12.958
+      }
+    },
+    "bma": {
+      "Name": "bma",
+      "Formula": "H2Al4Si2CaO12",
+      "Elements": "4:Al 12:O 2:Si 1:Ca 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 2.0,
+          "SIO2": 2.0,
+          "CAO": 1.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5852244.0,
+          "S0": 265.084,
+          "V0": 12.958,
+          "c1": 699.796,
+          "c3": -6807750.0,
+          "c5": -5587.1,
+          "c7": 734321700.0,
+          "b2": 0.000272358,
+          "b4": -1.49652e-05,
+          "b6": 3.73994e-11,
+          "b7": 1.614e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5852244.0,
+        "S0": 265.084,
+        "V0": 12.958
+      }
+    },
+    "me": {
+      "Name": "me",
+      "Formula": "CAl6Si6Ca4O27",
+      "Elements": "6:Al 27:O 6:Si 4:Ca 1:C",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 3.0,
+          "SIO2": 6.0,
+          "CAO": 4.0,
+          "CO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -13105910.0,
+          "S0": 730.0,
+          "V0": 34.036,
+          "c1": 1511.35,
+          "c5": -13243.3,
+          "c7": -751614000.0,
+          "b2": 0.000317896,
+          "b4": -3.77892e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -13105910.0,
+        "S0": 730.0,
+        "V0": 34.036
+      }
+    },
+    "mw": {
+      "Name": "mw",
+      "Formula": "MgSi2Ca3O8",
+      "Elements": "1:Mg 8:O 2:Si 3:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 2.0,
+          "CAO": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -4309707.0,
+          "S0": 251.777,
+          "V0": 9.847,
+          "c1": 453.62,
+          "c5": -3250.01,
+          "c7": -344227100.0,
+          "b2": 0.000289261,
+          "b4": -5.4212e-06,
+          "b6": 1.35997e-11,
+          "b7": 8.59003e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4309707.0,
+        "S0": 251.777,
+        "V0": 9.847
+      }
+    },
+    "mo": {
+      "Name": "mo",
+      "Formula": "MgSiCaO4",
+      "Elements": "1:Mg 4:O 1:Si 1:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "SIO2": 1.0,
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2132222.0,
+          "S0": 108.3,
+          "V0": 5.148,
+          "c1": 226.342,
+          "c3": -1179709.0,
+          "c5": -1542.74,
+          "c7": -23285890.0,
+          "b2": 0.00014344,
+          "b4": -4.65201e-06,
+          "b6": 1.0296e-11,
+          "b7": 3.92993e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2132222.0,
+        "S0": 108.3,
+        "V0": 5.148
+      }
+    },
+    "mu": {
+      "Name": "mu",
+      "Formula": "H2Al3Si3KO12",
+      "Elements": "3:Al 12:O 3:Si 1:K 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.5,
+          "SIO2": 3.0,
+          "K2O": 0.5,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5596723.0,
+          "S0": 293.157,
+          "V0": 14.087,
+          "c1": 651.489,
+          "c3": -18523200.0,
+          "c5": -3873.23,
+          "c7": 2742470000.0,
+          "b2": 0.000472299,
+          "b4": -2.4186e-05,
+          "b6": 6.04994e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5596723.0,
+        "S0": 293.157,
+        "V0": 14.087
+      }
+    },
+    "ne": {
+      "Name": "ne",
+      "Formula": "NaAlSiO4",
+      "Elements": "1:Na 4:O 1:Al 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 0.5,
+          "AL2O3": 0.5,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1973319.0,
+          "S0": 124.2,
+          "V0": 5.422,
+          "c1": 205.242,
+          "c3": -10838270.0,
+          "c5": -759.898,
+          "c7": 2081817000.0,
+          "b2": 0.000171076,
+          "b4": -1.20399e-05,
+          "b6": 3.2532e-11,
+          "b7": 1.0844e-07,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -1.02784,
+          "t2": 0.00339448,
+          "t3": 467.15,
+          "t7": 298.15,
+          "t8": 241.835
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1973319.0,
+        "S0": 124.2,
+        "V0": 5.422
+      }
+    },
+    "pa": {
+      "Name": "pa",
+      "Formula": "H2NaAl3Si3O12",
+      "Elements": "1:Na 12:O 3:Al 3:Si 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 0.5,
+          "AL2O3": 1.5,
+          "SIO2": 3.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5563572.0,
+          "S0": 277.699,
+          "V0": 13.216,
+          "c1": 577.569,
+          "c3": -32214370.0,
+          "c5": -1472.8,
+          "c7": 5050080000.0,
+          "b2": 0.000521029,
+          "b4": -2.60783e-05,
+          "b6": 6.52011e-11,
+          "b7": 7.89008e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5563572.0,
+        "S0": 277.699,
+        "V0": 13.216
+      }
+    },
+    "per": {
+      "Name": "per",
+      "Formula": "MgO",
+      "Elements": "1:Mg 1:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -569209.0,
+          "S0": 26.9514,
+          "V0": 1.125,
+          "c1": 61.1097,
+          "c3": -621154.0,
+          "c5": -296.199,
+          "c7": 5844612.0,
+          "b2": 4.21621e-05,
+          "b4": -7.00125e-07,
+          "b6": 1.70033e-12,
+          "b7": 4.0005e-10
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -569209.0,
+        "S0": 26.9514,
+        "V0": 1.125
+      }
+    },
+    "phl": {
+      "Name": "phl",
+      "Formula": "H2Mg3AlSi3KO12",
+      "Elements": "3:Mg 12:O 1:Al 3:Si 1:K 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 3.0,
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5830329.0,
+          "S0": 334.346,
+          "V0": 14.977,
+          "c1": 610.38,
+          "c3": -21533010.0,
+          "c5": -2083.78,
+          "c7": 2841040000.0,
+          "b2": 0.000515918,
+          "b4": -2.54157e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5830329.0,
+        "S0": 334.346,
+        "V0": 14.977
+      }
+    },
+    "kf": {
+      "Name": "kf",
+      "Formula": "AlSi3KO8",
+      "Elements": "1:Al 8:O 3:Si 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -3745415.0,
+          "S0": 214.145,
+          "V0": 10.869,
+          "c1": 381.372,
+          "c3": -12037250.0,
+          "c5": -1941.05,
+          "c7": 1836425000.0,
+          "b2": 0.000164612,
+          "b4": -1.96132e-05,
+          "b6": 5.55623e-11,
+          "b7": 5.96165e-08,
+          "d1": 282.983,
+          "d2": -4831.38,
+          "d3": 3620706.0,
+          "d6": -0.15733,
+          "d7": 3.477e-05,
+          "d8": 298.15,
+          "d9": 1436.15
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3745415.0,
+        "S0": 214.145,
+        "V0": 10.869
+      }
+    },
+    "san": {
+      "Name": "san",
+      "Formula": "AlSi3KO8",
+      "Elements": "1:Al 8:O 3:Si 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -3738804.0,
+          "S0": 229.157,
+          "V0": 10.896,
+          "c1": 381.372,
+          "c3": -12037250.0,
+          "c5": -1941.05,
+          "c7": 1836425000.0,
+          "b2": 0.000165021,
+          "b4": -1.96619e-05,
+          "b6": 5.57004e-11,
+          "b7": 5.97646e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3738804.0,
+        "S0": 229.157,
+        "V0": 10.896
+      }
+    },
+    "mcr": {
+      "Name": "mcr",
+      "Formula": "AlSi3KO8",
+      "Elements": "1:Al 8:O 3:Si 1:K",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 0.5,
+          "SIO2": 3.0,
+          "K2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -3745415.0,
+          "S0": 214.145,
+          "V0": 10.869,
+          "c1": 381.372,
+          "c3": -12037250.0,
+          "c5": -1941.05,
+          "c7": 1836425000.0,
+          "b2": 0.000164612,
+          "b4": -1.96132e-05,
+          "b6": 5.55623e-11,
+          "b7": 5.96165e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -3745415.0,
+        "S0": 214.145,
+        "V0": 10.869
+      }
+    },
+    "ptl": {
+      "Name": "ptl",
+      "Formula": "H2CaO2",
+      "Elements": "1:Ca 2:O 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "CAO": 1.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -898408.0,
+          "S0": 83.39,
+          "V0": 3.305,
+          "c1": 186.67,
+          "c5": -1599.8
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -898408.0,
+        "S0": 83.39,
+        "V0": 3.305
+      }
+    },
+    "pr": {
+      "Name": "pr",
+      "Formula": "H2Al2Si3Ca2O12",
+      "Elements": "2:Al 12:O 3:Si 2:Ca 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 3.0,
+          "CAO": 2.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5820154.0,
+          "S0": 288.634,
+          "V0": 14.016,
+          "c1": 716.052,
+          "c3": -2182456.0,
+          "c5": -6404.61,
+          "c7": 268502800.0,
+          "b2": 2.05812e-05,
+          "b4": -2e-05,
+          "b7": 1.5815e-06
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5820154.0,
+        "S0": 288.634,
+        "V0": 14.016
+      }
+    },
+    "prl": {
+      "Name": "prl",
+      "Formula": "H2Al2Si4O12",
+      "Elements": "2:Al 12:O 4:Si 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 4.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5266865.0,
+          "S0": 239.4,
+          "V0": 12.76,
+          "c1": 665.931,
+          "c3": -4979913.0,
+          "c5": -5897.42,
+          "c7": 661808900.0,
+          "b2": 0.000161253,
+          "b4": -1.72833e-05,
+          "b7": 4.86999e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5266865.0,
+        "S0": 239.4,
+        "V0": 12.76
+      }
+    },
+    "q": {
+      "Name": "q",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -856288.0,
+          "S0": 41.46,
+          "V0": 2.269,
+          "c1": 80.012,
+          "c3": -3546684.0,
+          "c5": -240.276,
+          "c7": 491568400.0,
+          "b2": 5.42168e-05,
+          "b4": -5.52259e-06,
+          "b6": 2.3002e-11,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": -0.0918696,
+          "t2": 0.00024607,
+          "t3": 848.0,
+          "t4": 0.023743,
+          "t7": 373.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -856288.0,
+        "S0": 41.46,
+        "V0": 2.269
+      }
+    },
+    "bq": {
+      "Name": "bq",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -855033.0,
+          "S0": 44.2068,
+          "V0": 2.37,
+          "c1": 80.012,
+          "c3": -3546684.0,
+          "c5": -240.276,
+          "c7": 491568400.0,
+          "b4": -2.93469e-06,
+          "b6": 1.67964e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -855033.0,
+        "S0": 44.2068,
+        "V0": 2.37
+      }
+    },
+    "rt": {
+      "Name": "rt",
+      "Formula": "TiO2",
+      "Elements": "1:Ti 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "TIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -889497.0,
+          "S0": 50.46,
+          "V0": 1.882,
+          "c1": 77.8376,
+          "c3": -3367841.0,
+          "c7": 402940700.0,
+          "b2": 4.83968e-05,
+          "b4": -8.549e-07,
+          "b6": 1.10003e-12,
+          "b7": 2.89997e-09
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -889497.0,
+        "S0": 50.46,
+        "V0": 1.882
+      }
+    },
+    "si": {
+      "Name": "si",
+      "Formula": "Al2SiO5",
+      "Elements": "2:Al 5:O 1:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2439265.0,
+          "S0": 95.93,
+          "V0": 4.983,
+          "c1": 256.732,
+          "c3": -2977353.0,
+          "c5": -1887.22,
+          "c7": 250959100.0,
+          "b2": 6.69252e-05,
+          "b4": -3.75e-06
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2439265.0,
+        "S0": 95.93,
+        "V0": 4.983
+      }
+    },
+    "sph": {
+      "Name": "sph",
+      "Formula": "SiCaTiO5",
+      "Elements": "1:Si 5:O 1:Ca 1:Ti",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0,
+          "CAO": 1.0,
+          "TIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2455134.0,
+          "S0": 129.29,
+          "V0": 5.565,
+          "c1": 234.62,
+          "c3": -5118324.0,
+          "c5": -1040.29,
+          "c7": 591460600.0,
+          "b2": 0.000140238,
+          "b4": -3.28335e-06
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2455134.0,
+        "S0": 129.29,
+        "V0": 5.565
+      }
+    },
+    "sp": {
+      "Name": "sp",
+      "Formula": "MgAl2O4",
+      "Elements": "1:Mg 4:O 2:Al",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0,
+          "AL2O3": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -2176537.0,
+          "S0": 84.5346,
+          "V0": 3.977,
+          "c1": 235.9,
+          "c3": -1710415.0,
+          "c5": -1766.58,
+          "c7": 40616930.0,
+          "b2": 8.62666e-05,
+          "b4": -1.94641e-06,
+          "b7": 2.0095e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -2176537.0,
+        "S0": 84.5346,
+        "V0": 3.977
+      }
+    },
+    "fst": {
+      "Name": "fst",
+      "Formula": "H4Al18Si7.5Fe4O48",
+      "Elements": "18:Al 48:O 7.5:Si 4:Fe 4:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 9.0,
+          "SIO2": 7.5,
+          "FEO": 4.0,
+          "H2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": -22287810.0,
+          "S0": 1008.65,
+          "V0": 44.676,
+          "c1": 2577.67,
+          "c3": -61185890.0,
+          "c5": -16265.4,
+          "c7": 8692050000.0,
+          "b2": 0.000801324,
+          "b4": -3.57408e-05,
+          "b7": 4.03853e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -22287810.0,
+        "S0": 1008.65,
+        "V0": 44.676
+      }
+    },
+    "tc": {
+      "Name": "tc",
+      "Formula": "H2Mg3Si4O12",
+      "Elements": "3:Mg 12:O 4:Si 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 3.0,
+          "SIO2": 4.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -5517657.0,
+          "S0": 261.24,
+          "V0": 13.61,
+          "c1": 664.105,
+          "c3": -2147218.0,
+          "c5": -5187.17,
+          "c7": -327371800.0,
+          "b2": 0.000400771,
+          "b4": -2.3122e-05,
+          "b6": 7.71006e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5517657.0,
+        "S0": 261.24,
+        "V0": 13.61
+      }
+    },
+    "tr": {
+      "Name": "tr",
+      "Formula": "H2Mg5Si8Ca2O24",
+      "Elements": "5:Mg 24:O 8:Si 2:Ca 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 5.0,
+          "SIO2": 8.0,
+          "CAO": 2.0,
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -11578550.0,
+          "S0": 551.15,
+          "V0": 27.268,
+          "c1": 1229.36,
+          "c3": -32089890.0,
+          "c5": -6401.9,
+          "c7": 4208810000.0,
+          "b2": 0.000664627,
+          "b4": -3.79509e-05,
+          "b6": 9.49172e-11,
+          "b7": 2.68148e-07
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -11578550.0,
+        "S0": 551.15,
+        "V0": 27.268
+      }
+    },
+    "ltr": {
+      "Name": "ltr",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -854026.0,
+          "S0": 43.7702,
+          "V0": 2.675,
+          "c1": 75.3727,
+          "c3": -5958095.0,
+          "c7": 958246100.0,
+          "b2": 5.17332e-05,
+          "b4": -6.71003e-06,
+          "transition": 1.0,
+          "type": 1.0,
+          "t1": 0.426705,
+          "t2": -0.00144575,
+          "t3": 390.15,
+          "t7": 298.15,
+          "t8": 130.54
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -854026.0,
+        "S0": 43.7702,
+        "V0": 2.675
+      }
+    },
+    "htr": {
+      "Name": "htr",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -853844.0,
+          "S0": 45.5237,
+          "V0": 2.737,
+          "c1": 75.3727,
+          "c3": -5958095.0,
+          "c7": 958246100.0,
+          "b2": 1.3216e-05,
+          "b4": -2.02451e-06,
+          "b6": 1.02238e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -853844.0,
+        "S0": 45.5237,
+        "V0": 2.737
+      }
+    },
+    "wo": {
+      "Name": "wo",
+      "Formula": "SiCaO3",
+      "Elements": "1:Si 3:O 1:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0,
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1546123.0,
+          "S0": 81.81,
+          "V0": 3.983,
+          "c1": 149.073,
+          "c3": -3659348.0,
+          "c5": -690.295,
+          "c7": 484349400.0,
+          "b2": 0.000112241,
+          "b4": -4.9585e-06,
+          "b6": 1.23999e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1546123.0,
+        "S0": 81.81,
+        "V0": 3.983
+      }
+    },
+    "pwo": {
+      "Name": "pwo",
+      "Formula": "SiCaO3",
+      "Elements": "1:Si 3:O 1:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0,
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -1543085.0,
+          "S0": 85.2788,
+          "V0": 4.016,
+          "c1": 141.156,
+          "c3": -5857595.0,
+          "c5": -417.232,
+          "c7": 940735000.0,
+          "b2": 0.000113171,
+          "b4": -4.99958e-06,
+          "b6": 1.25026e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -1543085.0,
+        "S0": 85.2788,
+        "V0": 4.016
+      }
+    },
+    "bzo": {
+      "Name": "bzo",
+      "Formula": "HAl3Si3Ca2O13",
+      "Elements": "3:Al 13:O 3:Si 2:Ca 1:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.5,
+          "SIO2": 3.0,
+          "CAO": 2.0,
+          "H2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -6494148.0,
+          "S0": 297.576,
+          "V0": 13.588,
+          "c1": 749.17,
+          "c3": -2380525.0,
+          "c5": -6509.28,
+          "c7": 124858400.0,
+          "b2": 0.00047109,
+          "b4": -7e-06,
+          "b6": 1.75e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -6494148.0,
+        "S0": 297.576,
+        "V0": 13.588
+      }
+    },
+    "zo": {
+      "Name": "zo",
+      "Formula": "HAl3Si3Ca2O13",
+      "Elements": "3:Al 13:O 3:Si 2:Ca 1:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.5,
+          "SIO2": 3.0,
+          "CAO": 2.0,
+          "H2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -6493609.0,
+          "S0": 297.576,
+          "V0": 13.588,
+          "c1": 749.17,
+          "c3": -2380525.0,
+          "c5": -6509.28,
+          "c7": 124858400.0,
+          "b2": 0.00047109,
+          "b4": -7e-06,
+          "b6": 1.75e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -6493609.0,
+        "S0": 297.576,
+        "V0": 13.588
+      }
+    },
+    "cz": {
+      "Name": "cz",
+      "Formula": "HAl3Si3Ca2O13",
+      "Elements": "3:Al 13:O 3:Si 2:Ca 1:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.5,
+          "SIO2": 3.0,
+          "CAO": 2.0,
+          "H2O": 0.5
+        },
+        "PerpleX_Params": {
+          "G0": -6496497.0,
+          "S0": 287.076,
+          "V0": 13.673,
+          "c1": 749.17,
+          "c3": -2380525.0,
+          "c5": -6509.28,
+          "c7": 124858400.0,
+          "b2": 0.000474037,
+          "b4": -7.04379e-06,
+          "b6": 1.76095e-11
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -6496497.0,
+        "S0": 287.076,
+        "V0": 13.673
+      }
+    },
+    "CO2": {
+      "Name": "CO2",
+      "Formula": "CO2",
+      "Elements": "1:C 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "CO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -394341.0,
+          "S0": 213.677,
+          "c1": 93.0,
+          "c2": -0.002876,
+          "c3": 123800.0,
+          "c5": -1340.9,
+          "c6": 6336.2
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -394341.0,
+        "S0": 213.677,
+        "V0": null
+      }
+    },
+    "H2O": {
+      "Name": "H2O",
+      "Formula": "H2O",
+      "Elements": "2:H 1:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "H2O": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": -228538.0,
+          "S0": 188.72,
+          "c1": 115.45,
+          "c2": -0.002062,
+          "c3": -2871300.0,
+          "c5": -3799.9,
+          "c6": 51055.2
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -228538.0,
+        "S0": 188.72,
+        "V0": null
+      }
+    },
+    "O2": {
+      "Name": "O2",
+      "Formula": "O4",
+      "Elements": "4:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "O2": 2.0
+        },
+        "PerpleX_Params": {
+          "S0": 205.033,
+          "c1": 23.1025,
+          "c2": 0.003,
+          "c3": 1762835.0,
+          "c5": 804.888,
+          "c6": -18172.9
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "missing_G",
+        "ReferenceTemperature_K": 298.15
+      }
+    },
+    "K2O": {
+      "Name": "K2O",
+      "Formula": "K4O2",
+      "Elements": "4:K 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "K2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": 100000000.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 100000000.0,
+        "S0": null,
+        "V0": null
+      }
+    },
+    "SiO2": {
+      "Name": "SiO2",
+      "Formula": "SiO2",
+      "Elements": "1:Si 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "SIO2": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": 100000000.0,
+          "V0": 1e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 100000000.0,
+        "S0": null,
+        "V0": 1e-05
+      }
+    },
+    "NA2O": {
+      "Name": "NA2O",
+      "Formula": "Na4O2",
+      "Elements": "4:Na 2:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "NA2O": 2.0
+        },
+        "PerpleX_Params": {
+          "G0": 10000.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 10000.0,
+        "S0": null,
+        "V0": null
+      }
+    },
+    "Al2O3": {
+      "Name": "Al2O3",
+      "Formula": "Al2O3",
+      "Elements": "2:Al 3:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": 10000.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 10000.0,
+        "S0": null,
+        "V0": null
+      }
+    },
+    "MgO": {
+      "Name": "MgO",
+      "Formula": "MgO",
+      "Elements": "1:Mg 1:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": 100000000.0,
+          "V0": 1e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 100000000.0,
+        "S0": null,
+        "V0": 1e-05
+      }
+    },
+    "FeO": {
+      "Name": "FeO",
+      "Formula": "FeO",
+      "Elements": "1:Fe 1:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "FEO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": 100000000.0
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 100000000.0,
+        "S0": null,
+        "V0": null
+      }
+    },
+    "CaO": {
+      "Name": "CaO",
+      "Formula": "CaO",
+      "Elements": "1:Ca 1:O",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "CAO": 1.0
+        },
+        "PerpleX_Params": {
+          "G0": 100000000.0,
+          "V0": 1e-05
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 100000000.0,
+        "S0": null,
+        "V0": 1e-05
+      }
+    },
+    "py": {
+      "Name": "py",
+      "Formula": "Mg3Al2Si3O12",
+      "Elements": "3:Mg 12:O 2:Al 3:Si",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "MGO": 3.0,
+          "AL2O3": 1.0,
+          "SIO2": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -5936009.0,
+          "S0": 266.359,
+          "V0": 11.316,
+          "c1": 640.72,
+          "c3": -4701900.0,
+          "c5": -4542.07,
+          "b2": 0.000254821,
+          "b4": -6.52038e-06,
+          "b6": 5.00167e-12,
+          "b7": 4.1919e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -5936009.0,
+        "S0": 266.359,
+        "V0": 11.316
+      }
+    },
+    "gr": {
+      "Name": "gr",
+      "Formula": "Al2Si3Ca3O12",
+      "Elements": "2:Al 12:O 3:Si 3:Ca",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 3.0,
+          "CAO": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -6270974.0,
+          "S0": 255.15,
+          "V0": 12.538,
+          "c1": 573.43,
+          "c3": -18887170.0,
+          "c5": -2039.4,
+          "c7": 2319310000.0,
+          "b2": 0.000238149,
+          "b4": -8.19877e-06,
+          "b6": 2.04996e-11,
+          "b7": 9.99981e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -6270974.0,
+        "S0": 255.15,
+        "V0": 12.538
+      }
+    },
+    "alm": {
+      "Name": "alm",
+      "Formula": "Al2Si3Fe3O12",
+      "Elements": "2:Al 12:O 3:Si 3:Fe",
+      "AggregateState": "Solid",
+      "Source": "Perple_X b89ver.dat",
+      "Metadata": {
+        "PerpleX_EoS": 1,
+        "PerpleX_Composition": {
+          "AL2O3": 1.0,
+          "SIO2": 3.0,
+          "FEO": 3.0
+        },
+        "PerpleX_Params": {
+          "G0": -4943466.0,
+          "S0": 340.007,
+          "V0": 11.511,
+          "c1": 573.962,
+          "c3": -29291970.0,
+          "c5": -1483.13,
+          "c7": 5022080000.0,
+          "b2": 0.000214249,
+          "b4": -6.42064e-06,
+          "b6": 3.69618e-12,
+          "b7": 8.58018e-08
+        },
+        "HSC_conversion_enabled": false,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": -4943466.0,
+        "S0": 340.007,
+        "V0": 11.511
+      }
+    }
+  }
+}

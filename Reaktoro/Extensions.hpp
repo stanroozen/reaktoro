@@ -18,6 +18,7 @@
 #pragma once
 
 #include <Reaktoro/Extensions/Nasa.hpp>
+#include <Reaktoro/Extensions/Perple_X.hpp>
 #include <Reaktoro/Extensions/Phreeqc.hpp>
 #include <Reaktoro/Extensions/Supcrt.hpp>
 #include <Reaktoro/Extensions/ThermoFun.hpp>

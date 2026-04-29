@@ -20,6 +20,7 @@
 
 void exportExtensionDEW(py::module& m);
 void exportExtensionNasa(py::module& m);
+void exportExtensionPerpleX(py::module& m);
 void exportExtensionPhreeqc(py::module& m);
 void exportExtensionSupcrt(py::module& m);
 void exportExtensionThermoFun(py::module& m);
@@ -28,6 +29,7 @@ void exportExtensions(py::module& m)
 {
     exportExtensionDEW(m);
     exportExtensionNasa(m);
+    exportExtensionPerpleX(m);
     exportExtensionPhreeqc(m);
     exportExtensionSupcrt(m);
     exportExtensionThermoFun(m);

@@ -45,7 +45,7 @@ class ChemicalSystem;
 template<typename T, typename... Ts>
 constexpr auto _arePhaseReactionOrSurfaceConvertible()
 {
-    constexpr auto isPhaseConvertible = isBaseOf<GeneralPhase, T> || isBaseOf<GeneralPhasesGenerator, T>;
+    constexpr auto isPhaseConvertible = isBaseOf<GeneralPhase, T> || isBaseOf<GeneralPhasesGenerator, T> || isConvertible<T, PhaseList>;
     constexpr auto isReactionConvertible = isConvertible<T, Reaction> || isConvertible<T, GeneralReaction> || isConvertible<T, ReactionGenerator>;
     constexpr auto isSurfaceConvertible = isConvertible<T, Surface> || isConvertible<T, GeneralSurface> || isConvertible<T, SurfaceGenerator>;
     constexpr auto aux = isPhaseConvertible || isReactionConvertible || isSurfaceConvertible;
@@ -55,7 +55,7 @@ constexpr auto _arePhaseReactionOrSurfaceConvertible()
     else return aux;
 }
 
-/// Used to determine if `T` and all types in `Ts` are either GeneralPhase or GeneralPhaseGenerator.
+/// Used to determine if `T` and all types in `Ts` are phase, reaction, or surface convertible.
 template<typename T, typename... Ts>
 constexpr auto arePhaseReactionOrSurfaceConvertible = _arePhaseReactionOrSurfaceConvertible<T, Ts...>();
 
@@ -173,7 +173,7 @@ auto createChemicalSystem(Database const& db, Args const&... args) -> ChemicalSy
 
     ForEach([&](auto arg) constexpr {
         using T = Decay<decltype(arg)>;
-        constexpr auto isPhaseConvertible = isBaseOf<GeneralPhase, T> || isBaseOf<GeneralPhasesGenerator, T>;
+        constexpr auto isPhaseConvertible = isBaseOf<GeneralPhase, T> || isBaseOf<GeneralPhasesGenerator, T> || isConvertible<T, PhaseList>;
         constexpr auto isReactionConvertible = isConvertible<T, Reaction> || isConvertible<T, GeneralReaction> || isConvertible<T, ReactionGenerator>;
         constexpr auto isSurfaceConvertible = isConvertible<T, Surface> || isConvertible<T, GeneralSurface> || isConvertible<T, SurfaceGenerator>;
 

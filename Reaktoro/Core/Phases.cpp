@@ -39,6 +39,16 @@ auto exclude(const StringList& tags) -> Exclude
     return Exclude{tags};
 }
 
+auto GlobalizedBinarySolidPhases(
+    Database const& db,
+    String name,
+    StringList const& species,
+    GlobalizedBinaryRedlichKisterOptions options,
+    String suffixSeparator) -> PhaseList
+{
+    return GlobalizedBinaryRedlichKisterSolidPhases(db, name, species, options, suffixSeparator);
+}
+
 GeneralPhase::GeneralPhase()
 {}
 
@@ -356,6 +366,12 @@ auto Phases::add(const GeneralPhasesGenerator& generator) -> void
     generators.push_back(generator);
 }
 
+auto Phases::add(PhaseList const& phases_) -> void
+{
+    const auto& data = phases_.data();
+    phases.insert(phases.end(), data.begin(), data.end());
+}
+
 auto Phases::database() const -> const Database&
 {
     return db;
@@ -369,6 +385,11 @@ auto Phases::generalPhases() const -> Vec<GeneralPhase> const&
 auto Phases::generalPhasesGenerators() const -> Vec<GeneralPhasesGenerator> const&
 {
     return generators;
+}
+
+auto Phases::explicitPhases() const -> Vec<Phase> const&
+{
+    return phases;
 }
 
 auto Phases::convert() const -> Vec<Phase>
@@ -397,6 +418,10 @@ auto Phases::convert() const -> Vec<Phase>
         for(const auto& generator : generators)
             symbols = merge(symbols, collect_element_symbols_in_generalphase_or_generator(generator));
 
+        for(const auto& phase : phases)
+            for(const auto& species : phase.species())
+                symbols = merge(symbols, species.elements().symbols());
+
         return symbols;
     };
 
@@ -415,27 +440,27 @@ auto Phases::convert() const -> Vec<Phase>
     };
 
     // Replace duplicate phase names with unique names.
-    auto fix_duplicate_phase_names = [](Vec<GeneralPhase>& phases)
+    auto fix_duplicate_phase_names = [](Vec<Phase>& phases)
     {
         Strings phasenames = vectorize(phases, RKT_LAMBDA(x, x.name()));
         phasenames = makeunique(phasenames, "!");
         auto i = 0;
         for(auto& phase : phases)
-            phase.setName(phasenames[i++]);
+            phase = phase.withName(phasenames[i++]);
     };
 
     Strings symbols = collect_all_element_symbols();
 
     Vec<GeneralPhase> allgeneralphases = collect_all_general_phases(symbols);
 
-    fix_duplicate_phase_names(allgeneralphases);
-
-    Vec<Phase> phases;
-    phases.reserve(allgeneralphases.size());
+    Vec<Phase> converted = phases;
+    converted.reserve(phases.size() + allgeneralphases.size());
     for(const auto& generalphase : allgeneralphases)
-        phases.push_back(generalphase.convert(db, symbols));
+        converted.push_back(generalphase.convert(db, symbols));
 
-    return phases;
+    fix_duplicate_phase_names(converted);
+
+    return converted;
 }
 
 Phases::operator Vec<Phase>() const

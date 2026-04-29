@@ -1,0 +1,22 @@
+{
+  "name": "sb11_wa_60_40",
+  "model": "sb11_wa",
+  "species": ["Mg2SiO4", "Fe2SiO4"],
+  "temperature": 1473.15,
+  "pressure": 1000000000.0,
+  "composition": [0.6, 0.4],
+  "expected": {
+    "modelId": "sb11_wa",
+    "endmember0": "mgwa",
+    "endmember1": "fewa",
+    "Gx": 4019.3231999999998,
+    "Hx": 4019.3231999999998,
+    "ln_g": [0.21876634736986089, 0.49222428158218695],
+    "ln_a": [-0.80288490016212055, -1.3403571821661231],
+    "splitRequested": false
+  },
+  "tolerances": {
+    "scalarAbs": 1e-10,
+    "logAbs": 1e-10
+  }
+}

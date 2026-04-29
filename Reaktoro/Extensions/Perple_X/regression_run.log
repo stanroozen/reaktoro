@@ -1,0 +1,65 @@
+======================================================================
+Perple_X GFSM Regression Tests - Reaktoro Implementation
+======================================================================
+
+Running tests (GFSM EOS, DEW energy, mu parity, deltaG mixing)...
+
+[1/13] GFSM EOS coverage gate...
+[2/13] Pure H2O test...
+[3/13] Pure H2O HSMRK test...
+[4/13] Pure CO2 test...
+[5/13] Pure CO2 CORK test...
+[6/13] Binary H2O-CO2 test...
+[7/13] Composition series test...
+[8/13] Dielectric (epsh2o) test...
+[9/13] DEW speciation energy parity (HKF Gibbs)...
+[10/13] Full GFSM matrix volume parity...
+[11/13] Integration flow scenarios...
+[12/13] Chemical-potential parity (mu P-T grid)...
+[13/13] Delta-G mixing parity (excess Gibbs)...
+Test: GFSM EOS Coverage Gate
+Status: +ó+ôGÇª PASSED
+
+Test: Pure H2O MRK (ifug=2 defaults)
+Status: +ó+ôGÇª PASSED
+
+Test: Pure H2O HSMRK (ifug=1)
+Status: +ó+ôGÇª PASSED
+
+Test: Pure CO2 MRK (ifug=2 defaults)
+Status: +ó+ôGÇª PASSED
+
+Test: Pure CO2 CORK (ifug=5)
+Status: +ó+ôGÇª PASSED
+Warnings:
+  - CORK reference volume unavailable; skipped volume comparison.
+
+Test: H2O-CO2 Binary (50-50, ifug=2)
+Status: +ó+ôGÇª PASSED
+
+Test: H2O-CO2 Composition Series
+Status: +ó+ôGÇª PASSED
+
+Test: Dielectric H2O-CO2
+Status: +ó+ôGÇª PASSED
+
+Test: DEW Speciation Energy Parity (HKF G)
+Status: +ó+ôGÇª PASSED
+
+Test: GFSM Full Matrix Volume Parity
+Status: +ó+ôGÇª PASSED
+
+Test: Integration Flow Scenarios
+Status: +ó+ôGÇª PASSED
+
+Test: Chemical-Potential Parity (H2O-CO2 P-T Grid)
+Status: +ó+ôGÇª PASSED
+
+Test: Delta-G Mixing Parity (H2O-CO2 Composition Series)
+Status: +ó+ôGÇª PASSED
+
+======================================================================
+Summary: 13 passed, 0 failed
+Assertions: 178/178 passed, 0 failed
+Row-level Assertions: 51/51 passed, 0 failed
+======================================================================

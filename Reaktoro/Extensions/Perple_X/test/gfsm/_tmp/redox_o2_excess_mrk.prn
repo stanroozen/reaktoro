@@ -1,0 +1,110 @@
+
+----------------------------------------
+
+Stable phases at:
+                             T(K)     =  1000.00    
+                             P(bar)   =  523.150    
+
+Phase Compositions (molar  proportions):
+                   wt %      vol %     mol %     mol        O2       H2       C    
+ COH-Fluid         23.82     24.11     27.27    0.600      0.66667  0.66667  0.33333
+ O2                76.18     75.89     72.73     1.60      1.00000  0.00000  0.00000
+
+Phase speciation (molar proportions):
+
+ COH-Fluid         CO2: 0.33333, CH4: 0.00000, H2: 0.00000, CO: 0.00000, H2O: 0.66667
+
+Structural formulae for 688 format solution models: none stable.
+
+
+Molar Properties and Density:
+                    N(g)          G(J)     S(J/K)     V(J/bar)      Cp(J/K)       Alpha(1/K)  Beta(1/bar)    Cp/Cv    Density(kg/m3)
+ COH-Fluid          26.68        -395354   195.34       14.944       52.022      0.13720E-02  0.19370E-02   1.3873       178.54    
+ O2                 32.00        -106845   191.16       17.636       35.703      0.93259E-03  0.17057E-02   1.3367       181.44    
+ System             67.21        -408164   423.07       37.184       88.338      0.10386E-02  0.17615E-02   1.3472       180.74    
+ System - Fluid      0.00              0   0.0000       0.0000       0.0000       0.0000       0.0000       0.0000       0.0000    
+
+Seismic Properties:
+                 Gruneisen_T      Ks(bar)      Mu(bar)    V0(km/s)     Vp(km/s)     Vs(km/s)   Poisson ratio
+ COH-Fluid         0.28228       716.23       0.0000      0.63337      0.63337       0.0000      0.50000    
+ O2                0.36099       783.62       0.0000      0.65719      0.65719       0.0000      0.50000    
+ System            0.34201       766.81       0.0000      0.65135      0.65135       0.0000      0.50000    
+ System - Fluid            NaN          NaN          NaN          NaN          NaN          NaN          NaN
+
+Bulk Composition:
+              mol         g        wt %     mol/kg
+    O2        2.000     63.998    95.226    29.759
+    H2        0.400      0.806     1.200     5.952
+    C         0.200      2.402     3.574     2.976
+
+Other Bulk Properties:
+
+ Enthalpy (J/kg) =  221720.    
+ Specific Enthalpy (J/m3) = 0.400737E+08
+ Entropy (J/K/kg) =  6295.02    
+ Specific Entropy (J/K/m3) = 0.113776E+07
+ Heat Capacity (J/K/kg) =  1314.43    
+ Specific Heat Capacity (J/K/m3) =  237570.    
+
+N.B.: melt, when stable, is identified as a fluid phase for purposes of computing aggregate
+properties. To include melt properties in the solid aggregate set melt_is_fluid to F.
+
+Chemical Potentials (J/mol):
+
+      O2            H2            C    
+    -106845.      -278187.      -415998.    
+
+Variance (c-p+2) =  3
+
+
+Simple back-calculated solute speciation:
+
+pH = 21.367+/-0.000; Delta_pH = -0.602; ionic_strength = 0.9562E-14; gamma/q^2 = 1.000
+dielectric constant = 1.014; solvent molar mass, g/mol = 26.6800; solute molality = 0.6447E+10
+total molar mass, g/mol-species = 32.0113; ref_chg, 1/mol-species = 0.0000
+
+Solute endmember properties:
+
+          charge   molality     mol_fraction      g,J/mol*     g0,J/mol**
+O2,aq        0   0.644461E+10   0.999557          -106845       -294638
+H2CO3,aq     0   0.250244E+07   0.388128E-03      -854453       -976947
+CO2,aq       0    352323.       0.546453E-04      -522843       -629037
+CO,aq        0   0.893714E-02   0.138615E-11      -469420       -430197
+H2,aq        0   0.140276E-05   0.217568E-15      -278187       -166133
+FORMIC-A     0   0.640780E-07   0.993848E-17      -801030       -663317
+HCO3-       -1   0.100649E-13   0.156106E-23      -445385       -177414
+H+           1   0.429319E-21   0.665873E-31      -409067             0
+OH-         -1   0.268327E-22   0.416175E-32        77457        509578
+FORMATE,    -1   0.799770E-24   0.124044E-33      -391963         69366
+HO2-        -1   0.994596E-26   0.154261E-35        24035        521841
+METHANOL     0   0.185205E-32   0.287253E-42     -1025795       -399146
+METHANE,     0   0.130165E-32   0.201886E-42      -972373       -342791
+GLYCOLIC     0   0.921138E-37   0.142868E-46     -1548639       -839604
+ACETIC-A     0   0.264557E-44   0.410327E-54     -1495216       -641796
+GLYCOLAT    -1   0.988122E-52   0.153257E-61     -1139571       -143950
+ACETATE,    -1   0.290306E-58   0.450264E-68     -1086148         34523
+ETHYLENE     0   0.101788E-60   0.157872E-70     -1388371       -220695
+ETHANOL,     0   0.655308E-64   0.101638E-73     -1719981       -491210
+HEXANE,A     0   0.252925-202   0.392286-212     -4443302       -564654
+
+Normalized solvent endmember properties:
+
+         molality   mol_fraction  vol_fraction v,cm3/mol*  g,J/mol*   g0,J/mol***
+CO2       12.4938     0.33333        0.39619     177.617    -522843     -513332
+CH4        0.0000     0.00000        0.00000     198.241    -972373     -151380
+H2         0.0000     0.00000        0.00000     185.131    -278187      -54029
+CO         0.0000     0.00000        0.00000     204.202    -469420     -237840
+H2O       24.9875     0.66667        0.60381     135.345    -331609     -328116
+
+*partial molar, **molal ref. state, ***molar ref. state.
+
+
+Simple back-calculated fluid bulk composition:
+
+             mol %           wt %
+    O2      99.9170        99.9809    
+    H2     0.387735E-01   0.244376E-02
+    C      0.442322E-01   0.166134E-01
+
+----------------------------------------
+

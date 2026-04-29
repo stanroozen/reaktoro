@@ -1,4 +1,4 @@
-"""
+﻿"""
 Mineral Solubility Calculation Utilities
 =========================================
 
@@ -28,7 +28,7 @@ except ModuleNotFoundError:
     # Fallback to local build
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-    PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+    PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
     if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
         sys.path.insert(0, PYD_DIR)
     from reaktoro4py import *
@@ -52,7 +52,7 @@ def calculate_saturation_pressure(temperature_celsius):
     Parameters
     ----------
     temperature_celsius : float
-        Temperature in Celsius (valid range: 0-374°C)
+        Temperature in Celsius (valid range: 0-374Â°C)
 
     Returns
     -------
@@ -61,7 +61,7 @@ def calculate_saturation_pressure(temperature_celsius):
 
     Notes
     -----
-    Uses Antoine equation coefficients valid for 0-374°C range.
+    Uses Antoine equation coefficients valid for 0-374Â°C range.
     Returns NaN for temperatures outside valid range.
     """
     if temperature_celsius < 0 or temperature_celsius > 374:
@@ -164,10 +164,10 @@ def build_chemical_system(
     try:
         if activity_model.upper() == "DEW":
             aqueous.setActivityModel(ActivityModelDEW())
-            print(f"✓ Aqueous phase configured with DEW activity model")
+            print(f"âœ“ Aqueous phase configured with DEW activity model")
         else:
             aqueous.setActivityModel(ActivityModelHKF())
-            print(f"✓ Aqueous phase configured with HKF activity model")
+            print(f"âœ“ Aqueous phase configured with HKF activity model")
     except Exception as e:
         print(f"Warning: Could not configure {activity_model} model: {e}")
         try:
@@ -268,20 +268,20 @@ def solve_quartz_equilibrium(system, temperature_celsius, pressure_bar, verbose=
         if result and result.succeeded():
             if verbose:
                 print(
-                    f"  ✓ Converged at T={temperature_celsius}°C, P={pressure_bar:.0f} bar"
+                    f"  âœ“ Converged at T={temperature_celsius}Â°C, P={pressure_bar:.0f} bar"
                 )
             return True, state
         else:
             if verbose:
                 print(
-                    f"  ✗ Failed to converge at T={temperature_celsius}°C, P={pressure_bar:.0f} bar"
+                    f"  âœ— Failed to converge at T={temperature_celsius}Â°C, P={pressure_bar:.0f} bar"
                 )
             return False, None
 
     except Exception as e:
         if verbose:
             print(
-                f"  ✗ Exception at T={temperature_celsius}°C, P={pressure_bar:.0f} bar: {e}"
+                f"  âœ— Exception at T={temperature_celsius}Â°C, P={pressure_bar:.0f} bar: {e}"
             )
         return False, None
 
@@ -365,7 +365,7 @@ def calculate_saturation_curve(system, temperature_range_celsius, n_points=100):
     system : ChemicalSystem
         Chemical system
     temperature_range_celsius : array-like
-        Temperature values in Celsius (0-374°C valid)
+        Temperature values in Celsius (0-374Â°C valid)
     n_points : int
         Number of points for saturation curve
 
@@ -572,7 +572,7 @@ def calculate_mineral_solubility_curves(
 
         if verbose:
             n_valid = np.sum(~np.isnan(molalities))
-            print(f"    ✓ Converged {n_valid}/{len(temperature_range)} points")
+            print(f"    âœ“ Converged {n_valid}/{len(temperature_range)} points")
 
     # Calculate saturation curve if requested
     if include_psat:
@@ -626,11 +626,11 @@ def calculate_mineral_solubility_curves(
 
         if verbose:
             n_valid = np.sum(~np.isnan(psat_molalities))
-            print(f"    ✓ Saturation: {n_valid}/{len(T_psat_range)} points")
+            print(f"    âœ“ Saturation: {n_valid}/{len(T_psat_range)} points")
 
     if verbose:
         print("=" * 60)
-        print("✓ Calculations complete")
+        print("âœ“ Calculations complete")
 
     return solubility_curves
 
@@ -660,7 +660,7 @@ def plot_mineral_solubility_with_experiments(
     mineral_name : str
         Name for labels (e.g., "Quartz")
     mineral_formula : str
-        Chemical formula (e.g., "SiO₂")
+        Chemical formula (e.g., "SiOâ‚‚")
     output_prefix : str, optional
         Prefix for output filenames. If None, uses mineral_name.lower()
     low_P_threshold : float
@@ -766,8 +766,8 @@ def plot_mineral_solubility_with_experiments(
 
         ax.set_yscale("log")
         ax.set_ylim(1e-4, 1e-1)
-        ax.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
-        ax.set_ylabel(f"{mineral_name} Solubility (mol/kg-H₂O)", fontsize=14, fontweight="bold")
+        ax.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
+        ax.set_ylabel(f"{mineral_name} Solubility (mol/kg-Hâ‚‚O)", fontsize=14, fontweight="bold")
         ax.set_title(f"{mineral_name} Solubility: Low Pressure (<{low_P_threshold} kbar)",
                     fontsize=16, fontweight="bold", pad=20)
         ax.grid(True, which="both", alpha=0.3, linestyle="--")
@@ -779,7 +779,7 @@ def plot_mineral_solubility_with_experiments(
         ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=9, framealpha=0.9, ncol=1)
         fig.tight_layout()
         plt.savefig(low_P_file, dpi=300, bbox_inches="tight")
-        print(f"✓ Low-pressure plot saved: {low_P_file}")
+        print(f"âœ“ Low-pressure plot saved: {low_P_file}")
         if show_plots:
             plt.show()
         else:
@@ -831,9 +831,9 @@ def plot_mineral_solubility_with_experiments(
                     )
 
             ax.set_yscale("log")
-            ax.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
-            ax.set_ylabel(f"{mineral_name} Solubility (mol/kg-H₂O)", fontsize=14, fontweight="bold")
-            ax.set_title(f"{mineral_name} Solubility: High Pressure (≥{low_P_threshold} kbar)",
+            ax.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
+            ax.set_ylabel(f"{mineral_name} Solubility (mol/kg-Hâ‚‚O)", fontsize=14, fontweight="bold")
+            ax.set_title(f"{mineral_name} Solubility: High Pressure (â‰¥{low_P_threshold} kbar)",
                         fontsize=16, fontweight="bold", pad=20)
             ax.grid(True, which="both", alpha=0.3, linestyle="--")
 
@@ -844,7 +844,7 @@ def plot_mineral_solubility_with_experiments(
             ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=9, framealpha=0.9, ncol=1)
             fig.tight_layout()
             plt.savefig(high_P_file, dpi=300, bbox_inches="tight")
-            print(f"✓ High-pressure plot saved: {high_P_file}")
+            print(f"âœ“ High-pressure plot saved: {high_P_file}")
             if show_plots:
                 plt.show()
             else:
@@ -855,7 +855,7 @@ def plot_mineral_solubility_with_experiments(
     mineral_name : str
         Name for labels (e.g., "Quartz")
     mineral_formula : str
-        Chemical formula (e.g., "SiO₂")
+        Chemical formula (e.g., "SiOâ‚‚")
     output_prefix : str, optional
         Prefix for output filenames. If None, uses mineral_name.lower()
     low_P_threshold : float
@@ -872,3 +872,4 @@ def plot_mineral_solubility_with_experiments(
     if len(valid_idx) == 0:
         return None, None
     return temperature_array[valid_idx[0]], temperature_array[valid_idx[-1]]
+

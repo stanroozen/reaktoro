@@ -37,6 +37,30 @@
 namespace Reaktoro {
 namespace {
 
+auto normalizeDEWSpeciesName(String identifier, AggregateState aggState) -> String
+{
+    if(aggState == AggregateState::Aqueous)
+    {
+        if(identifier.size() > 3 && identifier.substr(identifier.size() - 3) == "_aq")
+            return identifier.substr(0, identifier.size() - 3) + "(aq)";
+
+        const auto open = identifier.rfind('(');
+        const auto close = identifier.rfind(')');
+        if(open != String::npos && close == identifier.size() - 1 && open < close)
+        {
+            const auto base = identifier.substr(0, open);
+            const auto suffix = identifier.substr(open + 1, close - open - 1);
+
+            if(suffix == "0")
+                return base + "(aq)";
+            if(!suffix.empty() && (suffix[0] == '+' || suffix[0] == '-'))
+                return base + suffix + "(aq)";
+        }
+    }
+
+    return identifier;
+}
+
 /// Load species from a YAML database content string
 auto loadSpeciesFromYAML(const String& yaml_content) -> SpeciesList
 {
@@ -103,12 +127,15 @@ auto loadSpeciesFromYAML(const String& yaml_content) -> SpeciesList
                 element_pairs.emplace_back(elements[idx], coeff);
             }
 
-            // Create the species object
-            // Use modified name with underscore instead of comma (MgO,aq -> MgO_aq)
-            String modified_name = name;
-            auto comma_in_name = modified_name.find(",aq");
-            if(comma_in_name != String::npos)
-                modified_name = modified_name.substr(0, comma_in_name) + "_aq";
+            // Create the species object. Prefer the YAML key because it is closer to the
+            // canonical species identifier used elsewhere in Reaktoro than the DEW display label.
+            String modified_name = normalizeDEWSpeciesName(speciesName, aggState);
+            if(modified_name == speciesName)
+            {
+                auto comma_in_name = modified_name.find(",aq");
+                if(comma_in_name != String::npos)
+                    modified_name = modified_name.substr(0, comma_in_name) + "(aq)";
+            }
 
             Species species;
             species = species.withName(modified_name)
@@ -185,6 +212,9 @@ auto loadSpeciesFromYAML(const String& yaml_content) -> SpeciesList
 /// Get the path to an embedded DEW database file
 auto embeddedDatabasePath(const String& name) -> String
 {
+    if(name == "DeepEarthWater")
+        return "databases/DEW/dew2024-aqueous.yaml";
+
     const Strings supported = {"dew2024-aqueous", "dew2019-aqueous", "dew2024-gas", "dew2019-gas"};
 
     errorif(!contains(supported, name),

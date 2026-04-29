@@ -1,0 +1,202 @@
+
+----------------------------------------
+
+Stable phases at:
+                             T(K)     =  973.150    
+                             P(bar)   =  10000.0    
+
+Phase Compositions (molar  proportions):
+                   wt %      vol %     mol %     mol        O2       H2       C        Ca   
+ COH-Fluid+        47.62     61.08     72.64     55.9      0.63177  0.99296  0.13321  0.00414
+ COH-Fluid+        17.65     21.93     14.67     11.3      1.00000  0.00000  1.00000  0.00000
+ cc                34.73     17.00     12.69     9.77      1.50000  0.00000  1.00000  1.00000
+
+Phase speciation (molar proportions):
+
+ COH-Fluid+        CO2: 0.0000, CH4: 0.0000, H2: 0.0000, CO: 0.0000, C2H6: 0.0000
+                   H2O: 0.86040, ACETATE,: 0.13881E-42, ACETIC-A: 0.17456E-41, BENZENE,: 0.50909-155, Ca(Ac)+: 0.64657E-43
+                   Ca(Ac)2,: 0.63620E-81, Ca(HCO3): 0.76876E-02, Ca(HCOO): 0.20488E-11, Ca(OH)+: 0.21172E-03, Ca+2: 0.16178E-04
+                   CaCO3,aq: 0.74360E-04, CaO,aq: 0.25826, CO,aq: 0.11455E-09, CO2,aq: 0.18645, CO3-2: 0.10748E-05
+                   ETHANE,A: 0.18678E-68, ETHANOL,: 0.26654E-61, ETHYLENE: 0.48932E-62, FORMATE,: 0.19704E-11, FORMIC-A: 0.18875E-12
+                   GLUTARAT: 0.21023-112, GLUTARIC: 0.93046-112, GLYCOLAT: 0.11959E-37, GLYCOLIC: 0.98033E-39, H+: 0.26853E-05
+                   H2,aq: 0.28165E-09, H2CO3,aq: 8.3670, HCO3-: 0.27018E-02, HEXANE,A: 0.44512-193, HO2-: 0.58012E-10
+                   Isobutan: 0.14257-129, LACTATE,: 0.37148E-68, LACTIC-A: 0.35455E-69, METHANE,: 0.57586E-37, METHANOL: 0.43497E-32
+                   O2,aq: 0.17849, OH-: 0.52304E-02, PROPANE,: 0.14049E-99, PROPANOA: 0.70747E-72, PROPANOI: 0.56792E-72
+                   PROPANOL: 0.75501E-93, TOLUENE,: 0.47816-186, ionic_st: 0.79516E-02, tot_mola: 64.515, solv_kfw: 0.18015E-01
+                   err_lgKw: -0.64086E-01, pH: 5.6471, Delta_pH: 1.6768, solute_m: 9.0061, ref_chg: 0.0000
+                   epsilon: 15.591*  
+ COH-Fluid+        CO2: 0.53194E-12, CH4: 0.0000, H2: 0.0000, CO: 0.76378E-16, C2H6: 0.0000
+                   H2O: 0.21801E-13, ACETATE,: 0.49559E-56, ACETIC-A: 0.40314E-40, BENZENE,: 0.15561-150, Ca(Ac)+: 0.89941E-60
+                   Ca(Ac)2,: 0.30574E-80, Ca(HCO3): 0.49784E-15, Ca(HCOO): 0.11151E-28, Ca(OH)+: 0.80284E-22, Ca+2: 0.14490E-47
+                   CaCO3,aq: 0.97598E-40, CaO,aq: 16.075, CO,aq: 0.52975E-03, CO2,aq: 0.42007E+14, CO3-2: 0.56899E-68
+                   ETHANE,A: 0.35922E-61, ETHANOL,: 0.12032E-57, ETHYLENE: 0.17835E-56, FORMATE,: 0.14736E-24, FORMIC-A: 0.28260E-06
+                   GLUTARAT: 0.46977-117, GLUTARIC: 0.57915-110, GLYCOLAT: 0.14184E-49, GLYCOLIC: 0.25360E-33, H+: 0.11863E-15
+                   H2,aq: 0.15826E-05, H2CO3,aq: 0.20177E+07, HCO3-: 0.61647E-15, HEXANE,A: 0.12043-184, HO2-: 0.17740E-27
+                   Isobutan: 0.34381-124, LACTATE,: 0.15701E-78, LACTIC-A: 0.14591E-64, METHANE,: 0.86436E-30, METHANOL: 0.21360E-29
+                   O2,aq: 0.21171E+07, OH-: 0.11547E-22, PROPANE,: 0.16338E-90, PROPANOA: 0.10663E-83, PROPANOI: 0.23387E-70
+                   PROPANOL: 0.29251E-89, TOLUENE,: 0.76287-181, ionic_st: 0.61647E-15, tot_mola: 0.42007E+14, solv_kfw: 0.42985E-01
+                   err_lgKw: -0.96423E-01, pH: 15.926, Delta_pH: -3.4576, solute_m: 0.42007E+14, ref_chg: 0.0000
+                   epsilon: 1.1587*  
+
+*molar solvent, molal solute concentrations.
+
+Structural formulae for 688 format solution models: none stable.
+
+
+Molar Properties and Density:
+                    N(g)          G(J)     S(J/K)     V(J/bar)      Cp(J/K)       Alpha(1/K)  Beta(1/bar)    Cp/Cv    Density(kg/m3)
+ COH-Fluid+         23.98        -361667   185.96       2.3391       74.018      0.39934E-03  0.23520E-04   1.2635       1025.3    
+ COH-Fluid+         44.01        -491655  -69.322       4.1586       9.5995      0.19484E-03  0.28702E-04   2.2605       1058.3    
+ cc                100.09       -1202071   215.91       3.7246       124.95      0.38861E-04  0.14376E-05   1.0314       2687.2    
+ System           2815.15      -37509723   11722.       214.08       5466.6      0.29324E-03  0.20903E-04   1.1859       1315.0    
+ System - Fluid    977.72      -11742649   2109.1       36.385       1220.5      0.38861E-04  0.14376E-05   1.0314       2687.2    
+
+Seismic Properties:
+                 Gruneisen_T      Ks(bar)      Mu(bar)    V0(km/s)     Vp(km/s)     Vs(km/s)   Poisson ratio
+ COH-Fluid+        0.67792       53719.       0.0000       2.2890       2.2890       0.0000      0.50000    
+ COH-Fluid+         6.6480       78760.       0.0000       2.7280       2.7280       0.0000      0.50000    
+ cc                0.83116      0.71747E+06  0.23916E+06   5.1672       6.2102       2.9833      0.35000    
+ System             2.0129      0.12075E+06   0.0000       3.0303       3.0303       0.0000      0.50000    
+ System - Fluid    0.83116      0.71747E+06  0.23916E+06   5.1672       6.2102       2.9833      0.35000    
+
+Bulk Composition:
+                     Complete Assemblage                              Solid Only
+              mol         g        wt %     mol/kg          mol         g        wt %     mol/kg
+    O2       61.257   1960.152    69.629    21.760       14.653    468.882    47.957    14.987
+    H2       55.508    111.876     3.974    19.718        0.000      0.000     0.000     0.000
+    C        28.503    342.346    12.161    10.125        9.769    117.332    12.001     9.991
+    Ca       10.000    400.775    14.236     3.552        9.769    391.504    40.043     9.991
+
+Other Bulk Properties:
+
+ Enthalpy (J/kg) = -.927216E+07
+ Specific Enthalpy (J/m3) = -.121927E+11
+ Entropy (J/K/kg) =  4163.88    
+ Specific Entropy (J/K/m3) = 0.547541E+07
+ Heat Capacity (J/K/kg) =  1941.86    
+ Specific Heat Capacity (J/K/m3) = 0.255350E+07
+
+ Solid Enthalpy (J/kg) = -.991097E+07
+ Solid Secific Enthalpy (J/m3) = -.266325E+11
+ Solid Entropy (J/K/kg) =  2157.21    
+ Solid Specific Entropy (J/K/m3) = 0.579680E+07
+ Solid Heat Capacity (J/K/kg) =  2551.05    
+ Solid Specific Heat Capacity (J/K/m3) = 0.335458E+07
+
+N.B.: melt, when stable, is identified as a fluid phase for purposes of computing aggregate
+properties. To include melt properties in the solid aggregate set melt_is_fluid to F.
+
+Chemical Potentials (J/mol):
+
+      O2            H2            C             Ca   
+    -129139.      -231442.      -362516.      -645847.    
+
+Variance (c-p+2) =  3
+
+
+Back-calculated vs optimized solute speciation:
+
+pH = 5.647+/-0.000; Delta_pH = 1.645; ionic_strength = 0.7952E-02; gamma/q^2 = 0.8392
+dielectric constant = 15.59; solvent molar mass, g/mol = 18.0150; solute molality = 8.903
+total molar mass, g/mol-species = 23.9878; ref_chg, 1/mol-species = 0.0000
+
+Solute endmember properties:
+                                                optimized
+          charge   molality     mol_fraction   mol_fraction      g,J/mol*     g0,J/mol**
+H2CO3,aq     0    8.36696       0.129898       0.129689          -787666       -804854
+CaO,aq       0   0.258263       0.400956E-02   0.400313E-02      -710415       -699462
+CO2,aq       0   0.186449       0.289464E-02   0.289000E-02      -491655       -478065
+O2,aq        0   0.749499E-01   0.116360E-02   0.276665E-02      -129138       -108175
+Ca(HCO3)     1   0.768763E-02   0.119351E-03   0.119160E-03     -1307280      -1266473
+OH-         -1   0.523041E-02   0.812026E-04   0.810723E-04      -190802       -146878
+HCO3-       -1   0.270182E-02   0.419461E-04   0.418787E-04      -682457       -633189
+Ca(OH)+      1   0.211715E-03   0.328690E-05   0.328162E-05      -815625       -745753
+CaCO3,aq     0   0.743601E-04   0.115445E-05   0.115259E-05     -1202071      -1125151
+Ca+2         2   0.161778E-04   0.251162E-06   0.250759E-06      -624823       -529889
+H+           1   0.268530E-05   0.416895E-07   0.416226E-07      -105209             0
+CO3-2       -2   0.107481E-05   0.166865E-07   0.166598E-07      -577247       -460374
+H2,aq        0   0.434638E-09   0.674780E-11   0.436557E-11      -231442        -57024
+CO,aq        0   0.176779E-09   0.274451E-11   0.177559E-11      -427085       -245389
+HO2-        -1   0.375920E-10   0.583620E-12   0.899200E-12      -255371        -59730
+Ca(HCOO)     1   0.316176E-11   0.490865E-13   0.317571E-13     -1242711      -1027039
+FORMATE,    -1   0.304066E-11   0.472065E-13   0.305408E-13      -617887       -401900
+FORMIC-A     0   0.291286E-12   0.452224E-14   0.292572E-14      -723097       -489550
+METHANOL     0   0.159857E-31   0.248179E-33   0.674213E-34      -889970       -297586
+GLUTARAT    -1   0.161038-110   0.250014-112   0.325859-114     -2891419       -825858
+
+Solvent endmember properties:
+
+         molality   mol_fraction  opt_mol_frac  vol_fraction# v,cm3/mol*  g,J/mol*   g0,J/mol***
+CO2        0.0000     0.00000        0.00000        0.00000     199.250    -491655     -481856
+CH4        0.0000     0.00000        0.00000        0.00000      40.316    -825401      -95665
+H2         0.0000     0.00000        0.00000        0.00000      20.651    -231442      -16116
+CO         0.0000     0.00000        0.00000        0.00000      38.132    -427085     -184001
+C2H6       0.0000     0.00000        0.00000        0.00000      57.470   -1419359     -102126
+H2O       55.5093     0.86179        0.86040        1.00000      19.662    -296011     -294817
+
+#normalized, *partial molar, **molal ref. state, ***molar ref. state.
+
+
+Back-calculated vs optimized fluid bulk composition:
+
+                          optimized                     optimized
+             mol %          mol %          wt %           wt %
+    O2      35.8941        35.9525        84.3188        84.3524    
+    H2      56.3212        56.2698        8.33335        8.31552    
+    C       7.55003        7.54315        6.65723        6.64298    
+    Ca     0.234733       0.234519       0.690620       0.689143    
+
+Back-calculated vs optimized solute speciation:
+
+pH = 15.926+/-0.000; Delta_pH = -3.506; ionic_strength = 0.6165E-15; gamma/q^2 = 1.000
+dielectric constant = 1.159; solvent molar mass, g/mol = 42.9845; solute molality = 0.4201E+14
+total molar mass, g/mol-species = 44.0100; ref_chg, 1/mol-species = 0.0000
+
+Solute endmember properties:
+                                                optimized
+          charge   molality     mol_fraction   mol_fraction      g,J/mol*     g0,J/mol**
+CO2,aq       0   0.420069E+14    1.00000        1.00000          -491655       -745465
+H2CO3,aq     0   0.201768E+07   0.480322E-07   0.480322E-07      -787666       -905130
+O2,aq        0    888969.       0.211625E-07   0.503980E-07      -129138       -239970
+CaO,aq       0    16.0753       0.382682E-12   0.382682E-12      -710415       -732887
+CO,aq        0   0.817509E-03   0.194613E-16   0.126110E-16      -427085       -369563
+H2,aq        0   0.244223E-05   0.581388E-19   0.376741E-19      -231442       -126883
+FORMIC-A     0   0.436109E-06   0.103819E-19   0.672746E-20      -723097       -604599
+HCO3-       -1   0.616467E-15   0.146754E-28   0.146754E-28      -490959       -207586
+Ca(HCO3)     1   0.497839E-15   0.118514E-28   0.118514E-28     -1498778      -1213676
+H+           1   0.118629E-15   0.282403E-29   0.282403E-29      -296707             0
+Ca(OH)+      1   0.802839E-22   0.191121E-35   0.191121E-35     -1007123       -595473
+OH-         -1   0.115472E-22   0.274888E-36   0.274888E-36          695        428035
+FORMATE,    -1   0.227410E-24   0.541365E-38   0.350806E-38      -426389         32727
+HO2-        -1   0.114957E-27   0.273662E-41   0.422317E-41       -63873        456655
+Ca(HCOO)     1   0.172077E-28   0.409639E-42   0.265447E-42     -1434209       -898313
+METHANOL     0   0.785008E-29   0.186876E-42   0.508490E-43      -889970       -347724
+METHANE,     0   0.490217E-29   0.116699E-42   0.205766E-43      -825401       -279345
+GLYCOLIC     0   0.932027E-33   0.221875E-46   0.603723E-47     -1381625       -766245
+ACETIC-A     0   0.228637E-39   0.544284E-53   0.959690E-54     -1317056       -578522
+GLUTARAT    -1   0.359854-115   0.856655-129   0.111833-130     -2699921       -549131
+
+Solvent endmember properties:
+
+         molality   mol_fraction  opt_mol_frac  vol_fraction# v,cm3/mol*  g,J/mol*   g0,J/mol***
+CO2       22.3452     0.00000        0.00000        0.99578     198.016    -491655     -481856
+CH4        0.0000     0.00000        0.00000        0.00000      37.486    -825401      -95665
+H2         0.0000     0.00000        0.00000        0.00000      20.525    -231442      -16116
+CO         0.0032     0.00000        0.00000        0.00003      35.316    -427085     -184001
+C2H6       0.0000     0.00000        0.00000        0.00000      52.781   -1419359     -102126
+H2O        0.9158     0.00000        0.00000        0.00420      20.374    -296011     -294817
+
+#normalized, *partial molar, **molal ref. state, ***molar ref. state.
+
+
+Back-calculated vs optimized fluid bulk composition:
+
+                          optimized                     optimized
+             mol %          mol %          wt %           wt %
+    O2      50.0000        50.0000        72.7085        72.7085    
+    H2     0.240161E-05   0.240161E-05   0.219970E-06   0.219970E-06
+    C       50.0000        50.0000        27.2915        27.2915    
+    Ca     0.191341E-10   0.191341E-10   0.348487E-10   0.348487E-10
+
+----------------------------------------
+

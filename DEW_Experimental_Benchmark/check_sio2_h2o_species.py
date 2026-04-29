@@ -1,9 +1,9 @@
-import sys
+﻿import sys
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR):
     sys.path.insert(0, PYD_DIR)
 
@@ -64,9 +64,9 @@ print("\nSiO2-H2O System Species (No Metal Cations):")
 print("-" * 80)
 for i, sp in enumerate(sio2_h2o_only, 1):
     status = (
-        "✓ INCLUDED"
+        "âœ“ INCLUDED"
         if sp in ["SiO2_aq", "HSiO3-", "Si2O4_aq", "Si3O6_aq"]
-        else "✗ MISSING"
+        else "âœ— MISSING"
     )
     print(f"  {i}. {sp:<25} {status}")
 
@@ -88,3 +88,4 @@ print(
 print(f"\nMetal-silicate complexes: {len(with_metals)} (not part of SiO2-H2O system)")
 print("\nConclusion: ALL silicate species in the SiO2-H2O system ARE considered.")
 print("=" * 80)
+

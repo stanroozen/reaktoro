@@ -1,7 +1,7 @@
-import sys, os
+﻿import sys, os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-PYD_DIR = os.path.join(os.path.dirname(ROOT_DIR), "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(os.path.dirname(ROOT_DIR), "build", "Reaktoro", "Release")
 
 print("Python:", sys.version)
 
@@ -67,3 +67,4 @@ for enum_name, values in candidates:
     for v in values:
         ok = hasattr(enum, v)
         print(f"  {v}: {'OK' if ok else 'missing'}")
+

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Compute buffer fugacities from SUPCRTBL thermodynamics.
 
 This script does NOT add buffer phases to a chemical system. It only computes
@@ -17,13 +17,13 @@ except ModuleNotFoundError:
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     BENCHMARK_DIR = os.path.dirname(SCRIPT_DIR)
     ROOT_DIR = os.path.dirname(BENCHMARK_DIR)
-    PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+    PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
     if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
         sys.path.insert(0, PYD_DIR)
     try:
         from reaktoro4py import *  # noqa: F401,F403
 
-        print("Using local reaktoro4py extension from build-msvc.")
+        print("Using local reaktoro4py extension from build.")
     except ModuleNotFoundError as e:
         raise ModuleNotFoundError(
             "Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH."
@@ -63,7 +63,7 @@ BUFFER_REACTIONS = {
             ("Magnetite", -2.0),
             ("O2(g)", 0.5),
         ],
-        # Mn2O3–MnO: 2 MnO + 1/2 O2 = Mn2O3
+        # Mn2O3â€“MnO: 2 MnO + 1/2 O2 = Mn2O3
         "Mn2O3-MnO": [
             ("Bixbyite", 1.0),
             ("Manganosite", -2.0),
@@ -77,14 +77,14 @@ BUFFER_REACTIONS = {
         ],
     },
     "fCO2": {
-        # C–Q–Wo: CaCO3 + SiO2 = CaSiO3 + CO2
+        # Câ€“Qâ€“Wo: CaCO3 + SiO2 = CaSiO3 + CO2
         "C-Q-Wo": [
             ("Wollastonite", 1.0),
             ("CO2(g)", 1.0),
             ("Calcite", -1.0),
             ("Quartz", -1.0),
         ],
-        # Dol–Cal–Qtz: CaMg(CO3)2 + SiO2 = CaCO3 + MgSiO3 + CO2
+        # Dolâ€“Calâ€“Qtz: CaMg(CO3)2 + SiO2 = CaCO3 + MgSiO3 + CO2
         "Dol-Cal-Qtz": [
             ("Calcite", 1.0),
             ("Enstatite", 1.0),
@@ -92,14 +92,14 @@ BUFFER_REACTIONS = {
             ("Dolomite", -1.0),
             ("Quartz", -1.0),
         ],
-        # Mag–En–Qtz: MgCO3 + SiO2 = MgSiO3 + CO2
+        # Magâ€“Enâ€“Qtz: MgCO3 + SiO2 = MgSiO3 + CO2
         "Mag-En-Qtz": [
             ("Enstatite", 1.0),
             ("CO2(g)", 1.0),
             ("Magnesite", -1.0),
             ("Quartz", -1.0),
         ],
-        # Gr–CO–CO2: C + O2 = CO2 (uses gas O2; included for completeness)
+        # Grâ€“COâ€“CO2: C + O2 = CO2 (uses gas O2; included for completeness)
         "Gr-CO-CO2": [
             ("CO2(g)", 1.0),
             ("Graphite", -1.0),
@@ -107,20 +107,20 @@ BUFFER_REACTIONS = {
         ],
     },
     "fS2": {
-        # Py–Po: FeS2 = FeS + 1/2 S2 (use pyrrhotite,trot for FeS)
+        # Pyâ€“Po: FeS2 = FeS + 1/2 S2 (use pyrrhotite,trot for FeS)
         "Py-Po": [
             ("Pyrrhotite,trot", 1.0),
             ("S2(g)", 0.5),
             ("Pyrite", -1.0),
         ],
-        # Po–Mt: FeS + O2 = Fe3O4 + S2 (stoichiometry generalized)
+        # Poâ€“Mt: FeS + O2 = Fe3O4 + S2 (stoichiometry generalized)
         "Po-Mt": [
             ("Magnetite", 1.0),
             ("S2(g)", 1.0),
             ("Pyrrhotite,trot", -1.0),
             ("O2(g)", -1.0),
         ],
-        # Py–Mt: FeS2 + O2 = Fe3O4 + S2 (stoichiometry generalized)
+        # Pyâ€“Mt: FeS2 + O2 = Fe3O4 + S2 (stoichiometry generalized)
         "Py-Mt": [
             ("Magnetite", 1.0),
             ("S2(g)", 1.0),
@@ -129,14 +129,14 @@ BUFFER_REACTIONS = {
         ],
     },
     "fH2": {
-        # IW–H2: Fe + H2O = FeO + H2 (FeO -> Ferropericlase)
+        # IWâ€“H2: Fe + H2O = FeO + H2 (FeO -> Ferropericlase)
         "IW-H2": [
             ("Ferropericlase", 1.0),
             ("H2(g)", 1.0),
             ("Iron", -1.0),
             ("H2O(g)", -1.0),
         ],
-        # FMQ–H2: Fe2SiO4 + H2O = Fe3O4 + H2 + SiO2 (generalized)
+        # FMQâ€“H2: Fe2SiO4 + H2O = Fe3O4 + H2 + SiO2 (generalized)
         "FMQ-H2": [
             ("Magnetite", 1.0),
             ("Quartz", 1.0),
@@ -144,7 +144,7 @@ BUFFER_REACTIONS = {
             ("Fayalite", -1.0),
             ("H2O(g)", -1.0),
         ],
-        # C–H2O: C + H2O = CO + H2
+        # Câ€“H2O: C + H2O = CO + H2
         "C-H2O": [
             ("CO(g)", 1.0),
             ("H2(g)", 1.0),
@@ -208,7 +208,7 @@ def _validate_species(db, reaction):
 
 
 def buffer_log10_fugacity_bar(category, buffer_name, T_C, P_bar, db=None):
-    """Return log10(f_gas/bar) for a buffer at T (°C) and P (bar)."""
+    """Return log10(f_gas/bar) for a buffer at T (Â°C) and P (bar)."""
     canon = _canonical_buffer_name(buffer_name, category=category)
     if canon is None:
         raise KeyError(f"Unknown buffer '{buffer_name}' in category '{category}'.")
@@ -262,7 +262,7 @@ def buffer_log10_fugacity_bar(category, buffer_name, T_C, P_bar, db=None):
 
 
 def buffer_fugacity_bar(category, buffer_name, T_C, P_bar, db=None):
-    """Return f_gas in bar for a buffer at T (°C) and P (bar)."""
+    """Return f_gas in bar for a buffer at T (Â°C) and P (bar)."""
     return 10.0 ** buffer_log10_fugacity_bar(category, buffer_name, T_C, P_bar, db=db)
 
 
@@ -272,7 +272,7 @@ def main():
     P_bar = P_kbar * 1000.0
 
     db = SupcrtDatabase("supcrtbl")
-    print(f"T = {T_C:.1f} °C, P = {P_kbar:.2f} kbar")
+    print(f"T = {T_C:.1f} Â°C, P = {P_kbar:.2f} kbar")
 
     for category, buffers in BUFFER_REACTIONS.items():
         print(f"\n{category} buffers:")
@@ -286,3 +286,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -1,0 +1,121 @@
+
+----------------------------------------
+
+Stable phases at:
+                             T(K)     =  1073.15    
+                             P(bar)   =  10000.0    
+
+Phase Compositions (molar  proportions):
+                   wt %      vol %     mol %     mol        O2       H2       C        Si   
+ COH-Fluid+        91.03     93.89     94.48     171.      0.83800  0.32400  0.67600  0.00000
+ q                  8.97      6.11      5.52     10.0      1.00000  0.00000  0.00000  1.00000
+
+Phase speciation (molar proportions):
+
+ COH-Fluid+        CO2: 0.67600, CH4: 0.00000, H2: 0.00000, CO: 0.00000, C2H6: 0.00000, H2O: 0.32400
+
+Structural formulae for 688 format solution models: none stable.
+
+
+Molar Properties and Density:
+                    N(g)          G(J)     S(J/K)     V(J/bar)      Cp(J/K)       Alpha(1/K)  Beta(1/bar)    Cp/Cv    Density(kg/m3)
+ COH-Fluid+         35.59        -444006   181.29       2.0814       63.162      0.41383E-03  0.29474E-04   1.2586       1709.8    
+ q                  60.08        -899894   120.33       2.3185       94.275      0.23683E-03  0.69576E-05   1.2703       2591.5    
+ System           6697.75      -85066524   32262.       379.77       11764.      0.40303E-03  0.28099E-04   1.2504       1763.6    
+ System - Fluid    600.84       -8998943   1203.3       23.185       942.75      0.23683E-03  0.69576E-05   1.2703       2591.5    
+
+Seismic Properties:
+                 Gruneisen_T      Ks(bar)      Mu(bar)    V0(km/s)     Vp(km/s)     Vs(km/s)   Poisson ratio
+ COH-Fluid+        0.58236       42703.       0.0000       1.5804       1.5804       0.0000      0.50000    
+ q                  1.0634      0.18257E+06   60858.       2.6543       3.1900       1.5324      0.35000    
+ System            0.61172       48021.       0.0000       1.6501       1.6501       0.0000      0.50000    
+ System - Fluid     1.0634      0.18257E+06   60858.       2.6543       3.1900       1.5324      0.35000    
+
+Bulk Composition:
+                     Complete Assemblage                              Solid Only
+              mol         g        wt %     mol/kg          mol         g        wt %     mol/kg
+    O2      153.567   4913.990    73.368    22.928       10.000    319.990    53.257    16.643
+    H2       55.508    111.876     1.670     8.288        0.000      0.000     0.000     0.000
+    C       115.813   1391.030    20.769    17.291        0.000      0.000     0.000     0.000
+    Si       10.000    280.850     4.193     1.493       10.000    280.850    46.743    16.643
+
+Other Bulk Properties:
+
+ Enthalpy (J/kg) = -.753162E+07
+ Specific Enthalpy (J/m3) = -.132829E+11
+ Entropy (J/K/kg) =  4816.80    
+ Specific Entropy (J/K/m3) = 0.849497E+07
+ Heat Capacity (J/K/kg) =  1756.38    
+ Specific Heat Capacity (J/K/m3) = 0.309757E+07
+
+ Solid Enthalpy (J/kg) = -.128281E+08
+ Solid Secific Enthalpy (J/m3) = -.332436E+11
+ Solid Entropy (J/K/kg) =  2002.72    
+ Solid Specific Entropy (J/K/m3) = 0.519000E+07
+ Solid Heat Capacity (J/K/kg) =  2305.59    
+ Solid Specific Heat Capacity (J/K/m3) = 0.406618E+07
+
+N.B.: melt, when stable, is identified as a fluid phase for purposes of computing aggregate
+properties. To include melt properties in the solid aggregate set melt_is_fluid to F.
+
+Chemical Potentials (J/mol):
+
+      O2            H2            C             Si   
+    -74715.8      -282409.      -428837.      -825179.    
+
+Variance (c-p+2) =  4
+
+
+Simple back-calculated solute speciation:
+
+pH = 13.041+/-0.000; Delta_pH = -2.949; ionic_strength = 0.9108E-13; gamma/q^2 = 1.000
+dielectric constant = 1.339; solvent molar mass, g/mol = 35.5876; solute molality = 0.5512E+11
+total molar mass, g/mol-species = 43.9346; ref_chg, 1/mol-species = 0.0000
+
+Solute endmember properties:
+
+          charge   molality     mol_fraction      g,J/mol*     g0,J/mol**
+CO2,aq       0   0.547681E+11   0.993703          -503552       -724176
+O2,aq        0   0.346680E+09   0.629009E-02       -74715       -250169
+H2CO3,aq     0    371968.       0.674891E-05      -823319       -937766
+Si2O4,aq     0   0.105582E-01   0.191566E-12     -1799788      -1759183
+CO,aq        0   0.913955E-04   0.165826E-14      -466194       -383211
+SiO2,aq      0   0.697783E-05   0.126604E-15      -899894       -793958
+H2,aq        0   0.833102E-07   0.151157E-17      -282409       -136964
+FORMIC-A     0   0.441366E-08   0.800806E-19      -785961       -614303
+H+           1   0.910783E-13   0.165251E-23      -267919             0
+HCO3-       -1   0.910758E-13   0.165246E-23      -555399       -287479
+Si3O6,aq     0   0.666975E-15   0.121015E-25     -2699683      -2387893
+HSiO3-      -1   0.251922E-18   0.457083E-29      -951741       -569629
+OH-         -1   0.115235E-18   0.209080E-29       -51847        337243
+HO2-        -1   0.243759E-22   0.442272E-33       -89205        375381
+FORMATE,    -1   0.159374E-22   0.289165E-33      -518042        -49663
+METHANOL     0   0.762937E-32   0.138426E-42     -1031013       -371156
+METHANE,     0   0.545730E-34   0.990163E-45      -993655       -289719
+GLYCOLIC     0   0.337120E-36   0.611665E-47     -1534566       -785241
+ACETIC-A     0   0.118383E-42   0.214793E-53     -1497208       -615275
+HEXANE,A     0   0.404690-198   0.734262-209     -4549886       -473890
+
+Normalized solvent endmember properties:
+
+         molality   mol_fraction  vol_fraction v,cm3/mol*  g,J/mol*   g0,J/mol***
+CO2       18.9954     0.67600        0.95376     207.047    -503552     -500003
+CH4        0.0000     0.00000        0.00000      38.699    -993655     -112799
+H2         0.0000     0.00000        0.00000      21.292    -282409      -25081
+CO         0.0000     0.00000        0.00000      36.532    -466194     -199794
+C2H6       0.0000     0.00000        0.00000      54.285   -1704901     -126277
+H2O        9.1043     0.32400        0.04624      20.945    -319767     -309368
+
+*partial molar, **molal ref. state, ***molar ref. state.
+
+
+Simple back-calculated fluid bulk composition:
+
+             mol %           wt %
+    O2      50.1577        72.8336    
+    H2     0.338517E-03   0.309614E-04
+    C       49.8420        27.1664    
+    Si     0.192233E-10   0.244997E-10
+
+----------------------------------------
+

@@ -108,39 +108,38 @@ auto effectiveIonicRadius(const Species& species) -> real
 }
 
 /// Calculate Debye-Hückel parameter A(T,P) dynamically from DEW water properties
-/// Formula: A(T,P) = (1/3) * sqrt(2*π*NA*ρw/1000) * e²/(4π*ε₀*ε*kB*T) * 1/ln10
-/// Result in units suitable for log₁₀ activity coefficients
+/// Formula: A = sqrt(2π NA ρw) × (e²/(4π ε₀ ε kB T))^(3/2) / ln10
+/// Gives A ≈ 0.509 (mol/kg)^(-1/2) at 25°C, 1 bar (verified against literature)
 auto debyeHuckelParamA(real T, real P, real rho_w, real epsilon) -> real
 {
-    // Avoid division by zero
     if(rho_w <= 0.0 || epsilon <= 0.0 || T <= 0.0)
         return 0.0;
 
-    // Calculate A using standard electrochemistry formula
-    // A = (1/3) * sqrt(2*π*NA*ρw/1000) * (e² / (4π*ε₀*ε*kB*T)) * (1/ln10)
-
-    const auto sqrt_term = sqrt(2.0 * M_PI * NA * rho_w / 1000.0);
+    // coulomb_term = e² / (4π ε₀ ε kB T)  [m]
     const auto denom = 4.0 * M_PI * eps0 * epsilon * kB * T;
     const auto coulomb_term = (e * e) / denom;
 
-    const auto A = (1.0/3.0) * sqrt_term * coulomb_term / ln10;
+    // A = sqrt(2π NA ρw) × coulomb_term^(3/2) / ln10
+    // rho_w in kg/m³ → consistent SI units throughout
+    const auto A = sqrt(2.0 * M_PI * NA * rho_w) * pow(coulomb_term, 1.5) / ln10;
 
     return A;
 }
 
 /// Calculate Debye-Hückel parameter B(T,P) dynamically from DEW water properties
-/// Formula: B(T,P) = sqrt(8*π*NA*ρw*e² / (1000*ε₀*ε*kB*T))
+/// Formula: B = sqrt(8π NA ρw × e²/(4π ε₀ ε kB T)) = sqrt(2 NA ρw e²/(ε₀ ε kB T))
+/// Gives B ≈ 3.28×10⁹ m⁻¹ (mol/kg)^(-1/2) at 25°C, 1 bar (verified against literature)
 auto debyeHuckelParamB(real T, real P, real rho_w, real epsilon) -> real
 {
-    // Avoid division by zero
     if(rho_w <= 0.0 || epsilon <= 0.0 || T <= 0.0)
         return 0.0;
 
-    // B parameter in units of Å⁻¹
-    const auto numerator = 8.0 * M_PI * NA * rho_w * e * e / 1000.0;
-    const auto denom = eps0 * epsilon * kB * T;
+    // coulomb_term = e² / (4π ε₀ ε kB T)  [m]  (shared factor with A)
+    const auto denom = 4.0 * M_PI * eps0 * epsilon * kB * T;
+    const auto coulomb_term = (e * e) / denom;
 
-    const auto B = sqrt(numerator / denom);
+    // B = sqrt(8π NA ρw × coulomb_term)  [m⁻¹ (mol/kg)^(-1/2)]
+    const auto B = sqrt(8.0 * M_PI * NA * rho_w * coulomb_term);
 
     return B;
 }
@@ -211,8 +210,11 @@ auto activityModelDEW(const SpeciesList& species) -> ActivityModel
         }
 
         // ========== STEP 2: Retrieve water properties from DEW ==========
-        // Get water state using DEW water models at (T, P)
-        WaterStateOptions opts;  // Use default DEW options
+        // Get water state using ZD05 EOS + PowerFunction dielectric —
+        // consistent with StandardThermoModelDEW defaults.
+        WaterStateOptions opts;
+        opts.thermo.eosModel    = WaterEosModel::ZhangDuan2005;
+        opts.dielectric.primary = WaterDielectricPrimaryModel::PowerFunction;
         const auto water_state = waterState(T, P, opts);
 
         const auto rho_w = water_state.thermo.D;           // Water density (kg/m³)

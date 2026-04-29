@@ -24,6 +24,8 @@
 #include <Reaktoro/Common/Types.hpp>
 #include <Reaktoro/Core/Database.hpp>
 #include <Reaktoro/Core/Phase.hpp>
+#include <Reaktoro/Core/PhaseList.hpp>
+#include <Reaktoro/Models/ActivityModels/ActivityModelGlobalizedBinaryRedlichKister.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelIdealAqueous.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelIdealGas.hpp>
 #include <Reaktoro/Models/ActivityModels/ActivityModelIdealSolution.hpp>
@@ -56,6 +58,14 @@ struct Exclude
 
 /// The function used to specify species that should be filtered out when contructing a phase.
 auto exclude(StringList const& tags) -> Exclude;
+
+/// Construct duplicated solid phases for a branch-aware binary Redlich-Kister solid solution.
+auto GlobalizedBinarySolidPhases(
+    Database const& db,
+    String name,
+    StringList const& species,
+    GlobalizedBinaryRedlichKisterOptions options,
+    String suffixSeparator = "#") -> PhaseList;
 
 /// The base type for all other classes defining more specific phases.
 /// @ingroup Core
@@ -266,13 +276,13 @@ private:
 template <typename T, typename... Ts>
 constexpr auto _areGeneralPhasesImpl()
 {
-    constexpr auto aux = isBaseOf<GeneralPhase, T> || isBaseOf<GeneralPhasesGenerator, T>;
+    constexpr auto aux = isBaseOf<GeneralPhase, T> || isBaseOf<GeneralPhasesGenerator, T> || isConvertible<T, PhaseList>;
     if constexpr (sizeof...(Ts) > 0)
         return aux && _areGeneralPhasesImpl<Ts...>();
     else return aux;
 }
 
-/// Used to determine if `T` and all types in `Ts` are either GeneralPhase or GeneralPhaseGenerator.
+/// Used to determine if `T` and all types in `Ts` are either GeneralPhase, GeneralPhaseGenerator, or PhaseList.
 template<typename T, typename... Ts>
 constexpr auto areGeneralPhases = _areGeneralPhasesImpl<T, Ts...>();
 
@@ -296,14 +306,14 @@ public:
         addAux(gphases...);
     }
 
-    // TODO: Implement `auto add(Phase const& phase) -> void` as well, in case the user provides a
-    // Phase object. This will need a new data member `phases` of type `Vec<Phase>`.
-
     /// Add a GeneralPhase object into the Phases container.
     auto add(GeneralPhase const& phase) -> void;
 
     /// Add a GeneralPhasesGenerator object into the Phases container.
     auto add(GeneralPhasesGenerator const& generator) -> void;
+
+    /// Add an explicit list of Phase objects into the Phases container.
+    auto add(PhaseList const& phases) -> void;
 
     /// Return the database object used to construct the species and elements in the phases.
     auto database() const -> Database const&;
@@ -313,6 +323,9 @@ public:
 
     /// Return the GeneralPhaseGenerator objects collected so far with each call to Phases::add method.
     auto generalPhasesGenerators() const -> Vec<GeneralPhasesGenerator> const&;
+
+    /// Return the explicit Phase objects collected so far with each call to Phases::add method.
+    auto explicitPhases() const -> Vec<Phase> const&;
 
     /// Convert this Phases object into a vector of Phase objects.
     auto convert() const -> Vec<Phase>;
@@ -329,6 +342,9 @@ private:
 
     /// The GeneralPhaseGenerator objects collected so far with each call to Phases::add method.
     Vec<GeneralPhasesGenerator> generators;
+
+    /// The explicit Phase objects collected so far with each call to Phases::add method.
+    Vec<Phase> phases;
 
     /// Add one or more GeneralPhase or GeneralPhasesGenerator objects into the Phases container.
     template<typename Arg, typename... Args>

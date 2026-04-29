@@ -1,4 +1,4 @@
-"""
+﻿"""
 Quartz Solubility Analysis using Reaktoro with ThermoFun (MINES16 + AQ17)
 Compares calculated solubilities with experimental data
 Exact same calculation as dew24 script, but databases:
@@ -19,12 +19,12 @@ except ModuleNotFoundError:
     # Add local build path for reaktoro4py if available
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-    PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+    PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
     if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
         sys.path.insert(0, PYD_DIR)
     from reaktoro4py import *  # noqa: F401,F403
 
-    print("Using local reaktoro4py extension from build-msvc.")
+    print("Using local reaktoro4py extension from build.")
 
 # Silence repeated non-convergence warnings
 try:
@@ -108,7 +108,7 @@ def build_system_thermofun(aq_db, minerals_db):
     # Use HKF activity model appropriate for ThermoFun datasets
     try:
         aqueous.setActivityModel(ActivityModelHKF())
-        print("✓ ThermoFun configured: phase activity=ActivityModelHKF")
+        print("âœ“ ThermoFun configured: phase activity=ActivityModelHKF")
     except Exception as e:
         print(f"Warning: Could not configure HKF activity model: {e}")
         aqueous.setActivityModel(ActivityModelDebyeHuckel())
@@ -196,7 +196,7 @@ def main():
         P_bar = P_kbar * 1000.0
         print(f"    P = {P_kbar:.3f} kbar ({P_bar:.0f} bar)...")
 
-        # Determine T range from experiments at this pressure (±5%)
+        # Determine T range from experiments at this pressure (Â±5%)
         P_tol = 0.05 * P_kbar
         exp_at_P = non_psat_data[
             (non_psat_data["P_kbar"] >= P_kbar - P_tol)
@@ -247,7 +247,7 @@ def main():
             first_T = T_range[valid_idx[0]]
             last_T = T_range[valid_idx[-1]]
             print(
-                f"       Calculated {valid_points}/{N_POINTS} points (T: {first_T:.0f}-{last_T:.0f}°C)"
+                f"       Calculated {valid_points}/{N_POINTS} points (T: {first_T:.0f}-{last_T:.0f}Â°C)"
             )
 
     # Calculate Psat solubility curve
@@ -349,8 +349,8 @@ def main():
             label="Psat curve",
         )
 
-    ax1.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
-    ax1.set_ylabel("Quartz Solubility (mol/kg-H₂O)", fontsize=14, fontweight="bold")
+    ax1.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
+    ax1.set_ylabel("Quartz Solubility (mol/kg-Hâ‚‚O)", fontsize=14, fontweight="bold")
     ax1.set_title(
         "Quartz Solubility: Low Pressure (<1 kbar)", fontsize=16, fontweight="bold"
     )
@@ -385,8 +385,8 @@ def main():
                 linestyle="-",
             )
 
-    ax2.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
-    ax2.set_ylabel("Quartz Solubility (mol/kg-H₂O)", fontsize=14, fontweight="bold")
+    ax2.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
+    ax2.set_ylabel("Quartz Solubility (mol/kg-Hâ‚‚O)", fontsize=14, fontweight="bold")
     ax2.set_title(
         "Quartz Solubility: High Pressure (>=1 kbar)", fontsize=16, fontweight="bold"
     )
@@ -402,8 +402,8 @@ def main():
         sub = residuals_df[residuals_df["P_kbar"] == P_kbar]
         ax3.scatter(sub["T_C"], sub["residual"], label=f"{P_kbar:.2f} kbar", s=45)
     ax3.axhline(0, color="black", linewidth=1)
-    ax3.set_xlabel("Temperature (°C)", fontsize=14, fontweight="bold")
-    ax3.set_ylabel("Residual (calc - exp) mol/kg-H₂O", fontsize=14, fontweight="bold")
+    ax3.set_xlabel("Temperature (Â°C)", fontsize=14, fontweight="bold")
+    ax3.set_ylabel("Residual (calc - exp) mol/kg-Hâ‚‚O", fontsize=14, fontweight="bold")
     ax3.set_title(
         "Quartz Solubility Residuals (MINES16 + AQ17)", fontsize=16, fontweight="bold"
     )
@@ -423,3 +423,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

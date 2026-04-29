@@ -26,6 +26,8 @@ Below are some features and modeling capabilities of Reaktoro:
 
 For more information on how to install and use Reaktoro, you should go to [Reaktoro's website](https://www.reaktoro.org).
 
+For repository-specific build and dependency requirements for reproducing the local development setup on another computer, see [BUILD_REQUIREMENTS.md](BUILD_REQUIREMENTS.md).
+
 > This README file is intentionally kept succinct in preference to the website's content.
 
 ## License
