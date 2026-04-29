@@ -1,11 +1,11 @@
-"""Quick test of build_system function"""
+﻿"""Quick test of build_system function"""
 
 import sys
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
     sys.path.insert(0, PYD_DIR)
 
@@ -27,3 +27,4 @@ except Exception as e:
     import traceback
 
     traceback.print_exc()
+

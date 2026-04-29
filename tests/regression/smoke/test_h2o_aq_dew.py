@@ -1,4 +1,4 @@
-"""
+﻿"""
 Quick test to verify H2O_aq is now in DEW and works with Duan EOS
 """
 
@@ -9,7 +9,7 @@ import autodiff
 # Setup paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
     sys.path.insert(0, PYD_DIR)
 
@@ -31,8 +31,8 @@ supcrt_db = SupcrtDatabase("supcrtbl")
 
 # Check if WATER,AQ (H2O) is in DEW
 dew_species = [s.name() for s in dew_db.species()]
-print(f"\n✓ DEW species count: {len(dew_species)}")
-print(f"✓ WATER,AQ in DEW: {'WATER,AQ' in dew_species}")
+print(f"\nâœ“ DEW species count: {len(dew_species)}")
+print(f"âœ“ WATER,AQ in DEW: {'WATER,AQ' in dew_species}")
 
 if "WATER,AQ" in dew_species:
     h2o_species = dew_db.species("WATER,AQ")
@@ -50,17 +50,17 @@ db_combined.addSpecies(quartz)
 aqueous = AqueousPhase("WATER,AQ H+ OH- SiO2_aq")
 try:
     aqueous.setActivityModel(ActivityModelDEW())
-    print("✓ ActivityModelDEW() applied (uses Duan & Zang 2005 water EOS)")
+    print("âœ“ ActivityModelDEW() applied (uses Duan & Zang 2005 water EOS)")
 except Exception as e:
     aqueous.setActivityModel(ActivityModelHKF())
-    print(f"⚠ ActivityModelDEW() not available, using HKF fallback: {e}")
+    print(f"âš  ActivityModelDEW() not available, using HKF fallback: {e}")
 
 mineral = MineralPhase("Quartz")
 system = ChemicalSystem(db_combined, aqueous, mineral)
-print(f"✓ ChemicalSystem created with {len(system.species())} species")
+print(f"âœ“ ChemicalSystem created with {len(system.species())} species")
 
 # Test equilibration
-print(f"\n--- Testing equilibration at 300°C, 500 bar ---")
+print(f"\n--- Testing equilibration at 300Â°C, 500 bar ---")
 try:
     solver = EquilibriumSolver(system)
     state = ChemicalState(system)
@@ -72,16 +72,16 @@ try:
     result = solver.solve(state)
 
     if result.succeeded():
-        print("✓ Equilibrium converged")
+        print("âœ“ Equilibrium converged")
         aq = AqueousProps(state)
         molality = float(aq.speciesMolality("SiO2_aq"))
         print(f"  - SiO2_aq molality: {molality:.4e} mol/kg")
-        print("✓ Water properties computed using Duan EOS (via ActivityModelDEW)")
+        print("âœ“ Water properties computed using Duan EOS (via ActivityModelDEW)")
     else:
-        print(f"✗ Equilibrium failed")
+        print(f"âœ— Equilibrium failed")
 
 except Exception as e:
-    print(f"✗ Error during equilibration: {e}")
+    print(f"âœ— Error during equilibration: {e}")
     import traceback
 
     traceback.print_exc()
@@ -90,3 +90,4 @@ print("\n" + "=" * 70)
 print("RESULT: H2O_aq successfully integrated into DEW database")
 print("        System now uses Duan & Zang 2005 water EOS without SUPCRT dependency")
 print("=" * 70)
+

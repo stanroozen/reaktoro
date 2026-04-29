@@ -1,4 +1,4 @@
-"""
+﻿"""
 Test script demonstrating configurable DEW water models
 Tests different water model combinations to show flexibility
 """
@@ -9,7 +9,7 @@ import os
 # Setup paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
     sys.path.insert(0, PYD_DIR)
 
@@ -97,3 +97,4 @@ print(f"[OK] DEW water model configuration is fully customizable")
 print(f"[OK] Default: Duan & Zang 2005 EOS + Power Function + Volume Integration")
 print(f"[OK] Users can specify alternative models for sensitivity studies")
 print(f"=" * 80)
+

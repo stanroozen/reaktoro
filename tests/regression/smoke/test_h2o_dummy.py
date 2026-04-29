@@ -1,4 +1,4 @@
-"""
+﻿"""
 Test if H2O(aq) thermodynamics from SUPCRT are actually used by Reaktoro
 or if it's just a dummy linker to the IAPWS-95 EOS.
 """
@@ -10,7 +10,7 @@ import numpy as np
 # Setup paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-PYD_DIR = os.path.join(ROOT_DIR, "build-msvc", "Reaktoro", "Release")
+PYD_DIR = os.path.join(ROOT_DIR, "build", "Reaktoro", "Release")
 if os.path.isdir(PYD_DIR) and PYD_DIR not in sys.path:
     sys.path.insert(0, PYD_DIR)
 
@@ -65,14 +65,14 @@ try:
 
     mineral2 = MineralPhase("Quartz")
     system2 = ChemicalSystem(db2, aqueous2, mineral2)
-    print("✓ System 2 created without explicit H2O(aq) entry")
+    print("âœ“ System 2 created without explicit H2O(aq) entry")
 except Exception as e:
-    print(f"✗ System 2 error: {e}")
+    print(f"âœ— System 2 error: {e}")
     system2 = None
 
 # Test equilibration
 print("\n" + "=" * 70)
-print("Testing equilibration at 300°C, 10 MPa")
+print("Testing equilibration at 300Â°C, 10 MPa")
 print("=" * 70)
 
 T_C = 300
@@ -93,11 +93,11 @@ try:
     result1 = solver1.solve(state1)
 
     if result1.solved():
-        print("✓ Equilibrium converged")
+        print("âœ“ Equilibrium converged")
         g0_h2o = state1.speciesStandardGibbsEnergy("H2O(aq)")[0]
         T_K = state1.temperature()
         P_Pa = state1.pressure()
-        print(f"  Temperature: {T_K:.2f} K ({T_K - 273.15:.1f}°C)")
+        print(f"  Temperature: {T_K:.2f} K ({T_K - 273.15:.1f}Â°C)")
         print(f"  Pressure: {P_Pa / 1e5:.2f} bar ({P_Pa / 1e8:.0f} MPa)")
         print(f"  H2O(aq) G0 = {g0_h2o:.2f} J/mol")
 
@@ -108,11 +108,11 @@ try:
                 species_amounts.append((species.name(), float(n)))
         print(f"  Species amounts: {species_amounts[:5]}")
     else:
-        print("✗ Equilibrium failed to converge")
+        print("âœ— Equilibrium failed to converge")
         print(f"  Message: {result1.message()}")
 
 except Exception as e:
-    print(f"✗ System 1 equilibration error: {e}")
+    print(f"âœ— System 1 equilibration error: {e}")
     import traceback
 
     traceback.print_exc()
@@ -132,10 +132,10 @@ if system2:
         result2 = solver2.solve(state2)
 
         if result2.solved():
-            print("✓ Equilibrium converged")
+            print("âœ“ Equilibrium converged")
             T_K = state2.temperature()
             P_Pa = state2.pressure()
-            print(f"  Temperature: {T_K:.2f} K ({T_K - 273.15:.1f}°C)")
+            print(f"  Temperature: {T_K:.2f} K ({T_K - 273.15:.1f}Â°C)")
             print(f"  Pressure: {P_Pa / 1e5:.2f} bar ({P_Pa / 1e8:.0f} MPa)")
 
             species_amounts = []
@@ -145,19 +145,20 @@ if system2:
                     species_amounts.append((species.name(), float(n)))
             print(f"  Species amounts: {species_amounts[:5]}")
         else:
-            print("✗ Equilibrium failed to converge")
+            print("âœ— Equilibrium failed to converge")
             print(f"  Message: {result2.message()}")
 
     except Exception as e:
-        print(f"✗ System 2 equilibration error: {e}")
+        print(f"âœ— System 2 equilibration error: {e}")
 
 print("\n" + "=" * 70)
 print("CONCLUSION")
 print("=" * 70)
 print("""
-If System 1 and System 2 give similar results → H2O(aq) is just a dummy linker
-If System 1 works but System 2 fails → H2O(aq) thermodynamics are being used
+If System 1 and System 2 give similar results â†’ H2O(aq) is just a dummy linker
+If System 1 works but System 2 fails â†’ H2O(aq) thermodynamics are being used
 
 The key question: Do we NEED H2O(aq) in the database, or is it just a
 placeholder that Reaktoro replaces with IAPWS-95 automatically?
 """)
+
