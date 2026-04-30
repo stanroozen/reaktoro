@@ -388,6 +388,17 @@ def main():
     raise SystemExit(0 if ok else 1)
 
 
+def test_quartz_h2o_co2_parity():
+    """Pytest entry point: quartz H2O-CO2 full-minimization vs hydrated-curve parity."""
+    ok, summary = run_parity(median_gate=0.20, p95_gate=0.45)
+    failing = [
+        f"P={p:.1f} kbar: median={d.get('median_abs_log10', float('nan')):.4f}, "
+        f"p95={d.get('p95_abs_log10', float('nan')):.4f}"
+        for p, d in sorted(summary.items())
+        if not d.get("ok", False)
+    ]
+    assert ok, "Quartz H2O-CO2 parity failed:\n" + "\n".join(failing)
+
+
 if __name__ == "__main__":
     main()
-

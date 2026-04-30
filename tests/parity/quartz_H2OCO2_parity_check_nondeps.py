@@ -291,12 +291,12 @@ def compute_metrics(x_ref, y_ref, x_cmp, y_cmp):
     }
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--median-gate", type=float, default=0.20)
-    parser.add_argument("--p95-gate", type=float, default=0.45)
-    args = parser.parse_args()
+def run_parity(median_gate: float = 0.20, p95_gate: float = 0.45):
+    """Run the quartz H2O-CO2 parity check.
 
+    Returns ``(ok, messages)`` where *ok* is True if all pressure points pass and
+    *messages* is a list of per-pressure summary strings suitable for reporting.
+    """
     dew_db = DEWDatabase("dew2024-aqueous")
     supcrt_db = SupcrtDatabase("supcrtbl")
 
@@ -305,8 +305,7 @@ def main():
     coupled_sys = build_coupled_system(dew_db, supcrt_db)
 
     ok_all = True
-    print("Quartz H2O-CO2 parity check (no extra Python deps)")
-    print(f"Gates: median <= {args.median_gate:.3f}, p95 <= {args.p95_gate:.3f}")
+    messages = []
 
     for p_kbar in P_KBAR_LIST:
         p_bar = p_kbar * 1000.0
@@ -320,16 +319,15 @@ def main():
         metrics = compute_metrics(x_ref, y_ref, x_cmp, y_cmp)
         if metrics is None:
             ok_all = False
-            print(f"P={p_kbar:.1f} kbar: FAILED (insufficient overlap)")
+            messages.append(f"P={p_kbar:.1f} kbar: FAILED (insufficient overlap)")
             continue
 
         ok = (
-            metrics["median_abs_log10"] <= args.median_gate
-            and metrics["p95_abs_log10"] <= args.p95_gate
+            metrics["median_abs_log10"] <= median_gate
+            and metrics["p95_abs_log10"] <= p95_gate
         )
         ok_all = ok_all and ok
-
-        print(
+        messages.append(
             f"P={p_kbar:.1f} kbar: "
             f"median={metrics['median_abs_log10']:.4f}, "
             f"p95={metrics['p95_abs_log10']:.4f}, "
@@ -337,6 +335,27 @@ def main():
             f"n={metrics['n']}, ok={ok}"
         )
 
+    return ok_all, messages
+
+
+def test_quartz_h2o_co2_parity_nondeps():
+    """Pytest entry point: quartz H2O-CO2 full-minimization vs hydrated-curve parity (no extra deps)."""
+    ok, messages = run_parity(median_gate=0.20, p95_gate=0.45)
+    assert ok, "Quartz H2O-CO2 parity failed:\n" + "\n".join(messages)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--median-gate", type=float, default=0.20)
+    parser.add_argument("--p95-gate", type=float, default=0.45)
+    args = parser.parse_args()
+
+    print("Quartz H2O-CO2 parity check (no extra Python deps)")
+    print(f"Gates: median <= {args.median_gate:.3f}, p95 <= {args.p95_gate:.3f}")
+
+    ok_all, messages = run_parity(args.median_gate, args.p95_gate)
+    for msg in messages:
+        print(f"  {msg}")
     raise SystemExit(0 if ok_all else 1)
 
 

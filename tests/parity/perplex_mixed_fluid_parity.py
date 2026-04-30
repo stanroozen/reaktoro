@@ -785,6 +785,63 @@ def main() -> int:
     )
 
 
+def test_perplex_mixed_fluid_parity_vs_baseline(threshold_log10: float = 0.5):
+    """Pytest entry point: compare Reaktoro PerplexDEW against stored Perple_X reference values.
+
+    Does not require meemum.exe.  Uses ``perplex_mixed_fluid_parity_results.csv``
+    (generated with the default Davies DH model) as a static reference baseline.
+    Only the Reaktoro side is computed live; the Perple_X ``perplex_m`` column is
+    read from the stored CSV.
+    """
+    import csv as _csv
+    import pytest
+
+    baseline_csv = SCRIPT_DIR / "perplex_mixed_fluid_parity_results.csv"
+    if not baseline_csv.exists():
+        pytest.skip(f"Baseline CSV not found: {baseline_csv}")
+
+    # Load stored Perple_X reference values: {case_name: {metric: perplex_m}}
+    reference: dict[str, dict[str, float]] = {}
+    with baseline_csv.open(newline="", encoding="utf-8") as fh:
+        for row in _csv.DictReader(fh):
+            if row.get("stable_in_perplex") != "True" or row.get("error"):
+                continue
+            val_str = row.get("perplex_m", "")
+            if not val_str:
+                continue
+            try:
+                reference.setdefault(row["case"], {})[row["metric"]] = float(val_str)
+            except ValueError:
+                pass
+
+    dew_db = DEWDatabase("dew2024-aqueous")
+    supcrt_db = SupcrtDatabase("supcrtbl")
+    systems = {
+        mineral: build_reaktoro_system(mineral, dew_db, supcrt_db)
+        for mineral in {c.mineral for c in CASE_MATRIX}
+    }
+
+    violations: list[str] = []
+    for case in CASE_MATRIX:
+        if case.name not in reference:
+            continue
+        rt_values = solve_reaktoro_case(systems[case.mineral], case)
+        for metric, px_val in reference[case.name].items():
+            rt_val = rt_values.get(metric, 0.0)
+            if px_val > 0 and rt_val > 0:
+                delta = abs(math.log10(rt_val / px_val))
+                if delta > threshold_log10:
+                    violations.append(
+                        f"{case.name}/{metric}: delta_log10={delta:+.3f} "
+                        f"(rkt={rt_val:.4e}, px={px_val:.4e})"
+                    )
+
+    assert not violations, (
+        f"Parity vs Perple_X baseline exceeded {threshold_log10:.2f} log10 threshold:\n"
+        + "\n".join(violations)
+    )
+
+
 if __name__ == "__main__":
     raise SystemExit(main())
 
