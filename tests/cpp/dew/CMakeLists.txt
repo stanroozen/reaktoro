@@ -39,21 +39,21 @@ add_executable(verify_species_params
 # Include directories for the test targets
 # ----------------------------------------------------------------------
 target_include_directories(test_dew_water PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}          # tests/
-  ${CMAKE_CURRENT_SOURCE_DIR}/..       # DEW/
-  ${CMAKE_CURRENT_SOURCE_DIR}/../../.. # repo root -> Reaktoro/...
+  ${CMAKE_CURRENT_SOURCE_DIR}                                   # tests/cpp/dew/
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../../Reaktoro/Extensions/DEW  # DEW source
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../..                          # repo root -> Reaktoro/...
 )
 
 target_include_directories(test_dew_reaction PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}          # tests/
-  ${CMAKE_CURRENT_SOURCE_DIR}/..       # DEW/
-  ${CMAKE_CURRENT_SOURCE_DIR}/../../.. # repo root -> Reaktoro/...
+  ${CMAKE_CURRENT_SOURCE_DIR}                                   # tests/cpp/dew/
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../../Reaktoro/Extensions/DEW  # DEW source
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../..                          # repo root -> Reaktoro/...
 )
 
 target_include_directories(verify_species_params PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}          # tests/
-  ${CMAKE_CURRENT_SOURCE_DIR}/..       # DEW/
-  ${CMAKE_CURRENT_SOURCE_DIR}/../../.. # repo root -> Reaktoro/...
+  ${CMAKE_CURRENT_SOURCE_DIR}                                   # tests/cpp/dew/
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../../Reaktoro/Extensions/DEW  # DEW source
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../..                          # repo root -> Reaktoro/...
 )
 
 # ----------------------------------------------------------------------
@@ -100,8 +100,8 @@ endif()
 
 # Check if main Reaktoro library exists, use it if available
 # Try build-msvc first (Windows), then build (generic)
-set(MAIN_REAKTORO_LIB_MSVC "${CMAKE_CURRENT_SOURCE_DIR}/../../../../build-msvc/Reaktoro/Release/Reaktoro.lib")
-set(MAIN_REAKTORO_LIB "${CMAKE_CURRENT_SOURCE_DIR}/../../../../build/Reaktoro/Release/Reaktoro.lib")
+set(MAIN_REAKTORO_LIB_MSVC "${CMAKE_CURRENT_SOURCE_DIR}/../../../build-msvc/Reaktoro/Release/Reaktoro.lib")
+set(MAIN_REAKTORO_LIB "${CMAKE_CURRENT_SOURCE_DIR}/../../../build/Reaktoro/Release/Reaktoro.lib")
 
 if(EXISTS "${MAIN_REAKTORO_LIB_MSVC}")
   set(REAKTORO_LIB_PATH "${MAIN_REAKTORO_LIB_MSVC}")
@@ -151,8 +151,8 @@ endif()# ----------------------------------------------------------------------
 # Copy required DLLs to the test executable directories after build
 # ----------------------------------------------------------------------
 # Copy Reaktoro.dll from main build (try build-msvc first, then build)
-set(MAIN_REAKTORO_DLL_MSVC "${CMAKE_CURRENT_SOURCE_DIR}/../../../../build-msvc/Reaktoro/Release/Reaktoro.dll")
-set(MAIN_REAKTORO_DLL "${CMAKE_CURRENT_SOURCE_DIR}/../../../../build/Reaktoro/Release/Reaktoro.dll")
+set(MAIN_REAKTORO_DLL_MSVC "${CMAKE_CURRENT_SOURCE_DIR}/../../../build-msvc/Reaktoro/Release/Reaktoro.dll")
+set(MAIN_REAKTORO_DLL "${CMAKE_CURRENT_SOURCE_DIR}/../../../build/Reaktoro/Release/Reaktoro.dll")
 
 if(EXISTS "${MAIN_REAKTORO_DLL_MSVC}")
   set(REAKTORO_DLL_PATH "${MAIN_REAKTORO_DLL_MSVC}")

@@ -72,6 +72,11 @@ using MAGEMinConstrainedTernaryLocalModelMinimizer = Fn<GlobalizedSolidSolutionI
     MAGEMinConstrainedTernaryLocalModel const&,
     Optional<ArrayXr>)>;
 
+/// Function type for attaching family-specific diagnostics payloads to local-model minimization outcomes.
+using MAGEMinConstrainedTernaryLocalModelDiagnostics = Fn<Map<String, Any>(
+    MAGEMinConstrainedTernaryLocalModel const&,
+    GlobalizedSolidSolutionInternalResult const&)>;
+
 /// Thin pilot wrapper for future MAGEMin-backed solid-solution models.
 struct MAGEMinSolidSolutionPilotOptions
 {
@@ -204,6 +209,9 @@ struct MAGEMinImportedConstrainedTernarySolutionOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
     /// Built-in minimizer strategy used when `minimizer` is not supplied.
     String defaultMinimizerStrategy = "legacy";
 
@@ -249,6 +257,9 @@ struct MAGEMinSB11AkimotoiteOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
     /// Quadratic penalty that couples the minimized internal composition to the visible ternary composition.
     real externalCompositionPenalty = 25.0;
 
@@ -271,6 +282,9 @@ struct MAGEMinSB11PerovskiteOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
     /// Quadratic penalty that couples the minimized internal composition to the visible ternary composition.
     real externalCompositionPenalty = 25.0;
 
@@ -292,6 +306,9 @@ struct MAGEMinSB11CalcioferriteOptions
 
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
     /// Quadratic penalty that couples the minimized internal composition to the visible ternary composition.
     real externalCompositionPenalty = 25.0;
@@ -322,6 +339,9 @@ struct MAGEMinSB21NALOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
     /// Quadratic penalty that couples the minimized internal composition to the visible ternary composition.
     real externalCompositionPenalty = 25.0;
 
@@ -343,6 +363,9 @@ struct MAGEMinSB21CalcioferriteOptions
 
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
     /// Quadratic penalty that couples the minimized internal composition to the visible ternary composition.
     real externalCompositionPenalty = 25.0;

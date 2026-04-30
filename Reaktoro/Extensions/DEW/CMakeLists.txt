@@ -178,7 +178,7 @@ endif()
 # ----------------------------------------------------------------------
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # Standalone build of DEW - add separate test executable
-    add_subdirectory(tests)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../tests/cpp/dew ${CMAKE_CURRENT_BINARY_DIR}/tests)
 else()
     # Built as part of Reaktoro - WaterDEW.test.cxx automatically included
     message(STATUS "DEW tests: WaterDEW.test.cxx will be included in main Reaktoro test suite")

@@ -668,6 +668,53 @@ TEST_CASE("Testing MAGEMin imported pilot custom local-model minimizer hook", "[
     CHECK(std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::InternalMinimizerConverged")));
 }
 
+TEST_CASE("Testing MAGEMin imported pilot local-model diagnostics payload hook", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][Regression]")
+{
+    MAGEMinSB21CalcioferriteOptions options;
+    options.localModelMinimizer = [](MAGEMinConstrainedTernaryLocalModel const&, Optional<ArrayXr>)
+    {
+        GlobalizedSolidSolutionInternalResult result;
+        result.x = ArrayXr(3);
+        result.x << 0.30, 0.20, 0.50;
+        result.objective = -789.0;
+        result.iterations = 5;
+        result.converged = true;
+        return result;
+    };
+
+    auto diagnosticsCount = std::make_shared<int>(0);
+    options.localModelDiagnostics = [=](MAGEMinConstrainedTernaryLocalModel const& model, GlobalizedSolidSolutionInternalResult const& result)
+    {
+        *diagnosticsCount += 1;
+
+        Map<String, Any> payload;
+        payload["MAGEMinSolidSolutionPilot::LocalModelDiagnostics::ModelId"] = model.modelId;
+        payload["MAGEMinSolidSolutionPilot::LocalModelDiagnostics::ObjectiveAtResult"] = model.objective(result.x);
+        payload["MAGEMinSolidSolutionPilot::LocalModelDiagnostics::ReportedObjective"] = result.objective;
+        payload["MAGEMinSolidSolutionPilot::LocalModelDiagnostics::GradientCallbackPresent"] = static_cast<bool>(model.gradient);
+        return payload;
+    };
+
+    const auto species = makeSpeciesList({"MgAl2O4", "FeAl2O4", "NaAlSiO4"});
+    ActivityModel fn = ActivityModelGlobalizedSolidSolution(MAGEMinSolidSolutionPilotModelSB21Calcioferrite(options))(species);
+    ActivityProps props = ActivityProps::create(species.size());
+
+    ArrayXr visiblex(3);
+    visiblex << 0.60, 0.25, 0.15;
+
+    const auto T = 1473.15;
+    const auto P = 1.0e9;
+    fn(props, {T, P, visiblex});
+
+    CHECK(*diagnosticsCount >= 1);
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::SelectedMinimizerStrategy")) == "custom-local-model");
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::LocalModelDiagnostics::ModelId")) == "sb21_cf");
+    CHECK(std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::LocalModelDiagnostics::GradientCallbackPresent")));
+    const auto objectiveAtResult = std::any_cast<real>(props.extra.at("MAGEMinSolidSolutionPilot::LocalModelDiagnostics::ObjectiveAtResult"));
+    const auto reportedObjective = std::any_cast<real>(props.extra.at("MAGEMinSolidSolutionPilot::LocalModelDiagnostics::ReportedObjective"));
+    CHECK(objectiveAtResult == Approx(reportedObjective).epsilon(1.0e-8));
+}
+
 TEST_CASE("Testing MAGEMin sb21_cf projected-gradient and legacy minimizers agree", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][Regression]")
 {
     const auto species = makeSpeciesList({"MgAl2O4", "FeAl2O4", "NaAlSiO4"});

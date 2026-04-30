@@ -1269,13 +1269,22 @@ auto solveConstrainedTernaryInternalProblemWithDiagnostics(
     if(options.localModelMinimizer)
     {
         ConstrainedTernaryMinimizationOutcome outcome;
-        outcome.result = options.localModelMinimizer(makeConstrainedTernaryLocalModel(options, T, x), warmstart);
+        const auto model = makeConstrainedTernaryLocalModel(options, T, x);
+        outcome.result = options.localModelMinimizer(model, warmstart);
         outcome.extra["MAGEMinSolidSolutionPilot::SelectedMinimizerStrategy"] = String("custom-local-model");
         outcome.extra["MAGEMinSolidSolutionPilot::ComparedAgainstLegacy"] = false;
         outcome.extra["MAGEMinSolidSolutionPilot::FallbackToLegacy"] = false;
         outcome.extra["MAGEMinSolidSolutionPilot::ProjectedGradientAccepted"] = false;
         outcome.extra["MAGEMinSolidSolutionPilot::ProjectedGradientIterationCount"] = static_cast<std::uint64_t>(0);
         outcome.extra["MAGEMinSolidSolutionPilot::LegacyMinimizerIterationCount"] = static_cast<std::uint64_t>(0);
+
+        if(options.localModelDiagnostics)
+        {
+            const auto payload = options.localModelDiagnostics(model, outcome.result);
+            for(const auto& [key, value] : payload)
+                outcome.extra[key] = value;
+        }
+
         return outcome;
     }
 
@@ -1565,6 +1574,7 @@ auto MAGEMinSolidSolutionPilotModelSB11Akimotoite(
     imported.proposals.dominantEndmemberOrder = {2, 0, 1};
     imported.minimizer = options.minimizer;
     imported.localModelMinimizer = options.localModelMinimizer;
+    imported.localModelDiagnostics = options.localModelDiagnostics;
     imported.defaultMinimizerStrategy = BuiltinProjectedGradientMinimizerStrategy;
     imported.compareProjectedGradientAgainstLegacy = true;
     imported.fallbackToLegacyOnProjectedGradientDisagreement = true;
@@ -1583,6 +1593,7 @@ auto MAGEMinSolidSolutionPilotModelSB11Perovskite(
     imported.proposals.dominantEndmemberOrder = {2, 0, 1};
     imported.minimizer = options.minimizer;
     imported.localModelMinimizer = options.localModelMinimizer;
+    imported.localModelDiagnostics = options.localModelDiagnostics;
     imported.defaultMinimizerStrategy = BuiltinProjectedGradientMinimizerStrategy;
     imported.compareProjectedGradientAgainstLegacy = true;
     imported.fallbackToLegacyOnProjectedGradientDisagreement = true;
@@ -1601,6 +1612,7 @@ auto MAGEMinSolidSolutionPilotModelSB11Calcioferrite(
     imported.proposals.dominantEndmemberOrder = {2, 0, 1};
     imported.minimizer = options.minimizer;
     imported.localModelMinimizer = options.localModelMinimizer;
+    imported.localModelDiagnostics = options.localModelDiagnostics;
     imported.defaultMinimizerStrategy = BuiltinProjectedGradientMinimizerStrategy;
     imported.compareProjectedGradientAgainstLegacy = true;
     imported.fallbackToLegacyOnProjectedGradientDisagreement = true;
@@ -1628,6 +1640,7 @@ auto MAGEMinSolidSolutionPilotModelSB21NAL(
     imported.proposals.dominantEndmemberOrder = {2, 0, 1}; // nnal-first: largest W interactions
     imported.minimizer = options.minimizer;
     imported.localModelMinimizer = options.localModelMinimizer;
+    imported.localModelDiagnostics = options.localModelDiagnostics;
     imported.defaultMinimizerStrategy = BuiltinProjectedGradientMinimizerStrategy;
     imported.compareProjectedGradientAgainstLegacy = true;
     imported.fallbackToLegacyOnProjectedGradientDisagreement = true;
@@ -1646,6 +1659,7 @@ auto MAGEMinSolidSolutionPilotModelSB21Calcioferrite(
     imported.proposals.dominantEndmemberOrder = {2, 0, 1};
     imported.minimizer = options.minimizer;
     imported.localModelMinimizer = options.localModelMinimizer;
+    imported.localModelDiagnostics = options.localModelDiagnostics;
     imported.defaultMinimizerStrategy = BuiltinProjectedGradientMinimizerStrategy;
     imported.externalCompositionPenalty = options.externalCompositionPenalty;
     imported.minimizerTolerance = options.minimizerTolerance;

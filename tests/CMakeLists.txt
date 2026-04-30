@@ -294,3 +294,13 @@ endif()
 # Combine both targets `tests-cpp` and `tests-py` to create target `tests`
 # for backward compatibility with existing build scripts and local development
 add_custom_target(tests DEPENDS tests-py tests-cpp)
+
+#==============================================================================
+#
+# C++ EXTENSION TESTS (tests/cpp/)
+# Perple_X C++ regression tests — standalone, no external library dependency.
+# DEW C++ tests are registered via Reaktoro/Extensions/DEW/CMakeLists.txt
+# which owns the dew_water library.
+#
+#==============================================================================
+add_subdirectory(cpp)

@@ -4,18 +4,7 @@ project(PerpleXRegression CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(test_regression
-    test_regression.cpp
-    PerpleXFluidModel.cpp
-    PerpleXGFSMModel.cpp
-    PerpleXHybridEos.cpp
-    PerpleXMrkMixture.cpp
-    PerpleXMrkParameters.cpp
-    PerpleXMrkPure.cpp
-    PerpleXPureEos.cpp
-    PerpleXElectrolyte.cpp
-    PerpleXHKF.cpp
-)
-
-target_include_directories(test_regression PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_compile_definitions(test_regression PRIVATE PERPLEX_STANDALONE=1)
+# Note: test_regression.cpp, test_hkf.cpp, test_electrolyte.cpp have been moved
+# to tests/cpp/perplex/ for consolidated test organization.
+# To build/run them, use the tests/cpp/perplex/CMakeLists.txt directly or
+# via the main build's add_subdirectory(tests/cpp).
