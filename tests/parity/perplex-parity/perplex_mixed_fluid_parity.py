@@ -52,7 +52,7 @@ if os.name == "nt":
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 BENCHMARK_DIR = SCRIPT_DIR.parent
-ROOT_DIR = BENCHMARK_DIR.parent
+ROOT_DIR = BENCHMARK_DIR.parent.parent
 
 for _build_pkg in [
     ROOT_DIR / "build" / "python" / "package",
@@ -844,4 +844,3 @@ def test_perplex_mixed_fluid_parity_vs_baseline(threshold_log10: float = 0.5):
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

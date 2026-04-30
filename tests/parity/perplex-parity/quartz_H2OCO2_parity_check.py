@@ -42,7 +42,7 @@ import matplotlib.pyplot as plt
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BENCHMARK_DIR = os.path.dirname(SCRIPT_DIR)
-ROOT_DIR = os.path.dirname(BENCHMARK_DIR)
+ROOT_DIR = os.path.dirname(os.path.dirname(BENCHMARK_DIR))
 
 for _build_pkg in [
     os.path.join(ROOT_DIR, "build", "python", "package"),
