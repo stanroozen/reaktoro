@@ -1,0 +1,6 @@
+Identical test (Fe Pourbaix): MAE=0.1706, MSE=0.0814, FAIL
+Pass threshold (MAE): 0.05
+Setup: open system, log10(a(Fe+2))=0, T=25C, P=1 bar, pH [-2,16], Eh [-2,2] V
+Bug fixes applied:
+  FIX 1: specs.lgActivity('Fe+2') — system open to Fe (implicit titrant)
+  FIX 2: predominance via mineral amount > threshold, else max aqueous log10(a)

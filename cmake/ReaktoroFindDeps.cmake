@@ -14,6 +14,7 @@ set(REAKTORO_USE_tabulate        "" CACHE PATH "Specify this option in case a sp
 set(REAKTORO_USE_ThermoFun       "" CACHE PATH "Specify this option in case a specific ThermoFun library should be used.")
 set(REAKTORO_USE_tsl-ordered-map "" CACHE PATH "Specify this option in case a specific tsl-ordered-map library should be used.")
 set(REAKTORO_USE_yaml-cpp        "" CACHE PATH "Specify this option in case a specific yaml-cpp library should be used.")
+set(REAKTORO_USE_NLopt           "" CACHE PATH "Specify this option in case a specific NLopt library should be used.")
 
 function(ReaktoroFindPackage name)
     if(DEFINED REAKTORO_USE_${ARGV0} AND NOT REAKTORO_USE_${ARGV0} STREQUAL "")
@@ -54,6 +55,7 @@ ReaktoroFindPackage(Catch2 2.6.2)
 ReaktoroFindPackage(Python 3.7 COMPONENTS Interpreter Development REQUIRED)
 ReaktoroFindPackage(pybind11 2.10.0 CONFIG REQUIRED)
 ReaktoroFindPackage(reaktplot 0.4.1)
+ReaktoroFindPackage(NLopt)
 
 if(REAKTORO_BUILD_TESTS)
     if(NOT Catch2_FOUND)

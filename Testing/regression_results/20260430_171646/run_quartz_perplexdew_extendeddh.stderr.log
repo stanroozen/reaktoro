@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py", line 52, in <module>
+    from reaktoro import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\python\package\build\lib\reaktoro\__init__.py", line 1, in <module>
+    from reaktoro.reaktoro4py import *
+ModuleNotFoundError: No module named 'reaktoro.reaktoro4py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\run_quartz_PerplexDEW_ExtendedDH.py", line 29, in <module>
+    import quartz_solubility_analysis_v2_dew24 as _qs  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py", line 88, in <module>
+    raise ModuleNotFoundError(
+        "Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH."
+    )
+ModuleNotFoundError: Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH.

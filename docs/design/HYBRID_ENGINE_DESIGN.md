@@ -254,10 +254,15 @@ T_crit ≈ 3657 K >> T = 1473.15 K):
    (y_left ≈ (0.45, 0.45, 0.10) and y_right ≈ (0.05, 0.05, 0.90)), confirming the activity
    landscape that drives the immiscibility.
 
-**Known limitation**: the post-split 2-phase outer equilibration currently converges to equal
-compositions from an equal-split initial state (symmetric saddle point).  True solvus
-enforcement in the outer equilibration requires Step 3 (tangent-plane stability criterion) or
-a branch-seeded initialization strategy.
+**Update (Step 2b complete)**: the post-split saddle-point issue has been resolved.
+`constrainedTernarySplitCandidates` now publishes branch-local minimized compositions as
+`seedx` fields in `SolidSolutionCandidateState`, and
+`rebuildStateForGlobalizedSolidSolutionSystem` uses these seeds via `allocateSeededFamilyAmounts`
+to initialize each branch phase at an asymmetric composition that lies well within its branch
+bounds.  The test `[Exsolution][Separated]` verifies that after the rebuild the left branch
+phase has nacf < 25 % and the right branch phase has nacf > 75 %, confirming successful
+solvus separation.  All three exsolution tests (split trigger, separated compositions, solvus
+activity signatures) pass.
 
 ### Step 3 — Branch stability / tangent-plane check
 
@@ -352,3 +357,48 @@ is in use.
 | `SB_NLopt_opt_function.c` (SB database-specific) | Per-family builder functions: `MAGEMinSolidSolutionPilotModelSB21Calcioferrite`, etc. (Layer 3) |
 | MAGEMin branch persistence / warm-start cache | `GlobalizedSolidSolutionState` + `cachedInternalx` (Layer 2) |
 | MAGEMin database parameter tables | `MAGEMinImportedConstrainedTernarySolutionThermoModel` + family-specific thermo functions (Layer 3) |
+
+---
+
+## SB / Holland-Powell Minimizer Gap Scan (May 2026)
+
+### Verified upstream minimizer entry points
+
+- SB minimizers: `MAGEMin/MAGEMin_C.jl/src/SB_database/SB_NLopt_opt_function.c`
+- TC (Holland-Powell lineage) minimizers: `MAGEMin/MAGEMin_C.jl/src/TC_database/NLopt_opt_function.c`
+- TC solution model wiring: `MAGEMin/MAGEMin_C.jl/src/TC_database/TC_solution_phases.h`, `MAGEMin/MAGEMin_C.jl/src/TC_database/tc_gss_function.c`
+- Shared database dispatch: `MAGEMin/MAGEMin_C.jl/src/all_solution_phases.h`
+
+### Constraint semantics to preserve in Reaktoro
+
+- Reaktoro outer constraints (fixed pH, NaCl/open components, fugacity, enthalpy, pressure) remain Layer 1 responsibilities.
+- MAGEMin-style local minimizers should only solve internal solid-solution coordinates and must not replace Reaktoro's outer constrained equilibrium problem.
+- SB local minimizers primarily enforce simplex and bounds.
+- TC local minimizers add explicit inequality/site-fraction constraints through NLopt mconstraint callbacks.
+
+### Missing integration pieces for full SB + TC local minimizer parity
+
+1. Native NLopt dependency is not currently wired into Reaktoro build targets.
+2. No direct adapter from TC's flattened Jacobian callback format (`m*n`) to Reaktoro's dense `MatrixXr` local-model Jacobian contract.
+3. No MAGEMin-to-Reaktoro diagnostics bridge for local-solver status/timing payloads beyond generic custom payload callbacks.
+4. No formalized family-wide warm-start policy equivalent to MAGEMin's internal reuse patterns across all imported pilots.
+
+### Prototype delivered in this session
+
+- Added an optional NLopt adapter seam in imported/family options via:
+  - `nloptLocalModelMinimizer`
+  - `preferNLoptLocalModelMinimizer`
+- Added TC flattened mconstraint bridge types and adapter:
+  - `MAGEMinTCMConstraintCallback`
+  - `MAGEMinTCMConstraintBridge`
+  - `MAGEMinTCMConstraintBridgeLocalModelAdapter(...)`
+- Dispatch precedence now supports:
+  1. preferred NLopt local-model adapter
+  2. generic custom local-model minimizer
+  3. non-preferred NLopt local-model adapter
+  4. legacy/custom fallback paths
+- Added explicit strategy telemetry tag: `MAGEMinSolidSolutionPilot::SelectedMinimizerStrategy = custom-local-model-nlopt`.
+- Wired first family-level prototype integration on `MAGEMinSolidSolutionPilotModelSB21CPX` through
+  `MAGEMinSB21CPXOptions::tcMConstraintBridge` and validated with focused regression coverage.
+
+This is intentionally a bridge seam, not a hard dependency: users can plug MAGEMin NLopt-backed local solvers while keeping Reaktoro's outer pH/NaCl/open-system constraints intact.

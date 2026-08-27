@@ -1,0 +1,32 @@
+================================================================================
+DEW CONFIGURABLE WATER MODELS TEST
+================================================================================
+
+[OK] Databases loaded
+  - DEW species: 230
+[WARN] WATER,AQ NOT found in DEW database (rebuild may be needed)
+
+--- Test 1: Default Configuration ---
+  EOS: ZhangDuan2005
+  Dielectric: PowerFunction
+  Gibbs Integration: DewIntegral
+[OK] Default configuration created successfully
+
+--- Test 2: Alternative Configuration ---
+  EOS: ZhangDuan2009
+  Dielectric: JohnsonNorton1991
+  Gibbs Integration: DelaneyHelgeson1978
+[OK] Alternative configuration created successfully
+
+--- Available Water Model Options ---
+  EOS Models: WagnerPruss, HGK, ZhangDuan2005 (default), ZhangDuan2009
+  Dielectric Models: PowerFunction (default), JohnsonNorton1991
+  Gibbs Integration: DewIntegral (default), DelaneyHelgeson1978
+  Born Models: Shock92Dew (default), Shock92 (neutral species)
+
+================================================================================
+SUMMARY:
+[OK] DEW water model configuration is fully customizable
+[OK] Default: Duan & Zang 2005 EOS + Power Function + Volume Integration
+[OK] Users can specify alternative models for sensitivity studies
+================================================================================

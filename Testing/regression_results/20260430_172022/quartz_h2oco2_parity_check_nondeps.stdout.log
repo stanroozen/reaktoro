@@ -1,0 +1,2 @@
+Quartz H2O-CO2 parity check (no extra Python deps)
+Gates: median <= 0.200, p95 <= 0.450

@@ -1,0 +1,8 @@
+[1;33m***WARNING***
+Species with same aggregate state should have unique names in Database, but species `H2O(aq)` with aggregate state `Aqueous` violates this rule. The unique name H2O(aq)! has been assigned instead.
+[0mTraceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_dummy.py", line 49, in <module>
+    system1 = ChemicalSystem(db1, aqueous1, mineral1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H+.
+[0m

@@ -1,0 +1,106 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.12, pytest-9.0.1, pluggy-1.6.0
+rootdir: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro
+plugins: datadir-1.8.0, regressions-2.8.3, timeout-2.4.0, xdist-3.8.0
+collected 30 items
+
+Testing\regression\smoke\test_build_system.py F                          [  3%]
+Testing\regression\smoke\test_dew_ph_constraint.py FFFFFF                [ 23%]
+Testing\regression\smoke\test_dew_sensitivity.py FFFF                    [ 36%]
+Testing\regression\smoke\test_dew_water_models.py ...                    [ 46%]
+Testing\regression\smoke\test_gfsm_handoff.py sssss                      [ 63%]
+Testing\regression\smoke\test_h2o_aq_dew.py F                            [ 66%]
+Testing\regression\smoke\test_h2o_dummy.py F                             [ 70%]
+Testing\regression\smoke\test_kinetics_dew.py FFFF                       [ 83%]
+Testing\regression\smoke\test_perplex_conditions_nosilence.py F          [ 86%]
+Testing\regression\smoke\test_transport_dew.py FFFF                      [100%]
+
+================================== FAILURES ===================================
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+---------------------------- Captured stdout call -----------------------------
+Using local reaktoro4py extension from C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\temp_build\build-dew\Reaktoro\Release.
+    WARNING: Missing aqueous species in DEW database: H2O(aq), H+(aq), OH-(aq), SiO2(aq), H2(aq), O2(aq), HO2-(aq), HSiO3-(aq), Si2O4(aq), Si3O6(aq)
+Γ£ô DEW configured: EOS=ZhangDuan2005; phase activity=ActivityModelDEW
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py:516: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   AttributeError: module 'reaktoro4py' has no attribute 'ActivityModelParamsDEW'. Did you mean: 'ActivityModelPerplexDEW'?
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py:58: AttributeError: module 'reaktoro4py' has no attribute 'ActivityModelParamsDEW'. Did you mean: 'ActivityModelPerplexDEW'?
+E   AttributeError: 'reaktoro4py.ActivityModelParamsPerplexDEW' object has no attribute 'dhModel'
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py:64: AttributeError: 'reaktoro4py.ActivityModelParamsPerplexDEW' object has no attribute 'dhModel'
+E   AttributeError: module 'reaktoro4py' has no attribute 'ActivityModelParamsDEW'. Did you mean: 'ActivityModelPerplexDEW'?
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py:58: AttributeError: module 'reaktoro4py' has no attribute 'ActivityModelParamsDEW'. Did you mean: 'ActivityModelPerplexDEW'?
+E   AttributeError: 'reaktoro4py.ActivityModelParamsPerplexDEW' object has no attribute 'dhModel'
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py:64: AttributeError: 'reaktoro4py.ActivityModelParamsPerplexDEW' object has no attribute 'dhModel'
+E   AttributeError: module 'reaktoro4py' has no attribute 'ActivityModelParamsDEW'. Did you mean: 'ActivityModelPerplexDEW'?
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py:141: AttributeError: module 'reaktoro4py' has no attribute 'ActivityModelParamsDEW'. Did you mean: 'ActivityModelPerplexDEW'?
+E   AttributeError: 'reaktoro4py.ActivityModelParamsPerplexDEW' object has no attribute 'dhModel'
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py:146: AttributeError: 'reaktoro4py.ActivityModelParamsPerplexDEW' object has no attribute 'dhModel'
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_sensitivity.py:37: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_sensitivity.py:37: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_sensitivity.py:37: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_sensitivity.py:37: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   AssertionError: H2O(aq) must be in dew2019-aqueous
+    assert 'H2O(aq)' in ['WATER,AQ', 'ACETATE,AQ', 'ACETIC-ACID,AQ', 'Ag+', 'AgCl_aq', 'AgCl2-', ...]
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_aq_dew.py:15: AssertionError: H2O(aq) must be in dew2019-aqueous
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H+(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_dummy.py:28: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H+(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_kinetics_dew.py:41: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_kinetics_dew.py:41: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_kinetics_dew.py:41: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_kinetics_dew.py:41: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_perplex_conditions_nosilence.py:22: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_transport_dew.py:43: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_transport_dew.py:43: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_transport_dew.py:43: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+    [0m
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_transport_dew.py:43: RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+=========================== short test summary info ===========================
+FAILED Testing/regression/smoke/test_build_system.py::test_build_system - RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H2O(aq).
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_ph_constraint_converges[DEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_ph_constraint_converges[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_basic_tp_constraint_converges[DEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_basic_tp_constraint_converges[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_dh_variant_davies_no_raise[DEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_dh_variant_davies_no_raise[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_temperature_is_finite[DEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_temperature_is_finite[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_pressure_is_finite[DEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_pressure_is_finite[PerplexDEW]
+FAILED Testing/regression/smoke/test_h2o_aq_dew.py::test_h2o_aq_dew_equilibration
+FAILED Testing/regression/smoke/test_h2o_dummy.py::test_h2o_dummy_vs_explicit
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_solve_succeeds_multistep[DEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_solve_succeeds_multistep[PerplexDEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_dew_model_parity[DEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_dew_model_parity[PerplexDEW]
+FAILED Testing/regression/smoke/test_perplex_conditions_nosilence.py::test_perplex_conditions_nosilence
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_no_nan[DEW]
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_no_nan[PerplexDEW]
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_concentration_gradient_decreases[DEW]
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_concentration_gradient_decreases[PerplexDEW]
+================== 22 failed, 3 passed, 5 skipped in 33.54s ===================

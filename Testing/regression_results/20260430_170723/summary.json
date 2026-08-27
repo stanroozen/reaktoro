@@ -1,0 +1,96 @@
+{
+  "timestamp": "20260430_170723",
+  "python_executable": "C:\\Users\\stanroozen\\anaconda3\\envs\\reaktoro\\python.exe",
+  "selected_tags": [
+    "smoke"
+  ],
+  "max_cases": 0,
+  "total": 6,
+  "passed": 1,
+  "failed": 5,
+  "missing": 0,
+  "results": [
+    {
+      "name": "test_build_system",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.851,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_build_system.py",
+      "tags": [
+        "smoke",
+        "core"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_build_system.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_build_system.stderr.log"
+    },
+    {
+      "name": "test_dew_water_models",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.955,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_dew_water_models.py",
+      "tags": [
+        "smoke",
+        "water"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_dew_water_models.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_dew_water_models.stderr.log"
+    },
+    {
+      "name": "test_h2o_aq_dew",
+      "status": "failed",
+      "exit_code": 3228369023,
+      "duration_seconds": 2.74,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_h2o_aq_dew.py",
+      "tags": [
+        "smoke",
+        "water"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_h2o_aq_dew.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_h2o_aq_dew.stderr.log"
+    },
+    {
+      "name": "test_h2o_dummy",
+      "status": "failed",
+      "exit_code": 3228369023,
+      "duration_seconds": 2.181,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_h2o_dummy.py",
+      "tags": [
+        "smoke",
+        "water"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_h2o_dummy.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_h2o_dummy.stderr.log"
+    },
+    {
+      "name": "test_perplex_conditions_nosilence",
+      "status": "failed",
+      "exit_code": 3228369023,
+      "duration_seconds": 2.636,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_perplex_conditions_nosilence.py",
+      "tags": [
+        "smoke",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_perplex_conditions_nosilence.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\test_perplex_conditions_nosilence.stderr.log"
+    },
+    {
+      "name": "quartz_h2oco2_parity_check_nondeps",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 1.039,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\parity\\perplex-parity\\quartz_H2OCO2_parity_check_nondeps.py",
+      "tags": [
+        "parity",
+        "regression",
+        "quartz",
+        "h2oco2",
+        "perplexdew",
+        "smoke"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\quartz_h2oco2_parity_check_nondeps.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_170723\\quartz_h2oco2_parity_check_nondeps.stderr.log"
+    }
+  ]
+}

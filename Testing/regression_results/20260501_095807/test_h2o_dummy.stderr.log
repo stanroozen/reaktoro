@@ -1,0 +1,29 @@
+[1;33m***WARNING***
+Species with same aggregate state should have unique names in Database, but species `H2O(aq)` with aggregate state `Aqueous` violates this rule. The unique name H2O(aq)! has been assigned instead.
+[0mTraceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_dummy.py", line 42, in <module>
+    test_h2o_dummy_vs_explicit()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_dummy.py", line 32, in test_h2o_dummy_vs_explicit
+    state1.temperature(float(T_C), "celsius")
+TypeError: temperature(): incompatible function arguments. The following argument types are supported:
+    1. (self: reaktoro4py.ChemicalState, arg0: autodiff::detail::Real<1,double>) -> None
+    2. (self: reaktoro4py.ChemicalState, arg0: autodiff::detail::Real<1,double>, arg1: str) -> None
+    3. (self: reaktoro4py.ChemicalState) -> autodiff::detail::Real<1,double>
+
+Invoked with: +------------------------+------------+------+
+| Property               |      Value | Unit |
++------------------------+------------+------+
+| Temperature            |   298.1500 |    K |
+| Pressure               |     1.0000 |  bar |
+| Charge:                | 0.0000e+00 |  mol |
+| Element Amount:        |            |      |
+| :: H                   | 4.0000e-16 |  mol |
+| :: O                   | 6.0000e-16 |  mol |
+| :: Si                  | 2.0000e-16 |  mol |
+| Species Amount:        |            |      |
+| :: H2O(aq)             | 1.0000e-16 |  mol |
+| :: H+(aq) :: H(+)      | 1.0000e-16 |  mol |
+| :: OH-(aq) :: OH(-)    | 1.0000e-16 |  mol |
+| :: SiO2(aq) :: SiO2(0) | 1.0000e-16 |  mol |
+| :: Quartz :: SiO2      | 1.0000e-16 |  mol |
++------------------------+------------+------+, 300.0, 'celsius'

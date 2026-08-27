@@ -1,0 +1,314 @@
+{
+  "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\DEW_Experimental_Benchmark\\DatabaseTests\\brucite\\brucite_solubility_tutorial.py",
+  "settings": {
+    "run_all_cases": true,
+    "selected_case_name": "perplex_mixed_dew24hp622",
+    "selected_model": "PerplexDEW",
+    "temperature_min_c": 50.0,
+    "temperature_max_c": 450.0,
+    "n_temperature_points": 80,
+    "pressures_kbar": [
+      1.0,
+      2.0,
+      5.0
+    ]
+  },
+  "cases": [
+    {
+      "name": "perplex_mixed_dew24hp622",
+      "source_mode": "perplex_mixed",
+      "aqueous_db_name": null,
+      "database_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\DEW24HP622ver_elements-reaktoro.json",
+      "mineral_db_file": null,
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O",
+        "H+",
+        "OH-",
+        "Mg+2",
+        "MgOH+"
+      ],
+      "solvent_species": "H2O"
+    },
+    {
+      "name": "perplex_mixed_dew17hp622_zn_2025",
+      "source_mode": "perplex_mixed",
+      "aqueous_db_name": null,
+      "database_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\DEW17HP622_Zn_2025-reaktoro.json",
+      "mineral_db_file": null,
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O",
+        "H+",
+        "OH-",
+        "Mg+2",
+        "MgOH+"
+      ],
+      "solvent_species": "H2O"
+    },
+    {
+      "name": "dew2024_aqueous_plus_hp62_mineral",
+      "source_mode": "dew_plus_perplex_mineral",
+      "aqueous_db_name": "dew2024-aqueous",
+      "database_file": null,
+      "mineral_db_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\hp62ver-reaktoro.json",
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O(aq)",
+        "H+(aq)",
+        "OH-(aq)",
+        "Mg+2(aq)",
+        "MgOH+(aq)"
+      ],
+      "solvent_species": "H2O(aq)"
+    },
+    {
+      "name": "dew2024_aqueous_plus_hp633_mineral",
+      "source_mode": "dew_plus_perplex_mineral",
+      "aqueous_db_name": "dew2024-aqueous",
+      "database_file": null,
+      "mineral_db_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\hp633ver-reaktoro.json",
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O(aq)",
+        "H+(aq)",
+        "OH-(aq)",
+        "Mg+2(aq)",
+        "MgOH+(aq)"
+      ],
+      "solvent_species": "H2O(aq)"
+    },
+    {
+      "name": "dew2024_aqueous_plus_hp634_mineral",
+      "source_mode": "dew_plus_perplex_mineral",
+      "aqueous_db_name": "dew2024-aqueous",
+      "database_file": null,
+      "mineral_db_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\hp634ver-reaktoro.json",
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O(aq)",
+        "H+(aq)",
+        "OH-(aq)",
+        "Mg+2(aq)",
+        "MgOH+(aq)"
+      ],
+      "solvent_species": "H2O(aq)"
+    },
+    {
+      "name": "dew2024_aqueous_plus_perplex_dew24_mineral",
+      "source_mode": "dew_plus_perplex_mineral",
+      "aqueous_db_name": "dew2024-aqueous",
+      "database_file": null,
+      "mineral_db_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\DEW24HP622ver_elements-reaktoro.json",
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O(aq)",
+        "H+(aq)",
+        "OH-(aq)",
+        "Mg+2(aq)",
+        "MgOH+(aq)"
+      ],
+      "solvent_species": "H2O(aq)"
+    },
+    {
+      "name": "dew2024_aqueous_plus_perplex_dew17zn2025_mineral",
+      "source_mode": "dew_plus_perplex_mineral",
+      "aqueous_db_name": "dew2024-aqueous",
+      "database_file": null,
+      "mineral_db_file": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\embedded\\databases\\perplex\\DEW17HP622_Zn_2025-reaktoro.json",
+      "mineral_name": "br",
+      "aqueous_species": [
+        "H2O(aq)",
+        "H+(aq)",
+        "OH-(aq)",
+        "Mg+2(aq)",
+        "MgOH+(aq)"
+      ],
+      "solvent_species": "H2O(aq)"
+    }
+  ],
+  "results": [
+    {
+      "case": "perplex_mixed_dew24hp622",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "perplex_mixed_dew24hp622",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "perplex_mixed_dew17hp622_zn_2025",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "perplex_mixed_dew17hp622_zn_2025",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_hp62_mineral",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_hp62_mineral",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_hp633_mineral",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_hp633_mineral",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_hp634_mineral",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_hp634_mineral",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_perplex_dew24_mineral",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_perplex_dew24_mineral",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_perplex_dew17zn2025_mineral",
+      "model": "DEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "case": "dew2024_aqueous_plus_perplex_dew17zn2025_mineral",
+      "model": "PerplexDEW",
+      "status": "ok",
+      "message": "completed",
+      "valid_points": 240,
+      "total_points": 240,
+      "pressures_kbar": [
+        1.0,
+        2.0,
+        5.0
+      ]
+    }
+  ]
+}

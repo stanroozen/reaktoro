@@ -1,0 +1,7 @@
+CHNOSZ vs Reaktoro deep-fluid diagram comparison
+- Space: log10(fO2) vs pH
+- Conditions target: T=350 C, P=2000 bar
+- This panel is visual-only (no MAE metric due palette/label differences).
+- CHNOSZ image: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\CHNOSZ_DeepFluid_LogfO2_pH_Fe.png
+- Reaktoro image: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\Reaktoro_DeepFluid_LogfO2_pH_Fe.png
+- Panel: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\CHNOSZ_vs_Reaktoro_DeepFluid_LogfO2_pH_panel.png

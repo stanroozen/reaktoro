@@ -173,13 +173,11 @@ if(DEFINED ENV{CONDA_PREFIX})
 endif()
 
 # ----------------------------------------------------------------------
-# Add tests subdirectory for standalone builds
-# (When built as part of main Reaktoro, WaterDEW.test.cxx is auto-included)
+# Tests are in tests/cpp/dew/
+# In standalone builds, add_subdirectory() references that folder.
+# In the main Reaktoro build, the full test suite runs from tests/cpp/dew/.
 # ----------------------------------------------------------------------
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # Standalone build of DEW - add separate test executable
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../tests/cpp/dew ${CMAKE_CURRENT_BINARY_DIR}/tests)
-else()
-    # Built as part of Reaktoro - WaterDEW.test.cxx automatically included
-    message(STATUS "DEW tests: WaterDEW.test.cxx will be included in main Reaktoro test suite")
 endif()

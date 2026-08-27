@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\quartz_H2OCO2_parity_check.py", line 60, in <module>
+    from reaktoro import *
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\python\package\reaktoro\__init__.py", line 1, in <module>
+    from reaktoro.reaktoro4py import *
+ModuleNotFoundError: No module named 'reaktoro.reaktoro4py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\quartz_H2OCO2_parity_check.py", line 83, in <module>
+    raise ModuleNotFoundError(
+        "Reaktoro import failed for all local build candidates."
+    )
+ModuleNotFoundError: Reaktoro import failed for all local build candidates.

@@ -33,6 +33,7 @@ option(REAKTORO_BUILD_EXAMPLES "Build the C++ examples." ON)
 option(REAKTORO_BUILD_DOCS     "Build the documentation." ON)
 option(REAKTORO_BUILD_PYTHON   "Build the Python package." ON)
 option(REAKTORO_BUILD_TESTS    "Build the C++ tests." ON)
+option(REAKTORO_USE_NLOPT      "Enable optional NLopt compile guard when NLopt is found." OFF)
 
 # Define is Reaktoro should be built linking against openlibm instead of system's default libm
 option(REAKTORO_ENABLE_OPENLIBM "Build linking with openlibm." OFF)
@@ -76,9 +77,24 @@ file(TO_NATIVE_PATH ${CMAKE_BINARY_DIR}/Reaktoro/$<CONFIG> REAKTORO_LIBRARY_DIR)
 # The directory where the python package reaktoro is built
 file(TO_NATIVE_PATH ${CMAKE_BINARY_DIR}/python/package/build/lib REAKTORO_PYTHON_PACKAGE_DIR)
 
+# On Windows, numpy (and other conda packages) need Library\bin to find BLAS DLLs at runtime.
+# Derive the conda env Library\bin from Python_EXECUTABLE (set by CondaAware.cmake).
+if(WIN32 AND DEFINED Python_EXECUTABLE)
+    get_filename_component(_python_env_dir "${Python_EXECUTABLE}" DIRECTORY)
+    set(_conda_library_bin "${_python_env_dir}\\Library\\bin")
+    if(EXISTS "${_conda_library_bin}")
+        message(STATUS "Reaktoro: Adding conda Library\\bin to test PATH: ${_conda_library_bin}")
+        set(_conda_library_bin_entry "${_conda_library_bin}\;")
+    else()
+        set(_conda_library_bin_entry "")
+    endif()
+else()
+    set(_conda_library_bin_entry "")
+endif()
+
 # Define variables REAKTORO_PATH and REAKTORO_PYTHONPATH used to set environment variables PATH and PYTHONPATH.
 if(WIN32)
-    set(REAKTORO_PATH "${REAKTORO_LIBRARY_DIR}\;$ENV{PATH}")
+    set(REAKTORO_PATH "${REAKTORO_LIBRARY_DIR}\;${_conda_library_bin_entry}$ENV{PATH}")
     set(REAKTORO_PYTHONPATH "${REAKTORO_PYTHON_PACKAGE_DIR}\;$ENV{PYTHONPATH}")
 else()
     set(REAKTORO_PATH '$ENV{PATH}')  # Surround path values with '' to avoid cmake errors when ( or ) exists such as in `Program Files (x86)` when compiling in WSL (Windows Subsystem for Linux).
@@ -114,7 +130,7 @@ endif()
 
 # Build the tests
 if(REAKTORO_BUILD_TESTS)
-    add_subdirectory(tests)
+    add_subdirectory(Testing)
 endif()
 
 # Process sub-directory scripts

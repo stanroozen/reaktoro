@@ -155,6 +155,60 @@ REAKTORO_DATA_DECODE_DEFINE(StandardThermoModelParamsDEW)
 
 //----------------------------------------------------------------------
 
+REAKTORO_DATA_ENCODE_DEFINE(StandardThermoModelParamsPerplexDEW)
+{
+    data["Gf"] = obj.Gf;
+    data["Hf"] = obj.Hf;
+    data["Sr"] = obj.Sr;
+    data["a1"] = obj.a1;
+    data["a2"] = obj.a2;
+    data["a3"] = obj.a3;
+    data["a4"] = obj.a4;
+    data["c1"] = obj.c1;
+    data["c2"] = obj.c2;
+    data["wref"] = obj.wref;
+    data["charge"] = obj.charge;
+    data["Tmax"] = obj.Tmax;
+}
+
+REAKTORO_DATA_DECODE_DEFINE(StandardThermoModelParamsPerplexDEW)
+{
+    data.required("Gf").to(obj.Gf);
+    data.required("Hf").to(obj.Hf);
+    data.required("Sr").to(obj.Sr);
+    data.required("a1").to(obj.a1);
+    data.required("a2").to(obj.a2);
+    data.required("a3").to(obj.a3);
+    data.required("a4").to(obj.a4);
+    data.required("c1").to(obj.c1);
+    data.required("c2").to(obj.c2);
+    data.required("wref").to(obj.wref);
+    data.required("charge").to(obj.charge);
+    data.optional("Tmax").to(obj.Tmax);
+}
+
+//----------------------------------------------------------------------
+
+REAKTORO_DATA_ENCODE_DEFINE(StandardThermoModelParamsPerplexGFSM)
+{
+    data["speciesIndex"] = obj.speciesIndex;
+    data["G0"] = obj.G0;
+    data["H0"] = obj.H0;
+    data["V0"] = obj.V0;
+    data["Tmax"] = obj.Tmax;
+}
+
+REAKTORO_DATA_DECODE_DEFINE(StandardThermoModelParamsPerplexGFSM)
+{
+    data.optional("speciesIndex").to(obj.speciesIndex);
+    data.required("G0").to(obj.G0);
+    data.required("H0").to(obj.H0);
+    data.optional("V0").to(obj.V0);
+    data.optional("Tmax").to(obj.Tmax);
+}
+
+//----------------------------------------------------------------------
+
 REAKTORO_DATA_ENCODE_DEFINE(StandardThermoModelParamsHollandPowell)
 {
     data["Gf"] = obj.Gf;

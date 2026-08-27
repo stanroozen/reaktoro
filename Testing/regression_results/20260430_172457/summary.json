@@ -1,0 +1,30 @@
+{
+  "timestamp": "20260430_172457",
+  "python_executable": "C:/Users/stanroozen/anaconda3/envs/reaktoro/python.exe",
+  "selected_tags": [
+    "parity"
+  ],
+  "max_cases": 1,
+  "total": 1,
+  "passed": 0,
+  "failed": 1,
+  "missing": 0,
+  "results": [
+    {
+      "name": "quartz_h2oco2_parity_check",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 2.161,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\parity\\perplex-parity\\quartz_H2OCO2_parity_check.py",
+      "tags": [
+        "parity",
+        "regression",
+        "quartz",
+        "h2oco2",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_172457\\quartz_h2oco2_parity_check.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_172457\\quartz_h2oco2_parity_check.stderr.log"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_build_system.py", line 20, in test_build_system
+    from quartz_solubility_analysis_v2_dew24 import build_system
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py", line 52, in <module>
+    from reaktoro import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\python\package\build\lib\reaktoro\__init__.py", line 1, in <module>
+    from reaktoro.reaktoro4py import *
+ImportError: generic_type: type "Memoization" is already registered!
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_build_system.py", line 30, in <module>
+    test_build_system()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_build_system.py", line 22, in test_build_system
+    pytest.skip(f"quartz_solubility_analysis_v2_dew24 not importable: {e}")
+  File "C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\_pytest\outcomes.py", line 139, in __call__
+    raise Skipped(msg=reason, allow_module_level=allow_module_level)
+Skipped: quartz_solubility_analysis_v2_dew24 not importable: generic_type: type "Memoization" is already registered!

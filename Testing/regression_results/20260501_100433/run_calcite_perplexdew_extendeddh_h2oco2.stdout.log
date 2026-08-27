@@ -1,0 +1,23 @@
+Using local reaktoro4py extension from C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release.
+================================================================================
+Calcite Solubility Analysis - Reaktoro DEW2024
+Mineral: CaCO3
+Solute species: Ca+2
+Aqueous backend: PerplexDEW (ExtendedDH)
+Fluid: H2O-CO2 mixture (XCO2 = 0.10, n_CO2 = 6.168 mol/kg-H2O)
+================================================================================
+
+[1] Loading experimental data...
+    WARNING: CaO_aq excluded (not a real aqueous species).
+    WARNING: Experimental data file not found: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_DEW_testset.csv
+
+[2] Initializing Reaktoro databases...
+    Successfully loaded DEW2024 aqueous database
+    Successfully loaded SUPCRTBL mineral database
+    Included 43 aqueous species after filtering.
+    All requested aqueous species found in DEW database.
+Ã¢Å“â€œ PerplexDEW configured: EOS=ZhangDuan2005; DH model=ExtendedDH; phase activity=ActivityModelPerplexDEW
+Ã¢Å“â€œ CO2(g) gas phase added (Zhang-Duan 2009 EOS) for H2O-CO2 fluid
+Ã¢Å“â€œ System built for Calcite solubility
+
+[3] Calculating calcite solubility curves...

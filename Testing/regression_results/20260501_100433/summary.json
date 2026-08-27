@@ -1,0 +1,236 @@
+{
+  "timestamp": "20260501_100433",
+  "python_executable": "C:\\Users\\stanroozen\\anaconda3\\envs\\reaktoro\\python.exe",
+  "selected_tags": [],
+  "max_cases": 0,
+  "total": 16,
+  "passed": 5,
+  "failed": 11,
+  "missing": 0,
+  "results": [
+    {
+      "name": "test_build_system",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 3.403,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_build_system.py",
+      "tags": [
+        "smoke",
+        "core"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_build_system.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_build_system.stderr.log"
+    },
+    {
+      "name": "test_dew_water_models",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.695,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_dew_water_models.py",
+      "tags": [
+        "smoke",
+        "water"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_dew_water_models.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_dew_water_models.stderr.log"
+    },
+    {
+      "name": "test_h2o_aq_dew",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.832,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_h2o_aq_dew.py",
+      "tags": [
+        "smoke",
+        "water"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_h2o_aq_dew.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_h2o_aq_dew.stderr.log"
+    },
+    {
+      "name": "test_h2o_dummy",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.168,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_h2o_dummy.py",
+      "tags": [
+        "smoke",
+        "water"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_h2o_dummy.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_h2o_dummy.stderr.log"
+    },
+    {
+      "name": "test_perplex_conditions_nosilence",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.747,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\smoke\\test_perplex_conditions_nosilence.py",
+      "tags": [
+        "smoke",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_perplex_conditions_nosilence.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\test_perplex_conditions_nosilence.stderr.log"
+    },
+    {
+      "name": "run_quartz_dew",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.551,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\quartz\\run_quartz_DEW.py",
+      "tags": [
+        "regression",
+        "quartz",
+        "dew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_dew.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_dew.stderr.log"
+    },
+    {
+      "name": "run_quartz_perplexdew",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.409,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\quartz\\run_quartz_PerplexDEW.py",
+      "tags": [
+        "regression",
+        "quartz",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew.stderr.log"
+    },
+    {
+      "name": "run_quartz_perplexdew_extendeddh",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.783,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\quartz\\run_quartz_PerplexDEW_ExtendedDH.py",
+      "tags": [
+        "regression",
+        "quartz",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew_extendeddh.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew_extendeddh.stderr.log"
+    },
+    {
+      "name": "run_quartz_perplexdew_davies_h2oco2",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.021,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\quartz\\run_quartz_PerplexDEW_Davies_H2OCO2.py",
+      "tags": [
+        "regression",
+        "quartz",
+        "perplexdew",
+        "h2oco2"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew_davies_h2oco2.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew_davies_h2oco2.stderr.log"
+    },
+    {
+      "name": "run_quartz_perplexdew_extendeddh_h2oco2",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 2.249,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\quartz\\run_quartz_PerplexDEW_ExtendedDH_H2OCO2.py",
+      "tags": [
+        "regression",
+        "quartz",
+        "perplexdew",
+        "h2oco2"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew_extendeddh_h2oco2.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_quartz_perplexdew_extendeddh_h2oco2.stderr.log"
+    },
+    {
+      "name": "run_calcite_dew",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.803,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\calcite\\run_calcite_DEW.py",
+      "tags": [
+        "regression",
+        "calcite",
+        "dew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_dew.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_dew.stderr.log"
+    },
+    {
+      "name": "run_calcite_dew_co2aq",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 2.972,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\calcite\\run_calcite_DEW_CO2aq.py",
+      "tags": [
+        "regression",
+        "calcite",
+        "dew",
+        "h2oco2"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_dew_co2aq.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_dew_co2aq.stderr.log"
+    },
+    {
+      "name": "run_calcite_perplexdew_davies",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.984,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\calcite\\run_calcite_PerplexDEW_Davies.py",
+      "tags": [
+        "regression",
+        "calcite",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_davies.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_davies.stderr.log"
+    },
+    {
+      "name": "run_calcite_perplexdew_extendeddh",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.293,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\calcite\\run_calcite_PerplexDEW_ExtendedDH.py",
+      "tags": [
+        "regression",
+        "calcite",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_extendeddh.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_extendeddh.stderr.log"
+    },
+    {
+      "name": "run_calcite_perplexdew_davies_h2oco2",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 3.032,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\calcite\\run_calcite_PerplexDEW_Davies_H2OCO2.py",
+      "tags": [
+        "regression",
+        "calcite",
+        "perplexdew",
+        "h2oco2"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_davies_h2oco2.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_davies_h2oco2.stderr.log"
+    },
+    {
+      "name": "run_calcite_perplexdew_extendeddh_h2oco2",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 4.146,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression\\calcite\\run_calcite_PerplexDEW_ExtendedDH_H2OCO2.py",
+      "tags": [
+        "regression",
+        "calcite",
+        "perplexdew",
+        "h2oco2"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_extendeddh_h2oco2.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260501_100433\\run_calcite_perplexdew_extendeddh_h2oco2.stderr.log"
+    }
+  ]
+}

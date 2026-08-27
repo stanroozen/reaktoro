@@ -61,6 +61,7 @@ void exportDEWWaterModels(py::module& m)
         .def_readwrite("bornModel", &WaterModelOptions::bornModel)
         .def_readwrite("usePsatPolynomials", &WaterModelOptions::usePsatPolynomials)
         .def_readwrite("psatRelTol", &WaterModelOptions::psatRelTol)
+        .def_readwrite("densityTolerance", &WaterModelOptions::densityTolerance)
         ;
 
     // Export makeWaterModelOptionsDEW function

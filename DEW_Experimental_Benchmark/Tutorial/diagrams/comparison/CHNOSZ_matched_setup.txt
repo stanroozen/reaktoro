@@ -1,0 +1,7 @@
+Generated CHNOSZ matched equivalents
+- Pourbaix ranges: pH [-2,16], Eh [-2,2], 120x100 points, T=25C, P=1 bar
+- Mosaic ranges: pH [0,14], Eh [-1,1], 100x80 points, T=25C, P=1 bar
+- Mosaic basis settings: loga(SO4-2) = -6, loga(CO3-2) = 0
+- Line semantics: solid=predominance boundaries, dash-dot=water-stability lines, dotted=Eh0/pH7 guides
+- Output: C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/DEW_Experimental_Benchmark/Tutorial/diagrams/comparison/CHNOSZ_Pourbaix_Fe.png
+- Output: C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/DEW_Experimental_Benchmark/Tutorial/diagrams/comparison/CHNOSZ_Mosaic_Fe.png

@@ -1,7 +1,0 @@
-GFSM T
-species_output T
-hybrid_EoS_H2O 7
-hybrid_EoS_CO2 7
-hybrid_EoS_CH4 0
-warn_interactive F
-pause_on_error F

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\run_calcite_PerplexDEW_Davies.py", line 26, in <module>
+    _m.main()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_analysis.py", line 835, in main
+    state.set(solute_species, 1e-6, "mol")
+RuntimeError: [1;31m***ERROR***
+Could not find a species with name or index `Ca+2` in the chemical system.
+[0m

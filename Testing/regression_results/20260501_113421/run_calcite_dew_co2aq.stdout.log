@@ -1,0 +1,39 @@
+Using local reaktoro4py extension from C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release.
+================================================================================
+Calcite Solubility Analysis - Reaktoro DEW2024
+Mineral: CaCO3
+Solute species: Ca+2(aq)
+Aqueous backend: DEW
+Fluid: Pure H2O solvent + CO2_aq solute (initial CO2_aq = 6.168 mol/kg-H2O)
+================================================================================
+
+[1] Loading experimental data...
+    WARNING: CaO_aq excluded (not a real aqueous species).
+    WARNING: Experimental data file not found: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_DEW_testset.csv
+
+[2] Initializing Reaktoro databases...
+    Successfully loaded DEW2024 aqueous database
+    Successfully loaded SUPCRTBL mineral database
+    Included 39 aqueous species after filtering.
+    All requested aqueous species found in DEW database.
+✓ DEW configured: EOS=ZhangDuan2005; phase activity=ActivityModelDEW
+✓ System built for Calcite solubility
+
+[3] Calculating calcite solubility curves...
+    P = 0.500 kbar (500 bar)...
+    P = 1.000 kbar (1000 bar)...
+    P = 2.000 kbar (2000 bar)...
+    P = 5.000 kbar (5000 bar)...
+    P = 10.000 kbar (10000 bar)...
+
+[4] Creating plots...
+    Creating high-pressure plot (>=1 kbar)...
+    High-P plot saved to: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_comparison_high_P_dew24_DEW_H2OCO2AQ.png
+    Creating speciation plot at P=2.000 kbar...
+    Speciation plot saved to: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_speciation_dew24_DEW_H2OCO2AQ.png
+    Creating residual plots...
+    Residual plots saved to: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_residuals_dew24_DEW_H2OCO2AQ.png
+
+================================================================================
+Analysis complete!
+================================================================================

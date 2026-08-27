@@ -1,0 +1,10 @@
+Deep-fluid potential diagram setup (Reaktoro)
+- Binary path: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release
+- T = 350.0 C
+- P = 2000.0 bar
+- log10(fO2) range: [-48.0, -18.0] bar
+- pH range: [3.0, 8.5]
+- Grid: 100 x 80 points
+- Solved: ok=8000, fail=0
+- Method: per-point EquilibriumSolver (no sweep warm-start)
+- Output: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\Reaktoro_DeepFluid_LogfO2_pH_Fe.png

@@ -24,15 +24,15 @@ using namespace Reaktoro;
 
 void exportActivityModelPerplexDEW(py::module& m)
 {
-    py::enum_<ActivityDHModel>(m, "ActivityDHModel")
-        .value("Davies",     ActivityDHModel::Davies)
-        .value("ExtendedDH", ActivityDHModel::ExtendedDH)
-        .export_values();
+    // ActivityDHModel is registered by exportActivityModelDEW (called first).
+    // No re-registration needed here.
 
     py::class_<ActivityModelParamsPerplexDEW>(m, "ActivityModelParamsPerplexDEW")
         .def(py::init<>())
-        .def_readwrite("model", &ActivityModelParamsPerplexDEW::model)
-        .def_readwrite("enableHydrousSpeciesCorrection", &ActivityModelParamsPerplexDEW::enableHydrousSpeciesCorrection)
+        .def_readwrite("dhModel", &ActivityModelParamsPerplexDEW::dhModel)
+        .def_readwrite("errorOnConflictingStandardState", &ActivityModelParamsPerplexDEW::errorOnConflictingStandardState)
+        .def_readwrite("warnOnUnmappedGFSMCoupling", &ActivityModelParamsPerplexDEW::warnOnUnmappedGFSMCoupling)
+        .def_readwrite("requireCoupledGFSMHandoff", &ActivityModelParamsPerplexDEW::requireCoupledGFSMHandoff)
         ;
 
     m.def("ActivityModelPerplexDEW",

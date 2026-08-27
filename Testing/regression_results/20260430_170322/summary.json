@@ -1,0 +1,30 @@
+{
+  "timestamp": "20260430_170322",
+  "python_executable": "C:\\Users\\stanroozen\\anaconda3\\python.exe",
+  "selected_tags": [
+    "parity"
+  ],
+  "max_cases": 1,
+  "total": 1,
+  "passed": 0,
+  "failed": 0,
+  "missing": 1,
+  "results": [
+    {
+      "name": "quartz_h2oco2_parity_check",
+      "status": "missing",
+      "exit_code": null,
+      "duration_seconds": 0.0,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\Mineral_Solubilities\\quartz_H2OCO2_parity_check.py",
+      "tags": [
+        "parity",
+        "regression",
+        "quartz",
+        "h2oco2",
+        "perplexdew"
+      ],
+      "stdout_log": null,
+      "stderr_log": null
+    }
+  ]
+}

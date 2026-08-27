@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_analysis.py", line 50, in <module>
+    from reaktoro import *  # noqa: F401,F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'reaktoro'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\run_calcite_PerplexDEW_ExtendedDH_H2OCO2.py", line 25, in <module>
+    import calcite_solubility_analysis as _m
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_analysis.py", line 93, in <module>
+    raise ModuleNotFoundError(
+    ...<2 lines>...
+    )
+ModuleNotFoundError: Could not import Reaktoro. Install the 'reaktoro' package or ensure reaktoro4py is on PYTHONPATH.

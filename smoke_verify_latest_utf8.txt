@@ -1,0 +1,384 @@
+﻿
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET DISTUTILS_USE_SDK=1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET MSSdk=1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_VERSION=16.0" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_MAJOR=16" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_YEAR=2019" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "MSYS2_ARG_CONV_EXCL=/AI;/AL;/OUT;/out" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "MSYS2_ENV_CONV_EXCL=CL" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "PY_VCRUNTIME_REDIST=\bin\vcruntime140.dll" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CXX=cl.exe" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CC=cl.exe" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "VSINSTALLDIR=" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "NEWER_VS_WITH_OLDER_VC=0" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -version [16.0,17.0) -property installationPath`) do (set "VSINSTALLDIR=%i\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>(set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -requires Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64 -property installationPath`) do (
+set "VSINSTALLDIR=%i\"  
+ set "NEWER_VS_WITH_OLDER_VC=1" 
+) ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -requires Microsoft.VisualStudio.Component.VC.v142.x86.x64 -property installationPath`) do (
+set "VSINSTALLDIR=%i\"  
+ set "NEWER_VS_WITH_OLDER_VC=1" 
+) ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF NOT "" == "" (
+set "INCLUDE=;"  
+ set "LIB=;"  
+ set "CMAKE_PREFIX_PATH=;" 
+)  else (
+set "INCLUDE=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library\include;"  
+ set "LIB=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library\lib;"  
+ set "CMAKE_PREFIX_PATH=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library;" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>call :GetWin10SdkDir 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>call :GetWin10SdkDirHelper HKLM\SOFTWARE\Wow6432Node  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKCU\SOFTWARE\Wow6432Node  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKLM\SOFTWARE  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKCU\SOFTWARE  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 exit /B 1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>exit /B 0 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>for /F %i in ('dir /ON /B "C:\Program Files (x86)\Windows Kits\10\\include\10.*"') DO (SET WindowsSDKVer=%~i ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>(SET WindowsSDKVer=10.0.19041.0 ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 (echo "Didn't find any windows 10 SDK. I'm not sure if things will work, but let's try..." )  else (echo Windows SDK version found as: "10.0.19041.0" ) 
+Windows SDK version found as: "10.0.19041.0"
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CMAKE_PLAT=x64" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "VCVARSBAT=64" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "" == "1" (set "CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX= -DPython_FIND_REGISTRY=NEVER -DPython3_FIND_REGISTRY=NEVER -DCMAKE_PROGRAM_PATH=\bin;\Scripts;\Library\bin;\bin;\Scripts;\Library\bin" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF 2019 GEQ 2019 (
+set "CMAKE_GEN=Visual Studio 16 2019"  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=1" 
+)  ELSE (
+IF "win-64" == "win-64" (set "CMAKE_GEN=Visual Studio 16 2019 Win64" )  else (set "CMAKE_GEN=Visual Studio 16 2019" )  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=0" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>echo "NEWER_VS_WITH_OLDER_VC=0" 
+"NEWER_VS_WITH_OLDER_VC=0"
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set /p LATEST_VS= 0<"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>type "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" 
+14.29.30133
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Redist\MSVC\" 
+ Volume in drive C is OS
+ Volume Serial Number is F46E-0FD8
+
+ Directory of C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Redist\MSVC
+
+01/06/2024  01:23 AM    <DIR>          .
+01/06/2024  01:23 AM    <DIR>          ..
+01/06/2024  01:23 AM    <DIR>          14.29.30133
+01/06/2024  01:23 AM    <DIR>          v142
+               0 File(s)              0 bytes
+               4 Dir(s)  46,464,704,512 bytes free
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if "0" == "1" (
+echo "14.29.30133"  
+ if "14.2" == "14.2" (set "CMAKE_GEN=Visual Studio 16 2019" )  else (set "CMAKE_GEN=Visual Studio 17 2022" )  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=1" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "" == "" SET "CMAKE_GENERATOR=Visual Studio 16 2019" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "1" == "1" (
+IF "" == "" SET "CMAKE_GENERATOR_PLATFORM=x64"  
+ IF "" == "" SET "CMAKE_GENERATOR_TOOLSET=v142" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>pushd C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\ 
+
+(reaktoro) C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools>if "14.29" LSS "14.29" (
+ 
+ CALL "VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.29 10.0.19041.0 
+)  else (CALL "VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.29 10.0.19041.0 ) 
+**********************************************************************
+** Visual Studio 2019 Developer Command Prompt v16.11.32
+** Copyright (c) 2021 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+FFFFFFFFFFF...sssssFFFFFFFFFFF                                           [100%]
+================================== FAILURES ===================================
+______________________________ test_build_system ______________________________
+Testing\regression\smoke\test_build_system.py:27: in test_build_system
+    system = build_system(
+Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py:517: in build_system
+    system = ChemicalSystem(combined_db, aqueous, mineral)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+---------------------------- Captured stdout call -----------------------------
+Using local reaktoro4py extension from C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release.
+    WARNING: Missing aqueous species in DEW database: WATER,AQ, H+, OH-
+├ó┼ôΓÇ£ DEW configured: EOS=ZhangDuan2005; phase activity=ActivityModelDEW
+------------------------------ Captured log call ------------------------------
+DEBUG    matplotlib:__init__.py:342 matplotlib data path: C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\matplotlib\mpl-data
+DEBUG    matplotlib:__init__.py:342 CONFIGDIR=C:\Users\stanroozen\.matplotlib
+DEBUG    matplotlib:__init__.py:1560 interactive is False
+DEBUG    matplotlib:__init__.py:1561 platform is win32
+DEBUG    matplotlib:__init__.py:342 CACHEDIR=C:\Users\stanroozen\.matplotlib
+DEBUG    matplotlib.font_manager:font_manager.py:1635 Using fontManager instance from C:\Users\stanroozen\.matplotlib\fontlist-v390.json
+______________________ test_ph_constraint_converges[DEW] ______________________
+Testing\regression\smoke\test_dew_ph_constraint.py:99: in test_ph_constraint_converges
+    system = _make_system(rkt, model_fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_ph_constraint.py:52: in _make_system
+    return rkt.ChemicalSystem(db, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+__________________ test_ph_constraint_converges[PerplexDEW] ___________________
+Testing\regression\smoke\test_dew_ph_constraint.py:99: in test_ph_constraint_converges
+    system = _make_system(rkt, model_fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_ph_constraint.py:52: in _make_system
+    return rkt.ChemicalSystem(db, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+___________________ test_basic_tp_constraint_converges[DEW] ___________________
+Testing\regression\smoke\test_dew_ph_constraint.py:129: in test_basic_tp_constraint_converges
+    system = _make_system(rkt, model_fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_ph_constraint.py:52: in _make_system
+    return rkt.ChemicalSystem(db, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_______________ test_basic_tp_constraint_converges[PerplexDEW] ________________
+Testing\regression\smoke\test_dew_ph_constraint.py:129: in test_basic_tp_constraint_converges
+    system = _make_system(rkt, model_fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_ph_constraint.py:52: in _make_system
+    return rkt.ChemicalSystem(db, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+____________________ test_dh_variant_davies_no_raise[DEW] _____________________
+Testing\regression\smoke\test_dew_ph_constraint.py:160: in test_dh_variant_davies_no_raise
+    system = _make_system(rkt, model_fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_ph_constraint.py:52: in _make_system
+    return rkt.ChemicalSystem(db, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_________________ test_dh_variant_davies_no_raise[PerplexDEW] _________________
+Testing\regression\smoke\test_dew_ph_constraint.py:160: in test_dh_variant_davies_no_raise
+    system = _make_system(rkt, model_fn)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_ph_constraint.py:52: in _make_system
+    return rkt.ChemicalSystem(db, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+______________ test_sensitivity_dndw_temperature_is_finite[DEW] _______________
+Testing\regression\smoke\test_dew_sensitivity.py:88: in test_sensitivity_dndw_temperature_is_finite
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_sensitivity.py:53: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+___________ test_sensitivity_dndw_temperature_is_finite[PerplexDEW] ___________
+Testing\regression\smoke\test_dew_sensitivity.py:88: in test_sensitivity_dndw_temperature_is_finite
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_sensitivity.py:53: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+________________ test_sensitivity_dndw_pressure_is_finite[DEW] ________________
+Testing\regression\smoke\test_dew_sensitivity.py:133: in test_sensitivity_dndw_pressure_is_finite
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_sensitivity.py:53: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+____________ test_sensitivity_dndw_pressure_is_finite[PerplexDEW] _____________
+Testing\regression\smoke\test_dew_sensitivity.py:133: in test_sensitivity_dndw_pressure_is_finite
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_dew_sensitivity.py:53: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+________________________ test_h2o_aq_dew_equilibration ________________________
+Testing\regression\smoke\test_h2o_aq_dew.py:30: in test_h2o_aq_dew_equilibration
+    system = rkt.ChemicalSystem(db_combined, aqueous, rkt.MineralPhase("Quartz"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_________________________ test_h2o_dummy_vs_explicit __________________________
+Testing\regression\smoke\test_h2o_dummy.py:27: in test_h2o_dummy_vs_explicit
+    system = rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Quartz"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_________________ test_kinetics_solve_succeeds_multistep[DEW] _________________
+Testing\regression\smoke\test_kinetics_dew.py:95: in test_kinetics_solve_succeeds_multistep
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_kinetics_dew.py:57: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_____________ test_kinetics_solve_succeeds_multistep[PerplexDEW] ______________
+Testing\regression\smoke\test_kinetics_dew.py:95: in test_kinetics_solve_succeeds_multistep
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_kinetics_dew.py:57: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_____________________ test_kinetics_dew_model_parity[DEW] _____________________
+Testing\regression\smoke\test_kinetics_dew.py:139: in test_kinetics_dew_model_parity
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_kinetics_dew.py:57: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_________________ test_kinetics_dew_model_parity[PerplexDEW] __________________
+Testing\regression\smoke\test_kinetics_dew.py:139: in test_kinetics_dew_model_parity
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_kinetics_dew.py:57: in _make_system
+    return rkt.ChemicalSystem(db, aq, rkt.MineralPhase("Brucite"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+______________________ test_perplex_conditions_nosilence ______________________
+Testing\regression\smoke\test_perplex_conditions_nosilence.py:22: in test_perplex_conditions_nosilence
+    sys_ = rkt.ChemicalSystem(combined_db, aq, rkt.MineralPhase("Quartz"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_________________________ test_transport_no_nan[DEW] __________________________
+Testing\regression\smoke\test_transport_dew.py:109: in test_transport_no_nan
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_transport_dew.py:59: in _make_system
+    return rkt.ChemicalSystem(db, aq)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+______________________ test_transport_no_nan[PerplexDEW] ______________________
+Testing\regression\smoke\test_transport_dew.py:109: in test_transport_no_nan
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_transport_dew.py:59: in _make_system
+    return rkt.ChemicalSystem(db, aq)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+____________ test_transport_concentration_gradient_decreases[DEW] _____________
+Testing\regression\smoke\test_transport_dew.py:170: in test_transport_concentration_gradient_decreases
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_transport_dew.py:59: in _make_system
+    return rkt.ChemicalSystem(db, aq)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+_________ test_transport_concentration_gradient_decreases[PerplexDEW] _________
+Testing\regression\smoke\test_transport_dew.py:170: in test_transport_concentration_gradient_decreases
+    system = _make_system(rkt, model_factory(rkt))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\regression\smoke\test_transport_dew.py:59: in _make_system
+    return rkt.ChemicalSystem(db, aq)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+E   [0m
+=========================== short test summary info ===========================
+conda.exe : ERROR conda.cli.main_run:execute(127): `conda run python -m pytest 
+Testing/regression/smoke -q --tb=short` failed. (See above for error)
+At C:\Users\stanroozen\anaconda3\shell\condabin\Conda.psm1:153 char:17
++ ...             & $Env:CONDA_EXE $Env:_CE_M $Env:_CE_CONDA $Command @Othe ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR conda.cli...bove for error) 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:140: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:164: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:190: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:227: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:264: Could not build strict aqueous-only system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+FAILED Testing/regression/smoke/test_build_system.py::test_build_system - RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_ph_constraint_converges[DEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_ph_constraint_converges[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_basic_tp_constraint_converges[DEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_basic_tp_constraint_converges[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_dh_variant_davies_no_raise[DEW]
+FAILED Testing/regression/smoke/test_dew_ph_constraint.py::test_dh_variant_davies_no_raise[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_temperature_is_finite[DEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_temperature_is_finite[PerplexDEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_pressure_is_finite[DEW]
+FAILED Testing/regression/smoke/test_dew_sensitivity.py::test_sensitivity_dndw_pressure_is_finite[PerplexDEW]
+FAILED Testing/regression/smoke/test_h2o_aq_dew.py::test_h2o_aq_dew_equilibration
+FAILED Testing/regression/smoke/test_h2o_dummy.py::test_h2o_dummy_vs_explicit
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_solve_succeeds_multistep[DEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_solve_succeeds_multistep[PerplexDEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_dew_model_parity[DEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_dew_model_parity[PerplexDEW]
+FAILED Testing/regression/smoke/test_perplex_conditions_nosilence.py::test_perplex_conditions_nosilence
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_no_nan[DEW]
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_no_nan[PerplexDEW]
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_concentration_gradient_decreases[DEW]
+FAILED Testing/regression/smoke/test_transport_dew.py::test_transport_concentration_gradient_decreases[PerplexDEW]
+22 failed, 3 passed, 5 skipped in 27.38s
+

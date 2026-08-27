@@ -60,6 +60,10 @@ target_compile_definitions(Reaktoro PUBLIC AUTODIFF_ENABLE_IMPLICIT_CONVERSION_R
 # Define path to DEW aqueous database for DEW test adapters
 target_compile_definitions(Reaktoro PRIVATE DEW_AQUEOUS_DB_PATH="${PROJECT_SOURCE_DIR}/embedded/databases/DEW/dew2024-aqueous.yaml")
 
+if(REAKTORO_USE_NLOPT AND NLopt_FOUND)
+    target_compile_definitions(Reaktoro PUBLIC REAKTORO_USE_NLOPT=1)
+endif()
+
 if(REAKTORO_ENABLE_OPENLIBM)
     configure_target_to_use_openlibm(Reaktoro)
     target_compile_definitions(Reaktoro PUBLIC REAKTORO_ENABLE_OPENLIBM=1)

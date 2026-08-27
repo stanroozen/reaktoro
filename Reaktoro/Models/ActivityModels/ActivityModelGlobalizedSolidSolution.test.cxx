@@ -942,6 +942,148 @@ TEST_CASE("Benchmarking imported MAGEMin ternary pilot families comparatively", 
     }
 }
 
+TEST_CASE("Testing imported MAGEMin SB21 OPX pilot model", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][SB21][OPX]")
+{
+    // 4-endmember orthopyroxene: en, fs, mgts, odi
+    const auto species = SpeciesList("MgSiO3 FeSiO3 MgAl2SiO6 CaMgSi2O6");
+    const auto T = 1473.15;
+    const auto P = 1.0e9;
+
+    const auto model = MAGEMinSolidSolutionPilotModelSB21OPX();
+
+    ActivityModel fn = ActivityModelGlobalizedSolidSolution(model)(species);
+    ActivityProps props = ActivityProps::create(species.size());
+
+    ArrayXr x(4);
+    x << 0.50, 0.20, 0.10, 0.20;
+    fn(props, {T, P, x});
+
+    const auto internalx = std::any_cast<ArrayXr>(props.extra.at("MAGEMinSolidSolutionPilot::InternalComposition"));
+    const auto endmembers = std::any_cast<Strings>(props.extra.at("MAGEMinSolidSolutionPilot::Endmembers"));
+
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::ModelId")) == "sb21_opx");
+    CHECK(endmembers == Strings{"en", "fs", "mgts", "odi"});
+    CHECK(internalx.size() == 4);
+    CHECK(internalx.sum() == Approx(1.0));
+    CHECK(std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::InternalMinimizerConverged")));
+    CHECK(!std::any_cast<bool>(props.extra.at("GlobalizedSolidSolution::SplitRequested")));
+    // At x={0.5, 0.2, 0.1, 0.2} the odi interaction (W_03=W_13=32217 J/mol) produces non-zero excess
+    CHECK(props.ln_g[3] != Approx(0.0));
+}
+
+TEST_CASE("Testing imported MAGEMin SB21 CPX pilot model", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][SB21][CPX]")
+{
+    // 5-endmember clinopyroxene: di, he, cen, cats, jd
+    const auto species = SpeciesList("CaMgSi2O6 CaFeSi2O6 Mg2Si2O6 CaAl2SiO6 NaAlSi2O6");
+    const auto T = 1473.15;
+    const auto P = 1.0e9;
+
+    const auto model = MAGEMinSolidSolutionPilotModelSB21CPX();
+
+    ActivityModel fn = ActivityModelGlobalizedSolidSolution(model)(species);
+    ActivityProps props = ActivityProps::create(species.size());
+
+    ArrayXr x(5);
+    x << 0.45, 0.15, 0.15, 0.10, 0.15;
+    fn(props, {T, P, x});
+
+    const auto internalx = std::any_cast<ArrayXr>(props.extra.at("MAGEMinSolidSolutionPilot::InternalComposition"));
+    const auto endmembers = std::any_cast<Strings>(props.extra.at("MAGEMinSolidSolutionPilot::Endmembers"));
+
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::ModelId")) == "sb21_cpx");
+    CHECK(endmembers == Strings{"di", "he", "cen", "cats", "jd"});
+    CHECK(internalx.size() == 5);
+    CHECK(internalx.sum() == Approx(1.0));
+    CHECK(std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::InternalMinimizerConverged")));
+    CHECK(!std::any_cast<bool>(props.extra.at("GlobalizedSolidSolution::SplitRequested")));
+    // Volume-fraction Margules with v[cats]=3.5 produces non-trivial excess chemical potentials
+    CHECK(props.ln_g[3] != Approx(0.0));
+}
+
+TEST_CASE("Testing imported MAGEMin SB21 garnet-majorite pilot model", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][SB21][GTMJ]")
+{
+    // 5-endmember garnet-majorite: py, alm, gr, mgmj, jdmj
+    const auto species = SpeciesList("Mg3Al2Si3O12 Fe3Al2Si3O12 Ca3Al2Si3O12 Mg4Si4O12 Na2Al2Si4O12");
+    const auto T = 1473.15;
+    const auto P = 1.0e9;
+
+    const auto model = MAGEMinSolidSolutionPilotModelSB21GTMJ();
+
+    ActivityModel fn = ActivityModelGlobalizedSolidSolution(model)(species);
+    ActivityProps props = ActivityProps::create(species.size());
+
+    ArrayXr x(5);
+    x << 0.50, 0.20, 0.15, 0.10, 0.05;
+    fn(props, {T, P, x});
+
+    const auto internalx = std::any_cast<ArrayXr>(props.extra.at("MAGEMinSolidSolutionPilot::InternalComposition"));
+    const auto endmembers = std::any_cast<Strings>(props.extra.at("MAGEMinSolidSolutionPilot::Endmembers"));
+
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::ModelId")) == "sb21_gtmj");
+    CHECK(endmembers == Strings{"py", "alm", "gr", "mgmj", "jdmj"});
+    CHECK(internalx.size() == 5);
+    CHECK(internalx.sum() == Approx(1.0));
+    CHECK(std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::InternalMinimizerConverged")));
+    CHECK(!std::any_cast<bool>(props.extra.at("GlobalizedSolidSolution::SplitRequested")));
+    // W_34(mgmj-jdmj)=70879 J/mol produces non-zero excess
+    CHECK(props.ln_g[3] != Approx(0.0));
+}
+
+TEST_CASE("Testing tangent-plane stability check — stable single-phase sb21_cf composition", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][SB21][Calcioferrite][TPD]")
+{
+    // A composition near one branch endpoint is thermodynamically stable as a single phase.
+    // The TPD criterion should report stable=true and not request a split.
+    const auto species = SpeciesList("MgAl2O4 FeAl2O4 NaAlSiO4");
+    const auto T = 1473.15;
+    const auto P = 1.0e9;
+
+    MAGEMinSB21CalcioferriteOptions options;
+    options.enableTangentPlaneStabilityCheck = true;
+    options.tpdTolerance = 1.0e-4;
+
+    ActivityModel fn = ActivityModelGlobalizedSolidSolution(MAGEMinSolidSolutionPilotModelSB21Calcioferrite(options))(species);
+    ActivityProps props = ActivityProps::create(species.size());
+
+    // y ≈ (0.80, 0.15, 0.05) — nacf-poor, well inside the mgcf-fecf branch
+    ArrayXr x(3);
+    x << 0.80, 0.15, 0.05;
+    fn(props, {T, P, x});
+
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::ModelId")) == "sb21_cf");
+    CHECK(!std::any_cast<bool>(props.extra.at("GlobalizedSolidSolution::SplitRequested")));
+    CHECK(std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::TPDStable")));
+}
+
+TEST_CASE("Testing tangent-plane stability check — unstable two-phase sb21_cf composition", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][SB21][Calcioferrite][TPD]")
+{
+    // The sb21_cf calcioferrite family has W02 = W12 = 60825 J/mol, T_crit >> T = 1473 K.
+    // A bulk composition deep in the two-phase region (nacf ≈ 50 %) should be identified
+    // as unstable by the TPD criterion, triggering a split request.
+    const auto species = SpeciesList("MgAl2O4 FeAl2O4 NaAlSiO4");
+    const auto T = 1473.15;
+    const auto P = 1.0e9;
+
+    MAGEMinSB21CalcioferriteOptions options;
+    options.enableTangentPlaneStabilityCheck = true;
+    options.tpdTolerance = 1.0e-4;
+
+    ActivityModel fn = ActivityModelGlobalizedSolidSolution(MAGEMinSolidSolutionPilotModelSB21Calcioferrite(options))(species);
+    ActivityProps props = ActivityProps::create(species.size());
+
+    // y ≈ (0.25, 0.25, 0.50) — nacf ≈ 50 %, deep inside the solvus
+    ArrayXr x(3);
+    x << 0.25, 0.25, 0.50;
+    fn(props, {T, P, x});
+
+    CHECK(std::any_cast<String>(props.extra.at("MAGEMinSolidSolutionPilot::ModelId")) == "sb21_cf");
+    const auto splitRequested = std::any_cast<bool>(props.extra.at("GlobalizedSolidSolution::SplitRequested"));
+    const auto tpdStable = std::any_cast<bool>(props.extra.at("MAGEMinSolidSolutionPilot::TPDStable"));
+    const auto tpdMin = std::any_cast<real>(props.extra.at("MAGEMinSolidSolutionPilot::TPDMinValue"));
+    CHECK(static_cast<double>(tpdMin) <= 0.0);
+    CHECK(splitRequested == !tpdStable);
+    CHECK(tpdStable == (static_cast<double>(tpdMin) >= -options.tpdTolerance));
+}
+
 TEST_CASE("Testing imported MAGEMin SB11 calcioferrite pilot model", "[ActivityModelGlobalizedSolidSolution][MAGEMinPilot][SB11][Calcioferrite]")
 {
     const auto species = SpeciesList("MgAl2O4 FeAl2O4 NaAlSiO4");

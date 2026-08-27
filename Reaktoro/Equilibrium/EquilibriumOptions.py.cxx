@@ -24,11 +24,22 @@ using namespace Reaktoro;
 
 void exportEquilibriumOptions(py::module& m)
 {
+    // Export GibbsHessian enum
+    py::enum_<GibbsHessian>(m, "GibbsHessian")
+        .value("Exact", GibbsHessian::Exact, "The Hessian of the Gibbs energy function is fully exact.")
+        .value("PartiallyExact", GibbsHessian::PartiallyExact, "The Hessian of the Gibbs energy function is partially exact, partially approximated.")
+        .value("Approx", GibbsHessian::Approx, "The Hessian of the Gibbs energy function is approximated using ideal thermodynamic models.")
+        .value("ApproxDiagonal", GibbsHessian::ApproxDiagonal, "The Hessian of the Gibbs energy function is a diagonal matrix approximation using ideal thermodynamic models.")
+        ;
+
+    // Export EquilibriumOptions class
     py::class_<EquilibriumOptions>(m, "EquilibriumOptions")
         .def(py::init<>())
         .def_readwrite("optima", &EquilibriumOptions::optima)
         .def_readwrite("epsilon", &EquilibriumOptions::epsilon)
         .def_readwrite("logarithm_barrier_factor", &EquilibriumOptions::logarithm_barrier_factor)
+        .def_readwrite("warmstart", &EquilibriumOptions::warmstart)
         .def_readwrite("use_ideal_activity_models", &EquilibriumOptions::use_ideal_activity_models)
+        .def_readwrite("hessian", &EquilibriumOptions::hessian)
         ;
 }

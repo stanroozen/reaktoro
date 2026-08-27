@@ -41,7 +41,7 @@ struct MAGEMinConstrainedTernaryLocalModel
     /// Objective callback over internal ternary composition coordinates.
     Fn<real(ArrayXrConstRef)> objective;
 
-    /// Optional gradient callback over internal ternary composition coordinates.
+    /// Optional gradient callback over internal ternary composition coordinates (∇f, n-vector).
     Fn<ArrayXr(ArrayXrConstRef)> gradient;
 
     /// Lower bounds applied by bounded minimizers.
@@ -58,6 +58,54 @@ struct MAGEMinConstrainedTernaryLocalModel
 
     /// Maximum number of local minimizer iterations.
     Index maxIterations = 256;
+
+    ///@name Nonlinear Constraint Hooks (optional for advanced minimizers)
+    ///@{
+
+    /// Optional callback to evaluate nonlinear inequality constraints c(x) <= 0.
+    /// Returns m-vector of constraint values at x. Absence indicates no nonlinear constraints.
+    Fn<ArrayXr(ArrayXrConstRef)> constraints;
+
+    /// Optional callback to evaluate the Jacobian of nonlinear constraints (m × n matrix).
+    /// Required if constraints callback is provided and used by constraint-aware minimizers.
+    /// Returns m × n matrix where row i = ∇c_i(x).
+    Fn<MatrixXr(ArrayXrConstRef)> constraintJacobian;
+
+    /// Lower bounds for nonlinear constraints c_i(x) >= constraintLowerBounds[i].
+    ArrayXr constraintLowerBounds;
+
+    /// Upper bounds for nonlinear constraints c_i(x) <= constraintUpperBounds[i].
+    ArrayXr constraintUpperBounds;
+
+    /// Quadratic penalty weight applied to nonlinear constraint violations in merit-based searches.
+    real constraintPenaltyWeight = 1.0e3;
+
+    /// Optional logarithmic barrier weight applied to feasible nonlinear constraints.
+    /// A zero value disables the barrier term.
+    real constraintBarrierWeight = 0.0;
+
+    /// Whether line-search style minimizers should reject nonlinear-infeasible trial steps outright.
+    bool requireFeasibleTrialPoints = false;
+
+    ///@}
+
+    ///@name Second-Order Information (optional for quasi-Newton and Newton-type methods)
+    ///@{
+
+    /// Optional callback to evaluate the Hessian of the objective function (n × n symmetric matrix).
+    /// Arguments: (x, multipliers) where multipliers are m-vector of Lagrange multipliers for constraints.
+    /// Returns ∇²f(x) + ∑_i lambda_i ∇²c_i(x) (Hessian of Lagrangian).
+    Fn<MatrixXr(ArrayXrConstRef, ArrayXrConstRef)> objectiveHessian;
+
+    /// Flag indicating whether second-order information (Hessian) should be used by the minimizer.
+    /// Minimizers may ignore this if Hessian callback is not provided.
+    bool useSecondOrderInfo = false;
+
+    /// Trust-region radius applied to raw search displacements before projection.
+    /// A non-positive value disables trust-region clipping.
+    real trustRegionRadius = 0.0;
+
+    ///@}
 };
 
 /// Function type for overriding the local constrained ternary minimizer used by imported MAGEMin pilots.
@@ -71,6 +119,74 @@ using MAGEMinConstrainedTernaryMinimizer = Fn<GlobalizedSolidSolutionInternalRes
 using MAGEMinConstrainedTernaryLocalModelMinimizer = Fn<GlobalizedSolidSolutionInternalResult(
     MAGEMinConstrainedTernaryLocalModel const&,
     Optional<ArrayXr>)>;
+
+/// Function type compatible with MAGEMin TC/NLopt multi-constraint callbacks.
+///
+/// Signature mirrors NLopt's `nlopt_add_inequality_mconstraint` callback shape:
+/// `(m, result, n, x, grad, data)` where `grad` is an optional flattened row-major m×n Jacobian.
+using MAGEMinTCMConstraintCallback = Fn<void(
+    unsigned,
+    double*,
+    unsigned,
+    const double*,
+    double*,
+    void*)>;
+
+/// Bridge data for mapping MAGEMin TC flattened mconstraint callbacks to Reaktoro's dense constraint contract.
+struct MAGEMinTCMConstraintBridge
+{
+    /// Number of constraints (`m`).
+    unsigned numConstraints = 0;
+
+    /// Number of local variables (`n`).
+    unsigned numVariables = 0;
+
+    /// Lower bounds for each mapped constraint value.
+    ArrayXr constraintLowerBounds;
+
+    /// Upper bounds for each mapped constraint value.
+    ArrayXr constraintUpperBounds;
+
+    /// MAGEMin/TC style mconstraint callback.
+    MAGEMinTCMConstraintCallback callback;
+
+    /// Optional map from native TC variables to visible pilot composition coordinates.
+    ///
+    /// When provided, the local-model objective/gradient are evaluated in visible composition
+    /// space while minimization and nonlinear constraints remain in native TC variable space.
+    Fn<ArrayXr(ArrayXrConstRef)> nativeToVisible;
+
+    /// Optional Jacobian of `nativeToVisible` (visible_size x numVariables).
+    ///
+    /// When provided together with a visible-space gradient callback, the adapter uses
+    /// chain-rule projection for native-space gradients. Otherwise finite-difference
+    /// gradients are used in native space.
+    Fn<MatrixXr(ArrayXrConstRef)> nativeToVisibleJacobian;
+
+    /// Optional map from visible pilot composition coordinates to native TC variables.
+    ///
+    /// Used to convert visible warmstarts to native-variable warmstarts when dimensions differ.
+    Fn<ArrayXr(ArrayXrConstRef)> visibleToNative;
+
+    /// Optional lower bounds for native TC variables.
+    ///
+    /// If populated, size must equal `numVariables` and overrides local-model lower bounds.
+    ArrayXr variableLowerBounds;
+
+    /// Optional upper bounds for native TC variables.
+    ///
+    /// If populated, size must equal `numVariables` and overrides local-model upper bounds.
+    ArrayXr variableUpperBounds;
+
+    /// Optional override for enforcing the unity constraint in native TC variable space.
+    ///
+    /// For native TC coordinates, this is commonly disabled because constraints are already
+    /// imposed through `callback`.
+    Optional<bool> enforceUnityConstraint;
+
+    /// Optional opaque pointer forwarded to `callback`.
+    void* userData = nullptr;
+};
 
 /// Function type for attaching family-specific diagnostics payloads to local-model minimization outcomes.
 using MAGEMinConstrainedTernaryLocalModelDiagnostics = Fn<Map<String, Any>(
@@ -209,6 +325,16 @@ struct MAGEMinImportedConstrainedTernarySolutionOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional NLopt-backed local-model adapter minimizer.
+    ///
+    /// This callback is intended as a bridge to MAGEMin's native NLopt local solvers
+    /// (`SB_NLopt_opt_function.c`, `TC_database/NLopt_opt_function.c`) while keeping
+    /// Reaktoro's outer constrained equilibrium formulation unchanged.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
     /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
     MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
@@ -229,6 +355,19 @@ struct MAGEMinImportedConstrainedTernarySolutionOptions
 
     /// Maximum number of iterations for the constrained ternary internal minimizer.
     Index minimizerMaxIterations = 256;
+
+    /// Whether to apply a tangent-plane distance stability check after all branch-local minimizations.
+    ///
+    /// When enabled, the pilot computes the tangent-plane distance (TPD) from the current
+    /// branch-local minimum toward every other branch's local minimum. A negative TPD indicates
+    /// that the single-phase state is thermodynamically unstable, and a split request is emitted.
+    bool enableTangentPlaneStabilityCheck = false;
+
+    /// Tolerance for the tangent-plane distance criterion (dimensionless, relative to R*T).
+    ///
+    /// A split request is emitted when the TPD at any competing branch minimum is more negative
+    /// than `-tpdTolerance * R * T`. Reducing this value makes the criterion more sensitive.
+    real tpdTolerance = 1.0e-4;
 };
 
 /// Options for the imported MAGEMin SB11 olivine (`fo`-`fa`) pilot model.
@@ -257,6 +396,12 @@ struct MAGEMinSB11AkimotoiteOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
     /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
     MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
@@ -282,6 +427,12 @@ struct MAGEMinSB11PerovskiteOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
     /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
     MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
@@ -306,6 +457,12 @@ struct MAGEMinSB11CalcioferriteOptions
 
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
 
     /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
     MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
@@ -339,6 +496,12 @@ struct MAGEMinSB21NALOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
     /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
     MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
@@ -364,6 +527,12 @@ struct MAGEMinSB21CalcioferriteOptions
     /// Optional local-model minimizer receiving a richer objective/gradient contract.
     MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
 
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
     /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
     MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
 
@@ -374,6 +543,238 @@ struct MAGEMinSB21CalcioferriteOptions
     real minimizerTolerance = 1.0e-10;
 
     /// Maximum number of iterations for the constrained ternary internal minimizer.
+    Index minimizerMaxIterations = 256;
+
+    /// Whether to apply a tangent-plane distance stability check after all branch-local minimizations.
+    bool enableTangentPlaneStabilityCheck = false;
+
+    /// Tolerance for the tangent-plane distance criterion (dimensionless, relative to R*T).
+    real tpdTolerance = 1.0e-4;
+};
+
+/// Options for the imported MAGEMin SB21 OPX (`en`-`fs`-`mgts`-`odi`) pilot model.
+struct MAGEMinSB21OPXOptions
+{
+    /// Reaktoro-side branch policy used for diagnostics and optional split requests.
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+
+    /// Optional local minimizer overriding the default projected-gradient minimizer for this pilot.
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+
+    /// Optional local-model minimizer receiving a richer objective/gradient contract.
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
+    /// Optional TC-style flattened mconstraint bridge used to build `nloptLocalModelMinimizer`.
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+
+    /// Quadratic penalty that couples the minimized internal composition to the visible composition.
+    real externalCompositionPenalty = 25.0;
+
+    /// Tolerance of the internal minimizer.
+    real minimizerTolerance = 1.0e-10;
+
+    /// Maximum number of iterations for the internal minimizer.
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the imported MAGEMin SB21 CPX (`di`-`he`-`cen`-`cats`-`jd`) pilot model.
+struct MAGEMinSB21CPXOptions
+{
+    /// Reaktoro-side branch policy used for diagnostics and optional split requests.
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+
+    /// Optional local minimizer overriding the default projected-gradient minimizer for this pilot.
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+
+    /// Optional local-model minimizer receiving a richer objective/gradient contract.
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
+    /// Optional TC-style flattened mconstraint bridge used to build `nloptLocalModelMinimizer`.
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+
+    /// Quadratic penalty that couples the minimized internal composition to the visible composition.
+    real externalCompositionPenalty = 25.0;
+
+    /// Tolerance of the internal minimizer.
+    real minimizerTolerance = 1.0e-10;
+
+    /// Maximum number of iterations for the internal minimizer.
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the imported MAGEMin SB21 garnet-majorite (`py`-`alm`-`gr`-`mgmj`-`jdmj`) pilot model.
+struct MAGEMinSB21GTMJOptions
+{
+    /// Reaktoro-side branch policy used for diagnostics and optional split requests.
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+
+    /// Optional local minimizer overriding the default projected-gradient minimizer for this pilot.
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+
+    /// Optional local-model minimizer receiving a richer objective/gradient contract.
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional NLopt-backed local-model adapter minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
+    /// Optional TC-style flattened mconstraint bridge used to build `nloptLocalModelMinimizer`.
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+
+    /// Quadratic penalty that couples the minimized internal composition to the visible composition.
+    real externalCompositionPenalty = 25.0;
+
+    /// Tolerance of the internal minimizer.
+    real minimizerTolerance = 1.0e-10;
+
+    /// Maximum number of iterations for the internal minimizer.
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the imported MAGEMin SB21 plagioclase (`an`-`ab`) binary pilot model.
+struct MAGEMinSB21PLGOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+};
+
+/// Options for the imported MAGEMin SB21 olivine (`fo`-`fa`) binary pilot model.
+struct MAGEMinSB21OlivineOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+};
+
+/// Options for the imported MAGEMin SB21 wadsleyite (`mgwa`-`fewa`) binary pilot model.
+struct MAGEMinSB21WadsleyiteOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+};
+
+/// Options for the imported MAGEMin SB21 ringwoodite (`mgri`-`feri`) binary pilot model.
+struct MAGEMinSB21RingwooditeOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+};
+
+/// Options for the imported MAGEMin SB21 high-P clinopyroxene (`hpcen`-`hpcfs`) binary pilot model.
+struct MAGEMinSB21HPCPXOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+};
+
+/// Options for the imported MAGEMin SB21 akimotoite (`mgak`-`feak`-`co`) pilot model.
+struct MAGEMinSB21AkimotoiteOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+    bool preferNLoptLocalModelMinimizer = false;
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+    real externalCompositionPenalty = 25.0;
+    real minimizerTolerance = 1.0e-10;
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the imported MAGEMin SB21 perovskite (`mgpv`-`fepv`-`alpv`) pilot model.
+struct MAGEMinSB21PerovskiteOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+    bool preferNLoptLocalModelMinimizer = false;
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+    real externalCompositionPenalty = 25.0;
+    real minimizerTolerance = 1.0e-10;
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the imported MAGEMin SB21 post-perovskite (`mppv`-`fppv`-`appv`) pilot model.
+struct MAGEMinSB21PostPerovskiteOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+    bool preferNLoptLocalModelMinimizer = false;
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+    real externalCompositionPenalty = 25.0;
+    real minimizerTolerance = 1.0e-10;
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the imported MAGEMin SB21 magnesiowustite (`pe`-`wu`-`anao`) pilot model.
+struct MAGEMinSB21MagnesiowustitesOptions
+{
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+    MAGEMinConstrainedTernaryMinimizer minimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+    bool preferNLoptLocalModelMinimizer = false;
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+    real externalCompositionPenalty = 25.0;
+    real minimizerTolerance = 1.0e-10;
+    Index minimizerMaxIterations = 256;
+};
+
+/// Options for the first Holland-Powell ig_opx xeos-native pilot model.
+struct MAGEMinHPIGOPXOptions
+{
+    /// Reaktoro-side branch policy used for diagnostics and optional split requests.
+    MAGEMinSolidSolutionPilotBranchPolicyOptions branchPolicy;
+
+    /// Optional local-model minimizer receiving the xeos-native objective/gradient contract.
+    MAGEMinConstrainedTernaryLocalModelMinimizer localModelMinimizer;
+
+    /// Optional NLopt-backed local-model minimizer.
+    MAGEMinConstrainedTernaryLocalModelMinimizer nloptLocalModelMinimizer;
+
+    /// Prefer `nloptLocalModelMinimizer` over `localModelMinimizer` when both are provided.
+    bool preferNLoptLocalModelMinimizer = false;
+
+    /// Optional callback producing additional diagnostics payload for local-model minimization outcomes.
+    MAGEMinConstrainedTernaryLocalModelDiagnostics localModelDiagnostics;
+
+    /// Optional TC-style flattened mconstraint bridge used to inject opx_ig_c constraints.
+    Optional<MAGEMinTCMConstraintBridge> tcMConstraintBridge;
+
+    /// Optional callback that returns the per-endmember HP ig_opx reference-state Gibbs energies.
+    Fn<ArrayXr(real, real)> referenceState;
+
+    /// Quadratic penalty that couples minimized xeos coordinates to visible composition.
+    real externalCompositionPenalty = 10.0;
+
+    /// Tolerance of the xeos-native local minimizer.
+    real minimizerTolerance = 1.0e-10;
+
+    /// Maximum number of iterations for the xeos-native local minimizer.
     Index minimizerMaxIterations = 256;
 };
 
@@ -420,6 +821,58 @@ auto MAGEMinSolidSolutionPilotModelSB21NAL(
 auto MAGEMinSolidSolutionPilotModelSB21Calcioferrite(
     MAGEMinSB21CalcioferriteOptions options = {}) -> GlobalizedSolidSolutionModel;
 
+/// Return the imported MAGEMin `sb21_opx` orthopyroxene 4-endmember pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21OPX(
+    MAGEMinSB21OPXOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_cpx` clinopyroxene 5-endmember pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21CPX(
+    MAGEMinSB21CPXOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_gtmj` garnet-majorite 5-endmember pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21GTMJ(
+    MAGEMinSB21GTMJOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_plg` plagioclase binary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21PLG(
+    MAGEMinSB21PLGOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_ol` olivine binary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21Olivine(
+    MAGEMinSB21OlivineOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_wa` wadsleyite binary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21Wadsleyite(
+    MAGEMinSB21WadsleyiteOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_ri` ringwoodite binary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21Ringwoodite(
+    MAGEMinSB21RingwooditeOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_hpcpx` high-P clinopyroxene binary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21HPCPX(
+    MAGEMinSB21HPCPXOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_ak` akimotoite ternary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21Akimotoite(
+    MAGEMinSB21AkimotoiteOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_pv` perovskite ternary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21Perovskite(
+    MAGEMinSB21PerovskiteOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_ppv` post-perovskite ternary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21PostPerovskite(
+    MAGEMinSB21PostPerovskiteOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the imported MAGEMin `sb21_mw` magnesiowustite ternary pilot model.
+auto MAGEMinSolidSolutionPilotModelSB21Magnesiowustites(
+    MAGEMinSB21MagnesiowustitesOptions options = {}) -> GlobalizedSolidSolutionModel;
+
+/// Return the first Holland-Powell ig_opx xeos-native pilot model.
+auto MAGEMinSolidSolutionPilotModelHPIGOPX(
+    MAGEMinHPIGOPXOptions options = {}) -> GlobalizedSolidSolutionModel;
+
 /// Bind a reduced MAGEMin-style solid-solution model to a single unsplit pilot phase.
 auto MAGEMinSolidSolutionPilotPhase(
     Phase const& phase,
@@ -449,5 +902,13 @@ auto MAGEMinSolidSolutionPilotPhases(
 auto MAGEMinProjectedGradientLocalModelMinimizer(
     MAGEMinConstrainedTernaryLocalModel const& model,
     Optional<ArrayXr> warmstart) -> GlobalizedSolidSolutionInternalResult;
+
+/// Build a local-model adapter that maps TC-style flattened mconstraints to Reaktoro dense constraints.
+///
+/// The returned minimizer applies the bridge constraints to the provided local model, then delegates to
+/// `fallback` (or to `MAGEMinProjectedGradientLocalModelMinimizer` if `fallback` is empty).
+auto MAGEMinTCMConstraintBridgeLocalModelAdapter(
+    MAGEMinTCMConstraintBridge bridge,
+    MAGEMinConstrainedTernaryLocalModelMinimizer fallback = {}) -> MAGEMinConstrainedTernaryLocalModelMinimizer;
 
 } // namespace Reaktoro

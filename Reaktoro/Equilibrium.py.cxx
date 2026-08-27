@@ -19,12 +19,14 @@
 #include <Reaktoro/pybind11.hxx>
 
 void exportEquilibriumConditions(py::module& m);
+void exportEquilibriumBenchmarkUtils(py::module& m);
 void exportEquilibriumDims(py::module& m);
 void exportEquilibriumOptions(py::module& m);
 void exportEquilibriumRestrictions(py::module& m);
 void exportEquilibriumResult(py::module& m);
 void exportEquilibriumSensitivity(py::module& m);
 void exportEquilibriumSolver(py::module& m);
+void exportEquilibriumSweepSolver(py::module& m);
 void exportEquilibriumSpecs(py::module& m);
 void exportEquilibriumUtils(py::module& m);
 void exportSmartEquilibriumOptions(py::module& m);
@@ -34,12 +36,14 @@ void exportSmartEquilibriumSolver(py::module& m);
 void exportEquilibrium(py::module& m)
 {
     exportEquilibriumConditions(m);
+    exportEquilibriumBenchmarkUtils(m);
     exportEquilibriumDims(m);
     exportEquilibriumOptions(m);
     exportEquilibriumRestrictions(m);
     exportEquilibriumResult(m);
     exportEquilibriumSensitivity(m);
     exportEquilibriumSolver(m);
+    exportEquilibriumSweepSolver(m);
     exportEquilibriumSpecs(m);
     exportEquilibriumUtils(m);
     exportSmartEquilibriumOptions(m);

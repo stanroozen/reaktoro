@@ -144,9 +144,25 @@ auto debyeHuckelParamB(real T, real P, real rho_w, real epsilon) -> real
     return B;
 }
 
+auto makeWaterStateOptions(const WaterModelOptions& waterOptions) -> WaterStateOptions
+{
+    WaterStateOptions opts;
+    opts.thermo.eosModel = waterOptions.eosModel;
+    opts.thermo.usePsatPolynomials = waterOptions.usePsatPolynomials;
+    opts.thermo.psatRelativeTolerance = waterOptions.psatRelTol;
+    opts.thermo.densityTolerance = waterOptions.densityTolerance;
+
+    opts.dielectric.primary = static_cast<WaterDielectricPrimaryModel>(waterOptions.dielectricModel);
+    if(waterOptions.usePsatPolynomials)
+        opts.dielectric.psatMode = WaterDielectricPsatMode::UsePsatWhenNear;
+    opts.dielectric.psatRelativeTolerance = waterOptions.psatRelTol;
+
+    return opts;
+}
+
 } // namespace
 
-auto activityModelDEW(const SpeciesList& species) -> ActivityModel
+auto activityModelDEW(const SpeciesList& species, const ActivityModelParamsDEW& params) -> ActivityModel
 {
     // Create the aqueous mixture
     AqueousMixture mixture(species);
@@ -210,11 +226,8 @@ auto activityModelDEW(const SpeciesList& species) -> ActivityModel
         }
 
         // ========== STEP 2: Retrieve water properties from DEW ==========
-        // Get water state using ZD05 EOS + PowerFunction dielectric —
-        // consistent with StandardThermoModelDEW defaults.
-        WaterStateOptions opts;
-        opts.thermo.eosModel    = WaterEosModel::ZhangDuan2005;
-        opts.dielectric.primary = WaterDielectricPrimaryModel::PowerFunction;
+        // Get water state using the configured DEW water-property models.
+        const auto opts = makeWaterStateOptions(params.waterOptions);
         const auto water_state = waterState(T, P, opts);
 
         const auto rho_w = water_state.thermo.D;           // Water density (kg/m³)
@@ -245,20 +258,23 @@ auto activityModelDEW(const SpeciesList& species) -> ActivityModel
                 continue;
             }
 
-            // ========== HKF/DEW EQUATION (Eq. 39 in Huang & Sverjensky 2019) ==========
-            // log₁₀(γⱼ) = -(A*zⱼ²*√I) / (1 + aⱼ*B*√I) + bᶜ'ᵏ*I + Cᶜ
-
-            // DEW assumption: bᶜ'ᵏ = 0 at deep-Earth conditions
-            const auto b_extended = 0.0;  // Set to zero for DEW
-
-            // Lambda factor
-            const auto lambda = 1.0 + a * B * sqrt_I;
-
-            // Debye-Hückel term
-            const auto dh_term = -(A * z2 * sqrt_I) / lambda;
+            real dh_term;
+            if(params.dhModel == ActivityDHModel::Davies)
+            {
+                // ===== Classic Davies approximation (no ionic-radius parameter) =====
+                // log₁₀(γᵢ) = −A zᵢ² (√I / (1 + √I) − 0.3 I)
+                dh_term = -A * z2 * (sqrt_I / (1.0 + sqrt_I) - 0.3 * I);
+            }
+            else
+            {
+                // ===== HKF/DEW EQUATION (Eq. 39 in Huang & Sverjensky 2019) ==========
+                // log₁₀(γⱼ) = -(A*zⱼ²*√I) / (1 + aⱼ*B*√I) + bᶜ'ᵏ*I + Cᶜ
+                const auto lambda = 1.0 + a * B * sqrt_I;
+                dh_term = -(A * z2 * sqrt_I) / lambda;
+            }
 
             // Total activity coefficient (log₁₀ scale)
-            const auto log10_gamma = dh_term + b_extended * I + Cc;
+            const auto log10_gamma = dh_term + params.bExtended * I + Cc;
 
             // Convert to natural log scale
             props.ln_g[ispecies] = log10_gamma * ln10;
@@ -293,7 +309,12 @@ auto activityModelDEW(const SpeciesList& species) -> ActivityModel
 
 auto ActivityModelDEW() -> ActivityModelGenerator
 {
-    return [](const SpeciesList& species) { return activityModelDEW(species); };
+    return ActivityModelDEW(ActivityModelParamsDEW{});
+}
+
+auto ActivityModelDEW(const ActivityModelParamsDEW& params) -> ActivityModelGenerator
+{
+    return [=](const SpeciesList& species) { return activityModelDEW(species, params); };
 }
 
 } // namespace Reaktoro

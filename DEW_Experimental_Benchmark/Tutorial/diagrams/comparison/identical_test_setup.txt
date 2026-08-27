@@ -1,0 +1,28 @@
+Identical species/settings test (CHNOSZ vs Reaktoro) — OPEN SYSTEM
+- Binary path: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release
+- Case: Fe Pourbaix
+- Range: pH [-2,16], Eh [-2,2], T=25C, P=1 bar
+- Solver failures: 5793/12000 (non-converged=5793, exceptions=0)
+- Continuation strategy: row-major continuation with row-seed fallback
+- Robust solver options: warmstart=true, epsilon=1e-14, hessian=GibbsHessian.Exact
+- Robust fallback: direct multi-seed solve + bounded homotopy retries (0-4 steps)
+- Boundary style: solid field boundaries + striped mineral frontiers + solid/striped non-convergence boundaries
+- Non-converged cells are retained as explicit infeasible domains under the imposed fixed-activity constraints
+- Iron constraint: log10(a(Fe+2)) = 0.0  (same as CHNOSZ basis default)
+- FIX 1: specs.lgActivity('Fe+2') — system is open to Fe (implicit titrant)
+- FIX 2: predominance = mineral amount > threshold, else max aqueous log10(a)
+- Shared species set used (Reaktoro names):
+  - Fe+2
+  - Fe+3
+  - FeO+
+  - FeO2-
+  - FeOH+
+  - FeOH+2
+  - HFeO2(aq)
+  - HFeO2-
+  - Goethite
+  - Hematite
+  - Iron
+  - Magnetite
+- CHNOSZ alias mapping: HFeO2(aq) <-> HFeO2
+- Output: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\Reaktoro_Pourbaix_Fe_identical_test.png

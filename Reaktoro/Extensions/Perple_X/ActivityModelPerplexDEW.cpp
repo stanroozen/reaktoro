@@ -98,101 +98,6 @@ const std::map<std::string, int> FLUID_SPEC_IDX = {
     {"SO2", 8}, {"N2", 10}, {"NH3", 11}, {"C2H6", 16}, {"HF", 17}, {"HCl", 18}};
 
 // ============================================================================
-// Hydrous-equivalent correction for DEW anhydrous species
-//
-// If DEW stores species i as:  i_stored = i_hydrous - n_i*H2O,
-// then chemical potentials obey:
-//   mu(i_hydrous) = mu(i_stored) + n_i*mu(H2O)
-//
-// In activity form this is an additive term:
-//   ln(a_i)_hydrous = ln(a_i)_stored + n_i * ln(a_H2O)
-//
-// Applying this inside the activity model allows the minimizer to propagate
-// mixed-fluid water-activity effects automatically (no post a_H2O correction).
-// ============================================================================
-const std::map<std::string, double> HYDROUS_H2O_UNITS_BY_NAME = {
-    {"SiO2_aq",       2.0},
-    {"HSiO3-",        1.0},
-    {"Si2O4_aq",      4.0},
-    {"Si3O6_aq",      6.0},
-    {"Ca(HSiO3)+",    1.0},
-    {"Fe(HSiO3)+",    1.0},
-    {"Mg(HSiO3)+",    1.0},
-    {"NaHSiO3_aq",    1.0},
-    {"AlO2(SiO2)-",   4.0},
-    {"AlO2-",         2.0},
-    {"HAlO2_aq",      1.0},
-    {"BO2-",          2.0},
-    {"BO(OH)_aq",     1.0},
-    {"TIO2_aq",       2.0},
-    {"ZrO2_aq",       2.0},
-};
-
-auto loadHydrousRegistryOverrides() -> std::map<std::string, double>
-{
-    std::map<std::string, double> merged = HYDROUS_H2O_UNITS_BY_NAME;
-
-    const char* path = std::getenv("REAKTORO_PERPLEXDEW_HYDROUS_REGISTRY");
-    if(!path || !*path)
-        return merged;
-
-    std::ifstream fin(path);
-    if(!fin.is_open())
-    {
-        warningif(true,
-            "PerplexDEW: unable to open hydrous registry file from "
-            "REAKTORO_PERPLEXDEW_HYDROUS_REGISTRY='", path, "'. Using built-in defaults.");
-        return merged;
-    }
-
-    std::string line;
-    while(std::getline(fin, line))
-    {
-        if(line.empty() || line[0] == '#')
-            continue;
-
-        for(char& ch : line)
-            if(ch == ',' || ch == '\t') ch = ' ';
-
-        std::istringstream iss(line);
-        std::string name;
-        double n_h2o = 0.0;
-        if(!(iss >> name >> n_h2o))
-            continue;
-
-        merged[name] = n_h2o;
-    }
-
-    return merged;
-}
-
-auto hydrousRegistry() -> const std::map<std::string, double>&
-{
-    static const auto registry = loadHydrousRegistryOverrides();
-    return registry;
-}
-
-auto hydrousH2OUnits(const Species& sp) -> double
-{
-    const auto& n = sp.name();
-
-    auto it = hydrousRegistry().find(n);
-    if(it != hydrousRegistry().end())
-        return it->second;
-
-    // Charged-name aliases may differ by parenthesized charge style.
-    if(isAlternativeChargedSpeciesName(n, "HSiO3-"))      return 1.0;
-    if(isAlternativeChargedSpeciesName(n, "Ca(HSiO3)+"))  return 1.0;
-    if(isAlternativeChargedSpeciesName(n, "Fe(HSiO3)+"))  return 1.0;
-    if(isAlternativeChargedSpeciesName(n, "Mg(HSiO3)+"))  return 1.0;
-    if(isAlternativeChargedSpeciesName(n, "AlO2-"))       return 2.0;
-    if(isAlternativeChargedSpeciesName(n, "BO2-"))        return 2.0;
-    if(isAlternativeChargedSpeciesName(n, "AlO2(SiO2)-")) return 4.0;
-
-    return 0.0;
-}
-
-// ============================================================================
 // Effective ionic radii (Å) — for ExtendedDH mode (Helgeson et al. 1981)
 // ============================================================================
 const std::map<std::string, real> IONIC_RADII = {
@@ -434,7 +339,9 @@ auto activityModelPerplexDEW(
     const SpeciesList& species,
     const ActivityModelParamsPerplexDEW& options) -> ActivityModel
 {
-    const auto dhModel = options.model;
+    const auto dhModel = options.dhModel;
+    const auto failOnConflictingStandardState = options.errorOnConflictingStandardState;
+    const auto requireCoupledFluidHandoff = options.requireCoupledGFSMHandoff;
     AqueousMixture mixture(species);
 
     const auto num_species          = mixture.species().size();
@@ -486,15 +393,6 @@ auto activityModelPerplexDEW(
         }
     }
 
-    // Number of H2O units projected out of each DEW anhydrous species.
-    // Zero for unaffected species.
-    Vec<double> hydrous_h2o_units(num_species, 0.0);
-    for(Index i = 0; i < num_species; ++i)
-    {
-        if(i == iwater) continue;
-        hydrous_h2o_units[i] = hydrousH2OUnits(mixture.species(i));
-    }
-
     // -------------------------------------------------------------------------
     // Pre-compute GFSM co-solvent flag.
     //
@@ -542,16 +440,74 @@ auto activityModelPerplexDEW(
         if(pidx <= 0) continue;  // not a GFSM fluid species
         const Index i = ineutral_species[k];
         if(!born_vec[i].active) continue;  // no HKF model, no conflict
-        warningif(true,
+        auto message = str(
             "PerplexDEW: species '", mixture.species(i).name(), "' is both a "
             "GFSM fluid co-solvent (Perple_X index ", pidx, ") and has a PerplexDEW "
-            "HKF standard thermo model.  These use incompatible standard states "
+            "HKF standard thermo model. These use incompatible standard states "
             "(mole-fraction GFSM vs. molal HKF) and will double-count the excess "
-            "chemical potential.  "
-            "Solution A: remove the HKF species entry — activity comes from GFSM "
-            "(mixture fugacity ratio, Perple_X ghybrid equivalent).  "
+            "chemical potential. "
+            "Solution A: remove the HKF species entry - activity comes from GFSM "
+            "(mixture fugacity ratio, Perple_X ghybrid equivalent). "
             "Solution B: keep HKF only and exclude the species from the GFSM "
-            "co-solvent list.");
+            "co-solvent list. "
+            "To hard-fail on this conflict, set "
+            "ActivityModelParamsPerplexDEW.errorOnConflictingStandardState=True.");
+
+        if(failOnConflictingStandardState)
+            errorif(true, message);
+        warningif(true, message);
+    }
+
+    // -------------------------------------------------------------------------
+    // Unmapped GFSM coupling diagnostic.
+    //
+    // A neutral non-water species that has NO HKF model and whose formula does
+    // NOT match any FLUID_SPEC_IDX key (neutral_pidx[k] == -1) may still be a
+    // Perple_X GFSM co-solvent stored under a non-standard formula string.
+    // Common cause: database formula field has an aqueous suffix appended
+    // (e.g. "CO2_aq" instead of "CO2"), so the exact-key lookup misses.
+    //
+    // The check strips a set of known suffixes and retests.  If the stripped
+    // formula IS in FLUID_SPEC_IDX the user almost certainly has a naming
+    // mismatch: GFSM coupling is inactive and the species gets activity = 1.
+    // Controlled by ActivityModelParamsPerplexDEW.warnOnUnmappedGFSMCoupling.
+    // -------------------------------------------------------------------------
+    if(options.warnOnUnmappedGFSMCoupling)
+    {
+        static const std::vector<std::string> AQUEOUS_SUFFIXES =
+            { ",aq", "_aq", "(aq)", "-aq", ".aq", ",AQ", "_AQ", "(AQ)" };
+
+        for(Index k = 0; k < num_neutral_species; ++k)
+        {
+            if(neutral_pidx[k] > 0) continue;      // already coupled — no issue
+            const Index i = ineutral_species[k];
+            if(i == iwater) continue;
+            if(born_vec[i].active) continue;        // HKF solute — intentional
+            const std::string fstr = mixture.species(i).formula().str();
+            std::string base = fstr;
+            for(const auto& suf : AQUEOUS_SUFFIXES)
+            {
+                if(fstr.size() > suf.size() &&
+                   fstr.compare(fstr.size() - suf.size(), suf.size(), suf) == 0)
+                {
+                    base = fstr.substr(0, fstr.size() - suf.size());
+                    break;
+                }
+            }
+            if(base == fstr) continue;  // no suffix stripped — no mismatch
+            if(!FLUID_SPEC_IDX.count(base)) continue;
+            warningif(true,
+                "PerplexDEW: neutral species '", mixture.species(i).name(), "' "
+                "has formula '", fstr, "' which did not match any Perple_X GFSM "
+                "fluid co-solvent key. Stripping the aqueous suffix gives '", base,
+                "' which IS a known GFSM species (FLUID_SPEC_IDX index ",
+                FLUID_SPEC_IDX.at(base), "). GFSM mixed-fluid coupling for this "
+                "species is INACTIVE — its activity coefficient will be 1 (no MRK "
+                "non-ideal correction). Fix: change the database formula entry to "
+                "'", base, "' so that formula().str() returns the bare molecular "
+                "formula. To suppress this warning, set "
+                "ActivityModelParamsPerplexDEW.warnOnUnmappedGFSMCoupling=False.");
+        }
     }
 
     auto stateptr   = std::make_shared<AqueousMixtureState>();
@@ -628,6 +584,20 @@ auto activityModelPerplexDEW(
             }
         }
 
+        if(requireCoupledFluidHandoff && !usedCoupledFluidHandoff)
+        {
+            errorif(true,
+                "PerplexDEW strict coupled-fluid mode failed: "
+                "requireCoupledGFSMHandoff=True but no fresh GFSM handoff was consumed. "
+                "Diagnostics: haveExpectedStateId=", haveExpectedState ? "true" : "false",
+                ", haveHandoffStateId=", haveHandoffState ? "true" : "false",
+                ", expectedStateId=", stateid_expected,
+                ", handoffStateId=", stateid_handoff,
+                ". Ensure a PerplexGFSM gas phase is present and evaluated in the same ChemicalProps "
+                "state before PerplexDEW, and that props.extra contains "
+                "PerplexGFSM::WaterActivity::StateId and ::ln_f_ratio_h2o for the current state.");
+        }
+
         props.extra["PerplexDEW::WaterActivity::Source"] = waterActivitySource;
         props.extra["PerplexDEW::WaterActivity::CoupledHandoffUsed"] = usedCoupledFluidHandoff;
 
@@ -640,7 +610,6 @@ auto activityModelPerplexDEW(
         props.extra["PerplexDEW::WaterActivity::ln_a_h2o_gfsm"] = static_cast<double>(ln_a_h2o_gfsm);
         props.extra["PerplexDEW::WaterActivity::ln_a_h2o_total"] = static_cast<double>(ln_a_water_total);
         props.extra["PerplexDEW::WaterActivity::Enabled"] = true;
-        props.extra["PerplexDEW::HydrousCorrection::Enabled"] = options.enableHydrousSpeciesCorrection;
 
         const auto sqrt_I = sqrt(I);
 
@@ -748,26 +717,6 @@ auto activityModelPerplexDEW(
                 if(is_gfsm_solvent[i]) continue;  // mole-fraction reference, no correction
                 props.ln_g[i] += delta_lnm;
                 props.ln_a[i] += delta_lnm;
-            }
-        }
-
-        // -----------------------------------------------------------------------
-        // Hydrous-equivalent DEW correction:
-        //   ln(a_i) += n_i * ln(a_H2O)
-        //
-        // This converts selected DEW anhydrous species to their hydrous chemical
-        // potential representation inside the minimization loop, so mixed-fluid
-        // quartz/silicate solubilities emerge directly without post-processing.
-        // -----------------------------------------------------------------------
-        if(options.enableHydrousSpeciesCorrection && std::abs(static_cast<double>(ln_a_water_total)) > 1.0e-12)
-        {
-            for(Index i = 0; i < num_species; ++i)
-            {
-                const double n_h2o = hydrous_h2o_units[i];
-                if(n_h2o == 0.0) continue;
-                const double delta = n_h2o * static_cast<double>(ln_a_water_total);
-                props.ln_g[i] += delta;
-                props.ln_a[i] += delta;
             }
         }
 
@@ -891,9 +840,7 @@ auto ActivityModelPerplexDEW(const ActivityModelParamsPerplexDEW& params) -> Act
 auto ActivityModelPerplexDEW(ActivityDHModel model) -> ActivityModelGenerator
 {
     ActivityModelParamsPerplexDEW params;
-    params.model = model;
-    params.enableHydrousSpeciesCorrection = envVarEnabled(
-        "REAKTORO_PERPLEXDEW_ENABLE_HYDROUS_SPECIES_CORRECTION", false);
+    params.dhModel = model;
     return ActivityModelPerplexDEW(params);
 }
 

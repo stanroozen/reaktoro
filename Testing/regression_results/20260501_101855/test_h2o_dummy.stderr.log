@@ -1,0 +1,3 @@
+[1;33m***WARNING***
+Species with same aggregate state should have unique names in Database, but species `H2O(aq)` with aggregate state `Aqueous` violates this rule. The unique name H2O(aq)! has been assigned instead.
+[0m

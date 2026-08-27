@@ -1,0 +1,34 @@
+[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=423.15 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: reached warning limit (10); further out-of-bounds warnings are suppressed.
+[0mTraceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\run_calcite_PerplexDEW_Davies_H2OCO2.py", line 26, in <module>
+    _m.main()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_analysis.py", line 886, in main
+    high_P_all_data = exp_data[exp_data["P_kbar"] >= 1.0].copy()
+                               ~~~~~~~~^^^^^^^^^^
+  File "C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\pandas\core\frame.py", line 4113, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\pandas\core\indexes\range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: 'P_kbar'

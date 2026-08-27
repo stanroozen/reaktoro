@@ -1,0 +1,8 @@
+Generated CHNOSZ-matched Reaktoro diagrams (per-point fresh-state solver)
+- Binary path: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release
+- Pourbaix: pH [-2,16] x Eh [-2,2], 70x60 points, T=25C, P=1 bar
+- Mosaic:   pH [0,14]  x Eh [-1,1], 60x50 points, T=25C, P=1 bar
+- Method: per-point EquilibriumSolver, fresh state each point
+- Boundary semantics: solid=predominance, dashed=minerals-vs-aqueous frontier, dash-dot=water stability, dotted=Eh0/pH7 guides
+- Output: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\Reaktoro_Pourbaix_Fe_CHNOSZmatched.png
+- Output: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\Reaktoro_Mosaic_Fe_CHNOSZmatched.png

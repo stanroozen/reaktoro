@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\temp\check_fugacity_solve.py", line 3, in <module>
+    from pathlib import Path
+  File "<frozen importlib._bootstrap>", line 1357, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 417, in __enter__
+  File "<frozen importlib._bootstrap>", line 437, in _get_module_lock
+KeyboardInterrupt
+^C

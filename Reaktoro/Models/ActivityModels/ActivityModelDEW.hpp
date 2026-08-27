@@ -19,8 +19,79 @@
 
 // Reaktoro includes
 #include <Reaktoro/Core/ActivityModel.hpp>
+#include <Reaktoro/Extensions/DEW/WaterModelOptions.hpp>
+
+/// ============================================================
+/// ActivityModelDEW — capability matrix
+/// ============================================================
+///
+/// Supported workflows
+///   ✔  Pure aqueous chemistry with DEW database
+///   ✔  T/P constraint: temperature() + pressure()
+///   ✔  pH constraint: specs.pH()
+///   ✔  Fugacity constraint: specs.fugacity()
+///   ✔  EquilibriumSensitivity (dndw)
+///   ✔  KineticsSolver (model-agnostic kinetics path)
+///   ✔  Operator-splitting reactive transport (Python level)
+///   ✔  Davies Debye-Hückel (dhModel = Davies)
+///   ✔  Extended Debye-Hückel with ion-size a (dhModel = ExtendedDH, default)
+///   ✔  Configurable water submodels (EOS, dielectric, Gibbs, Born)
+///   ✔  Configurable Psat handling and density tolerance
+///   ✔  Extended DH b-dot term (bExtended)
+///   ✔  Exports AqueousMixtureState into props.extra
+///
+/// Not supported in this model
+///   ✘  Perple_X GFSM gas-phase water-activity handoff
+///   ✘  GFSM standard-state conflict detection
+///   ✘  Perple_X hybrid EOS selection for gas phase
+///
+/// Constructor signatures (C++ and Python)
+///   ActivityModelDEW()
+///   ActivityModelDEW(ActivityModelParamsDEW const& params)
+///
+/// Debye-Hückel default
+///   dhModel = ActivityDHModel::ExtendedDH
+///
+/// See also: ActivityModelPerplexDEW.hpp for the Perple_X-backed variant
+///           that shares the same ActivityDHModel enum and dhModel field.
+/// ============================================================
 
 namespace Reaktoro {
+
+/// Debye-Hückel variant used by the DEW and PerplexDEW aqueous activity models.
+///
+/// Shared by ActivityModelParamsDEW and ActivityModelParamsPerplexDEW so the
+/// same field name (`dhModel`) selects the variant on both backends.
+enum class ActivityDHModel
+{
+    /// Extended Debye-Hückel with species-specific ionic radii (aᵢ):
+    ///   log₁₀(γᵢ) = −A zᵢ² √I / (1 + aᵢ B √I) + b I + Cc
+    /// A and B are computed from the current water density and dielectric constant.
+    /// This is the default for both DEW and PerplexDEW.
+    ExtendedDH,
+
+    /// Classic Davies approximation (no ionic-radius parameter):
+    ///   log₁₀(γᵢ) = −A zᵢ² (√I / (1 + √I) − 0.3 I)
+    /// A is computed from the current water density and dielectric constant.
+    /// Valid to ~0.5 mol/kg ionic strength.
+    Davies
+};
+
+/// Options for the aqueous DEW activity model.
+struct ActivityModelParamsDEW
+{
+    /// Debye-Hückel variant. Default: ExtendedDH (full HKF ionic-radius form).
+    /// Set to ActivityDHModel::Davies to use the ionic-radius-free Davies equation.
+    ActivityDHModel dhModel = ActivityDHModel::ExtendedDH;
+
+	/// Water-property submodels used to evaluate A(T,P) and B(T,P).
+	WaterModelOptions waterOptions = makeWaterModelOptionsDEW();
+
+	/// Extended Debye-Huckel correction term b_c,k.
+	///
+	/// The DEW default is zero at deep-Earth conditions.
+	real bExtended = 0.0;
+};
 
 /// Return the activity model for aqueous electrolyte phases based on the DEW (Deep Earth Water) model.
 ///
@@ -47,5 +118,10 @@ namespace Reaktoro {
 ///
 /// @ingroup Thermodynamics
 auto ActivityModelDEW() -> ActivityModelGenerator;
+
+/// Return the activity model for aqueous electrolyte phases based on the DEW (Deep Earth Water) model.
+///
+/// This overload permits callers to configure the underlying DEW water-property models.
+auto ActivityModelDEW(const ActivityModelParamsDEW& params) -> ActivityModelGenerator;
 
 } // namespace Reaktoro

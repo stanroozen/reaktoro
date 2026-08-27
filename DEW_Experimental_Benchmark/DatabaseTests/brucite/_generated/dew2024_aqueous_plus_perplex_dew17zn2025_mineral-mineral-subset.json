@@ -1,0 +1,56 @@
+{
+  "Database": "DEW17HP622_Zn_2025.dat",
+  "Title": "Harrison & Sverjensky DEW '17, Holland & Powell, JMG 2011 (TC-DS622)",
+  "Species": {
+    "br": {
+      "Name": "br",
+      "Formula": "H2MgO2",
+      "Elements": "1:Mg 2:O 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X DEW17HP622_Zn_2025.dat",
+      "Metadata": {
+        "PerpleX_EoS": 8,
+        "PerpleX_Composition": {
+          "Mg": 1.0,
+          "O2": 1.0,
+          "H2": 1.0
+        },
+        "PerpleX_Params": {
+          "GH": -944453.1,
+          "S0": 63.2,
+          "V0": 2.463,
+          "c1": 158.4,
+          "c2": -0.004076,
+          "c3": -1052300.0,
+          "c5": -1171.3,
+          "b1": 6.2e-05,
+          "b5": 557.4423,
+          "b6": 415000.0,
+          "b7": -1.55e-05,
+          "b8": 6.45
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "GH_HSC_to_SUPCRT",
+        "ReferenceTemperature_K": 298.15
+      },
+      "StandardThermoModel": {
+        "HollandPowell": {
+          "Gf": -834581.8435,
+          "Hf": 0.0,
+          "Sr": 63.2,
+          "Vr": 2.463e-05,
+          "a": 158.4,
+          "b": -0.004076,
+          "c": -1052300.0,
+          "d": -1171.3,
+          "alpha0": 6.2e-05,
+          "kappa0": 41500000000.0,
+          "kappa0p": 6.45,
+          "kappa0pp": -1.55e-10,
+          "numatoms": 5.0,
+          "Tmax": 9999.0
+        }
+      }
+    }
+  }
+}

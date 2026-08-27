@@ -1,0 +1,6 @@
+DEBUG    matplotlib:__init__.py:342 matplotlib data path: c:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\matplotlib\mpl-data
+DEBUG    matplotlib:__init__.py:342 CONFIGDIR=C:\Users\stanroozen\.matplotlib
+DEBUG    matplotlib:__init__.py:1560 interactive is False
+DEBUG    matplotlib:__init__.py:1561 platform is win32
+DEBUG    matplotlib:__init__.py:342 CACHEDIR=C:\Users\stanroozen\.matplotlib
+DEBUG    matplotlib.font_manager:font_manager.py:1635 Using fontManager instance from C:\Users\stanroozen\.matplotlib\fontlist-v390.json

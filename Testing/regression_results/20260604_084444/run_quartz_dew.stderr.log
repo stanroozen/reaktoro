@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\run_quartz_DEW.py", line 26, in <module>
+    _m.main()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py", line 639, in main
+    dew_db = DEWDatabase("dew2024-aqueous")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR***
+DEW database loading error: bad allocation
+[0m

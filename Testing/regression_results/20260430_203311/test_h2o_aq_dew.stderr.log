@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_aq_dew.py", line 42, in <module>
+    test_h2o_aq_dew_equilibration()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_h2o_aq_dew.py", line 25, in test_h2o_aq_dew_equilibration
+    system = rkt.ChemicalSystem(db_combined, aqueous, rkt.MineralPhase("Quartz"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H+.
+[0m

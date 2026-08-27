@@ -1,0 +1,64 @@
+{
+  "timestamp": "20260430_174151",
+  "python_executable": "C:/Users/stanroozen/anaconda3/envs/reaktoro/python.exe",
+  "selected_tags": [
+    "parity"
+  ],
+  "max_cases": 0,
+  "total": 3,
+  "passed": 0,
+  "failed": 3,
+  "missing": 0,
+  "results": [
+    {
+      "name": "quartz_h2oco2_parity_check",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 2.145,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\parity\\perplex-parity\\quartz_H2OCO2_parity_check.py",
+      "tags": [
+        "parity",
+        "regression",
+        "quartz",
+        "h2oco2",
+        "perplexdew"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_174151\\quartz_h2oco2_parity_check.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_174151\\quartz_h2oco2_parity_check.stderr.log"
+    },
+    {
+      "name": "quartz_h2oco2_parity_check_nondeps",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.854,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\parity\\perplex-parity\\quartz_H2OCO2_parity_check_nondeps.py",
+      "tags": [
+        "parity",
+        "regression",
+        "quartz",
+        "h2oco2",
+        "perplexdew",
+        "smoke"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_174151\\quartz_h2oco2_parity_check_nondeps.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_174151\\quartz_h2oco2_parity_check_nondeps.stderr.log"
+    },
+    {
+      "name": "perplex_mixed_fluid_parity",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.925,
+      "script": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\parity\\perplex-parity\\perplex_mixed_fluid_parity.py",
+      "tags": [
+        "parity",
+        "regression",
+        "quartz",
+        "h2oco2",
+        "perplexdew",
+        "external"
+      ],
+      "stdout_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_174151\\perplex_mixed_fluid_parity.stdout.log",
+      "stderr_log": "C:\\Users\\stanroozen\\Documents\\Projects\\reaktoro-dev\\reaktoro\\Testing\\regression_results\\20260430_174151\\perplex_mixed_fluid_parity.stderr.log"
+    }
+  ]
+}

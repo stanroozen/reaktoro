@@ -42,7 +42,28 @@
 #include <Reaktoro/Equilibrium/EquilibriumSetup.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumSpecs.hpp>
 
+// Standard includes
+#include <cstdlib>
+#include <iostream>
+
 namespace Reaktoro {
+
+namespace {
+
+auto eqsolverDebugEnabled() -> bool
+{
+    if(const auto value = std::getenv("REAKTORO_EQUILIBRIUM_SOLVER_DEBUG"); value)
+        return String(value) != "0";
+    return false;
+}
+
+auto eqsolverDebugLog(char const* msg) -> void
+{
+    if(eqsolverDebugEnabled())
+        std::cerr << "[EquilibriumSolver debug] " << msg << std::endl;
+}
+
+} // namespace
 
 auto const EQUILIBRIUM_FAILURE_MESSAGE = R"(The chemical equilibrium/kinetics calculation did not converge.
 This can occur due to various factors, such as:
@@ -102,18 +123,34 @@ struct EquilibriumSolver::Impl
     Impl(EquilibriumSpecs const& specs)
     : system(specs.system()), specs(specs), dims(specs), xconditions(specs), xrestrictions(system), setup(specs)
     {
+        eqsolverDebugLog("Impl ctor: entered");
+
+        // Disable detailed Optima variable-name output by default to avoid
+        // expensive/fragile name bookkeeping during constructor setup.
+        options.optima.output.active = false;
+        // Favor robustness over speed by default for challenging systems.
+        // This keeps non-ideal thermodynamics while improving Newton-step quality.
+        options.hessian = GibbsHessian::Exact;
+        eqsolverDebugLog("Impl ctor: output.active disabled");
+
         // Initialize the equilibrium solver with the default options
+        eqsolverDebugLog("Impl ctor: calling setOptions");
         setOptions(options);
+        eqsolverDebugLog("Impl ctor: setOptions done");
     }
 
     /// Set the options of the equilibrium solver.
     auto setOptions(EquilibriumOptions const& opts) -> void
     {
+        eqsolverDebugLog("setOptions: entered");
+
         // Update the options of the equilibrium calculation
         options = opts;
+        eqsolverDebugLog("setOptions: options copied");
 
         // Pass along the options used for the calculation to EquilibriumSetup object
         setup.setOptions(options);
+        eqsolverDebugLog("setOptions: setup.setOptions done");
 
         // Ensure some options have proper values
         error(options.epsilon <= 0, "EquilibriumOptions::epsilon cannot be zero or negative.");
@@ -121,6 +158,7 @@ struct EquilibriumSolver::Impl
         // Initialize the names of the primal and dual variables
         if(options.optima.output.active)
         {
+            eqsolverDebugLog("setOptions: output.active true, populating variable names");
             // Define some auxiliary references to the variables names
             auto& xnames = options.optima.output.xnames;
             auto& ynames = options.optima.output.ynames;
@@ -146,10 +184,25 @@ struct EquilibriumSolver::Impl
             // Initialize the names of the p variables corresponding to the explicit titrants, temperature and/or pressure, other added unknowns
             for(auto pname : specs.namesControlVariablesP())
                 pnames.push_back(pname);
+            eqsolverDebugLog("setOptions: populated variable names");
         }
 
-        // Pass along the options used for the calculation to Optima::Solver object
-        optsolver.setOptions(options.optima);
+        // Pass along the options used for the calculation to Optima::Solver object.
+        // In some Windows Python binding/runtime combinations, this can throw
+        // std::length_error("string too long") despite valid option values.
+        // If that happens, keep Optima's internal defaults and continue.
+        eqsolverDebugLog("setOptions: calling optsolver.setOptions");
+        try
+        {
+            optsolver.setOptions(options.optima);
+            eqsolverDebugLog("setOptions: optsolver.setOptions done");
+        }
+        catch(std::length_error const& exc)
+        {
+            eqsolverDebugLog("setOptions: optsolver.setOptions threw length_error; using Optima defaults");
+            if(eqsolverDebugEnabled())
+                std::cerr << "[EquilibriumSolver debug] setOptions length_error: " << exc.what() << std::endl;
+        }
     }
 
     /// Update the optimization problem before a new equilibrium calculation.

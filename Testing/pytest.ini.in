@@ -1,0 +1,6 @@
+[pytest]
+testpaths        = ${CMAKE_SOURCE_DIR}/Reaktoro
+                   ${CMAKE_SOURCE_DIR}/Testing
+python_files     = test_*.py *_test.py run_*.py
+python_functions = test*
+norecursedirs    = unit __pycache__ .git build *.egg

@@ -1,0 +1,176 @@
+﻿
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET DISTUTILS_USE_SDK=1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET MSSdk=1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_VERSION=16.0" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_MAJOR=16" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_YEAR=2019" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "MSYS2_ARG_CONV_EXCL=/AI;/AL;/OUT;/out" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "MSYS2_ENV_CONV_EXCL=CL" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "PY_VCRUNTIME_REDIST=\bin\vcruntime140.dll" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CXX=cl.exe" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CC=cl.exe" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "VSINSTALLDIR=" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "NEWER_VS_WITH_OLDER_VC=0" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -version [16.0,17.0) -property installationPath`) do (set "VSINSTALLDIR=%i\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>(set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -requires Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64 -property installationPath`) do (
+set "VSINSTALLDIR=%i\"  
+ set "NEWER_VS_WITH_OLDER_VC=1" 
+) ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -requires Microsoft.VisualStudio.Component.VC.v142.x86.x64 -property installationPath`) do (
+set "VSINSTALLDIR=%i\"  
+ set "NEWER_VS_WITH_OLDER_VC=1" 
+) ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF NOT "" == "" (
+set "INCLUDE=;"  
+ set "LIB=;"  
+ set "CMAKE_PREFIX_PATH=;" 
+)  else (
+set "INCLUDE=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library\include;"  
+ set "LIB=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library\lib;"  
+ set "CMAKE_PREFIX_PATH=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library;" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>call :GetWin10SdkDir 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>call :GetWin10SdkDirHelper HKLM\SOFTWARE\Wow6432Node  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKCU\SOFTWARE\Wow6432Node  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKLM\SOFTWARE  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKCU\SOFTWARE  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 exit /B 1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>exit /B 0 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>for /F %i in ('dir /ON /B "C:\Program Files (x86)\Windows Kits\10\\include\10.*"') DO (SET WindowsSDKVer=%~i ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>(SET WindowsSDKVer=10.0.19041.0 ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 (echo "Didn't find any windows 10 SDK. I'm not sure if things will work, but let's try..." )  else (echo Windows SDK version found as: "10.0.19041.0" ) 
+Windows SDK version found as: "10.0.19041.0"
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CMAKE_PLAT=x64" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "VCVARSBAT=64" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "" == "1" (set "CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX= -DPython_FIND_REGISTRY=NEVER -DPython3_FIND_REGISTRY=NEVER -DCMAKE_PROGRAM_PATH=\bin;\Scripts;\Library\bin;\bin;\Scripts;\Library\bin" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF 2019 GEQ 2019 (
+set "CMAKE_GEN=Visual Studio 16 2019"  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=1" 
+)  ELSE (
+IF "win-64" == "win-64" (set "CMAKE_GEN=Visual Studio 16 2019 Win64" )  else (set "CMAKE_GEN=Visual Studio 16 2019" )  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=0" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>echo "NEWER_VS_WITH_OLDER_VC=0" 
+"NEWER_VS_WITH_OLDER_VC=0"
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set /p LATEST_VS= 0<"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>type "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" 
+14.29.30133
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Redist\MSVC\" 
+ Volume in drive C is OS
+ Volume Serial Number is F46E-0FD8
+
+ Directory of C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Redist\MSVC
+
+01/06/2024  01:23 AM    <DIR>          .
+01/06/2024  01:23 AM    <DIR>          ..
+01/06/2024  01:23 AM    <DIR>          14.29.30133
+01/06/2024  01:23 AM    <DIR>          v142
+               0 File(s)              0 bytes
+               4 Dir(s)  46,456,594,432 bytes free
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if "0" == "1" (
+echo "14.29.30133"  
+ if "14.2" == "14.2" (set "CMAKE_GEN=Visual Studio 16 2019" )  else (set "CMAKE_GEN=Visual Studio 17 2022" )  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=1" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "" == "" SET "CMAKE_GENERATOR=Visual Studio 16 2019" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "1" == "1" (
+IF "" == "" SET "CMAKE_GENERATOR_PLATFORM=x64"  
+ IF "" == "" SET "CMAKE_GENERATOR_TOOLSET=v142" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>pushd C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\ 
+
+(reaktoro) C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools>if "14.29" LSS "14.29" (
+ 
+ CALL "VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.29 10.0.19041.0 
+)  else (CALL "VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.29 10.0.19041.0 ) 
+**********************************************************************
+** Visual Studio 2019 Developer Command Prompt v16.11.32
+** Copyright (c) 2021 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+
+=================================== ERRORS ====================================
+___________ ERROR collecting Testing/scripts/test_brucite_quick.py ____________
+Testing\scripts\test_brucite_quick.py:17: in <module>
+    hp_db = Database.fromFile(
+E   RuntimeError: [1;31m***ERROR***
+conda.exe : ERROR conda.cli.main_run:execute(127): `conda run python -m pytest 
+Testing -q --tb=short` failed. (See above for error)
+At C:\Users\stanroozen\anaconda3\shell\condabin\Conda.psm1:153 char:17
++ ...             & $Env:CONDA_EXE $Env:_CE_M $Env:_CE_CONDA $Command @Othe ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR conda.cli...bove for error) 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+E   Could not open file `C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\embedded\databases\hollandpowell\tc-ds62-reaktoro.json`. Ensure the given file path is relative to the directory where your application is RUNNING (not necessarily where the executable is located!). Alternatively, try a full path to the file (e.g., in Windows, `C:\User\username\mydata\mydatabase.yaml`, in Linux and macOS, `/home/username/mydata/mydatabase.yaml`). File formats accepted are JSON and YAML and expected file extensions are .json, .yaml, or .yml.
+E   [0m
+------------------------------- Captured stdout -------------------------------
+Imports OK
+_________ ERROR collecting Testing/scripts/test_dew_ph_constraint.py __________
+import file mismatch:
+imported module 'test_dew_ph_constraint' has this __file__ attribute:
+  C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_ph_constraint.py
+which is not the same as the test file we want to collect:
+  C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\scripts\test_dew_ph_constraint.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+=========================== short test summary info ===========================
+SKIPPED [1] Testing\unit\test_database_combination.py:8: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_integration_methods.py:23: reaktoro not available: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_lnactivity_water.py:9: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_modern_pattern.py:8: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_water_gibbs.py:6: reaktoro import failed: No module named 'reaktoro'
+ERROR Testing/scripts/test_brucite_quick.py - RuntimeError: [1;31m***ERROR***
+ERROR Testing/scripts/test_dew_ph_constraint.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!
+5 skipped, 2 errors in 11.91s
+

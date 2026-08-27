@@ -24,7 +24,19 @@ using namespace Reaktoro;
 
 void exportActivityModelDEW(py::module& m)
 {
-    m.def("ActivityModelDEW", ActivityModelDEW,
+    py::enum_<ActivityDHModel>(m, "ActivityDHModel")
+        .value("ExtendedDH", ActivityDHModel::ExtendedDH)
+        .value("Davies",     ActivityDHModel::Davies)
+        .export_values();
+
+    py::class_<ActivityModelParamsDEW>(m, "ActivityModelParamsDEW")
+        .def(py::init<>())
+        .def_readwrite("dhModel",      &ActivityModelParamsDEW::dhModel)
+        .def_readwrite("waterOptions", &ActivityModelParamsDEW::waterOptions)
+        .def_readwrite("bExtended",    &ActivityModelParamsDEW::bExtended)
+        ;
+
+    m.def("ActivityModelDEW", py::overload_cast<>(&ActivityModelDEW),
         "Return the activity model for aqueous electrolyte phases based on the DEW (Deep Earth Water) model.\n"
         "\n"
         "This model implements the Helgeson–Kirkham–Flowers extended Debye–Hückel formulation\n"
@@ -37,6 +49,10 @@ void exportActivityModelDEW(py::module& m)
         "ActivityModelGenerator\n"
         "    A generator function that creates an ActivityModel for aqueous phases."
     );
+
+    m.def("ActivityModelDEW", py::overload_cast<const ActivityModelParamsDEW&>(&ActivityModelDEW),
+        py::arg("params"),
+        "Return the activity model for aqueous electrolyte phases based on the DEW (Deep Earth Water) model using explicit parameters.");
 }
 
 

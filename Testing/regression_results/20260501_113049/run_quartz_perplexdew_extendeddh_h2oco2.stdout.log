@@ -1,0 +1,47 @@
+Using local reaktoro4py extension from C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release.
+================================================================================
+Quartz Solubility in H2O-CO2  â€”  Reaktoro / PerplexDEW
+Mineral   : SiO2
+Solute    : SiO2(aq)
+Backend   : PerplexDEW (ExtendedDH)
+Gas EOS   : H2O-CO2 water activity â€” Zhang-Duan 2009 (GFSM, separate pass)
+Conditions: T = 800.0 Â°C,  P = [9.0, 10.0] kbar
+XCO2 grid : 51 values from 0.000 to 0.850
+Si species: SiO2(aq), HSiO3-(aq), Si2O4(aq), Si3O6(aq) (no Si-C species in DEW2024)
+================================================================================
+
+[1] Loading databases...
+    DEW2024 and SUPCRTBL databases loaded.
+
+[2] Building chemical system...
+    All requested aqueous species found in DEW database.
+âœ“ PerplexDEW configured: EOS=ZhangDuan2005; DH model=ExtendedDH
+âœ“ System built for Quartz solubility (pure-H2O reference)
+
+[3] Loading experimental data...
+    WARNING: Experimental data file not found or empty: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_H2OCO2_DEW_testset.csv
+    0 experimental data points loaded.
+
+[4] Building GFSM gas system for H2O activity (Zhang-Duan 2009)...
+    GFSM CO2(g)+H2O(g) system ready.
+
+[5] Computing quartz solubility vs XCO2...
+
+    P = 9.0 kbar (9000 bar):
+      Solving DEW baseline (pure H2O)...
+      mâ‚€(SiO2(aq))=0.5599  mâ‚€(Si2O4(aq))=0.2742  mâ‚€(Si3O6(aq))=2.9488e-02  mâ‚€(HSiO3-(aq))=1.0138e-05  total_Si=1.1968 mol/kg
+      Computing a(H2O) from GFSM...
+      a_H2O range: 0.1413 (XCO2=0.850) to 1.0000 (XCO2=0.000)
+      Corrected m range: 0.0114 â€“ 1.1968 mol/kg
+
+    P = 10.0 kbar (10000 bar):
+      Solving DEW baseline (pure H2O)...
+      mâ‚€(SiO2(aq))=0.6045  mâ‚€(Si2O4(aq))=0.2847  mâ‚€(Si3O6(aq))=3.5282e-02  mâ‚€(HSiO3-(aq))=1.1415e-05  total_Si=1.2799 mol/kg
+      Computing a(H2O) from GFSM...
+      a_H2O range: 0.1421 (XCO2=0.850) to 1.0000 (XCO2=0.000)
+      Corrected m range: 0.0124 â€“ 1.2799 mol/kg
+
+[6] Generating plots...
+    Saved: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_H2OCO2_solubility_vs_xco2_PerplexDEW_ExtendedDH.png
+
+âœ“ Done.

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\run_quartz_DEW.py", line 26, in <module>
+    _m.main()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py", line 638, in main
+    system = build_system(
+             ^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_solubility_analysis_v2_dew24.py", line 516, in build_system
+    system = ChemicalSystem(combined_db, aqueous, mineral)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H+.
+[0m

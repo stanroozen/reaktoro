@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_build_system.py", line 12, in <module>
+    from reaktoro4py import *
+ModuleNotFoundError: No module named 'reaktoro4py'

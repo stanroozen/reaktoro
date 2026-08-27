@@ -18,6 +18,7 @@
 #include "EquilibriumSpecs.hpp"
 
 // Reaktoro includes
+#include <cstdlib>
 #include <Reaktoro/Common/Algorithms.hpp>
 #include <Reaktoro/Common/Constants.hpp>
 #include <Reaktoro/Common/Enumerate.hpp>
@@ -29,6 +30,15 @@
 
 namespace Reaktoro {
 namespace {
+
+auto envEnabled(char const* name) -> bool
+{
+    if(const auto value = std::getenv(name); value)
+    {
+        return String(value) != "0";
+    }
+    return false;
+}
 
 /// Return a Species object in a Database with given formula and aggregate state
 auto getSpecies(Database const& db, String const& formula, AggregateState aggstate) -> Species
@@ -462,18 +472,64 @@ auto EquilibriumSpecs::fugacity(String gas) -> void
     errorif(species.name().empty(),
         "Could not impose the fugacity constraint for gas `", gas, "` because "
         "there is no gaseous species in the database with this chemical formula.");
+
+    const auto& systemspecies = m_system.species();
+    bool gas_present_in_system = false;
+    for(const auto& sp : systemspecies)
+    {
+        if(sp.aggregateState() == AggregateState::Gas && sp.formula() == species.formula())
+        {
+            gas_present_in_system = true;
+            break;
+        }
+    }
+    errorifnot(gas_present_in_system,
+        "Could not impose the fugacity constraint for gas `", gas, "` because "
+        "no gaseous species with this formula is present in the current ChemicalSystem. "
+        "Add a GaseousPhase containing this gas (for example, via GaseousPhase(\"", gas, "\")).");
+
     const auto pid = "f[" + gas + "]";
     const auto idx = addInput(pid);
     ControlVariableQ qvar;
     qvar.name = "[" + species.name() + "]";
     qvar.substance = species.formula();
     qvar.id = pid;
+    auto fug_warned = std::make_shared<bool>(false);
+    const bool fug_diag = envEnabled("REAKTORO_FUGACITY_DIAGNOSTICS");
+    const bool fug_skip_u0 = envEnabled("REAKTORO_FUGACITY_SKIP_STANDARD_THERMO");
+    auto fug_diag_reported = std::make_shared<bool>(false);
     qvar.fn = [=](ChemicalProps const& props, VectorXrConstRef const& p, VectorXrConstRef const& w)
     {
+        if(!*fug_warned && props.extra().count("AqueousMixtureState") == 0)
+        {
+            *fug_warned = true;
+            warningif(true,
+                "specs.fugacity(): the aqueous activity model did not populate "
+                "props.extra[\"AqueousMixtureState\"] on the first evaluation. "
+                "The fugacity constraint converges correctly at the standard-state "
+                "level, but derived aqueous properties may lack ionic-strength "
+                "corrections. Ensure your aqueous activity model stores "
+                "AqueousMixtureState in props.extra.");
+        }
         auto const& T = props.temperature();
         auto const& P = props.pressure();
         auto const& R = universalGasConstant;
-        const auto u0 = species.standardThermoProps(T, P).G0;
+
+        if(fug_diag && !*fug_diag_reported)
+        {
+            *fug_diag_reported = true;
+            warningif(true,
+                "specs.fugacity() diagnostic for ", gas,
+                ": evaluating qvar.fn at T=", T, " K, P=", P, " Pa",
+                ", w[idx]=", w[idx],
+                ", skip_standard_thermo=", (fug_skip_u0 ? "true" : "false"),
+                ".");
+        }
+
+        real u0 = 0.0;
+        if(!fug_skip_u0)
+            u0 = species.standardThermoProps(T, P).G0;
+
         return u0 + R*T*log(w[idx]);
     };
     addControlVariableQ(qvar);
@@ -491,8 +547,22 @@ auto EquilibriumSpecs::pH() -> void
     qvar.name = "[H+]";
     qvar.substance = "H+";
     qvar.id = pid;
+    auto ph_warned = std::make_shared<bool>(false);
     qvar.fn = [=](ChemicalProps const& props, VectorXrConstRef const& p, VectorXrConstRef const& w)
     {
+        if(!*ph_warned && props.extra().count("AqueousMixtureState") == 0)
+        {
+            *ph_warned = true;
+            warningif(true,
+                "specs.pH(): the aqueous activity model did not populate "
+                "props.extra[\"AqueousMixtureState\"] on the first evaluation. "
+                "The pH constraint converges the chemical potential of H+ correctly, "
+                "but AqueousProps::pH() post-solve will return a value not corrected "
+                "by ionic-strength-dependent activity coefficients. "
+                "Ensure your aqueous activity model stores AqueousMixtureState in "
+                "props.extra (ActivityModelDEW, ActivityModelPerplexDEW, and "
+                "ActivityModelDebyeHuckel all do this by default).");
+        }
         auto const& T = props.temperature();
         auto const& P = props.pressure();
         auto const& R = universalGasConstant;

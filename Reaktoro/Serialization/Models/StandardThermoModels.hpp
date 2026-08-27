@@ -34,6 +34,8 @@ struct StandardThermoModelParamsInterpolation;
 struct StandardThermoModelParamsMaierKelley;
 struct StandardThermoModelParamsMineralHKF;
 struct StandardThermoModelParamsNasa;
+struct StandardThermoModelParamsPerplexDEW;
+struct StandardThermoModelParamsPerplexGFSM;
 struct StandardThermoModelParamsWaterHKF;
 
 REAKTORO_DATA_ENCODE_DECLARE(StandardThermoModelParamsConstant);
@@ -62,6 +64,12 @@ REAKTORO_DATA_DECODE_DECLARE(StandardThermoModelParamsMineralHKF);
 
 REAKTORO_DATA_ENCODE_DECLARE(StandardThermoModelParamsNasa);
 REAKTORO_DATA_DECODE_DECLARE(StandardThermoModelParamsNasa);
+
+REAKTORO_DATA_ENCODE_DECLARE(StandardThermoModelParamsPerplexDEW);
+REAKTORO_DATA_DECODE_DECLARE(StandardThermoModelParamsPerplexDEW);
+
+REAKTORO_DATA_ENCODE_DECLARE(StandardThermoModelParamsPerplexGFSM);
+REAKTORO_DATA_DECODE_DECLARE(StandardThermoModelParamsPerplexGFSM);
 
 REAKTORO_DATA_ENCODE_DECLARE(StandardThermoModelParamsWaterHKF);
 REAKTORO_DATA_DECODE_DECLARE(StandardThermoModelParamsWaterHKF);

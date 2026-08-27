@@ -1,0 +1,26 @@
+[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: T=705.978 K, P=500 bar is beyond HKF g-function validity limits; returning g=0 to match Perple_X.
+[0m[1;33m***WARNING***
+PerpleXElectrolyte::gfunc: reached warning limit (10); further out-of-bounds warnings are suppressed.
+[0mC:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_analysis.py:995: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax2.legend(
+C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\calcite\calcite_solubility_analysis.py:1068: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax3.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=9)

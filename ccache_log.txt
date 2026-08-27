@@ -1,0 +1,70 @@
+[2026-05-03T22:23:12.279181 11892] === CCACHE 4.11.3 STARTED =========================================
+[2026-05-03T22:23:12.279181 11892] Configuration file: C:\Users\stanroozen\AppData\Local\ccache\ccache.conf
+[2026-05-03T22:23:12.279181 11892] System configuration file: C:\ProgramData\ccache\ccache.conf
+[2026-05-03T22:23:12.279181 11892] Config: (default) absolute_paths_in_stderr = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) base_dir = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) cache_dir = C:\Users\stanroozen\AppData\Local\ccache
+[2026-05-03T22:23:12.279181 11892] Config: (default) compiler = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) compiler_check = mtime
+[2026-05-03T22:23:12.279181 11892] Config: (default) compiler_type = auto
+[2026-05-03T22:23:12.279181 11892] Config: (default) compression = true
+[2026-05-03T22:23:12.279181 11892] Config: (default) compression_level = 0
+[2026-05-03T22:23:12.279181 11892] Config: (default) cpp_extension = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) debug = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) debug_dir = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) debug_level = 2
+[2026-05-03T22:23:12.279181 11892] Config: (default) depend_mode = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) direct_mode = true
+[2026-05-03T22:23:12.279181 11892] Config: (default) disable = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) extra_files_to_hash = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) file_clone = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) hard_link = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) hash_dir = true
+[2026-05-03T22:23:12.279181 11892] Config: (default) ignore_headers_in_manifest = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) ignore_options = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) inode_cache = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) keep_comments_cpp = false
+[2026-05-03T22:23:12.279181 11892] Config: (environment) log_file = c:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/ccache_log.txt
+[2026-05-03T22:23:12.279181 11892] Config: (default) max_files = 0
+[2026-05-03T22:23:12.279181 11892] Config: (default) max_size = 5.0 GiB
+[2026-05-03T22:23:12.279181 11892] Config: (default) msvc_dep_prefix = Note: including file:
+[2026-05-03T22:23:12.279181 11892] Config: (default) namespace = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) path = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) pch_external_checksum = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) prefix_command = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) prefix_command_cpp = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) read_only = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) read_only_direct = false
+[2026-05-03T22:23:12.279181 11892] Config: (environment) recache = true
+[2026-05-03T22:23:12.279181 11892] Config: (default) remote_only = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) remote_storage = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) reshare = false
+[2026-05-03T22:23:12.279181 11892] Config: (default) response_file_format = auto
+[2026-05-03T22:23:12.279181 11892] Config: (default) run_second_cpp = true
+[2026-05-03T22:23:12.279181 11892] Config: (default) sloppiness = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) stats = true
+[2026-05-03T22:23:12.279181 11892] Config: (default) stats_log = 
+[2026-05-03T22:23:12.279181 11892] Config: (default) temporary_dir = C:\Users\stanroozen\AppData\Local\ccache\tmp
+[2026-05-03T22:23:12.279181 11892] Config: (default) umask = 
+[2026-05-03T22:23:12.279181 11892] Command line: C:\\Users\\stanroozen\\anaconda3\\envs\\reaktoro\\Library\\bin\\ccache.exe C:\\msys64\\ucrt64\\bin\\c++.exe -DAUTODIFF_ENABLE_IMPLICIT_CONVERSION_REAL=1 -DDEW_AQUEOUS_DB_PATH=\"C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/embedded/databases/DEW/dew2024-aqueous.yaml\" -DFMT_SHARED -DReaktoro_EXPORTS -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -DUSE_SPDLOG_PRECOMPILED -IC:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro -IC:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/build/_cmrc/include -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/eigen3 -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/phreeqc4rkt/common -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/phreeqc4rkt/PhreeqcKeywords -O3 -DNDEBUG -MD -MT Reaktoro/CMakeFiles/Reaktoro.dir/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp.obj -MF Reaktoro\\CMakeFiles\\Reaktoro.dir\\Models\\ActivityModels\\ActivityModelMAGEMinSolidSolutionPilot.cpp.obj.d -o Reaktoro/CMakeFiles/Reaktoro.dir/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp.obj -c C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/Reaktoro/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp
+[2026-05-03T22:23:12.279181 11892] Hostname: DESKTOP-45DKSLF
+[2026-05-03T22:23:12.279181 11892] Working directory: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build
+[2026-05-03T22:23:12.302357 11892] Compiler: C:\msys64\ucrt64\bin\c++.exe
+[2026-05-03T22:23:12.302402 11892] Compiler type: other
+[2026-05-03T22:23:12.303380 11892] Detected input file: C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/Reaktoro/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp
+[2026-05-03T22:23:12.303754 11892] Source file: C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/Reaktoro/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp
+[2026-05-03T22:23:12.303896 11892] Dependency file: Reaktoro\CMakeFiles\Reaktoro.dir\Models\ActivityModels\ActivityModelMAGEMinSolidSolutionPilot.cpp.obj.d
+[2026-05-03T22:23:12.304229 11892] Object file: Reaktoro/CMakeFiles/Reaktoro.dir/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp.obj
+[2026-05-03T22:23:12.305239 11892] Trying direct lookup
+[2026-05-03T22:23:12.308181 11892] Running preprocessor
+[2026-05-03T22:23:12.309307 11892] Executing C:\\msys64\\ucrt64\\bin\\c++.exe -O3 -DAUTODIFF_ENABLE_IMPLICIT_CONVERSION_REAL=1 -DDEW_AQUEOUS_DB_PATH=\"C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/embedded/databases/DEW/dew2024-aqueous.yaml\" -DFMT_SHARED -DReaktoro_EXPORTS -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -DUSE_SPDLOG_PRECOMPILED -IC:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro -IC:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/build/_cmrc/include -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/eigen3 -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/phreeqc4rkt/common -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/phreeqc4rkt/PhreeqcKeywords -DNDEBUG -E -o C:\\Users\\stanroozen\\AppData\\Local\\ccache\\tmp/cpp_stdout.tmp.iL7jkj.ii C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/Reaktoro/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp
+[2026-05-03T22:23:12.471106 11892] Preprocessor gave exit status 1
+[2026-05-03T22:23:12.471182 11892] Failed; falling back to running the real compiler
+[2026-05-03T22:23:12.471231 11892] Executing C:\\msys64\\ucrt64\\bin\\c++.exe -DAUTODIFF_ENABLE_IMPLICIT_CONVERSION_REAL=1 -DDEW_AQUEOUS_DB_PATH=\"C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/embedded/databases/DEW/dew2024-aqueous.yaml\" -DFMT_SHARED -DReaktoro_EXPORTS -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -DUSE_SPDLOG_PRECOMPILED -IC:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro -IC:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/build/_cmrc/include -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/eigen3 -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/phreeqc4rkt/common -isystem C:/Users/stanroozen/anaconda3/envs/reaktoro/Library/include/phreeqc4rkt/PhreeqcKeywords -O3 -DNDEBUG -MD -MT Reaktoro/CMakeFiles/Reaktoro.dir/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp.obj -MF Reaktoro\\CMakeFiles\\Reaktoro.dir\\Models\\ActivityModels\\ActivityModelMAGEMinSolidSolutionPilot.cpp.obj.d -o Reaktoro/CMakeFiles/Reaktoro.dir/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp.obj -c C:/Users/stanroozen/Documents/Projects/reaktoro-dev/reaktoro/Reaktoro/Models/ActivityModels/ActivityModelMAGEMinSolidSolutionPilot.cpp
+[2026-05-03T22:23:12.471279 11892] Result: preprocessor_error
+[2026-05-03T22:23:12.471327 11892] Acquiring C:\Users\stanroozen\AppData\Local\ccache/7/4/stats.lock
+[2026-05-03T22:23:12.471556 11892] Acquired C:\Users\stanroozen\AppData\Local\ccache/7/4/stats.lock
+[2026-05-03T22:23:12.473386 11892] Releasing C:\Users\stanroozen\AppData\Local\ccache/7/4/stats.lock
+[2026-05-03T22:23:12.473547 11892] Released C:\Users\stanroozen\AppData\Local\ccache/7/4/stats.lock
+[2026-05-03T22:23:12.473824 11892] Removing C:\Users\stanroozen\AppData\Local\ccache\tmp/stderr.tmp.H1LDXh.tmp
+[2026-05-03T22:23:12.473932 11892] Removing C:\Users\stanroozen\AppData\Local\ccache\tmp/cpp_stdout.tmp.iL7jkj.ii

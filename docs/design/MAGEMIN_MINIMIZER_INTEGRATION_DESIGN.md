@@ -362,8 +362,65 @@ This section records the current status of the proposed to-do sequence and the l
       - filter: `*MAGEMin*`
       - result: 442 assertions, 38 test cases
 
+10. Local-model contract compliance in projected-gradient utility
+    - Updated `MAGEMinProjectedGradientLocalModelMinimizer` to respect `MAGEMinConstrainedTernaryLocalModel` contract fields:
+      - `enforceUnityConstraint`
+      - `lowerBounds`
+      - `upperBounds`
+    - Added bounded-simplex projection support for unity-constrained solves and box-clamping behavior for unconstrained-sum solves.
+    - Added targeted regression coverage to lock the expected behavior for:
+      - unconstrained-sum + box bounds
+      - unity-constrained + bounded simplex
+    - Validation status in this session:
+      - compile reached source-complete stage for modified translation units
+      - full link/test execution currently blocked by local environment dependency (`yaml-cpp.lib` not found in active CMake configuration)
+
+11. Nonlinear constraint hooks and Hessian-ready fields on local-model contract
+    - Extended `MAGEMinConstrainedTernaryLocalModel` struct with:
+      - **Nonlinear constraint callbacks**: `constraints(y)` → m-vector of constraint values, `constraintJacobian(y)` → m×n matrix of constraint gradients
+      - **Constraint bounds**: `constraintLowerBounds`, `constraintUpperBounds` for bound-constrained nonlinear solves
+      - **Second-order information**: `objectiveHessian(y, multipliers)` → n×n Hessian of Lagrangian, `useSecondOrderInfo` flag for Newton/quasi-Newton methods
+    - Added constraint helper utilities:
+      - `hasNonlinearConstraints(model)` — detects presence of constraint callbacks
+      - `validateConstraintCallbacks(model)` — ensures Jacobian is provided with constraints, validates Hessian consistency
+      - `evaluateConstraintFeasibility(model, y)` — checks if composition satisfies all nonlinear constraints
+    - Updated `MAGEMinProjectedGradientLocalModelMinimizer` to validate constraint callbacks at startup
+    - Added comprehensive regression tests:
+      - Constraint callback presence and validation logic
+      - Constraint evaluation and feasibility checking
+      - Hessian callback metadata validation
+      - Mixed constraint scenarios (linear + nonlinear)
+    - **Status**: Implementation complete; awaiting full test execution (current blocker: CMake build environment configuration)
+
+12. Constraint-aware merit search and trust-region clipping in the projected-gradient utility
+    - Checked upstream MAGEMin before implementation:
+      - `MAGEMin/src/SB_database/SB_NLopt_opt_function.c` uses `NLOPT_LD_SLSQP` with declared lower/upper bounds plus a shared equality constraint `sum(x)=1` for SB models.
+      - `MAGEMin/src/TC_database/NLopt_opt_function.c` extends that pattern with explicit NLopt inequality multi-constraints for site-fraction style constraints.
+      - Upstream does **not** expose a custom trust-region kernel or bespoke backtracking line search in these local solvers; step control is delegated to NLopt.
+      - Upstream diagnostics are stored back onto phase/global structs (`status`, `LM_time`, `df_raw`, `xeos`, `sf_ok`) rather than attached through family-specific callback payloads.
+    - Reaktoro implementation choice for the projected-gradient local-model minimizer:
+      - added a nonlinear-constraint merit function `objective + penalty*violation + barrier`
+      - added optional feasible-only trial rejection during backtracking
+      - added optional trust-region clipping on raw search displacements before projection
+      - added an active-set SQP-style local search direction when nonlinear constraints are present:
+        - builds a linearized active-constraint system from `constraintJacobian(y)` plus the unity constraint when enabled
+        - solves a constrained steepest-descent step by default
+        - upgrades to a KKT Newton step when `useSecondOrderInfo=true` and `objectiveHessian(y, multipliers)` is available
+        - maps solved active multipliers back to the nonlinear constraint set for subsequent Hessian evaluations
+    - Extended local-model contract fields:
+      - `constraintPenaltyWeight`
+      - `constraintBarrierWeight`
+      - `requireFeasibleTrialPoints`
+      - `trustRegionRadius`
+    - Added focused regression coverage for:
+      - constraint-aware backtracking that respects nonlinear constraint boundaries
+      - Jacobian/Hessian callback usage on an active nonlinear constraint
+      - trust-region clipping of projected-gradient trial steps
+    - Family-specific diagnostics payload attachment required no new seam in this slice because `localModelDiagnostics` was already available and covered by regression.
+
 ### Remaining
 
 1. Phase C contract evolution (optional)
   - Decide whether to extend the minimal local-model contract with additional hooks (for example: explicit constraints, Hessian information, or family-specific diagnostics payloads).
   - Only proceed if upcoming requirements need these capabilities.
+  - **Status**: Constraint hooks, Hessian-ready fields, and a constraint-aware active-set SQP local step now exist; remaining work would be a more complete SQP globalization strategy or an NLopt-backed local solver, not more contract plumbing.

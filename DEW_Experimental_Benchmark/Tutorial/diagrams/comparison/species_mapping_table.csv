@@ -1,0 +1,23 @@
+case,reaktoro_name,chnosz_name,status,reason
+Fe_Pourbaix,Fe+2,Fe+2,exact,case-insensitive exact name match
+Fe_Pourbaix,Fe+3,Fe+3,exact,case-insensitive exact name match
+Fe_Pourbaix,FeO(aq),,missing_in_chnosz,no CHNOSZ species with equivalent normalized key
+Fe_Pourbaix,FeO+,FeO+,exact,case-insensitive exact name match
+Fe_Pourbaix,FeO2-,FeO2-,exact,case-insensitive exact name match
+Fe_Pourbaix,FeOH+,FeOH+,exact,case-insensitive exact name match
+Fe_Pourbaix,FeOH+2,FeOH+2,exact,case-insensitive exact name match
+Fe_Pourbaix,HFeO2(aq),HFeO2,approx,normalized alias (aq polymorph/comma/punctuation removed)
+Fe_Pourbaix,HFeO2-,HFeO2-,exact,case-insensitive exact name match
+Fe_Pourbaix,Ferropericlase,,missing_in_chnosz,no CHNOSZ species with equivalent normalized key
+Fe_Pourbaix,Goethite,goethite,exact,case-insensitive exact name match
+Fe_Pourbaix,Hematite,hematite,exact,case-insensitive exact name match
+Fe_Pourbaix,Iron,iron,exact,case-insensitive exact name match
+Fe_Pourbaix,Magnetite,magnetite,exact,case-insensitive exact name match
+Fe_Mosaic,Fe+2,Fe+2,exact,case-insensitive exact name match
+Fe_Mosaic,Fe+3,Fe+3,exact,case-insensitive exact name match
+Fe_Mosaic,HFeO2-,HFeO2-,exact,case-insensitive exact name match
+Fe_Mosaic,Pyrite,pyrite,exact,case-insensitive exact name match
+Fe_Mosaic,"Pyrrhotite,trot",pyrrhotite,approx,normalized alias (aq polymorph/comma/punctuation removed)
+Fe_Mosaic,Siderite,siderite,exact,case-insensitive exact name match
+Fe_Mosaic,Hematite,hematite,exact,case-insensitive exact name match
+Fe_Mosaic,Magnetite,magnetite,exact,case-insensitive exact name match

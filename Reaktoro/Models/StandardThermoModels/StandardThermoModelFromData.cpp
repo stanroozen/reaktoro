@@ -54,6 +54,10 @@ auto StandardThermoModelFromData(Data const& data) -> StandardThermoModel
         return StandardThermoModelWaterHKF(params.as<StandardThermoModelParamsWaterHKF>());
     if(name == "Nasa")
         return StandardThermoModelNasa(params.as<StandardThermoModelParamsNasa>());
+    if(name == "PerplexDEW")
+        return StandardThermoModelPerplexDEW(params.as<StandardThermoModelParamsPerplexDEW>());
+    if(name == "PerplexGFSM")
+        return StandardThermoModelPerplexGFSM(params.as<StandardThermoModelParamsPerplexGFSM>());
 
     errorif(true, "Cannot create a StandardThermoModel object with "
         "unsupported model name `", name, "` in Data object:\n", data.repr());

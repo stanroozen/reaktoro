@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_perplex_conditions_nosilence.py", line 45, in <module>
+    test_perplex_conditions_nosilence()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_perplex_conditions_nosilence.py", line 19, in test_perplex_conditions_nosilence
+    sys_ = rkt.ChemicalSystem(combined_db, aq, rkt.MineralPhase("Quartz"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR*** Could not find any Species object with name H+.
+[0m

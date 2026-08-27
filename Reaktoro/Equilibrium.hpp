@@ -18,6 +18,7 @@
 #pragma once
 
 #include <Reaktoro/Equilibrium/EquilibriumConditions.hpp>
+#include <Reaktoro/Equilibrium/EquilibriumBenchmarkUtils.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumDims.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumOptions.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumPredictor.hpp>
@@ -25,6 +26,7 @@
 #include <Reaktoro/Equilibrium/EquilibriumResult.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumSensitivity.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumSolver.hpp>
+#include <Reaktoro/Equilibrium/EquilibriumSweepSolver.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumSpecs.hpp>
 #include <Reaktoro/Equilibrium/EquilibriumUtils.hpp>
 #include <Reaktoro/Equilibrium/SmartEquilibriumOptions.hpp>

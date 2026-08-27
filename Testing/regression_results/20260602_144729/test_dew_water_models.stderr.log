@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_water_models.py", line 13, in _rkt
+    import reaktoro4py as rkt
+ModuleNotFoundError: No module named 'reaktoro4py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_water_models.py", line 52, in <module>
+    test_dew_database_loads()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_water_models.py", line 22, in test_dew_database_loads
+    rkt = _rkt()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\smoke\test_dew_water_models.py", line 17, in _rkt
+    pytest.skip(f"reaktoro4py not available: {e}")
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\anaconda3\Lib\site-packages\_pytest\outcomes.py", line 160, in skip
+    raise Skipped(msg=reason, allow_module_level=allow_module_level)
+Skipped: reaktoro4py not available: No module named 'reaktoro4py'

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\quartz_H2OCO2_parity_check.py", line 404, in <module>
+    main()
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\quartz_H2OCO2_parity_check.py", line 369, in main
+    ok, summary = run_parity(args.median_gate, args.p95_gate)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\quartz_H2OCO2_parity_check.py", line 296, in run_parity
+    dew_sys = build_dew_system(dew_db, supcrt_db)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\quartz_H2OCO2_parity_check.py", line 178, in build_dew_system
+    return ChemicalSystem(db2, aq, mineral)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+[0m

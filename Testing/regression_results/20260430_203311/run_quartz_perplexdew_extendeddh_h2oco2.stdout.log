@@ -1,0 +1,17 @@
+================================================================================
+Quartz Solubility in H2O-CO2  â€”  Reaktoro / PerplexDEW
+Mineral   : SiO2
+Solute    : SiO2_aq
+Backend   : PerplexDEW (ExtendedDH)
+Gas EOS   : H2O-CO2 water activity â€” Zhang-Duan 2009 (GFSM, separate pass)
+Conditions: T = 800.0 Â°C,  P = [9.0, 10.0] kbar
+XCO2 grid : 51 values from 0.000 to 0.850
+Si species: SiO2_aq, HSiO3-, Si2O4_aq, Si3O6_aq (no Si-C species in DEW2024)
+================================================================================
+
+[1] Loading databases...
+    DEW2024 and SUPCRTBL databases loaded.
+
+[2] Building chemical system...
+    WARNING: Missing aqueous species in DEW database: WATER,AQ, H+, OH-, SiO2_aq, HSiO3-, Si2O4_aq, Si3O6_aq
+âœ“ PerplexDEW configured: EOS=ZhangDuan2005; DH model=ExtendedDH

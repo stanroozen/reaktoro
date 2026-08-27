@@ -1,0 +1,9 @@
+======================================================================
+TEST: H2O_aq in DEW database with Duan EOS
+======================================================================
+
+âœ“ DEW species count: 230
+âœ“ WATER,AQ in DEW: False
+
+--- Building system with WATER,AQ from DEW (no SUPCRT water) ---
+âœ“ ActivityModelDEW() applied (uses Duan & Zang 2005 water EOS)

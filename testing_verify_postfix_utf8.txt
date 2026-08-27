@@ -1,0 +1,282 @@
+﻿
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET DISTUTILS_USE_SDK=1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET MSSdk=1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_VERSION=16.0" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_MAJOR=16" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>SET "VS_YEAR=2019" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "MSYS2_ARG_CONV_EXCL=/AI;/AL;/OUT;/out" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "MSYS2_ENV_CONV_EXCL=CL" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "PY_VCRUNTIME_REDIST=\bin\vcruntime140.dll" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CXX=cl.exe" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CC=cl.exe" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "VSINSTALLDIR=" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "NEWER_VS_WITH_OLDER_VC=0" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -version [16.0,17.0) -property installationPath`) do (set "VSINSTALLDIR=%i\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>(set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -requires Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64 -property installationPath`) do (
+set "VSINSTALLDIR=%i\"  
+ set "NEWER_VS_WITH_OLDER_VC=1" 
+) ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (for /F "usebackq tokens=*" %i in (`vswhere.exe -nologo -products * -requires Microsoft.VisualStudio.Component.VC.v142.x86.x64 -property installationPath`) do (
+set "VSINSTALLDIR=%i\"  
+ set "NEWER_VS_WITH_OLDER_VC=1" 
+) ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if not exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\" (set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF NOT "" == "" (
+set "INCLUDE=;"  
+ set "LIB=;"  
+ set "CMAKE_PREFIX_PATH=;" 
+)  else (
+set "INCLUDE=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library\include;"  
+ set "LIB=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library\lib;"  
+ set "CMAKE_PREFIX_PATH=C:\Users\stanroozen\anaconda3\envs\reaktoro\Library;" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>call :GetWin10SdkDir 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>call :GetWin10SdkDirHelper HKLM\SOFTWARE\Wow6432Node  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKCU\SOFTWARE\Wow6432Node  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKLM\SOFTWARE  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 call :GetWin10SdkDirHelper HKCU\SOFTWARE  1>nul 2>&1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 exit /B 1 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>exit /B 0 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>for /F %i in ('dir /ON /B "C:\Program Files (x86)\Windows Kits\10\\include\10.*"') DO (SET WindowsSDKVer=%~i ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>(SET WindowsSDKVer=10.0.19041.0 ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if errorlevel 1 (echo "Didn't find any windows 10 SDK. I'm not sure if things will work, but let's try..." )  else (echo Windows SDK version found as: "10.0.19041.0" ) 
+Windows SDK version found as: "10.0.19041.0"
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CMAKE_PLAT=x64" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "VCVARSBAT=64" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set "CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "" == "1" (set "CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX= -DPython_FIND_REGISTRY=NEVER -DPython3_FIND_REGISTRY=NEVER -DCMAKE_PROGRAM_PATH=\bin;\Scripts;\Library\bin;\bin;\Scripts;\Library\bin" ) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF 2019 GEQ 2019 (
+set "CMAKE_GEN=Visual Studio 16 2019"  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=1" 
+)  ELSE (
+IF "win-64" == "win-64" (set "CMAKE_GEN=Visual Studio 16 2019 Win64" )  else (set "CMAKE_GEN=Visual Studio 16 2019" )  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=0" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>echo "NEWER_VS_WITH_OLDER_VC=0" 
+"NEWER_VS_WITH_OLDER_VC=0"
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>set /p LATEST_VS= 0<"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>type "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Auxiliary\Build\Microsoft.VCToolsVersion.default.txt" 
+14.29.30133
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\\VC\Redist\MSVC\" 
+ Volume in drive C is OS
+ Volume Serial Number is F46E-0FD8
+
+ Directory of C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Redist\MSVC
+
+01/06/2024  01:23 AM    <DIR>          .
+01/06/2024  01:23 AM    <DIR>          ..
+01/06/2024  01:23 AM    <DIR>          14.29.30133
+01/06/2024  01:23 AM    <DIR>          v142
+               0 File(s)              0 bytes
+               4 Dir(s)  49,712,484,352 bytes free
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>if "0" == "1" (
+echo "14.29.30133"  
+ if "14.2" == "14.2" (set "CMAKE_GEN=Visual Studio 16 2019" )  else (set "CMAKE_GEN=Visual Studio 17 2022" )  
+ set "USE_NEW_CMAKE_GEN_SYNTAX=1" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "" == "" SET "CMAKE_GENERATOR=Visual Studio 16 2019" 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>IF "1" == "1" (
+IF "" == "" SET "CMAKE_GENERATOR_PLATFORM=x64"  
+ IF "" == "" SET "CMAKE_GENERATOR_TOOLSET=v142" 
+) 
+
+(reaktoro) C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro>pushd C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\ 
+
+(reaktoro) C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools>if "14.29" LSS "14.29" (
+ 
+ CALL "VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.29 10.0.19041.0 
+)  else (CALL "VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.29 10.0.19041.0 ) 
+**********************************************************************
+** Visual Studio 2019 Developer Command Prompt v16.11.32
+** Copyright (c) 2021 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+...FFFFF...............sssss..FFFF.....                                  [100%]
+================================== FAILURES ===================================
+_____________________ test_conflict_default_mode_no_raise _____________________
+Testing\bindings\test_perplexdew_diagnostics.py:104: in test_conflict_default_mode_no_raise
+    db = _make_test_db_conflict()
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:82: in _make_test_db_conflict
+    conflict_sp = _make_conflict_species()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:59: in _make_conflict_species
+    rkt.Species(name)
+E   RuntimeError: [1;31m***ERROR***
+E   Error while parsing chemical formula: CO2_hkf. Found the invalid character: _
+E   [0m
+______________________ test_conflict_strict_mode_raises _______________________
+Testing\bindings\test_perplexdew_diagnostics.py:124: in test_conflict_strict_mode_raises
+    db = _make_test_db_conflict()
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:82: in _make_test_db_conflict
+    conflict_sp = _make_conflict_species()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:59: in _make_conflict_species
+    rkt.Species(name)
+E   RuntimeError: [1;31m***ERROR***
+E   Error while parsing chemical formula: CO2_hkf. Found the invalid character: _
+E   [0m
+______________________ test_unmapped_gfsm_warn_no_raise _______________________
+Testing\bindings\test_perplexdew_diagnostics.py:143: in test_unmapped_gfsm_warn_no_raise
+    db = _make_test_db_unmapped()
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:90: in _make_test_db_unmapped
+    unmapped_sp = _make_unmapped_species()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:75: in _make_unmapped_species
+    return rkt.Species(name).withFormula("CO2_aq").withStandardGibbsEnergy(-394359.0)
+           ^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   Error while parsing chemical formula: CO2_suffix. Found the invalid character: _
+E   [0m
+___________________ test_unmapped_gfsm_suppressed_no_raise ____________________
+Testing\bindings\test_perplexdew_diagnostics.py:162: in test_unmapped_gfsm_suppressed_no_raise
+    db = _make_test_db_unmapped()
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:90: in _make_test_db_unmapped
+    unmapped_sp = _make_unmapped_species()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+Testing\bindings\test_perplexdew_diagnostics.py:75: in _make_unmapped_species
+    return rkt.Species(name).withFormula("CO2_aq").withStandardGibbsEnergy(-394359.0)
+           ^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   Error while parsing chemical formula: CO2_suffix. Found the invalid character: _
+E   [0m
+______________________ test_clean_species_no_diagnostic _______________________
+Testing\bindings\test_perplexdew_diagnostics.py:183: in test_clean_species_no_diagnostic
+    n2_sp = rkt.Species("N2_test").withFormula("N2").withStandardGibbsEnergy(0.0)
+            ^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   Error while parsing chemical formula: N2_test. Found the invalid character: _
+E   [0m
+_________________ test_kinetics_solve_succeeds_multistep[DEW] _________________
+Testing\regression\smoke\test_kinetics_dew.py:101: in test_kinetics_solve_succeeds_multistep
+    solver = rkt.KineticsSolver(specs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   The matrices Kn and Kp in the system of reactivity constraints with ids `` should not be both empty.
+conda.exe : ERROR conda.cli.main_run:execute(127): `conda run python -m pytest 
+Testing -q --tb=short` failed. (See above for error)
+At C:\Users\stanroozen\anaconda3\shell\condabin\Conda.psm1:153 char:17
++ ...             & $Env:CONDA_EXE $Env:_CE_M $Env:_CE_CONDA $Command @Othe ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR conda.cli...bove for error) 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+E   [0m
+_____________ test_kinetics_solve_succeeds_multistep[PerplexDEW] ______________
+Testing\regression\smoke\test_kinetics_dew.py:101: in test_kinetics_solve_succeeds_multistep
+    solver = rkt.KineticsSolver(specs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   The matrices Kn and Kp in the system of reactivity constraints with ids `` should not be both empty.
+E   [0m
+_____________________ test_kinetics_dew_model_parity[DEW] _____________________
+Testing\regression\smoke\test_kinetics_dew.py:157: in test_kinetics_dew_model_parity
+    kin_solver = rkt.KineticsSolver(eq_specs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   The matrices Kn and Kp in the system of reactivity constraints with ids `` should not be both empty.
+E   [0m
+_________________ test_kinetics_dew_model_parity[PerplexDEW] __________________
+Testing\regression\smoke\test_kinetics_dew.py:157: in test_kinetics_dew_model_parity
+    kin_solver = rkt.KineticsSolver(eq_specs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: [1;31m***ERROR***
+E   The matrices Kn and Kp in the system of reactivity constraints with ids `` should not be both empty.
+E   [0m
+============================== warnings summary ===============================
+Testing/bindings/test_dew_python.py::test_dew_database
+  C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but Testing/bindings/test_dew_python.py::test_dew_database returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+Testing/bindings/test_dew_python.py::test_water_models
+  C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but Testing/bindings/test_dew_python.py::test_water_models returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+Testing/bindings/test_dew_python.py::test_water_properties
+  C:\Users\stanroozen\anaconda3\envs\reaktoro\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but Testing/bindings/test_dew_python.py::test_water_properties returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] Testing\unit\test_database_combination.py:8: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_integration_methods.py:23: reaktoro not available: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_lnactivity_water.py:9: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_modern_pattern.py:8: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\unit\test_water_gibbs.py:6: reaktoro import failed: No module named 'reaktoro'
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:140: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:164: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:190: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:227: Could not build two-phase system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+SKIPPED [1] Testing\regression\smoke\test_gfsm_handoff.py:264: Could not build strict aqueous-only system: [1;31m***ERROR*** Could not find any Species object with name CO2,aq.
+[0m
+FAILED Testing/bindings/test_perplexdew_diagnostics.py::test_conflict_default_mode_no_raise
+FAILED Testing/bindings/test_perplexdew_diagnostics.py::test_conflict_strict_mode_raises
+FAILED Testing/bindings/test_perplexdew_diagnostics.py::test_unmapped_gfsm_warn_no_raise
+FAILED Testing/bindings/test_perplexdew_diagnostics.py::test_unmapped_gfsm_suppressed_no_raise
+FAILED Testing/bindings/test_perplexdew_diagnostics.py::test_clean_species_no_diagnostic
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_solve_succeeds_multistep[DEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_solve_succeeds_multistep[PerplexDEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_dew_model_parity[DEW]
+FAILED Testing/regression/smoke/test_kinetics_dew.py::test_kinetics_dew_model_parity[PerplexDEW]
+9 failed, 25 passed, 10 skipped, 3 warnings in 68.07s (0:01:08)
+

@@ -1,0 +1,2 @@
+backend,covariance_file,mineral_db_file,entity,samples,samples_forward_success,relevant_entity_count,seed,ci_percent,sigma_j_per_mol,gibbs_shift_mean,gibbs_shift_std,gibbs_shift_p2p5,gibbs_shift_p97p5,cov_is_psd,cov_min_eig,cov_effective_rank,cov_condition_number
+PerplexDEW (Davies),embedded\databases\hollandpowell\tc-ds62-covariance.json,embedded\databases\hollandpowell\tc-ds62-reaktoro.json,q,300,300,256,42,95.0,8.087026647662292,-0.4411215698791102,8.413422818607575,-16.259130847910377,15.921307656352107,True,-2.6819450841266353e-13,247.0,11801113.870334426

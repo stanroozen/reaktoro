@@ -1,0 +1,15 @@
+case,model,status,valid_points,total_points,message
+perplex_mixed_dew24hp622,DEW,ok,240,240,completed
+perplex_mixed_dew24hp622,PerplexDEW,ok,240,240,completed
+perplex_mixed_dew17hp622_zn_2025,DEW,ok,240,240,completed
+perplex_mixed_dew17hp622_zn_2025,PerplexDEW,ok,240,240,completed
+dew2024_aqueous_plus_hp62_mineral,DEW,ok,240,240,completed
+dew2024_aqueous_plus_hp62_mineral,PerplexDEW,ok,240,240,completed
+dew2024_aqueous_plus_hp633_mineral,DEW,ok,240,240,completed
+dew2024_aqueous_plus_hp633_mineral,PerplexDEW,ok,240,240,completed
+dew2024_aqueous_plus_hp634_mineral,DEW,ok,240,240,completed
+dew2024_aqueous_plus_hp634_mineral,PerplexDEW,ok,240,240,completed
+dew2024_aqueous_plus_perplex_dew24_mineral,DEW,ok,240,240,completed
+dew2024_aqueous_plus_perplex_dew24_mineral,PerplexDEW,ok,240,240,completed
+dew2024_aqueous_plus_perplex_dew17zn2025_mineral,DEW,ok,240,240,completed
+dew2024_aqueous_plus_perplex_dew17zn2025_mineral,PerplexDEW,ok,240,240,completed

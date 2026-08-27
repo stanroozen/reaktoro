@@ -1,0 +1,20 @@
+Using local reaktoro4py extension from C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\build\Reaktoro\Release.
+================================================================================
+Quartz Solubility Analysis - Reaktoro DEW2024
+Mineral: SiO2
+Solute species: SiO2(aq)
+Aqueous backend: PerplexDEW (ExtendedDH, activity=PerplexDEW)
+================================================================================
+
+[1] Loading experimental data...
+    WARNING: Experimental data file not found: C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\regression\quartz\quartz_DEW_testset.csv
+
+[2] Initializing Reaktoro databases...
+    Successfully loaded DEW2024 aqueous database
+    Successfully loaded SUPCRTBL mineral database
+    All requested aqueous species found in DEW database.
+Ã¢Å“â€œ PerplexDEW configured: EOS=ZhangDuan2005; DH model=ExtendedDH; phase activity=ActivityModelPerplexDEW
+Ã¢Å“â€œ System built for Quartz solubility (backend=PerplexDEW)
+
+[3] Calculating quartz solubility curves...
+    P = 0.500 kbar (500 bar)...

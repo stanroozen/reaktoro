@@ -1,0 +1,10 @@
+[1;31m***ERROR***
+You have not specified a value for input `ln(a[Fe+2])` in the EquilibriumConditions object.
+[0m
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experimental_Benchmark\Tutorial\diagrams\comparison\generate_reaktoro_identical_test.py", line 158, in main
+    grid = sweeper.sweepPHEhGrid(state0, pH_vals, Eh_vals, "V")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR***
+You have not specified a value for input `ln(a[Fe+2])` in the EquilibriumConditions object.
+[0m

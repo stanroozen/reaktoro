@@ -1,0 +1,260 @@
+{
+  "Database": "DEW24HP622ver_elements.dat",
+  "Title": "Holland & Powell, JMG 2011 (TC-DS622)",
+  "Species": {
+    "H2O": {
+      "Name": "H2O",
+      "Formula": "H2O",
+      "Elements": "1:O 2:H",
+      "AggregateState": "Aqueous",
+      "Source": "Perple_X DEW24HP622ver_elements.dat",
+      "Metadata": {
+        "PerpleX_EoS": 101,
+        "PerpleX_Composition": {
+          "O2": 0.5,
+          "H2": 1.0
+        },
+        "PerpleX_Params": {
+          "GH": -298100.7,
+          "S0": 188.8,
+          "c1": 40.1,
+          "c2": 0.008656,
+          "c3": 487500.0,
+          "c5": -251.2
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "GH_HSC_to_SUPCRT",
+        "ReferenceTemperature_K": 298.15
+      },
+      "StandardThermoModel": {
+        "PerplexGFSM": {
+          "speciesIndex": 1,
+          "G0": -228555.72175000003,
+          "H0": -172265.00175000002,
+          "V0": 0.0,
+          "Tmax": 2000.0
+        }
+      }
+    },
+    "H+": {
+      "Name": "H+",
+      "Formula": "H+",
+      "Elements": "1:H",
+      "AggregateState": "Aqueous",
+      "Source": "Perple_X DEW24HP622ver_elements.dat",
+      "Metadata": {
+        "PerpleX_EoS": 16,
+        "PerpleX_Composition": {
+          "H2": 0.5
+        },
+        "PerpleX_Params": {
+          "Gf_comment": 0.0,
+          "q": 1.0,
+          "HOH": 1.0
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "Gf_comment",
+        "ReferenceTemperature_K": 298.15
+      },
+      "ThermoReference": {
+        "Gf": 0.0,
+        "S0": null,
+        "V0": null
+      },
+      "StandardThermoModel": {
+        "Constant": {
+          "G0": 0.0
+        }
+      }
+    },
+    "OH-": {
+      "Name": "OH-",
+      "Formula": "HO",
+      "Elements": "1:H 1:O",
+      "AggregateState": "Aqueous",
+      "Source": "Perple_X DEW24HP622ver_elements.dat",
+      "Metadata": {
+        "PerpleX_EoS": 16,
+        "PerpleX_Composition": {
+          "H2": 0.5,
+          "O2": 0.5
+        },
+        "PerpleX_Params": {
+          "Gf_comment": -157297.0,
+          "G0": -157297.5,
+          "S0": -20.92,
+          "w": 719648.0,
+          "q": -1.0,
+          "a1": 0.87864,
+          "a2": -2092.0,
+          "a3": 4.184,
+          "a4": -112968.0,
+          "c1": 50.71008,
+          "c2": -314636.8,
+          "HOH": 2.0
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "StandardThermoModel": {
+        "PerplexDEW": {
+          "Gf": -157297.5,
+          "Hf": -163534.798,
+          "Sr": -20.92,
+          "a1": 8.7864e-06,
+          "a2": -2092.0,
+          "a3": 4.184e-05,
+          "a4": -112968.0,
+          "c1": 50.71008,
+          "c2": -314636.8,
+          "wref": 719648.0,
+          "charge": -1.0,
+          "Tmax": 2000.0
+        }
+      }
+    },
+    "Mg+2": {
+      "Name": "Mg+2",
+      "Formula": "Mg",
+      "Elements": "1:Mg",
+      "AggregateState": "Aqueous",
+      "Source": "Perple_X DEW24HP622ver_elements.dat",
+      "Metadata": {
+        "PerpleX_EoS": 16,
+        "PerpleX_Composition": {
+          "Mg": 1.0
+        },
+        "PerpleX_Params": {
+          "Gf_comment": -453985.0,
+          "G0": -453984.9,
+          "S0": -138.072,
+          "w": 643164.5,
+          "q": 2.0,
+          "a1": -0.3437993,
+          "a2": -3597.822,
+          "a3": 35.10376,
+          "a4": -99997.6,
+          "c1": 87.0272,
+          "c2": -246521.3
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "StandardThermoModel": {
+        "PerplexDEW": {
+          "Gf": -453984.9,
+          "Hf": -495151.06680000003,
+          "Sr": -138.072,
+          "a1": -3.4379929999999995e-06,
+          "a2": -3597.822,
+          "a3": 0.0003510376,
+          "a4": -99997.6,
+          "c1": 87.0272,
+          "c2": -246521.3,
+          "wref": 643164.5,
+          "charge": 2.0,
+          "Tmax": 2000.0
+        }
+      }
+    },
+    "MgOH+": {
+      "Name": "MgOH+",
+      "Formula": "HMgO",
+      "Elements": "1:Mg 1:H 1:O",
+      "AggregateState": "Aqueous",
+      "Source": "Perple_X DEW24HP622ver_elements.dat",
+      "Metadata": {
+        "PerpleX_EoS": 16,
+        "PerpleX_Composition": {
+          "Mg": 1.0,
+          "H2": 0.5,
+          "O2": 0.5
+        },
+        "PerpleX_Params": {
+          "Gf_comment": -624357.0,
+          "G0": -624357.4,
+          "S0": -75.312,
+          "w": 353506.2,
+          "q": 1.0,
+          "a1": 0.9682112,
+          "a2": -870.2311,
+          "a3": 27.53942,
+          "a4": -112675.8,
+          "c1": 156.4523,
+          "c2": 213944.7
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "G0_passthrough",
+        "ReferenceTemperature_K": 298.15
+      },
+      "StandardThermoModel": {
+        "PerplexDEW": {
+          "Gf": -624357.4,
+          "Hf": -646811.6728000001,
+          "Sr": -75.312,
+          "a1": 9.682112000000001e-06,
+          "a2": -870.2311,
+          "a3": 0.0002753942,
+          "a4": -112675.8,
+          "c1": 156.4523,
+          "c2": 213944.7,
+          "wref": 353506.2,
+          "charge": 1.0,
+          "Tmax": 2000.0
+        }
+      }
+    },
+    "br": {
+      "Name": "br",
+      "Formula": "H2MgO2",
+      "Elements": "1:Mg 2:O 2:H",
+      "AggregateState": "Solid",
+      "Source": "Perple_X DEW24HP622ver_elements.dat",
+      "Metadata": {
+        "PerpleX_EoS": 8,
+        "PerpleX_Composition": {
+          "Mg": 1.0,
+          "O2": 1.0,
+          "H2": 1.0
+        },
+        "PerpleX_Params": {
+          "GH": -944453.1,
+          "S0": 63.2,
+          "V0": 2.463,
+          "c1": 158.4,
+          "c2": -0.004076,
+          "c3": -1052300.0,
+          "c5": -1171.3,
+          "b1": 6.2e-05,
+          "b5": 557.4423,
+          "b6": 415000.0,
+          "b7": -1.55e-05,
+          "b8": 6.45
+        },
+        "HSC_conversion_enabled": true,
+        "GfConversionMode": "GH_HSC_to_SUPCRT",
+        "ReferenceTemperature_K": 298.15
+      },
+      "StandardThermoModel": {
+        "HollandPowell": {
+          "Gf": -834581.8435,
+          "Hf": 0.0,
+          "Sr": 63.2,
+          "Vr": 2.463e-05,
+          "a": 158.4,
+          "b": -0.004076,
+          "c": -1052300.0,
+          "d": -1171.3,
+          "alpha0": 6.2e-05,
+          "kappa0": 41500000000.0,
+          "kappa0p": 6.45,
+          "kappa0pp": -1.55e-10,
+          "numatoms": 5.0,
+          "Tmax": 9999.0
+        }
+      }
+    }
+  }
+}

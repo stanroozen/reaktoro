@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\perplex_mixed_fluid_parity.py", line 846, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\perplex_mixed_fluid_parity.py", line 778, in main
+    return compare_cases(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\perplex_mixed_fluid_parity.py", line 629, in compare_cases
+    mineral: build_reaktoro_system(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\Testing\parity\perplex-parity\perplex_mixed_fluid_parity.py", line 295, in build_reaktoro_system
+    return ChemicalSystem(db, aq, gas, mineral_phase)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: [1;31m***ERROR*** Could not find any Species object with name WATER,AQ.
+[0m

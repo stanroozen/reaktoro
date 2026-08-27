@@ -31,6 +31,7 @@
 #include <Reaktoro/Models/StandardThermoModels/StandardThermoModelMaierKelley.hpp>
 #include <Reaktoro/Models/StandardThermoModels/StandardThermoModelMineralHKF.hpp>
 #include <Reaktoro/Models/StandardThermoModels/StandardThermoModelNasa.hpp>
+#include <Reaktoro/Models/StandardThermoModels/StandardThermoModelPerplexDEW.hpp>
 #include <Reaktoro/Models/StandardThermoModels/StandardThermoModelPerplexGFSM.hpp>
 #include <Reaktoro/Models/StandardThermoModels/StandardThermoModelWaterHKF.hpp>
 #include <Reaktoro/Models/StandardThermoModels/StandardThermoModelFromData.hpp>

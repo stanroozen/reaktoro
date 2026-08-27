@@ -68,6 +68,11 @@ auto ActivityModelPerplexGFSM(
             perplex_to_reaktoro_idx[px_idx] = i;
         }
 
+        errorifnot(perplex_to_reaktoro_idx.count(1),
+            "ActivityModelPerplexGFSM requires H2O to be present in the gaseous phase "
+            "(Perple_X species index 1). The provided phase has no H2O species, which "
+            "is unsupported for GFSM and can lead to invalid EOS evaluations.");
+
         // Create Perple_X GFSM model instance
         PerpleX::GFSMFluidModel model;
 
@@ -75,9 +80,18 @@ auto ActivityModelPerplexGFSM(
         PerpleX::GFSMFluidOptions gfsm_options;
         gfsm_options.mrkMixOptions = params.mrkMixOptions;
         gfsm_options.useLowTMrk = params.useLowTMrk;
-        gfsm_options.enableElectrolyte = true;
+        gfsm_options.enableElectrolyte = params.enableElectrolyte;
         gfsm_options.hybridEosOptions = params.hybridEosOptions;
-        gfsm_options.hybridSpeciesIndices = {1, 2, 4};  // H2O, CO2, CH4
+
+        // Only keep hybrid species that are actually present in this phase.
+        // Passing absent species indices downstream can trigger invalid paths in
+        // low-level hybrid routines during fugacity-constrained solves.
+        const std::array<int, 3> default_hybrid_species = {1, 2, 4}; // H2O, CO2, CH4
+        for(const int idx : default_hybrid_species)
+        {
+            if(perplex_to_reaktoro_idx.count(idx))
+                gfsm_options.hybridSpeciesIndices.push_back(idx);
+        }
 
         // Define the activity model function
         ActivityModel fn = [=](ActivityPropsRef props, ActivityModelArgs args)

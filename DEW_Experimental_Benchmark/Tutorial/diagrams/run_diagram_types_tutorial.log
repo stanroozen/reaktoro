@@ -1,0 +1,15 @@
+EXIT_CODE=1
+python.exe : Traceback (most recent call last):
+At line:1 char:271
++ ... \diagrams"; & "C:\Users\stanroozen\anaconda3\python.exe" ".\diagram_t ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\stanroozen\Documents\Projects\reaktoro-dev\reaktoro\DEW_Experi
+mental_Benchmark\Tutorial\diagrams\diagram_types_tutorial.py", line 71, in 
+<module>
+    from reaktoro import *
+ModuleNotFoundError: No module named 'reaktoro'
+
